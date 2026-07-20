@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2022WinterTeam4 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2022WinterTeam4</h1>
+      <div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_4:_Adaptive_Cruise_Control"><span class="tocnumber">1</span> <span class="toctext">Team 4: Adaptive Cruise Control</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Physical_Robot"><span class="tocnumber">2</span> <span class="toctext">Physical Robot</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Donkey_3_Autonomous_Laps"><span class="tocnumber">3</span> <span class="toctext">Donkey 3 Autonomous Laps</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#ROS2_3_Autonomous_Laps"><span class="tocnumber">4</span> <span class="toctext">ROS2 3 Autonomous Laps</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Final_Project"><span class="tocnumber">5</span> <span class="toctext">Final Project</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Gantt_Chart"><span class="tocnumber">6</span> <span class="toctext">Gantt Chart</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Objective"><span class="tocnumber">7</span> <span class="toctext">Objective</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Approach"><span class="tocnumber">8</span> <span class="toctext">Approach</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#ROS2_Implementation"><span class="tocnumber">9</span> <span class="toctext">ROS2 Implementation</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Throttle_Schedule_Algorithm"><span class="tocnumber">10</span> <span class="toctext">Throttle Schedule Algorithm</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Demonstration_Video"><span class="tocnumber">11</span> <span class="toctext">Demonstration Video</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Acknowledgement"><span class="tocnumber">12</span> <span class="toctext">Acknowledgement</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_4:_Adaptive_Cruise_Control">Team 4: Adaptive Cruise Control</span></h2>
+<p>Hussein Batteikh (ECE)
+</p><p>Jon Carlo Bergado Bibat (CE) 
+</p><p>Haojin Chen (MAE)
+</p><p>David Qiao (MAE)
+</p>
+<h2><span class="mw-headline" id="Physical_Robot">Physical Robot</span></h2>
+<p><b>Construction Design</b>
+</p><p><a class="image" href="File:Base148.png.html"><img alt="Base148.png" decoding="async" height="403" loading="lazy" src="https://web.archive.org/web/20220819055550im_/http://guitar.ucsd.edu/maeece148/images/3/3c/Base148.png" width="512"/></a>
+</p><p>The plate used has the specifications of m3 holes being 1.5 centimeters apart. There are 4 curved edges around the sides of the plate which connect to the 4 legs that were 3D printed to give more room for the wiring and raising the camera, jetson, and lidar to get the best view and data collection processes. There are extended holes on the edges of the base plate to allow better wiring adjustments and attaching the Jetson Nano at the rear side of the plate in order to place the LiDar and Camera mounts at the front.
+The camera mount was designed as one curved leg connected to two adjustable arms in which they would move the camera up and down to calibrate for the best viewing angle.
+The lidar mount is attached at the front of the plate with two m3 screws diagonally to support the weight of the lidar.
+</p><p><br/>
+<b>Electrical Schematic</b>
+</p><p><a class="image" href="File:Wiring148.png.html"><img alt="Wiring148.png" decoding="async" height="398" loading="lazy" src="https://web.archive.org/web/20220819055550im_/http://guitar.ucsd.edu/maeece148/images/7/77/Wiring148.png" width="512"/></a>
+</p><p><br/>
+<b>Completed Car</b>
+</p><p><a class="image" href="File:148car.png.html"><img alt="148car.png" decoding="async" height="421" loading="lazy" src="https://web.archive.org/web/20220819055550im_/http://guitar.ucsd.edu/maeece148/images/0/08/148car.png" width="512"/></a>
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Donkey_3_Autonomous_Laps">Donkey 3 Autonomous Laps</span></h2>
+<p><a class="internal" href="https://web.archive.org/web/20220819055550/http://guitar.ucsd.edu/maeece148/images/8/8b/8mb.video-vQW-nDmf1NJR.mp4" title="8mb.video-vQW-nDmf1NJR.mp4">Media:8mb.video-vQW-nDmf1NJR.mp4</a>
+</p>
+<h2><span class="mw-headline" id="ROS2_3_Autonomous_Laps">ROS2 3 Autonomous Laps</span></h2>
+<p><a class="internal" href="https://web.archive.org/web/20220819055550/http://guitar.ucsd.edu/maeece148/images/e/e0/8mb.video-Bfc-Y3EXQ5rl.mp4" title="8mb.video-Bfc-Y3EXQ5rl.mp4">Media:8mb.video-Bfc-Y3EXQ5rl.mp4 </a>
+</p>
+<h2><span class="mw-headline" id="Final_Project">Final Project</span></h2>
+<h2><span class="mw-headline" id="Gantt_Chart">Gantt Chart</span></h2>
+<p><a class="image" href="File:FinalGantt148.jpg.html"><img alt="FinalGantt148.jpg" decoding="async" height="328" loading="lazy" src="https://web.archive.org/web/20220819055550im_/http://guitar.ucsd.edu/maeece148/images/5/57/FinalGantt148.jpg" width="1920"/></a>
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Objective">Objective</span></h2>
+<p>The goal is to program the robocar using ROS2 with the ability to detect the speed of a moving or stationary object in front of it through the LiDAR and have it adjust its speed accordingly to avoid collision while driving autonomously, as well as filtering out the front vision so that the object in the front does not confuse the training. 
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Approach">Approach</span></h2>
+<p>Vehicle will drive autonomously through lane tracing.
+</p><p>The vehicle’s central processing unit will detect the center of a lane through an image provided by a RGB camera.
+</p><p>The image will be processed through OpenCV where the center of the lane will be calculated.
+</p><p>Once the center of the lane is calculated, steering will be adjusted based on the error away from the vehicle’s center.
+</p><p>Vehicle will adjust throttle speed based on the distance from of an object in front of it.
+</p><p>LiDAR will distance data of any object in front of the vehicle’s frontal view range.
+</p><p>As a frontal object gets closer, throttle value will be adjusted to go slower or a complete stop.
+</p><p>A first order filter was applied to the LiDAR readings to reduce noisy data for better stability.
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="ROS2_Implementation">ROS2 Implementation</span></h2>
+<p>Overview: We modified the lane guidance node from the lane detection package in order to receive data points from the LiDAR and use them to adjust the throttle and keep a certain distance between our car and any object it detects in front of it. We used an algorithm that adjusts the throttle accordingly and added a first order filter to reduce the noise and keep the throttle more stable, otherwise it would keep fluctuating and not keep the throttle at a certain level.
+</p><p><br/>
+<a class="image" href="File:Constants_and_imports.JPG.html"><img alt="Constants and imports.JPG" decoding="async" height="365" loading="lazy" src="https://web.archive.org/web/20220819055550im_/http://guitar.ucsd.edu/maeece148/images/4/40/Constants_and_imports.JPG" width="601"/></a>
+</p><p>We added the math module in order to make some calculations for our scheduling function and the LaserScan module in order to read in values from the LiDAR. We also added some new constants, can be turned into ROS parameters as these are used in order to calibrate the throttle scheduling as well as our filter.
+</p><p><a class="image" href="File:New_instance_variables.JPG.html"><img alt="New instance variables.JPG" decoding="async" height="161" loading="lazy" src="https://web.archive.org/web/20220819055550im_/http://guitar.ucsd.edu/maeece148/images/0/09/New_instance_variables.JPG" width="532"/></a>
+</p><p>We also added some new instance variables that we use to set a limit on the throttle based on the calibrated zero throttle as well as set the slope for our scheduling function.
+</p><p><a class="image" href="File:Subscribe_code.JPG.html"><img alt="Subscribe code.JPG" decoding="async" height="179" loading="lazy" src="https://web.archive.org/web/20220819055550im_/http://guitar.ucsd.edu/maeece148/images/0/0a/Subscribe_code.JPG" width="934"/></a>
+</p><p>For the cruise control node, we published to the actuator topic and subscribed to both the centroid and scan topics, the latter of which is used to take in the LiDAR values. The LiDAR subscriber also calls the cruise_controller callback function every time new values are received.
+</p><p><a class="image" href="File:Cruise_control_code.JPG.html"><img alt="Cruise control code.JPG" decoding="async" height="679" loading="lazy" src="https://web.archive.org/web/20220819055550im_/http://guitar.ucsd.edu/maeece148/images/6/6f/Cruise_control_code.JPG" width="947"/></a>
+</p><p>This contains the code for the cruise_controller callback function which takes in the data within a certain range in front of the LiDAR device and implements the scheduling function in the form of if statement logic and publishing the resulting throttle to the actuator topic.
+</p>
+<h2><span class="mw-headline" id="Throttle_Schedule_Algorithm">Throttle Schedule Algorithm</span></h2>
+<p><a class="image" href="File:Throttlesched.jpg.html"><img alt="Throttlesched.jpg" decoding="async" height="275" loading="lazy" src="https://web.archive.org/web/20220819055550im_/http://guitar.ucsd.edu/maeece148/images/1/1f/Throttlesched.jpg" width="512"/></a>
+</p><p>The throttle scheduling algorithm works by defining the stopping throttle value, the maximum throttle value, the minimum distance the car needs to be away from an object in front of it, and the maximum range of distance the car concerns itself with. When an object gets within the distance of concern of the car, the algorithm adjusts the throttle value linearly such that it slows down so it does not come into contact with the said object. The closer the object is, the lower the throttle value. Once an object reaches or gets below the minimum distance of the car, the stopping throttle value is sent motor, stopping the motion of the car.
+</p>
+<h2><span class="mw-headline" id="Demonstration_Video">Demonstration Video</span></h2>
+<p><a class="internal" href="https://web.archive.org/web/20220819055550/http://guitar.ucsd.edu/maeece148/images/2/2f/8mb.video-SGR-lBDGoTHd.mp4" title="8mb.video-SGR-lBDGoTHd.mp4">Media:8mb.video-SGR-lBDGoTHd.mp4</a>
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Acknowledgement">Acknowledgement</span></h2>
+<p>Professor Jack Silberman, TA Dominic and Ivan, ECE Makerspace
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20220819041720
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.021 seconds
+Real time usage: 0.026 seconds
+Preprocessor visited node count: 48/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:1290-0!canonical and timestamp 20220819041720 and revision id 8943. Serialized with JSON.
+ -->
+</div>
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20220819055550/https://guitar.ucsd.edu/maeece148/index.php/2022WinterTeam4">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

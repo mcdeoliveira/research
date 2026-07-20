@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2020FallTeam6 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2020FallTeam6</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Project_Overview"><span class="tocnumber">2</span> <span class="toctext">Project Overview</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Design_and_Parts"><span class="tocnumber">3</span> <span class="toctext">Design and Parts</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#3D_Printed"><span class="tocnumber">3.1</span> <span class="toctext">3D Printed</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Laser_cut"><span class="tocnumber">3.2</span> <span class="toctext">Laser cut</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Circuit_Design"><span class="tocnumber">4</span> <span class="toctext">Circuit Design</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Components"><span class="tocnumber">4.1</span> <span class="toctext">Components</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Schematic"><span class="tocnumber">4.2</span> <span class="toctext">Schematic</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Implementation"><span class="tocnumber">5</span> <span class="toctext">Implementation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Software"><span class="tocnumber">5.1</span> <span class="toctext">Software</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#DonkeySim"><span class="tocnumber">5.1.1</span> <span class="toctext">DonkeySim</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#ROS_and_OpenCV"><span class="tocnumber">5.1.2</span> <span class="toctext">ROS and OpenCV</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Useful_Knowledge"><span class="tocnumber">6</span> <span class="toctext">Useful Knowledge</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Results"><span class="tocnumber">7</span> <span class="toctext">Results</span></a>
+<ul>
+<li class="toclevel-2 tocsection-15"><a href="#Autonomous_laps_using_Deep_Learning"><span class="tocnumber">7.1</span> <span class="toctext">Autonomous laps using Deep Learning</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Autonomous_laps_using_OpenCV"><span class="tocnumber">7.2</span> <span class="toctext">Autonomous laps using OpenCV</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#turning_towered_the_yellow_line_using_OpenCV"><span class="tocnumber">7.3</span> <span class="toctext">turning towered the yellow line using OpenCV</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-18"><a href="#References"><span class="tocnumber">8</span> <span class="toctext">References</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<p>Udai Kandah   [MAE] - 4th year Mechanical Engineering
+</p><p>Cris Madla    [MAE] - 4th year Mechanical Engineering
+</p><p>Ethen Lerner  [ECE] - 4th year Computer Engineering
+</p>
+<h2><span class="mw-headline" id="Project_Overview">Project Overview</span></h2>
+<p>The goal of this project was to get a vehicle to autonomously drive 5 laps. We accomplished this in two different ways: using deep learning and using OpenCV. The deep learning model employed the behavior cloning built into the DonkeySim framework. This means that to train the car to drive itself, we drove our model manually for 30+ laps around the track while taking 20 pictures per second and recording our controller inputs. Next, we used this data to train our model on the UCSD supercomputer. Finally, we loaded this model back onto the vehicle and were able to reproduce our driving patterns autonomously.
+</p><p>We also attempted autonomous driving without any type of machine learning. For this, we used OpenCV to filter in only the track markings from the camera images in order to follow the yellow stripes throughout the track. We built this system entirely on ROS nodes so that it is extremely modular and can be applied to many different systems and hardware. The basic order of events: camera node publishes images, CV node subscribes to those images and publishes throttle and steering based on passing the images through a filter, and finally, a car node subscribes to the steering and throttle data and uses the PCA-9685 library to output controls to our hardware.
+</p><p>Our original project idea (which was scrapped due to Covid-19 restrictions) was to train the vehicle to recognize arrow directions and eventually more complicated instructions. We were able to get fairly good results using traffic sign data to train; we achieved a 98% accuracy in differentiating left and right arrows.
+</p><p><a class="image" href="File:20201110_152706-compressed.jpg.html"><img alt="20201110 152706-compressed.jpg" height="600" loading="lazy" src="https://web.archive.org/web/20210414222830im_/http://guitar.ucsd.edu/maeece148/images/4/4b/20201110_152706-compressed.jpg" width="450"/></a>
+</p>
+<h2><span class="mw-headline" id="Design_and_Parts">Design and Parts</span></h2>
+<h3><span class="mw-headline" id="3D_Printed">3D Printed</span></h3>
+<p>Camera Mount that hold the camera at different angles. This helps in getting different frames to track the lines on the Track. The only problem with this design is that it just fits a specific size of camera.
+<a class="image" href="File:320px-Camera_Assembly.png.html"><img alt="320px-Camera Assembly.png" height="509" loading="lazy" src="https://web.archive.org/web/20210414222830im_/http://guitar.ucsd.edu/maeece148/images/d/d5/320px-Camera_Assembly.png" width="800"/></a>
+</p>
+<h3><span class="mw-headline" id="Laser_cut">Laser cut</span></h3>
+<p>We laser cut a plat to fit all the components on it (camera mount, Jetson, PWM, Switch and DC convector). Our plate has multiple holes with different sizes to organize the wires.
+</p><p><a class="image" href="File:800px-Base_Plate6.png.html"><img alt="800px-Base Plate6.png" height="436" loading="lazy" src="https://web.archive.org/web/20210414222830im_/http://guitar.ucsd.edu/maeece148/images/b/b6/800px-Base_Plate6.png" width="800"/></a>
+</p>
+<h2><span class="mw-headline" id="Circuit_Design">Circuit Design</span></h2>
+<h3><span class="mw-headline" id="Components">Components</span></h3>
+<ul><li> Jetson nano with memory card</li>
+<li> PCA9685 PWM</li>
+<li> Relay</li>
+<li> DC-DC convertor</li>
+<li> LED</li>
+<li> Switch</li>
+<li> Camera</li>
+<li> Bettery</li>
+<li> Servo motor</li>
+<li> Speed controller</li></ul>
+<h3><span class="mw-headline" id="Schematic">Schematic</span></h3>
+<p><a class="image" href="File:Schemeit-project.png.html"><img alt="Schemeit-project.png" height="559" loading="lazy" src="https://web.archive.org/web/20210414222830im_/http://guitar.ucsd.edu/maeece148/images/3/30/Schemeit-project.png" width="731"/></a>
+</p>
+<h2><span class="mw-headline" id="Implementation">Implementation</span></h2>
+<h3><span class="mw-headline" id="Software">Software</span></h3>
+<h4><span class="mw-headline" id="DonkeySim">DonkeySim</span></h4>
+<p>The DonkeySim platform allows for simple and easy-to-use behavior cloning. The way this type of deep learning works is it takes snapshots while someone manually drives the vehicle. This snapshot is a pair of (image, controls) where the controls can be any button inputs on the controller including throttle. Once sufficient amounts of data are accumulated, then a neural network is trained with the images as training inputs and the controls as training targets. Essentially the system attempts to predict a combination of inputs given an image. Therefore, it is essential that manual driving be as consistent as possible so that outliers in the training set do not drastically reduce training efficacy. This is also why having a lot of data is desirable; one mistake on the track can be drowned out by thousands of other images. To speed up training we took advantage of access to the UCSD supercomputer center. 
+</p><p>The neural network itself is a convolutional neural network (CNN) that maps images to controller inputs (throttle and steering). The way a CNN works is it has several convolutional layers and pooling layers stacked on top of one another. The depth (number of layers) helps increase the complexity and therefore how specific the details the network can learn. Each layer works by convolving a filter over the image and passing the resulting image to a pooling filter which helps reduce dimensionality and provides some translational invariance. Because the CNN is built into the DonkeySim framework, and since it is so effective, there was no need for us to alter it or create our own. 
+</p><p><a class="external free" href="https://docs.donkeycar.com/" rel="nofollow">https://docs.donkeycar.com/</a>
+</p>
+<h4><span class="mw-headline" id="ROS_and_OpenCV">ROS and OpenCV</span></h4>
+<p>Our open CV script was based on filtering for the road markings as well as polygon masking to get rid of unwanted noise. Besides a color filter, we also tested other methods such as canny edge finding as well as perspective warping in order to extract the radius of curvature of the road ahead. Unfortunately do time constraints we were only able to implement our color-based filter. The CV algorithm calculated the off-center error of the car relative to the yellow markings and passed the information to a simple PID filter, which used the error to output put a controlled gain that is subsequently mapped to the steering of the car. Even with brief, tuning we were able to get excellent performance besides a slight phase lag introduced by the physical system. Given more time the next steps would have been to map the PID directly to a kinematic model of the car steering with additional Kalman filtering on setpoints sent by CV.  By using a ROS system and separating our CV node we were able to switch out different control methods relatively quickly. 
+</p><p>The car steering node was based on relevant DonkeyCar framework files found in the Donkeycar. parts folder. For more precise control it is recommended to model a simple mathematical model of the car steering angles to determine turning radaii. 
+</p><p>The following gif, is a test implementation of our edge finding based CV algorithm. Despite our final implementation being a color filter version, the data from this alternative filtering method can easily be used to determine new set points to determine the error and send to the steering control node. 
+<a class="image" href="File:Ezgif.com-gif-maker.gif.html"><img alt="Ezgif.com-gif-maker.gif" height="120" loading="lazy" src="https://web.archive.org/web/20210414222830im_/http://guitar.ucsd.edu/maeece148/images/8/8e/Ezgif.com-gif-maker.gif" width="160"/></a>
+</p>
+<h2><span class="mw-headline" id="Useful_Knowledge">Useful Knowledge</span></h2>
+<p>Know Python language and other languages is very useful. Also have a basic knowledge in circuits and how each component work is important.
+</p>
+<h2><span class="mw-headline" id="Results">Results</span></h2>
+<h3><span class="mw-headline" id="Autonomous_laps_using_Deep_Learning">Autonomous laps using Deep Learning</span></h3>
+<p>10 Autonomous laps<a class="external autonumber" href="https://www.youtube.com/watch?v=nOqgZEA9UIQ&amp;t=1s" rel="nofollow">[1]</a>
+</p>
+<h3><span class="mw-headline" id="Autonomous_laps_using_OpenCV">Autonomous laps using OpenCV</span></h3>
+<p>6 Autonomous laps <a class="external autonumber" href="https://www.youtube.com/watch?v=eKvBrYs7gSo" rel="nofollow">[2]</a>
+</p>
+<h3><span class="mw-headline" id="turning_towered_the_yellow_line_using_OpenCV">turning towered the yellow line using OpenCV</span></h3>
+<p>wheel turning <a class="external autonumber" href="https://www.youtube.com/watch?v=IIC84OjhbPM" rel="nofollow">[3]</a>
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="References">References</span></h2>
+<p>DonkeySim Documentation - <a class="external free" href="https://docs.donkeycar.com/" rel="nofollow">https://docs.donkeycar.com/</a>
+Information on CNN - <a class="external free" href="https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53" rel="nofollow">https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53</a>
+Introductory Deep Learning - <a class="external free" href="http://neuralnetworksanddeeplearning.com/chap1.html" rel="nofollow">http://neuralnetworksanddeeplearning.com/chap1.html</a>
+</p><p>ROS Documentation - <a class="external free" href="http://wiki.ros.org/" rel="nofollow">http://wiki.ros.org/</a>
+ROS Online Learning Platform (RobotIgnite Academy) - <a class="external free" href="https://app.theconstructsim.com/#/Home" rel="nofollow">https://app.theconstructsim.com/#/Home</a>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20210414222830
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.022 seconds
+Real time usage: 0.041 seconds
+Preprocessor visited node count: 70/1000000
+Preprocessor generated node count: 76/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:749-0!*!*!!en!5!* and timestamp 20210414222830 and revision id 5692
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20210414222830/https://guitar.ucsd.edu/maeece148/index.php/2020FallTeam6">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

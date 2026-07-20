@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2022SpringTeam7 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2022SpringTeam7</h1>
+      <div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Project_Team_Members"><span class="tocnumber">1</span> <span class="toctext">Project Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#ROS2_OpenCV_Autonomous_Laps"><span class="tocnumber">2</span> <span class="toctext">ROS2 OpenCV Autonomous Laps</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Indoor"><span class="tocnumber">2.1</span> <span class="toctext">Indoor</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Outdoor"><span class="tocnumber">2.2</span> <span class="toctext">Outdoor</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Donkey_Autonomous_Laps"><span class="tocnumber">3</span> <span class="toctext">Donkey Autonomous Laps</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Project_Overview"><span class="tocnumber">4</span> <span class="toctext">Project Overview</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Main_Components"><span class="tocnumber">4.1</span> <span class="toctext">Main Components</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#Physical_Setup"><span class="tocnumber">4.1.1</span> <span class="toctext">Physical Setup</span></a>
+<ul>
+<li class="toclevel-4 tocsection-9"><a href="#Car_1"><span class="tocnumber">4.1.1.1</span> <span class="toctext">Car 1</span></a></li>
+<li class="toclevel-4 tocsection-10"><a href="#Car_2"><span class="tocnumber">4.1.1.2</span> <span class="toctext">Car 2</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-11"><a href="#Schematic"><span class="tocnumber">4.1.2</span> <span class="toctext">Schematic</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="#Implementation"><span class="tocnumber">4.2</span> <span class="toctext">Implementation</span></a>
+<ul>
+<li class="toclevel-3 tocsection-13"><a href="#Software_and_Hardware_List"><span class="tocnumber">4.2.1</span> <span class="toctext">Software and Hardware List</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#Source_code"><span class="tocnumber">4.2.2</span> <span class="toctext">Source code</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#Steps_Overview"><span class="tocnumber">4.2.3</span> <span class="toctext">Steps Overview</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Results"><span class="tocnumber">4.2.4</span> <span class="toctext">Results</span></a>
+<ul>
+<li class="toclevel-4 tocsection-17"><a href="#Gantt_chart"><span class="tocnumber">4.2.4.1</span> <span class="toctext">Gantt chart</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-18"><a href="#Demonstrations"><span class="tocnumber">4.2.5</span> <span class="toctext">Demonstrations</span></a>
+<ul>
+<li class="toclevel-4 tocsection-19"><a href="#Two_cars_with_different_throttle"><span class="tocnumber">4.2.5.1</span> <span class="toctext">Two cars with different throttle</span></a></li>
+<li class="toclevel-4 tocsection-20"><a href="#Two_cars_with_same_throttle"><span class="tocnumber">4.2.5.2</span> <span class="toctext">Two cars with same throttle</span></a></li>
+<li class="toclevel-4 tocsection-21"><a href="#Red_color_detection_with_machine_learning"><span class="tocnumber">4.2.5.3</span> <span class="toctext">Red color detection with machine learning</span></a></li>
+<li class="toclevel-4 tocsection-22"><a href="#Autonomously_driving_with_SLAM_algorithm"><span class="tocnumber">4.2.5.4</span> <span class="toctext">Autonomously driving with SLAM algorithm</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-23"><a href="#Challenges"><span class="tocnumber">4.2.6</span> <span class="toctext">Challenges</span></a></li>
+<li class="toclevel-3 tocsection-24"><a href="#Potential_Improvement"><span class="tocnumber">4.2.7</span> <span class="toctext">Potential Improvement</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-25"><a href="#Weekly_Presentations"><span class="tocnumber">4.3</span> <span class="toctext">Weekly Presentations</span></a></li>
+<li class="toclevel-2 tocsection-26"><a href="#Reference"><span class="tocnumber">4.4</span> <span class="toctext">Reference</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1><span class="mw-headline" id="Project_Team_Members">Project Team Members</span></h1>
+<ul><li><b>David Hee</b> - ECE <br/></li></ul>
+<ul><li><b>Nhat Tang</b> - MAE <br/></li></ul>
+<ul><li><b>Guro Drange Veglo</b> - UPS <br/></li></ul>
+<h1><span class="mw-headline" id="ROS2_OpenCV_Autonomous_Laps">ROS2 OpenCV Autonomous Laps</span></h1>
+<h3><span class="mw-headline" id="Indoor">Indoor</span></h3>
+<p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/1dfX0tHRQzY" style="border: none" width="425"></iframe>
+</p>
+<h3><span class="mw-headline" id="Outdoor">Outdoor</span></h3>
+<p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/mTXjY8BoNHQ" style="border: none" width="425"></iframe>
+</p>
+<h1><span class="mw-headline" id="Donkey_Autonomous_Laps">Donkey Autonomous Laps</span></h1>
+<p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/rOeyW1l3EVI" style="border: none" width="425"></iframe>
+</p>
+<h1><span class="mw-headline" id="Project_Overview">Project Overview</span></h1>
+<p>This project develops an autonomous car that adds throttle when detecting red. The purpose of this project was to have two cars take turns leading the other car. The car in the back will have to detect that there is a car in front of it and try to overtake it. This process will keep repeating until stopped. Essentially, it will be something like the CES IAC head to head competition.This project has not been done before as the CES IAC head to head competition is rather new, so we will be the first to implement this sort of process.
+The system is implemented on our autonomously-driven car using a Jetson Nano and a camera.
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Main_Components">Main Components</span></h2>
+<h3><span class="mw-headline" id="Physical_Setup">Physical Setup</span></h3>
+<h4><span class="mw-headline" id="Car_1">Car 1</span></h4>
+<p><a class="image" href="File:New.png.html"><img alt="New.png" decoding="async" height="179" loading="lazy" src="https://web.archive.org/web/20220813184356im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/1a/New.png/300px-New.png" width="300"/></a>
+<a class="image" href="File:Car1_07.jpg.html"><img alt="Car1 07.jpg" decoding="async" height="169" loading="lazy" src="https://web.archive.org/web/20220813184356im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/6a/Car1_07.jpg/300px-Car1_07.jpg" width="300"/></a>
+</p>
+<h4><span class="mw-headline" id="Car_2">Car 2</span></h4>
+<p><a class="image" href="File:Car2_07.jpg.html"><img alt="Car2 07.jpg" decoding="async" height="169" loading="lazy" src="https://web.archive.org/web/20220813184356im_/http://guitar.ucsd.edu/maeece148/images/thumb/2/29/Car2_07.jpg/300px-Car2_07.jpg" width="300"/></a>
+<a class="image" href="File:Car2mount07.jpg.html"><img alt="Car2mount07.jpg" decoding="async" height="169" loading="lazy" src="https://web.archive.org/web/20220813184356im_/http://guitar.ucsd.edu/maeece148/images/thumb/4/41/Car2mount07.jpg/300px-Car2mount07.jpg" width="300"/></a>
+</p>
+<h3><span class="mw-headline" id="Schematic">Schematic</span></h3>
+<p><a class="image" href="File:Scem07.png.html"><img alt="Scem07.png" decoding="async" height="187" loading="lazy" src="https://web.archive.org/web/20220813184356im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/f0/Scem07.png/400px-Scem07.png" width="400"/></a>
+</p>
+<h2><span class="mw-headline" id="Implementation">Implementation</span></h2>
+<h3><span class="mw-headline" id="Software_and_Hardware_List">Software and Hardware List</span></h3>
+<p>The following are needed to complete this project.
+</p>
+<ul><li>Jetson Nano</li>
+<li>32GB MicroSD card</li>
+<li>Camera</li>
+<li>ROS2</li>
+<li>OpenCV <br/></li></ul>
+<h3><span class="mw-headline" id="Source_code">Source code</span></h3>
+<p>The source code of the project can be found here: <a class="external free" href="https://gitlab.com/ece148/ECE148" rel="nofollow">https://gitlab.com/ece148/ECE148</a>
+</p>
+<h3><span class="mw-headline" id="Steps_Overview">Steps Overview</span></h3>
+<ul><li>Jetson Nano setup</li>
+<li>Set up ROS2 environment or pull docker image: djnighti/ucsd_robocar</li>
+<li>Clone git repo <a class="external free" href="https://gitlab.com/ece148/ECE148" rel="nofollow">https://gitlab.com/ece148/ECE148</a></li></ul>
+<h3><span class="mw-headline" id="Results">Results</span></h3>
+<p>In the end our team achieved to have two cars running, adding throttle when detecting red. As seen in the demonstrations, having equal throttle makes it harder for the cars to stay in separate lanes. This is due to the camera view, not having a wide enough range to detect the yellow lane detection when driving in a separate lane. 
+</p><p>The detection of red was first done by HSV values and OpenCV. Later it was done by using machine learning.
+</p>
+<h4><span class="mw-headline" id="Gantt_chart">Gantt chart</span></h4>
+<p><a class="image" href="File:Gantt07.png.html"><img alt="Gantt07.png" decoding="async" height="240" loading="lazy" src="https://web.archive.org/web/20220813184356im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/8c/Gantt07.png/800px-Gantt07.png" width="800"/></a>
+</p>
+<h3><span class="mw-headline" id="Demonstrations">Demonstrations</span></h3>
+<h4><span class="mw-headline" id="Two_cars_with_different_throttle">Two cars with different throttle</span></h4>
+<p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/iBr_c7t-osA" style="border: none" width="425"></iframe>
+</p>
+<h4><span class="mw-headline" id="Two_cars_with_same_throttle">Two cars with same throttle</span></h4>
+<p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/gIURYJyThPY" style="border: none" width="425"></iframe>
+</p>
+<h4><span class="mw-headline" id="Red_color_detection_with_machine_learning">Red color detection with machine learning</span></h4>
+<p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/bxGRqCNJphM" style="border: none" width="425"></iframe>
+</p>
+<h4><span class="mw-headline" id="Autonomously_driving_with_SLAM_algorithm">Autonomously driving with SLAM algorithm</span></h4>
+<p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/uRmrPQI6iT4" style="border: none" width="425"></iframe>
+</p>
+<h3><span class="mw-headline" id="Challenges">Challenges</span></h3>
+<table class="wikitable">
+<tbody><tr>
+<th>Challenge
+</th>
+<th>Solution
+</th></tr>
+<tr>
+<td>Use AprilTag to detect car
+</td>
+<td>Switched to detecting red instead
+</td></tr>
+<tr>
+<td>Calibrate cars to drive in separate lanes
+</td>
+<td>Shifted camera, or change of camera
+</td></tr>
+<tr>
+<td>Throttle not working while steering working
+</td>
+<td>Charge battery
+</td></tr>
+<tr>
+<td>Lightning errors when detecting red with HSV color detection
+</td>
+<td>Detecting red with machine learning
+</td></tr>
+<tr>
+<td>Lightning errors with lane detection
+</td>
+<td>SLAM algorithm (still in process)
+</td></tr></tbody></table>
+<h3><span class="mw-headline" id="Potential_Improvement">Potential Improvement</span></h3>
+<ul><li>Use SLAM for autonomous driving instead of lane detection</li>
+<li>Change camera to have wider view / Buy new camera</li>
+<li>Make new camera mount to easily change the camera angle and view</li>
+<li>Make alternating procedure even smoother. For example by adding the time the throttle is increased after detecting red</li></ul>
+<h2><span class="mw-headline" id="Weekly_Presentations">Weekly Presentations</span></h2>
+<p><a class="external text" href="https://docs.google.com/presentation/d/11yFzR_vfLLSFU3bGx511uUcCHpf_0DQgKXYrNuK1_VU/edit?usp=sharing" rel="nofollow">Final Project Proposal</a> <br/>
+<a class="external text" href="https://docs.google.com/presentation/d/18lvJkVapb3HL0wL1z9Yj6-6JcaFfvAHOVXP2xeEHaWA/edit?usp=sharing" rel="nofollow">Progress Week 7</a> <br/>
+<a class="external text" href="https://docs.google.com/presentation/d/11yFzR_vfLLSFU3bGx511uUcCHpf_0DQgKXYrNuK1_VU/edit?usp=sharing" rel="nofollow">Progress Week 8</a> <br/>
+<a class="external text" href="https://docs.google.com/presentation/d/132aWQFYOCQwsjDBU7TO7sam7nRpx9yfi-IFf1NLIQoE/edit?usp=sharing" rel="nofollow">Progress Week 9</a> <br/>
+<a class="external text" href="https://docs.google.com/presentation/d/1V3xsCXydFP2jsXyW7r4MkoieHgRLLCE4ucCBuArePjM/edit?usp=sharing" rel="nofollow">Progress Week 10</a> <br/>
+<a class="external text" href="https://docs.google.com/presentation/d/1AbAV0rw7aJLFljfpjuM2spjnFkh60DFm2KO9FvavBek/edit?usp=sharing" rel="nofollow">Final Presentation</a>
+</p>
+<h2><span class="mw-headline" id="Reference">Reference</span></h2>
+<p>We would like to give special thanks to:
+</p>
+<ul><li><i>Professor Jack Silberman</i></li>
+<li><i>TA Dominic Nightingale</i></li>
+<li><i>TA Ivan Ferrier</i></li>
+<li><i>ECE Makerspace</i></li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20220813184355
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.050 seconds
+Real time usage: 0.060 seconds
+Preprocessor visited node count: 116/1000000
+Post‐expand include size: 280/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:1355-0!canonical and timestamp 20220813184355 and revision id 9294. Serialized with JSON.
+ -->
+</div>
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20220813184356/https://guitar.ucsd.edu/maeece148/index.php/2022SpringTeam7">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

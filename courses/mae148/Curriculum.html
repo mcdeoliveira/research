@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Curriculum — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>Curriculum</h1>
+      <p>The following topics will be covered in this class:
+</p>
+<div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Vehicle_Components"><span class="tocnumber">1</span> <span class="toctext">Vehicle Components</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Parts"><span class="tocnumber">1.1</span> <span class="toctext">Parts</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Relevant_Online_Tutorials"><span class="tocnumber">1.2</span> <span class="toctext">Relevant Online Tutorials</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Robot_Motion"><span class="tocnumber">2</span> <span class="toctext">Robot Motion</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Neural_Networks"><span class="tocnumber">3</span> <span class="toctext">Neural Networks</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Sensors"><span class="tocnumber">4</span> <span class="toctext">Sensors</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Feedback_control"><span class="tocnumber">5</span> <span class="toctext">Feedback control</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Odometry"><span class="tocnumber">6</span> <span class="toctext">Odometry</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Vision"><span class="tocnumber">7</span> <span class="toctext">Vision</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Embedded_Systems"><span class="tocnumber">8</span> <span class="toctext">Embedded Systems</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Autonomous_Vehicle"><span class="tocnumber">9</span> <span class="toctext">Autonomous Vehicle</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Vehicle_Components">Vehicle Components</span></h2>
+<h3><span class="mw-headline" id="Parts">Parts</span></h3>
+<ol><li> <a class="external text" href="https://hobbyking.com/en_us/basher-sabertooth-1-8-scale-truggy-arr.html?___store=en_us" rel="nofollow">Basher SaberTooth 1/8 Scale Truggy</a>
+<ul><li> <a class="external text" href="https://www.thrillist.com/cars/nation/awd-vs-4wd-the-real-difference-between-car-drivetrains" rel="nofollow">Drive train</a></li></ul>
+<dl><dd> 1845KV <a class="external text" href="https://www.youtube.com/watch?v=bCEiOnuODac" rel="nofollow">Brushless Inrunner Motor</a> (Waterproof)</dd>
+<dd> 100A <a class="external text" href="https://www.youtube.com/watch?v=OZNxbxL7cdc" rel="nofollow">Brushless ESC</a> w/ <a class="external text" href="https://www.youtube.com/watch?v=9EeuaofVwvE" rel="nofollow">Reverse</a> (waterproof)</dd>
+<dd> 18Kg Heavy Duty Steering <a class="external text" href="https://en.wikipedia.org/wiki/Servo_control" rel="nofollow">Servo</a> (waterproof)</dd>
+<dd> Full time 4WD (video on <a class="external text" href="https://www.youtube.com/watch?v=K4JhruinbWc" rel="nofollow">differential gear</a>)</dd></dl>
+<ul><li> <a class="external text" href="https://www.youtube.com/watch?v=DKql4Is8Pas" rel="nofollow">Suspension</a></li></ul>
+<dl><dd> Alloy oil filled big bore adjustable screw <a class="external text" href="https://en.wikipedia.org/wiki/Shock_absorber" rel="nofollow">shock absorbers</a></dd>
+<dd> Adjustable <a class="external text" href="http://yospeed.com/wheel-alignment-explained-camber-caster-toe" rel="nofollow">camber, caster, toe-in and toe-out</a></dd>
+<dd> Independent <a class="external text" href="https://en.wikipedia.org/wiki/Double_wishbone_suspension" rel="nofollow">wishbone suspension</a></dd></dl></li>
+<li> Electronics
+<ul><li> Batteries</li></ul>
+<dl><dd> <a class="external text" href="https://hobbyking.com/en_us/zippy-5000mah-2s1p-20c-hardcase-pack-1.html" rel="nofollow">ZIPPY 5000mAh 2S1P 20C Hardcase Pack</a></dd>
+<dd> <a class="external text" href="https://hobbyking.com/en_us/turnigy-battery-3000mah-3s-20c-lipo-pack-xt-60.html" rel="nofollow">Turnigy 3000mAh 3S 20C Lipo Pack w/XT-60</a></dd></dl>
+<ul><li> Servo controller</li></ul>
+<dl><dd> <a class="external text" href="http://wiki.sunfounder.cc/index.php?title=PCA9685_16_Channel_12_Bit_PWM_Servo_Driver" rel="nofollow">16 Channel 12 Bit PWM Servo Driver for Arduino and Raspberry Pi</a></dd></dl>
+<ul><li> Raspberry PI</li></ul>
+<dl><dd> <a class="external text" href="https://www.amazon.com/gp/product/B01C6EQNNK/ref=oh_aui_detailpage_o05_s01?ie=UTF8&amp;psc=1" rel="nofollow">CanaKit Raspberry Pi 3 Kit with Clear Case and 2.5A Power Supply</a></dd></dl>
+<ul><li> Camera</li></ul>
+<dl><dd> <a class="external text" href="https://www.amazon.com/gp/product/B00N1YJKFS/ref=oh_aui_detailpage_o05_s00?ie=UTF8&amp;psc=1" rel="nofollow">SainSmart Wide Angle Fish-Eye Camera Lenses for Raspberry Pi Arduino</a></dd></dl>
+<ul><li> Emergency switch</li></ul>
+<dl><dd> <a class="external text" href="https://www.amazon.com/gp/product/B01A6VOI6Y/ref=oh_aui_detailpage_o06_s00?ie=UTF8&amp;psc=1" rel="nofollow">eMylo® DC 12V 1CH 433Mhz RF Relay Smart Wireless Remote Control Light Switch Transmitter with One Relay Receiver</a></dd></dl></li></ol>
+<h3><span class="mw-headline" id="Relevant_Online_Tutorials">Relevant Online Tutorials</span></h3>
+<p>Click on the following links for some useful information on your components:
+</p><p>Batteries:
+</p>
+<ul><li> <a class="external text" href="https://rogershobbycenter.com/lipoguide/" rel="nofollow">A Guide to Understanding LiPo Batteries</a></li>
+<li> <a class="external text" href="https://hobbyking.com/media/file/49505083X98688X54.pdf" rel="nofollow">Turnigy TQ4 4x6S Lithium Polymer Battery Pack Charger Manual</a></li></ul>
+<p>Servos and RC Electronics:
+</p>
+<ul><li> <a class="external text" href="http://www.instructables.com/id/The-Complete-Guide-to-RC-Electronics/" rel="nofollow">Instructables on RC Electronics</a></li>
+<li> <a class="external text" href="https://learn.sparkfun.com/tutorials/hobby-servo-tutorial" rel="nofollow">Servo Tutorial</a></li>
+<li> <a class="external text" href="https://hobbyking.com/media/file/198592089X4640085X20.pdf" rel="nofollow">Turnigy TGY-i6S Digital Proportional Radio Control System Manual</a></li></ul>
+<h2><span class="mw-headline" id="Robot_Motion">Robot Motion</span></h2>
+<ul><li> Steering (<a class="external text" href="https://github.com/mcdeoliveira/Notebooks/blob/master/mae198/Steering.ipynb" rel="nofollow">Python notebook</a>)</li>
+<li> Basic path planning</li></ul>
+<h2><span class="mw-headline" id="Neural_Networks">Neural Networks</span></h2>
+<p>Some links for interesting tutorial style reading on CNN:
+</p>
+<ul><li> <a class="external text" href="https://medium.com/@ageitgey/machine-learning-is-fun-80ea3ec3c471" rel="nofollow">Machine Learning is Fun</a>. Check out specially <a class="external text" href="https://medium.com/@ageitgey/machine-learning-is-fun-part-3-deep-learning-and-convolutional-neural-networks-f40359318721" rel="nofollow">Part 3</a>!</li>
+<li> <a class="external text" href="https://www.tensorflow.org/tutorials/image_recognition" rel="nofollow">Tensorflow Tutorial on Image recognition</a></li>
+<li> <a class="external text" href="http://cs231n.github.io/convolutional-networks/" rel="nofollow">Convolutional Neural Networks (CNNs / ConvNets)</a></li></ul>
+<p>Some links of RNN:
+</p>
+<ul><li> <a class="external text" href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" rel="nofollow">The Unreasonable Effectiveness of Recurrent Neural Networks</a></li>
+<li> <a class="external text" href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" rel="nofollow">Understanding LSTM Networks</a></li></ul>
+<h2><span class="mw-headline" id="Sensors">Sensors</span></h2>
+<ul><li> Encoders</li>
+<li> IMU</li>
+<li> Camera</li></ul>
+<h2><span class="mw-headline" id="Feedback_control">Feedback control</span></h2>
+<ul><li> Why feedback?</li>
+<li> PID control </li></ul>
+<h2><span class="mw-headline" id="Odometry">Odometry</span></h2>
+<ul><li> Encoders</li>
+<li> IMU</li>
+<li> Visual</li></ul>
+<h2><span class="mw-headline" id="Vision">Vision</span></h2>
+<ul><li> Open CV</li>
+<li> Obstacle avoidance</li>
+<li> Performance considerations</li></ul>
+<h2><span class="mw-headline" id="Embedded_Systems">Embedded Systems</span></h2>
+<ul><li> Introduction to robotics</li>
+<li> Centralized vs. distributed control</li>
+<li> Closed loop vs. open loop control in mobile robots</li>
+<li> On-board, off-board computing  vs. on-line-computing  and hybrid mode</li>
+<li> Real-time systems vs. non-deterministic embedded systems</li>
+<li> Robotics telemetry - low range high throughput, long range low throughput</li></ul>
+<h2><span class="mw-headline" id="Autonomous_Vehicle">Autonomous Vehicle</span></h2>
+<ul><li> State-of-the-art</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20191113170832
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.010 seconds
+Real time usage: 0.012 seconds
+Preprocessor visited node count: 43/1000000
+Preprocessor generated node count: 48/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:13-0!*!*!!en!*!* and timestamp 20191113170832 and revision id 123
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20191113171528/https://guitar.ucsd.edu/maeece148/index.php/Curriculum">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

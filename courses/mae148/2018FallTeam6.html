@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2018FallTeam6 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2018FallTeam6</h1>
+      <div class="thumb tright"><div class="thumbinner" style="width:284px;"><a class="image" href="File:Capture.PNG.html"><img alt="Capture.PNG" class="thumbimage" height="500" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/c7/Capture.PNG/282px-Capture.PNG" width="282"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Capture.PNG.html" title="Enlarge"></a></div></div></div></div>
+<div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Car_Convoy_Project"><span class="tocnumber">2</span> <span class="toctext">Car Convoy Project</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Project_Introduction"><span class="tocnumber">2.1</span> <span class="toctext">Project Introduction</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Training_Process"><span class="tocnumber">2.2</span> <span class="toctext">Training Process</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Mechanical_Components"><span class="tocnumber">2.3</span> <span class="toctext">Mechanical Components</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#Camera_Mounts"><span class="tocnumber">2.3.1</span> <span class="toctext">Camera Mounts</span></a>
+<ul>
+<li class="toclevel-4 tocsection-7"><a href="#Original_Camera_Mount_Design"><span class="tocnumber">2.3.1.1</span> <span class="toctext"><b>Original Camera Mount Design</b></span></a></li>
+<li class="toclevel-4 tocsection-8"><a href="#New_Camera_Design"><span class="tocnumber">2.3.1.2</span> <span class="toctext"><b>New Camera Design</b></span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-9"><a href="#Base_Plate"><span class="tocnumber">2.3.2</span> <span class="toctext"><b>Base Plate</b></span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="#Electric_Circuit"><span class="tocnumber">2.4</span> <span class="toctext">Electric Circuit</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#3D_Schematic_Diagram"><span class="tocnumber">2.4.1</span> <span class="toctext">3D Schematic Diagram</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="#Team_6_Vehicles"><span class="tocnumber">2.5</span> <span class="toctext">Team 6 Vehicles</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Results"><span class="tocnumber">2.6</span> <span class="toctext">Results</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="#Autonomous_Mode_on_Original_Tracks"><span class="tocnumber">3</span> <span class="toctext">Autonomous Mode on Original Tracks</span></a>
+<ul>
+<li class="toclevel-2 tocsection-15"><a href="#Track_1:_EBU-I_Basement_.28Indoor_Track.29"><span class="tocnumber">3.1</span> <span class="toctext">Track 1: EBU-I Basement (Indoor Track)</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Track_2:_EBU-II_.28Outdoor_Track.29"><span class="tocnumber">3.2</span> <span class="toctext">Track 2: EBU-II (Outdoor Track)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="#Preparing_for_The_Competition"><span class="tocnumber">4</span> <span class="toctext">Preparing for The Competition</span></a>
+<ul>
+<li class="toclevel-2 tocsection-18"><a href="#Setting_up_a_Test_Track"><span class="tocnumber">4.1</span> <span class="toctext"><b>Setting up a Test Track</b></span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#A_Reliable_and_Successful_Model"><span class="tocnumber">4.2</span> <span class="toctext"><b>A Reliable and Successful Model</b></span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#First_Convoy_Model_Attempt"><span class="tocnumber">4.3</span> <span class="toctext"><b>First Convoy Model Attempt</b></span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-21"><a href="#Autonomous_Vehicle_Competition_at_Voyage"><span class="tocnumber">5</span> <span class="toctext">Autonomous Vehicle Competition at Voyage</span></a>
+<ul>
+<li class="toclevel-2 tocsection-22"><a href="#Heading_to_Voyage"><span class="tocnumber">5.1</span> <span class="toctext"><b>Heading to Voyage</b></span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#Setting_Up_The_Tracks"><span class="tocnumber">5.2</span> <span class="toctext"><b>Setting Up The Tracks</b></span></a></li>
+<li class="toclevel-2 tocsection-24"><a href="#The_Race_and_Results"><span class="tocnumber">5.3</span> <span class="toctext"><b>The Race and Results</b></span></a></li>
+<li class="toclevel-2 tocsection-25"><a href="#Competition_Aftermath"><span class="tocnumber">5.4</span> <span class="toctext"><b>Competition Aftermath</b></span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-26"><a href="#Lessons_Learned"><span class="tocnumber">6</span> <span class="toctext"><b>Lessons Learned</b></span></a>
+<ul>
+<li class="toclevel-2 tocsection-27"><a href="#Camera_Cap_Issue"><span class="tocnumber">6.1</span> <span class="toctext">Camera Cap Issue</span></a></li>
+<li class="toclevel-2 tocsection-28"><a href="#Lithium_Polymer_Battery_Issues"><span class="tocnumber">6.2</span> <span class="toctext">Lithium Polymer Battery Issues</span></a></li>
+<li class="toclevel-2 tocsection-29"><a href="#Servo_Motor_Heating"><span class="tocnumber">6.3</span> <span class="toctext">Servo Motor Heating</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-30"><a href="#Special_Acknowledgements"><span class="tocnumber">7</span> <span class="toctext">Special Acknowledgements</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<p><b>Alex Tzu-Tying Hung - Mechanical Engineering (MAE)</b>
+</p><p><b>Igor Vivcharenko - Computer Engineering (ECE)</b>
+</p><p><b>Denis Yang - Mechanical Engineering (MAE)</b>
+</p><p><b>Cai Joo Min Yeo - Electrical Engineering (ECE)</b>
+</p>
+<table style='"margin:'>
+<tr>
+<td> <div class="thumb tleft"><div class="thumbinner" style="width:152px;"><a class="image" href="File:AlexCar.jpg.html"><img alt="" class="thumbimage" height="225" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/a/ad/AlexCar.jpg/150px-AlexCar.jpg" width="150"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:AlexCar.jpg.html" title="Enlarge"></a></div>Alex Tzu-Tying Hung</div></div></div>
+</td>
+<td> <div class="thumb tleft"><div class="thumbinner" style="width:252px;"><a class="image" href="File:IgorCar.jpg.html"><img alt="" class="thumbimage" height="167" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/39/IgorCar.jpg/250px-IgorCar.jpg" width="250"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:IgorCar.jpg.html" title="Enlarge"></a></div>Igor Vivcharenko</div></div></div>
+</td>
+<td> <div class="thumb tleft"><div class="thumbinner" style="width:252px;"><a class="image" href="File:DenisCar.jpg.html"><img alt="" class="thumbimage" height="167" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/15/DenisCar.jpg/250px-DenisCar.jpg" width="250"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:DenisCar.jpg.html" title="Enlarge"></a></div>Denis Yang</div></div></div>
+</td>
+<td> <div class="thumb tleft"><div class="thumbinner" style="width:192px;"><a class="image" href="File:CaiCar.jpg.html"><img alt="" class="thumbimage" height="211" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/cb/CaiCar.jpg/190px-CaiCar.jpg" width="190"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:CaiCar.jpg.html" title="Enlarge"></a></div>Cai Joo Min Yeo</div></div></div>
+</td></tr></table>
+<h2><span class="mw-headline" id="Car_Convoy_Project">Car Convoy Project</span></h2>
+<h3><span class="mw-headline" id="Project_Introduction">Project Introduction</span></h3>
+<div class="thumb tright"><div class="thumbinner" style="width:252px;"><a class="image" href="File:Alex_train.jpg.html"><img alt="" class="thumbimage" height="167" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/2/27/Alex_train.jpg/250px-Alex_train.jpg" width="250"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Alex_train.jpg.html" title="Enlarge"></a></div>Training the RoboCars</div></div></div>
+<p>The objective of this project is to create a car convoy. The idea initially came from watching <a class="external text" href="https://youtu.be/0iFkKRh5kcM" rel="nofollow">Australian roadtrains</a>. We wanted to create a system of transportation for multiple vehicles that requires only one driver. However, ours won’t be physically connected. We will use machine learning to follow the car in front. Our goal is to make this road train fully autonomous--with all three cars driven by machine learning. There are a few fundamental parts to this project:
+</p>
+<ol><li> Training each car to recognise and individually drive on the track.</li>
+<li> Training each car to recognise and follow the car in front while maintaining enough distance.</li></ol>
+<h3><span class="mw-headline" id="Training_Process">Training Process</span></h3>
+<div class="thumb tright"><div class="thumbinner" style="width:252px;"><video class="thumbimage" controls="" height="141" src="http://guitar.ucsd.edu/maeece148/images/3/35/Training_the_JackRpi09_to_follow_RoboCar08.mp4" style="max-width: 100%; max-height: 100%; width: 250px; height: 141px;" width="250"><a href="File:Training_the_JackRpi09_to_follow_RoboCar08.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Training_the_JackRpi09_to_follow_RoboCar08.mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Training_the_JackRpi09_to_follow_RoboCar08.mp4.html" title="Enlarge"></a></div>Training the JackRpi09 to follow RoboCar08</div></div></div>
+<p>We started off with training the big red truck. Then, we trained the second car. Next, we placed the truck in autonomous mode and manually drove the second car behind it. We taped a strip of neon pink paper behind the red truck as a marker.
+</p>
+<ol><li> Train RoboCar08 (truck) to drive autonomously</li>
+<li> Train the JackRpi09 (second car) autonomously</li>
+<li> Train the RoboCar06 (third car) autonomously</li>
+<li> Drive RoboCar08 autonomously and train JackRpi09 manually</li>
+<li> Repeat the steps for the RoboCar06 (third car)</li></ol>
+<h3><span class="mw-headline" id="Mechanical_Components">Mechanical Components</span></h3>
+<h4><span class="mw-headline" id="Camera_Mounts">Camera Mounts</span></h4>
+<div class="thumb tleft"><div class="thumbinner" style="width:127px;"><a class="image" href="File:Camera_mount.PNG.html"><img alt="" class="thumbimage" height="250" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/81/Camera_mount.PNG/125px-Camera_mount.PNG" width="125"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Camera_mount.PNG.html" title="Enlarge"></a></div>Original Camera Mount</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:New_camera_mount.PNG.html"><img alt="" class="thumbimage" height="242" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/e7/New_camera_mount.PNG/200px-New_camera_mount.PNG" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:New_camera_mount.PNG.html" title="Enlarge"></a></div>New Camera Mount</div></div></div>
+<h5><span class="mw-headline" id="Original_Camera_Mount_Design"><b>Original Camera Mount Design</b></span></h5>
+<p>The original camera mount design has two degrees of freedom: upward &amp; downward translation &amp; rotational movement along the horizontal axis. To fix it in place, a bolt was aligned into two concentric holes located on the clamp piece, preventing the mount from sliding up and down. The two clamps on both sides of the mount will prevent it to rotate. The design allowed us the flexibility to adjust the camera. The camera was pointed downwards, avoiding the view of the front bumper.
+</p>
+<h5><span class="mw-headline" id="New_Camera_Design"><b>New Camera Design</b></span></h5>
+<p>Measuring the perfect angle and height for the camera using the original design, we developed a new camera mount, which has zero degrees of freedom.  Instead of using velcro to attach the camera onto the mount, we also added screw holes onto the mount so that it is more stable.
+</p><p><br/>
+</p>
+<h4><span class="mw-headline" id="Base_Plate"><b>Base Plate</b></span></h4>
+<p>There are 2 different design of the acrylic base plate. The first one is wider in order to have more space for all the hardware to attach on. For the second design, slots were used to account for unknown tolerance of the mounting posts. The width also decreases to allow the body shell to fit on.
+</p>
+<table style="margin: 0 auto;">
+<tr>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:Original_base_plate.PNG.html"><img alt="" class="thumbimage" height="126" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/d7/Original_base_plate.PNG/200px-Original_base_plate.PNG" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Original_base_plate.PNG.html" title="Enlarge"></a></div>Original Acrylic Base Plate</div></div></div>
+</td>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:New_base_plate.PNG.html"><img alt="" class="thumbimage" height="116" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/b8/New_base_plate.PNG/200px-New_base_plate.PNG" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:New_base_plate.PNG.html" title="Enlarge"></a></div>New Acrylic Base Plate</div></div></div>
+</td></tr></table>
+<h3><span class="mw-headline" id="Electric_Circuit">Electric Circuit</span></h3>
+<h4><span class="mw-headline" id="3D_Schematic_Diagram">3D Schematic Diagram</span></h4>
+<p>Using the Routing feature on Solidworks to generate a detailed 3D schematic diagram, which allows us to clearly see the circuit diagram and how the electrical components are connected. All three car's electrical components are connected in an identical fashion. Displayed here is the circuit diagram for RoboCar06:
+</p>
+<table style="margin: 0 auto;">
+<tr>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:3D_schematic_-_angle_view.png.html"><img alt="" class="thumbimage" height="134" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/e6/3D_schematic_-_angle_view.png/200px-3D_schematic_-_angle_view.png" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:3D_schematic_-_angle_view.png.html" title="Enlarge"></a></div>Front-Angle View</div></div></div>
+</td>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:Top.PNG.html"><img alt="" class="thumbimage" height="96" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/d5/Top.PNG/200px-Top.PNG" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Top.PNG.html" title="Enlarge"></a></div>Top-Down View</div></div></div>
+</td>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:Angle-back.PNG.html"><img alt="" class="thumbimage" height="145" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/4/4e/Angle-back.PNG/200px-Angle-back.PNG" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Angle-back.PNG.html" title="Enlarge"></a></div>Back-Angle View</div></div></div>
+</td>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:Side-bottom.PNG.html"><img alt="" class="thumbimage" height="119" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/93/Side-bottom.PNG/200px-Side-bottom.PNG" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Side-bottom.PNG.html" title="Enlarge"></a></div>Bottom-Side View</div></div></div>
+</td></tr></table>
+<h3><span class="mw-headline" id="Team_6_Vehicles">Team 6 Vehicles</span></h3>
+<table style='"margin:'>
+<tr>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:302px;"><a class="image" href="File:RoboCar06.jpg.html"><img alt="" class="thumbimage" height="200" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/e9/RoboCar06.jpg/300px-RoboCar06.jpg" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:RoboCar06.jpg.html" title="Enlarge"></a></div>RoboCar06</div></div></div>
+</td>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:302px;"><a class="image" href="File:RoboCar08.jpg.html"><img alt="" class="thumbimage" height="200" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/73/RoboCar08.jpg/300px-RoboCar08.jpg" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:RoboCar08.jpg.html" title="Enlarge"></a></div>RoboCar08</div></div></div>
+</td>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Jackrpi09.jpg.html"><img alt="" class="thumbimage" height="205" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/7d/Jackrpi09.jpg/300px-Jackrpi09.jpg" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Jackrpi09.jpg.html" title="Enlarge"></a></div>JackRpi09</div></div></div>
+</td></tr></table>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:502px;"><a class="image" href="File:FastNFurious.jpg.html"><img alt="" class="thumbimage" height="217" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/85/FastNFurious.jpg/500px-FastNFurious.jpg" width="500"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:FastNFurious.jpg.html" title="Enlarge"></a></div><i><b>Fast</b> and <b>Furious</b></i> - Team 6's RoboCars</div></div></div></div>
+<h3><span class="mw-headline" id="Results">Results</span></h3>
+<p>A trick we used during the training was that we added a bright pink paper at the back of the RoboCar08 (first car) and JackRpi09 (second car) so that the second and third car were able to identify the cars at the front also the relative distance. This "convoy marker" significantly improved our results.
+</p>
+<table style='"margin:'>
+<tr>
+<td> <div class="thumb tleft"><div class="thumbinner" style="width:302px;"><video class="thumbimage" controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/b/b0/RoboCar06_recognizing_JackRpi09_%281%29.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:RoboCar06_recognizing_JackRpi09_(1).mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:RoboCar06_recognizing_JackRpi09_(1).mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:RoboCar06_recognizing_JackRpi09_(1).mp4.html" title="Enlarge"></a></div>JackRpi09 (front car) drives autonomously with constant throttle while RoboCar06 (back car) drives fully autonomously. The RoboCar06 is able to identify the JackRpi09 as it slows down when it approaches JackRpi09.</div></div></div>
+</td>
+<td> <div class="thumb tleft"><div class="thumbinner" style="width:302px;"><video class="thumbimage" controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/2/28/Three_car_autonomously_driving.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Three_car_autonomously_driving.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Three_car_autonomously_driving.mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Three_car_autonomously_driving.mp4.html" title="Enlarge"></a></div>RoboCar08 (front car) drives autonomously with constant throttle while JackRpi09 (middle car) and RoboCar06 (back car) drive fully autonomously.</div></div></div>
+</td></tr></table>
+<h2><span class="mw-headline" id="Autonomous_Mode_on_Original_Tracks">Autonomous Mode on Original Tracks</span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><video class="thumbimage" controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/3/3d/RoboCar06_on_track_2.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:RoboCar06_on_track_2.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:RoboCar06_on_track_2.mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:RoboCar06_on_track_2.mp4.html" title="Enlarge"></a></div>RoboCar06 on Track 1</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><video class="thumbimage" controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/c/cc/RoboCar06_on_outdoor_track_%283%29_%281%29.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:RoboCar06_on_outdoor_track_(3)_(1).mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:RoboCar06_on_outdoor_track_(3)_(1).mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:RoboCar06_on_outdoor_track_(3)_(1).mp4.html" title="Enlarge"></a></div>RoboCar06 on Track 2</div></div></div>
+<p><br/>
+</p><p><br/>
+</p>
+<h3><span class="mw-headline" id="Track_1:_EBU-I_Basement_.28Indoor_Track.29">Track 1: EBU-I Basement (Indoor Track)</span></h3>
+<p>Located in Engineering Building Unit I, Track I is a simple track featuring an oval shape and is built from yellow and white reflective tape. Track I is the first track course that the RoboCar vehicles must complete prior to attempting Track 2. The benefits of training on Track 1 is due to the constant lighting in the area. The first autonomous model for RoboCar06 was developed here.
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p>
+<h3><span class="mw-headline" id="Track_2:_EBU-II_.28Outdoor_Track.29">Track 2: EBU-II (Outdoor Track)</span></h3>
+<p>Located in Engineering Building Unit II, Track II is a complex track featuring a unique shape, consist of "S-bends" and sharp turns and a straight path. Track II is built from black and red tape. Training on Track II was a challenge due to the non-uniform lighting conditions in the area. Due to the low resolution settings on the Raspberry Pi camera and the non-uniform lighting in the area, obtaining reliable autonomous data was difficult for all the cars.
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Preparing_for_The_Competition">Preparing for The Competition</span></h2>
+<p>Professor Jack Silberman suggested Team 6 to participate in an autonomous vehicle competition located in Palo Alto, California. Although not a requirement for the MAE 148/ECE 148 course at UC San Diego, Team 6 decided to participate in this opportunity without any hesitation.
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Henry_Booker_Track.jpg.html"><img alt="" class="thumbimage" height="225" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/d1/Henry_Booker_Track.jpg/300px-Henry_Booker_Track.jpg" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Henry_Booker_Track.jpg.html" title="Enlarge"></a></div>First test track built by Team 6 at Henry Booker Room located in EBU-I</div></div></div>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><video class="thumbimage" controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/6/62/Reliable_and_Successful_CW_Model_for_RoboCar08_%281%29.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Reliable_and_Successful_CW_Model_for_RoboCar08_(1).mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Reliable_and_Successful_CW_Model_for_RoboCar08_(1).mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Reliable_and_Successful_CW_Model_for_RoboCar08_(1).mp4.html" title="Enlarge"></a></div>Team 6 was able to drive RoboCar08 autonomously at constant speed on the custom built track</div></div></div>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><video class="thumbimage" controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/8/8d/Training_RoboCar06_to_attempt_a_Convoy_Model_%281%29.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Training_RoboCar06_to_attempt_a_Convoy_Model_(1).mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Training_RoboCar06_to_attempt_a_Convoy_Model_(1).mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Training_RoboCar06_to_attempt_a_Convoy_Model_(1).mp4.html" title="Enlarge"></a></div>Igor Vivcharenko teaching Robocar06 to follow Robocar08 in attempt to establish a convoy model. RoboCar08 is in constant speed autonomous mode</div></div></div>
+<p><br/>
+</p>
+<h3><span class="mw-headline" id="Setting_up_a_Test_Track"><b>Setting up a Test Track</b></span></h3>
+<p>Due to unfavorable lighting conditions of the EBU-II track and the low resolution settings on the Raspberry Pi camera, Team 6 discovered an alternative method to help prepare for the competition. Team 6 was able to custom built a temporary track at the Henry Booker Room, located in EBU-I of the Computer Science and Engineering (CSE) building. Around $50 worth of reflective yellow and white tape were purchased from Home Depot. With the tape in hand, Team 6 began training all vehicles for the next 3 nights. The first test track took a whopping 3 hours to put together but was proven useful as it helped produce a reliable training model for the cars.
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p>
+<h3><span class="mw-headline" id="A_Reliable_and_Successful_Model"><b>A Reliable and Successful Model</b></span></h3>
+<p>Team 6 started training RoboCar08 on the newly built custom track on November 27, 2018 gathering over 100,000 images. As a result to improved lighting conditions, Team 6 was able to successfully drive RoboCar08 in a clockwise direction at a constant speed autonomous mode. This achievement led to Team 6's choice to continue training in Henry Booker Room for the next few nights rather than the outdoor EBU-II track.
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p>
+<h3><span class="mw-headline" id="First_Convoy_Model_Attempt"><b>First Convoy Model Attempt</b></span></h3>
+<p>After a successful constant speed clockwise training model for RoboCar06, team 6 decided to attempt a convoy model with RoboCar06 and RoboCar08. Since driving RoboCar06 was based on human perception and judgement, it was proven difficult to get the right type of data needed to replicate the convoy experience. Team 6 spent countless hours in the Henry Booker Room attempting to establish a working convoy model. A convoy model was also attempted using JackRpi09. There were a few crashes with each cars, nearly damaging the raspberry pi cameras. On November 29, 2019, Team 6 decided to install the Linux operating system on all computers to maximize efficiency for the competition.
+</p><p><br/>
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Autonomous_Vehicle_Competition_at_Voyage">Autonomous Vehicle Competition at Voyage</span></h2>
+<h3><span class="mw-headline" id="Heading_to_Voyage"><b>Heading to Voyage</b></span></h3>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:Team_6_Travel.jpeg.html"><img alt="" class="thumbimage" height="267" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/0/07/Team_6_Travel.jpeg/200px-Team_6_Travel.jpeg" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team_6_Travel.jpeg.html" title="Enlarge"></a></div>Team 6 prepares for a flight to the competition site.</div></div></div>
+<p>On November 30, 2018, Team 6 was flown to Northern California, Palo Alto to participate in the DIY Robocars competition held at Voyage, an autonomous vehicle company. <a class="external text" href="https://en.wikipedia.org/wiki/Chris_Anderson_(writer)" rel="nofollow">Chris Anderson</a>, co-founder and current CEO of 3D Robotics, was the host and organizer of this event. At Voyage, there was an approximate attendance of 240 participants. Traveling with team 6 were guest participants, Mark Liu, manager of the Envision Studio at the University of California, San Diego, Zhaoyuan Huo, Rich Wolcott and Professor Jack Silberman.
+</p>
+<h3><span class="mw-headline" id="Setting_Up_The_Tracks"><b>Setting Up The Tracks</b></span></h3>
+<div class="thumb tleft"><div class="thumbinner" style="width:352px;"><a class="image" href="File:VoyageTraining.jpg.html"><img alt="" class="thumbimage" height="263" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/12/VoyageTraining.jpg/350px-VoyageTraining.jpg" width="350"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:VoyageTraining.jpg.html" title="Enlarge"></a></div>Team 6 training on the competition track. The white tape defined the outer boundaries of the track. The yellow tape defined the center.</div></div></div>
+<p>After arriving at Voyage, Team 6 assisted with building the competition track. The competition track was built using white and yellow reflective tape (the same tape used on the Engineering Building I Track). 
+The boundaries of the track was defined using two lines of white tape, spaced an approximate 5 feet apart. The center of the road was defined using the yellow reflective tape. Once the track was set up, Team 6 began training on the track immediately to collect data. RoboCar08 was driven around the competition track a handful times, and the Raspberry Pi camera started collecting images. At the end, the Raspberry Pi camera collected an approximate 52,000 images.
+</p>
+<h3><span class="mw-headline" id="The_Race_and_Results"><b>The Race and Results</b></span></h3>
+<div class="thumb tleft"><div class="thumbinner" style="width:352px;"><video class="thumbimage" controls="" height="197" src="http://guitar.ucsd.edu/maeece148/images/7/77/SuccessforMark.mp4" style="max-width: 100%; max-height: 100%; width: 350px; height: 197px;" width="350"><a href="File:SuccessforMark.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:SuccessforMark.mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:SuccessforMark.mp4.html" title="Enlarge"></a></div>Mark Liu's car was capable of completing the track, earning him 4th place in the competition.</div></div></div>
+<p>After gathering a staggering 52,000 images on the red monster truck, team 6 discovered that all the images were completely pitched-black. This error resulted from not removing the camera cap prior to gathering data. The competition was held from 7PM-9PM inside Voyage and each competitor was given 3 attempts to accumulate a record-beating time. Team 6 attempted the first round and was not able to finish due to a corrupted training model. Team 6 attempted the competition track again with a training model built prior to the competition and ended up not finishing. Eventually, Team 6 was scratched out on round 3 of the competition. Mark Liu, manager of the Envision Studio at UCSD participated in the competition as <i> Team UCSD Rally</i> and was able to complete the track within 14 seconds, earning him 3rd place in the competition. Mark Liu later finished 4th place since a competitor was capable of finishing a few seconds faster.
+</p>
+<h3><span class="mw-headline" id="Competition_Aftermath"><b>Competition Aftermath</b></span></h3>
+<p>Although Team 6 did not finish the competition strong, Team 6 was proud of the achievements and the amount of effort dedicated to the project. Regardless of the competition results, team 6 and the other UCSD participants celebrated at a Thai restaurant located in Palo Alto, California. The next morning, Team UCSD traveled back to San Diego to continue making further changes to all vehicle models.
+</p>
+<table style="margin: 1 10;">
+<tr>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:352px;"><a class="image" href="File:UCSDTEAM.jpg.html"><img alt="" class="thumbimage" height="263" loading="lazy" src="https://web.archive.org/web/20200814145728im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/ec/UCSDTEAM.jpg/350px-UCSDTEAM.jpg" width="350"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:UCSDTEAM.jpg.html" title="Enlarge"></a></div>Left to Right: Igor, Rich, Alex, Jack, Cai, Zhaoyuan, Mark, and Denis</div></div></div>
+</td>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:352px;"><div class="MediaTransformError" style="width: 350px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:ComputersVoyagee.jpg.html" title="Enlarge"></a></div>Team 6 using linux operating systems to operate the vehicles used in the competition</div></div></div>
+</td></tr></table>
+<h2><span class="mw-headline" id="Lessons_Learned"><b>Lessons Learned</b></span></h2>
+<h3><span class="mw-headline" id="Camera_Cap_Issue">Camera Cap Issue</span></h3>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><div class="MediaTransformError" style="width: 300px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:CamerawithCap.jpg.html" title="Enlarge"></a></div>The camera used in the competition. The camera cap is displayed next to the camera.</div></div></div>
+<p>One of the biggest takeaway for Team 6 was to always check the vehicle before operating it. A very common recurring mistake was forgetting to remove the camera cap. Since the camera cap was on during most of our training sessions, the data retrieved from the track became unusable. 
+</p>
+<pre> <i>Solution</i>: Throw away the camera cap or get a different color cap
+</pre>
+<h3><span class="mw-headline" id="Lithium_Polymer_Battery_Issues">Lithium Polymer Battery Issues</span></h3>
+<p>One of Team 6's LiPo battery terminal leads was damaged due to the improper connection of the battery to the JackRPi09 vehicle. This issue delayed team 6's ability to train the vehicle for a few days until a replacement battery was issued. Team 6 was not aware of this battery issue until a firm connection could not be established between both components. 
+</p>
+<pre><i>Solution</i>: Pay careful attention to the color-coded wires to establish the right connection
+</pre>
+<h3><span class="mw-headline" id="Servo_Motor_Heating">Servo Motor Heating</span></h3>
+<p>We realized that if we rapidly steering left and right as we collect data, the cars are more capable of recognizing the tracks and therefore produce better results. However, the RoboCar08 seems to require more power from the servo motor in order to rapidly changing direction and the servo cannot withstand it. Therefore, it heats up and does not function properly. As a result, we were only able to collect 1 lap of three cars driving autonomously.
+</p>
+<pre><i>Solution</i>: Rest the car after a few minutes of driving to let the servo cool down. In addition, using a fan to cool down the servo also works very well.
+</pre>
+<h2><span class="mw-headline" id="Special_Acknowledgements">Special Acknowledgements</span></h2>
+<p><i>We would like to thank Professor Silberman and Professor Mauricio de Oliveira for giving us the opportunity to learn, struggle, and to design autonomous vehicles that will make an everlasting impact on our future careers. We would also like to thank Sayan Mondal for being an excellent and helpful TA in this course. Lastly, thank you to all the other teams that have contributed into making our project a memorable one.</i>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20200814145728
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.036 seconds
+Real time usage: 0.041 seconds
+Preprocessor visited node count: 119/1000000
+Preprocessor generated node count: 124/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:180-0!*!*!!en!5!* and timestamp 20200814145728 and revision id 1772
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200814145728/https://guitar.ucsd.edu/maeece148/index.php/2018FallTeam6">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

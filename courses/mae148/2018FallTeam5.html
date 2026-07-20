@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2018FallTeam5 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2018FallTeam5</h1>
+      <div class="thumb tright"><div class="thumbinner" style="width:277px;"><a class="image" href="File:Fall2018Team5ROBOBOIheadshot.png.html"><img alt="" class="thumbimage" height="333" loading="lazy" src="https://web.archive.org/web/20200807184932im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/e4/Fall2018Team5ROBOBOIheadshot.png/275px-Fall2018Team5ROBOBOIheadshot.png" width="275"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Fall2018Team5ROBOBOIheadshot.png.html" title="Enlarge"></a></div>R.O.B.O. B.O.I., the autonomous robot star of Team 5 - the RoboBuds.</div></div></div>
+<p>2018 Fall Team 5 sought to incorporate object avoidance and GPS capabilities into the autonomous vehicle. They built upon the work completed by Project GPS <a class="external autonumber" href="Project_gps.html" rel="nofollow">[1]</a> by improving the path calibration of the GPS using a magnetometer and implementing the ability to avoid obstacles using ultrasonic sensors.
+</p>
+<div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Fall_2018_-_The_RoboBuds"><span class="tocnumber">1.1</span> <span class="toctext">Fall 2018 - The RoboBuds</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Overview_of_GPS_and_Obstacle_Avoidance"><span class="tocnumber">2</span> <span class="toctext">Overview of GPS and Obstacle Avoidance</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Project_Overview"><span class="tocnumber">3</span> <span class="toctext">Project Overview</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Hardware_and_Schematics"><span class="tocnumber">4</span> <span class="toctext">Hardware and Schematics</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Device_Parts"><span class="tocnumber">4.1</span> <span class="toctext">Device Parts</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Schematics"><span class="tocnumber">4.2</span> <span class="toctext">Schematics</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#IMU_Magnetometer"><span class="tocnumber">5</span> <span class="toctext">IMU Magnetometer</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#GPS"><span class="tocnumber">6</span> <span class="toctext">GPS</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Ultrasonic_Obstacle_Avoidance"><span class="tocnumber">7</span> <span class="toctext">Ultrasonic Obstacle Avoidance</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Conclusion_and_Future_Work"><span class="tocnumber">8</span> <span class="toctext">Conclusion and Future Work</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Resources"><span class="tocnumber">9</span> <span class="toctext">Resources</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<div class="floatright"><a class="image" href="File:Team5AndRoboBoi.JPG.html"><img alt="Team5AndRoboBoi.JPG" height="195" loading="lazy" src="https://web.archive.org/web/20200807184932im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/f6/Team5AndRoboBoi.JPG/260px-Team5AndRoboBoi.JPG" width="260"/></a></div>
+<h3><span class="mw-headline" id="Fall_2018_-_The_RoboBuds">Fall 2018 - The RoboBuds</span></h3>
+<ul><li> Bryn Henning - <i>Mechanical Engineering, B.S.</i></li>
+<li> Ronnie Lusk - <i>Computer Engineering, B.S.</i></li>
+<li> Jacqueline Villalobos - <i>Electrical Engineering, B.S.</i></li>
+<li> Yue Wen - <i>Mechanical Engineering, B.S.</i></li>
+<li> R.O.B.O. B.O.I. - <i>Really Outstanding Bot Object Being Operated Independently</i></li></ul>
+<p><br/>
+</p>
+<h2><span class="mw-headline" id="Overview_of_GPS_and_Obstacle_Avoidance">Overview of GPS and Obstacle Avoidance</span></h2>
+<p>Global Positioning System (GPS) is a navigation system that uses satellites to send geolocation and time information to a GPS receiver located on or near Earth. If there is an unobstructed line of sight between a particular location and four or more satellites, then its geolocation and time information can be recorded. While GPS can be used to control traffic signals and synchronize cellphone towers, it is most commonly associated with navigation systems in cars and mobile electronics. The data collected for navigational purposes provides global coordinates in longitude and latitude. For more information about how a GPS works, please visit the Official U.S. Government informational website. <a class="external autonumber" href="https://www.gps.gov/" rel="nofollow">[2]</a>
+</p><p>Object Avoidance can be accomplished through different types of sensors, such as depth sensors or ultrasonic sensors. This is already implemented in many cars that have detection on the front, back, and sides, which can then trigger lights or alarms to alert drivers of passing cars and close objects. In autonomous vehicles, the object avoidance must also be able to trigger a brake mechanism so that the vehicle can stop on its own when there is an object in the way of its trajectory.
+</p><p>Systems with high-precision GPS, accurate localization, and object avoidance capabilities are essential to the functionality of autonomous vehicles, especially civilian cars. An autonomous car must be able to travel from one destination to another, while remaining within its own lane with as little need for correction as possible. In addition, it must be able to avoid hitting pedestrians, cars, and other obstacles so that it can maintain the safety of the passengers and everyone else in the area.
+</p>
+<h2><span class="mw-headline" id="Project_Overview">Project Overview</span></h2>
+<p>2018 Fall Team 5 sought to improve upon Project GPS's DonkeyCar module so that an IMU could be used as a magnetometer to provide more efficient path correction. Project GPS had the autonomous vehicle follow many GPS points so that it would manually correct itself at every in-between point when traveling from one major point to another. However, with a magnetometer, R.O.B.O. B.O.I. could continuously correct its steering angle when traveling to a coordinate point; therefore, less coordinate points were needed in order for it to follow a set GPS path throughout Warren Mall.
+</p><p>In addition, two ultrasonic sensors were used to detect obstacles. One sensor was placed at the base of the camera mount to detect obstacles on the ground, and the other sensor was placed at the top of the camera mount (the highest point of the vehicle) so that it could detect taller obstacles. If there were objects that were tall enough to trigger the top sensor but not the bottom sensor, it would still cause R.O.B.O. B.O.I. to stop; however, if there was an obstacle that did not trigger any of the sensors, like a chair, R.O.B.O. B.O.I. would be able to pass under it. Both sensors were placed parallel to the base of the camera mount.
+</p>
+<h2><span class="mw-headline" id="Hardware_and_Schematics">Hardware and Schematics</span></h2>
+<div class="floatright"><a class="image" href="File:Fall2018Team5TopView.png.html"><img alt="Fall2018Team5TopView.png" height="195" loading="lazy" src="https://web.archive.org/web/20200807184932im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/cc/Fall2018Team5TopView.png/300px-Fall2018Team5TopView.png" width="300"/></a></div>
+<h3><span class="mw-headline" id="Device_Parts">Device Parts</span></h3>
+<ul><li> Arduino Uno</li>
+<li> BNO080 IMU - used as a magnetometer</li>
+<li> GPS/GLONASS U-blox7 - a USB GPS</li>
+<li> Two Ultrasonic Sensors - must be able to be paired with an Arduino Uno</li></ul>
+<p>In the image on the right, all of the above components are visible except for the second ultrasonic sensor, which is located directly underneath the sensor that is visible.
+</p>
+<h3><span class="mw-headline" id="Schematics">Schematics</span></h3>
+<p><a class="image" href="File:Fall2018Team5RobotSchematic.png.html"><img alt="Fall2018Team5RobotSchematic.png" height="137" loading="lazy" src="https://web.archive.org/web/20200807184932im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/be/Fall2018Team5RobotSchematic.png/400px-Fall2018Team5RobotSchematic.png" width="400"/></a>
+<a class="image" href="File:Fall2018Team5SensorSchematic.png.html"><img alt="Fall2018Team5SensorSchematic.png" height="217" loading="lazy" src="https://web.archive.org/web/20200807184932im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/bf/Fall2018Team5SensorSchematic.png/400px-Fall2018Team5SensorSchematic.png" width="400"/></a>
+</p><p>The figure on the left illustrates how all of the given, initial components connect together to enable for basic functions, like the throttle, steering, and emergency brake lock. The schematic shown in the figure on the right demonstrates how the IMU, LED, and both ultrasonic sensors connect to the Arduino Uno on a central breadboard.
+</p>
+<h2><span class="mw-headline" id="IMU_Magnetometer">IMU Magnetometer</span></h2>
+<div class="embedvideo thumb ev_right autoResize" style=" width: 171px;"><div class="embedvideowrap thumbinner" style="width: 165px;"><iframe allowfullscreen="true" frameborder="0" height="300" src="//www.youtube.com/embed/mgniN0XUjwQ?" width="165"></iframe><div class="thumbcaption">Calibration of IMU BNO080 Magnetometer</div></div></div>
+<p>The BNO080 IMU was used as a magnetometer so that the angle between the IMU heading and the desired coordinate location could be calculated. This angle could then be then used as an input to tell R.O.B.O. B.O.I. how much it needed to steer as it drove to the point. The IMU measured the angle every 50 milliseconds, which enabled R.O.B.O. B.O.I to also correct its path every 50 milliseconds; therefore, it could travel to a destination with fewer helper-points in between.
+</p><p>In order to calibrate the magnetometer, the IMU must be rotated slowly by about 180 degrees and then back to the original position in each axis (roll, pitch and yaw). For more information about how magnetometer calibration works and on hard and soft iron corrections the following Engineering Zone website may be useful. <a class="external autonumber" href="https://ez.analog.com/mems/w/documents/4493/faq-hard-soft-iron-correction-for-magnetometer-measurements" rel="nofollow">[3]</a> As the magnetometer becomes calibrated this will cause a change in the output of the magnetometer accuracy status. In order to visually be able to determine whether the magnetometer was calibrated a RGB LED was implemented. If the status of the magnetometer was unreliable or low the LED would shine in red and if the status was medium or high the LED would be illuminated in green. This helped determine when the magnetometer was ready to use and if the calibration reliability was lost along the route R.O.B.O. B.O.I. traveled. 
+</p><p>When using the magnetometer in the BNO080 IMU, values are outputted as x, y, and z values describing the strength of the magnetic field. For this project, it was essential to know the direction the robot was facing in order to then be able to correct for the desired direction to reach the next GPS point. The degrees were calculated by coding each quadrant case R.O.B.O. B.O.I. could face individually. The average was also taken of the 4 most recent measurements in order to ensure that accuracy and stability of the measurements made.
+</p>
+<h2><span class="mw-headline" id="GPS">GPS</span></h2>
+<div class="embedvideo thumb ev_right autoResize" style=" width: 171px;"><div class="embedvideowrap thumbinner" style="width: 165px;"><iframe allowfullscreen="true" frameborder="0" height="300" src="//www.youtube.com/embed/8_2Cs9v9VLI?" width="165"></iframe></div></div>
+<p>For detailed information on the function and code that enables the GPS to work, please see <a class="external text" href="Project_gps.html" rel="nofollow">Project GPS</a>. The work they did was excellent, and for the most part only minor configuration changes were needed to get the GPS working in our project. 
+</p><p>The main improvement we have made comes in terms of accuracy. While this is not necessarily a testament to our personal ingenuity, R.O.B.O. B.O.I. is more accurate than previous projects simply due to the <a class="external text" href="https://smile.amazon.com/Diymall-G-mouse-Glonass-Raspberry-Aviation/dp/B00NWEEWW8/ref=pd_lpo_vtph_107_lp_t_3?_encoding=UTF8&amp;psc=1&amp;refRID=B7TBF1JAJ4XZCE4JWRXN" rel="nofollow">GPS unit</a> we used. It is able to reach within five meters of each goal, and we were able to lower the steering gain so that it reaches each destination in a more straightforward manner. Further accuracy improvements can be gained through the integration of an IMU. Although we currently have code to make the IMU work with our Arduino, the changes needed to integrate it with the GPU have not yet been made.
+</p><p>Additionally, we added two sets of paths; one that goes from Warren lecture hall to Jacobs, and another that goes from Jacobs to Warren lecture hall. While it was trivial to gather these coordinates, special note should be taken of how far apart they are spaced out and their placement. The car still has limitations. It will try to take the straightest path to a point outside of some swerving to calibrate its direction. Put a point too far or around an obstacle and it may struggle to find a way there.
+</p><p>This issue can be remedied, to a degree, with object avoidance. See the section below.
+</p>
+<h2><span class="mw-headline" id="Ultrasonic_Obstacle_Avoidance">Ultrasonic Obstacle Avoidance</span></h2>
+<p>The two ultrasonic sensors detect the distance of objects in front of the car. They are connected to the Arduino, which processes their data and performs some filtering to smoothen out the reported distances. Then it prints out these distances to the pi, which receives in byte form. A quick overview of the relevant ultrasonic files below will explain what happens from there.
+</p><p><b>ultrasonic.py</b> is a donkeycar part that collects the data from the ultrasonic sensors, parses it for the distances, and then returns a stop_cmd if the distances are less than the threshold values. These threshold values are simply variables that can be changed at the top of the file.
+</p><p><b>ultra_gps_manage.py</b>, is a modified manage.py that includes a call to the GPS part, ultrasonic part, and takes some input coordinates.
+</p><p><b>ultra_planner.py</b>, which performs calculates to direct the car given the output from gps.py and the input coordinates. With the addition of the ultrasonics part, it will make the car stop when ultrasonics.py returns a stop_cmd value of true.
+</p><p>These files are iterations upon the original <b>gps.py</b>, <b>gps_manage.py</b>, and <b>planner.py</b> of the original project gps. Additionally, much of the work here was borrowed from <a href="2018SpringTeam3.html" title="2018SpringTeam3">2018SpringTeam3</a> and modified to fit our project. Notably, we cut out the kiwi-bot design and features they implemented. We made changes to ultrasonic.py to fit our design and work more consistently.
+</p>
+<h2><span class="mw-headline" id="Conclusion_and_Future_Work">Conclusion and Future Work</span></h2>
+<p>In the end, R.O.B.O. B.O.I. was able to follow a set GPS path throughout Warren Mall while stopping for obstacles, like people passing by. In addition, the IMU can be calibrated easily and used for more accurate path correction when driving between each GPS point.
+</p><p><b>Room for Improvement</b>
+</p>
+<ul><li> Train the robot to avoid grassy areas with the same method used to run autonomous laps around the tracks</li>
+<li> Implement Open CV to train robot to recognize grass.</li>
+<li> Add ultrasonic sensors on the side of the vehicle so that it can go around larger objects and be able to sense when it is clear to pass by them.</li></ul>
+<h2><span class="mw-headline" id="Resources">Resources</span></h2>
+<ol><li> <ins> <a class="external free" href="Project_gps.html" rel="nofollow">https://guitar.ucsd.edu/maeece148/index.php/Project_gps</a> </ins></li>
+<li> <ins> <a class="external free" href="https://www.gps.gov/" rel="nofollow">https://www.gps.gov/</a> </ins></li>
+<li> <ins> <a class="external free" href="https://ez.analog.com/mems/w/documents/4493/faq-hard-soft-iron-correction-for-magnetometer-measurements" rel="nofollow">https://ez.analog.com/mems/w/documents/4493/faq-hard-soft-iron-correction-for-magnetometer-measurements</a> </ins></li>
+<li> <ins> <a class="external free" href="https://github.com/rluskDev/robo_boi" rel="nofollow">https://github.com/rluskDev/robo_boi</a> </ins></li></ol>
+<!-- 
+NewPP limit report
+Cached time: 20200807184932
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.017 seconds
+Real time usage: 0.020 seconds
+Preprocessor visited node count: 64/1000000
+Preprocessor generated node count: 174/1000000
+Post‐expand include size: 52/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:145-0!*!0!!en!5!* and timestamp 20200807184932 and revision id 1727
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200807184932/https://guitar.ucsd.edu/maeece148/index.php/2018FallTeam5">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2019SpringTeam7 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2019SpringTeam7</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Project_Team_Members"><span class="tocnumber">1</span> <span class="toctext">Project Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Project_Overview"><span class="tocnumber">2</span> <span class="toctext">Project Overview</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Main_Components"><span class="tocnumber">3</span> <span class="toctext">Main Components</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Schematic"><span class="tocnumber">3.1</span> <span class="toctext">Schematic</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Hardware"><span class="tocnumber">3.2</span> <span class="toctext">Hardware</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#Drive_Train"><span class="tocnumber">3.2.1</span> <span class="toctext">Drive Train</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="#Challenges"><span class="tocnumber">3.2.2</span> <span class="toctext">Challenges</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-8"><a href="#Software"><span class="tocnumber">3.3</span> <span class="toctext">Software</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#Calibration_Values"><span class="tocnumber">3.3.1</span> <span class="toctext">Calibration Values</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Challenges_2"><span class="tocnumber">3.3.2</span> <span class="toctext">Challenges</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Milestones"><span class="tocnumber">4</span> <span class="toctext">Milestones</span></a>
+<ul>
+<li class="toclevel-2 tocsection-12"><a href="#Indoor_Autonomous_Driving"><span class="tocnumber">4.1</span> <span class="toctext">Indoor Autonomous Driving</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Outdoor_Autonomous_Driving"><span class="tocnumber">4.2</span> <span class="toctext">Outdoor Autonomous Driving</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="#Object_Recognition"><span class="tocnumber">5</span> <span class="toctext">Object Recognition</span></a>
+<ul>
+<li class="toclevel-2 tocsection-15"><a href="#Software_and_Hardware_List"><span class="tocnumber">5.1</span> <span class="toctext">Software and Hardware List</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Steps_Overview"><span class="tocnumber">5.2</span> <span class="toctext">Steps Overview</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Screenshare_Between_Mac_and_Raspberry_Pi_Desktop"><span class="tocnumber">5.3</span> <span class="toctext">Screenshare Between Mac and Raspberry Pi Desktop</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Results"><span class="tocnumber">5.4</span> <span class="toctext">Results</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Potential_Improvement"><span class="tocnumber">5.5</span> <span class="toctext">Potential Improvement</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-20"><a href="#Future_Developments"><span class="tocnumber">6</span> <span class="toctext">Future Developments</span></a></li>
+<li class="toclevel-1 tocsection-21"><a href="#Reference"><span class="tocnumber">7</span> <span class="toctext">Reference</span></a></li>
+</ul>
+</div>
+<h1><span class="mw-headline" id="Project_Team_Members">Project Team Members</span></h1>
+<div class="floatleft"><a class="image" href="File:Team7Logo.png.html" title="From Left: Anne, Mayuki, Matias, David"><img alt="From Left: Anne, Mayuki, Matias, David" height="102" loading="lazy" src="https://web.archive.org/web/20200814114952im_/http://guitar.ucsd.edu/maeece148/images/thumb/0/09/Team7Logo.png/65px-Team7Logo.png" width="65"/></a></div>
+<ul><li><b>David Zhenan Yin</b> - Electrical Engineering <br/> </li></ul>
+<ul><li><b>Anne Kimberly Edquilang</b> - Mechanical Engineering <br/></li></ul>
+<ul><li><b>Mayuki Adam Sasagawa</b> - Mechanical Engineering <br/></li></ul>
+<ul><li><b>Matias Ricardo Lee Choi</b> - Mechanical Engineering <br/></li></ul>
+<ul class="gallery mw-gallery-packed-hover">
+<li class="gallerybox" style="width: 417.33333333333px"><div style="width: 417.33333333333px">
+<div class="thumb" style="width: 415.33333333333px;"><div style="margin:0px auto;"><a class="image" href="File:TeamPhoto.png.html"><img alt="TeamPhoto.png" height="300" loading="lazy" src="https://web.archive.org/web/20200814114952im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/71/TeamPhoto.png/623px-TeamPhoto.png" width="416"/></a></div></div>
+</div></li>
+<li class="gallerybox" style="width: 357.33333333333px"><div style="width: 357.33333333333px">
+<div class="thumb" style="width: 355.33333333333px;"><div style="margin:0px auto;"><a class="image" href="File:TeamPhotoYay.png.html"><img alt="TeamPhotoYay.png" height="300" loading="lazy" src="https://web.archive.org/web/20200814114952im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/dd/TeamPhotoYay.png/533px-TeamPhotoYay.png" width="356"/></a></div></div>
+</div></li>
+</ul>
+<div align="center">From Left: Anne, Mayuki, David, Matias</div>
+<div align="center">Photo taken by Raspberry Pi 5MP 1080P Camera using Realtime Object Detection</div>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/cGxc0RmCjP0?" width="640"></iframe></div></div>
+<h1><span class="mw-headline" id="Project_Overview">Project Overview</span></h1>
+<p>This project develops an autonomous car that reacts to objects in its surroundings. Real-time object detection is implemented to recognize common road objects and react as a human driver would.
+In the real world, autonomous cars need to be at least as safe as human drivers to be viable. They must emulate a human driver's response time (0.7-3 seconds to react, 2.3 seconds to hit brakes) to react quickly enough to avoid danger. Like human drivers, they also must react differently to every object. The system is implemented on our autonomously-driven car using one Raspberry Pi and one camera in order to minimize footprint and cost.
+</p>
+<ul class="gallery mw-gallery-packed-hover">
+<li class="gallerybox" style="width: 264.66666666667px"><div style="width: 264.66666666667px">
+<div class="thumb" style="width: 262.66666666667px;"><div style="margin:0px auto;"><a class="image" href="File:Img9233.jpg.html"><img alt="Img9233.jpg" height="350" loading="lazy" src="https://web.archive.org/web/20200814114952im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/59/Img9233.jpg/394px-Img9233.jpg" width="263"/></a></div></div>
+</div></li>
+<li class="gallerybox" style="width: 264.66666666667px"><div style="width: 264.66666666667px">
+<div class="thumb" style="width: 262.66666666667px;"><div style="margin:0px auto;"><a class="image" href="File:Img9235.jpg.html"><img alt="Img9235.jpg" height="350" loading="lazy" src="https://web.archive.org/web/20200814114952im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/62/Img9235.jpg/394px-Img9235.jpg" width="263"/></a></div></div>
+</div></li>
+<li class="gallerybox" style="width: 330px"><div style="width: 330px">
+<div class="thumb" style="width: 328px;"><div style="margin:0px auto;"><a class="image" href="File:PatrickStarCar.jpeg.html"><img alt="PatrickStarCar.jpeg" height="350" loading="lazy" src="https://web.archive.org/web/20200814114952im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/be/PatrickStarCar.jpeg/492px-PatrickStarCar.jpeg" width="328"/></a></div></div>
+</div></li>
+<li class="gallerybox" style="width: 264.66666666667px"><div style="width: 264.66666666667px">
+<div class="thumb" style="width: 262.66666666667px;"><div style="margin:0px auto;"><a class="image" href="File:Rainbowcardev1.jpg.html"><img alt="Rainbowcardev1.jpg" height="350" loading="lazy" src="https://web.archive.org/web/20200814114952im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/b6/Rainbowcardev1.jpg/394px-Rainbowcardev1.jpg" width="263"/></a></div></div>
+</div></li>
+</ul>
+<h1><span class="mw-headline" id="Main_Components">Main Components</span></h1>
+<h3><span class="mw-headline" id="Schematic">Schematic</span></h3>
+<div class="center"><div class="floatnone"><a class="image" href="File:Team7circuit.png.html"><img alt="Team7circuit.png" height="332" loading="lazy" src="https://web.archive.org/web/20200814114952im_/http://guitar.ucsd.edu/maeece148/images/thumb/0/08/Team7circuit.png/600px-Team7circuit.png" width="600"/></a></div></div>
+<h3><span class="mw-headline" id="Hardware">Hardware</span></h3>
+<ul><li><b>Lazer cut parts</b> <br/></li></ul>
+<p>Acrylic top plate <br/>
+</p>
+<div class="center"><div class="floatnone"><div class="MediaTransformError" style="width: 596px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div></div></div>
+<ul><li><b>3D printed parts</b> <br/></li></ul>
+<p>Dual Pi Camera Mount<br/>
+</p>
+<div class="center"><div class="floatnone"><div class="MediaTransformError" style="width: 408px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div></div></div>
+<p><br/>
+</p>
+<ul><li><b>Mascot</b> <br/></li></ul>
+<div class="center"><div class="floatnone"><div class="MediaTransformError" style="width: 232px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div></div></div>
+<h4><span class="mw-headline" id="Drive_Train">Drive Train</span></h4>
+<div class="center"><div class="floatnone"><a class="image" href="File:DriveTrain.jpg.html"><img alt="DriveTrain.jpg" height="300" loading="lazy" src="https://web.archive.org/web/20200814114952im_/http://guitar.ucsd.edu/maeece148/images/thumb/4/42/DriveTrain.jpg/400px-DriveTrain.jpg" width="400"/></a></div></div>
+<h4><span class="mw-headline" id="Challenges">Challenges</span></h4>
+<table class="wikitable">
+<tr>
+<th> Challenge
+</th>
+<th> Solution
+</th></tr>
+<tr>
+<td> Car not driving straight
+</td>
+<td> Shaft realignment
+</td></tr>
+<tr>
+<td> Steering and throttle not working, burned ESC
+</td>
+<td> Replaced ESC
+</td></tr>
+<tr>
+<td> Steering stopped working, throttle works, overheating servo motor
+</td>
+<td> Replaced servo motor
+</td></tr>
+<tr>
+<td> Raspberry pi does not boot
+</td>
+<td> Replace pi
+</td></tr></table>
+<p><b>What we learned</b> <br/>
+When we force the servo motor to steer too much then turn off the pi/car, it could cause the motor to be stuck constantly running. The DC motor inside the servo could have been burned that way.
+It is crucial to make sure all of the car's hardware is perfect before we start programming or training the car. For example, all the images and training might be for nothing if the camera mount is not secure and consistent.
+</p>
+<h3><span class="mw-headline" id="Software">Software</span></h3>
+<p>Using the classroom wifi and SSH to access the raspberry pi, we installed Donkey, Tensorflow, and paired the PS3 controller with the raspberry pi
+</p>
+<h4><span class="mw-headline" id="Calibration_Values">Calibration Values</span></h4>
+<ul><li><b>Throttle:</b> <br/>
+<ul><li>forward: 440 <br/></li>
+<li>neutral: 410 <br/></li>
+<li>reverse: 380 <br/></li></ul></li></ul>
+<ul><li><b>Steering:</b> <br/>
+<ul><li>left: 200 <br/></li>
+<li>neutral: 280<br/></li>
+<li>right: 360<br/></li></ul></li></ul>
+<ul><li><b>Autonomous Driving Training:</b> </li></ul>
+<div class="center"><div class="floatnone"><a class="image" href="File:DataTub.png.html"><img alt="DataTub.png" height="363" loading="lazy" src="https://web.archive.org/web/20200814114952im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/95/DataTub.png/400px-DataTub.png" width="400"/></a></div></div>
+<p>Roughly 27,000 images were recorded from driving 40 laps around the track. Those images were used to develop the autonomous driving model.<br/>
+</p><p>After training all the data collected on the GPU cluster, we were able to obtain a relatively high accuracy model. <br/>
+</p>
+<div class="center"><div class="floatnone"><div class="MediaTransformError" style="width: 640px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div></div></div>
+<h4><span class="mw-headline" id="Challenges_2">Challenges</span></h4>
+<table class="wikitable">
+<tr>
+<th> Challenge
+</th>
+<th> Solution
+</th></tr>
+<tr>
+<td> Could not access directory
+</td>
+<td> Directory name has space, changed it to underscore
+</td></tr>
+<tr>
+<td> Protobuf installation was time-consuming
+</td>
+<td> Patience
+</td></tr>
+<tr>
+<td> RaspbianLite not compatible for screen share on Mac
+</td>
+<td>
+<ul><li>Detailed instruction will be provided in the project section</li>
+<li>Installed tightvncserver, netatalk, and ahavi-daemon <br/></li>
+<li>Modified some code in the afpd.service file <br/></li>
+<li>Modified tightvncserver file and changed permission of the file we modified<br/></li>
+<li>Killed the server, restarted ahavi-daemon <br/></li>
+<li>We were able to use vnc to do screenshare on Mac</li></ul>
+</td></tr></table>
+<h1><span class="mw-headline" id="Milestones">Milestones</span></h1>
+<h3><span class="mw-headline" id="Indoor_Autonomous_Driving">Indoor Autonomous Driving</span></h3>
+<p>6 Autonomous Indoor Laps
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/hg974GT649Q?" width="640"></iframe></div></div>
+<h3><span class="mw-headline" id="Outdoor_Autonomous_Driving">Outdoor Autonomous Driving</span></h3>
+<p>3 Autonomous Outdoor Laps
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/qfGqEFDX2lw?" width="640"></iframe></div></div>
+<h1><span class="mw-headline" id="Object_Recognition">Object Recognition</span></h1>
+<h3><span class="mw-headline" id="Software_and_Hardware_List">Software and Hardware List</span></h3>
+<p>The following are needed to complete this project.
+</p>
+<ul><li>Raspberry Pi 3B or 3B+</li>
+<li>32GB MicroSD card</li>
+<li>Any high-resolution Pi Camera</li>
+<li>Raspbian Stretch with desktop and recommended software(<a class="external text" href="https://www.raspberrypi.org/downloads/raspbian/l" rel="nofollow">Link to download</a>)</li>
+<li>TensorFlow</li>
+<li>OpenCV <br/></li></ul>
+<h3><span class="mw-headline" id="Steps_Overview">Steps Overview</span></h3>
+<ul><li>Raspberry Pi setup</li>
+<li>Install TensorFlow, OpenCV, and Protobuf</li>
+<li>Setup Tensorflow directory structure and path variable</li>
+<li>Download model from model zoo</li>
+<li>Start object detection</li></ul>
+<p><br/>
+For this project, we were able to follow the guide provided by EdjeElectronics. We used TensorFlow's object detection API on raspberry pi 3B+, which uses Protobuf. Protobuf is a package that implements Google's Protocol Buffer data format. Currently there's no easy way to install Protobuf on Raspberry Pi because it needs to be compiled from the source and then installed, but fortunately, we found an installation guide by OSDevLab.(<a class="external text" href="http://www.osdevlab.blogspot.com/2016/03/how-to-install-google-protocol-buffers.html" rel="nofollow">Link to Installation Guide</a>) <br/>
+</p><p>First, we start by downloading TensorFlow and installing necessary packages.<br/>
+The packages used are: libatlas-base-dev,pillow, lxml, jupyter, matplotlib, cython, and python-tk.
+</p><p>Then we install some packages and OpenCV. <br/>
+The packages used are: libjpeg-dev, libtiff5-dev, libjasper-dev, libpng12-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libv4l-dev, libxvidcore-dev, libx264-dev, and qt4-dev-tools
+<i>IF ERROR OCCURED, RUN sudo apt-get update to solve</i>
+Then install OpenCV
+</p>
+<ul><li>pip3 install opencv-python <br/></li></ul>
+<p>Then follow the installation instruction written by OSDevLab to compile and install Protobuf. (<a class="external text" href="http://www.osdevlab.blogspot.com/2016/03/how-to-install-google-protocol-buffers.html" rel="nofollow">Link to Installation Guide</a>) <br/>
+We downloaded the Protobuf release from GitHub, double check if there's a newer version available then download the newest version. Configure the build process by following the installation guide and start building the package. Generally, the process takes about 1 hour. <br/>
+After finishing the building process, start the checking process. This takes even longer (around an hour and a half). <br/>
+</p><p>We now have to start setting up the TensorFlow structure and modifying the PYTHONPATH environment variable. <br/>
+</p>
+<ul><li>git clone --recurse-submodules <a class="external free" href="https://github.com/tensorflow/models.git" rel="nofollow">https://github.com/tensorflow/models.git</a> <br/></li></ul>
+<p>Then, modify the PYTHONPATH environment variable to point at some directories inside the TensorFlow repository we just downloaded by issuing: <br/>
+</p>
+<ul><li>sudo nano ~/.bashrc <br/></li></ul>
+<p>On the last line (at the end of the file), add: <br/>
+</p>
+<ul><li>export PYTHONPATH=$PYTHONPATH:/home/pi/tensorflow1/models/research:/home/pi/tensorflow1/models/research/slim <br/></li></ul>
+<p>Next, we used the TensorFlow detection model zoo (<a class="external text" href="https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md" rel="nofollow">Link to model zoo</a>). This is Google's collection of pre-trained object detection models with different levels of speed and accuracy. Because we are using Raspberry Pi, which doesn't have very good computing power, we need to use a model with less processing power so that our model will be less laggy. However, this will make it less accurate. The model we choose to use is called SSD_Lite. Once you have the model and the pi is configured, you can start object detection. <br/>
+</p>
+<div class="center"><div class="floatnone"><a class="image" href="File:Screenshot2.png.html"><img alt="Screenshot2.png" height="376" loading="lazy" src="https://web.archive.org/web/20200814114952im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/ce/Screenshot2.png/600px-Screenshot2.png" width="600"/></a></div></div>
+<h3><span class="mw-headline" id="Screenshare_Between_Mac_and_Raspberry_Pi_Desktop">Screenshare Between Mac and Raspberry Pi Desktop</span></h3>
+<p>Atainter has made a very detailed instruction on how to do screen sharing between Mac and Raspberry Pi. <br/>
+The instruction for completing the task is the following: (<a class="external text" href="https://github.com/HackerShackOfficial/Raspberry-Pi-VNC-Macl" rel="nofollow">Link to the Guide</a>) <br/>
+</p>
+<h3><span class="mw-headline" id="Results">Results</span></h3>
+<p>Realtime Object Detection
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/mO1fBO3mvn4?" width="640"></iframe></div></div>
+<p>With a second camera and raspberry pi with TensorFlow and OpenCV installed, the robot can detect everyday home objects at a rate of 0.54 - 0.70 FPS while also being able to drive our autonomous car. The program did an especially good job recognizing humans and could recognize our team member up to 10.67 meters away from the camera.<br/>
+Every object, including person, was more easily recognized when in slight motion, as the program could differentiate it from the background. This was less of a problem when the car was in slow motion. <br/>
+Sometimes, objects would not be recognized at all, and this may be because the object was not registered in the list of recognizable everyday objects or because the objects we used did not fit the standard description of said object. The green Hydroflask bottle seemed to be recognized very easily, however.<br/>
+</p>
+<h3><span class="mw-headline" id="Potential_Improvement">Potential Improvement</span></h3>
+<p>Due to screen sharing, the video feed and object recognition from the Pi camera is a little bit lagging on the Mac screen. A better way to solve this issue is that instead of using screen sharing, we could have used a monitor directly connected to the Raspberry using HDMI cable. <br/>
+Due to the Raspberry Pi's relatively low computing power, we could have chosen a different model; however, the tradeoff would be lower accuracy in recognizing objects.
+</p>
+<h1><span class="mw-headline" id="Future_Developments">Future Developments</span></h1>
+<p>In our current car, we have 2 pis: <br/>
+1 - the first pi is responsible for autonomous driving <br/>
+2 - the second pi is responsible for real time object detection <br/>
+</p><p>In the future, we would like the implement communication between the two pis which are currently separately controlled. By having the two raspberry pis and cameras communicate, we can apply machine learning on a greater data set. Rather than only applying machine learning on driving images sent from only the bottom pi camera, we can have machine learning be applied to the images recorded by the 2nd camera from the object detection portion of the project. Using this information, we can train the model to accomplish a greater variety of things such as: <br/>
+</p>
+<ul><li>Roadside sign recognition <br/></li>
+<li>Train our own model for object detection <br/></li>
+<li>Pedestrian recognition<br/> </li>
+<li>Incoming obstacle based automated maneuvers <br/></li></ul>
+<p><br/>
+<a class="external text" href="https://docs.google.com/presentation/d/196lNERBN02N2B0wrO49cReiSLTHMAy7Tz7xJHboclRE/edit?usp=sharing%7CLink" rel="nofollow">Link to Final Presentation</a>
+</p>
+<h1><span class="mw-headline" id="Reference">Reference</span></h1>
+<p>We would like to give special thanks to:
+</p>
+<ul><li><i>Professor Jack Silberman</i> and <i>professor Mauricio de Oliveira</i>, (<a class="external text" href="http://control.ucsd.edu/mauricio/" rel="nofollow">Link to web</a>)</li>
+<li><i>Donkey Car</i>, <a class="external free" href="https://github.com/tawnkramer/donkey/blob/master/docs/guide/install_software.md" rel="nofollow">https://github.com/tawnkramer/donkey/blob/master/docs/guide/install_software.md</a></li>
+<li><i>OSDevLab</i>, How to Install Google Protocol Buffers on Raspberry Pi and Test with Python. (<a class="external text" href="http://osdevlab.blogspot.com/2016/03/how-to-install-google-protocol-buffers.html%7CLink" rel="nofollow">Link to OSDevLab web</a>)</li>
+<li><i>Tensorflow object detection API</i>, <a class="external free" href="https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi" rel="nofollow">https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi</a></li>
+<li><i>Tensorflow detection model zoo</i>, COCO-trained models. <a class="external free" href="https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md" rel="nofollow">https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md</a></li>
+<li><i>Screen sharing instruction</i>, Raspberry Pi VNC Mac. <a class="external free" href="https://github.com/HackerShackOfficial/Raspberry-Pi-VNC-Mac" rel="nofollow">https://github.com/HackerShackOfficial/Raspberry-Pi-VNC-Mac</a></li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20200814114952
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.015 seconds
+Real time usage: 0.017 seconds
+Preprocessor visited node count: 130/1000000
+Preprocessor generated node count: 246/1000000
+Post‐expand include size: 104/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:391-0!*!*!!en!5!* and timestamp 20200814114952 and revision id 3290
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200814114952/https://guitar.ucsd.edu/maeece148/index.php/2019SpringTeam7">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

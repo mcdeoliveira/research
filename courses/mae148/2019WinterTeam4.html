@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2019WinterTeam4 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2019WinterTeam4</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Team_Members"><span class="tocnumber">2</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Mountain_Road_Model"><span class="tocnumber">3</span> <span class="toctext">Mountain Road Model</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Circuit_Schematics"><span class="tocnumber">4</span> <span class="toctext">Circuit Schematics</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#STL_Models"><span class="tocnumber">5</span> <span class="toctext">STL Models</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Decreasing_Ultrasonic_Variability"><span class="tocnumber">6</span> <span class="toctext">Decreasing Ultrasonic Variability</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Arduino_Code"><span class="tocnumber">7</span> <span class="toctext">Arduino Code</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Demo"><span class="tocnumber">8</span> <span class="toctext">Demo</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Resources"><span class="tocnumber">9</span> <span class="toctext">Resources</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Introduction">Introduction</span></h2>
+<p>The goal of our project is to create a <b>smart traffic light</b>. We created structures for ultrasonic sensors to detect the car's presence and manage traffic. Utilizing the idea of smart infrastructure, smart cars are able to become more effective and optimizing traffic. We are able to turn off street lighting when it is unused and give priority to emergency vehicles. This simple model minimizes cost and complexity. This project surrounds the problem of directing traffic when 2-way streets merge into 1 on a mountain road.
+</p><p><a class="image" href="File:Team4car.jpg.html"><img alt="Team4car.jpg" height="536" loading="lazy" src="https://web.archive.org/web/20200814115737im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/cc/Team4car.jpg/400px-Team4car.jpg" width="400"/></a>
+</p>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<p>Justine Lee
+</p><p>Mihir Sathe
+</p><p>Kaj Kuchina
+</p>
+<h2><span class="mw-headline" id="Mountain_Road_Model">Mountain Road Model</span></h2>
+<div class="MediaTransformError" style="width: 696px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<h2><span class="mw-headline" id="Circuit_Schematics">Circuit Schematics</span></h2>
+<p><a class="image" href="File:Arduino_US_LED_bb.jpg.html"><img alt="Arduino US LED bb.jpg" height="408" loading="lazy" src="https://web.archive.org/web/20200814115737im_/http://guitar.ucsd.edu/maeece148/images/thumb/a/a4/Arduino_US_LED_bb.jpg/400px-Arduino_US_LED_bb.jpg" width="400"/></a>
+<a class="image" href="File:Arduino_US_LED_schem.jpg.html"><img alt="Arduino US LED schem.jpg" height="330" loading="lazy" src="https://web.archive.org/web/20200814115737im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/e5/Arduino_US_LED_schem.jpg/400px-Arduino_US_LED_schem.jpg" width="400"/></a>
+</p>
+<h2><span class="mw-headline" id="STL_Models">STL Models</span></h2>
+<p>Ultrasonic Sensor Mount
+<a class="image" href="File:UltrasonicSensorWMount.jpg.html"><img alt="UltrasonicSensorWMount.jpg" height="282" loading="lazy" src="https://web.archive.org/web/20200814115737im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/92/UltrasonicSensorWMount.jpg/150px-UltrasonicSensorWMount.jpg" width="150"/></a>
+</p><p>Traffic Light
+<a class="image" href="File:TrafficLight.jpg.html"><img alt="TrafficLight.jpg" height="224" loading="lazy" src="https://web.archive.org/web/20200814115737im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/c1/TrafficLight.jpg/300px-TrafficLight.jpg" width="300"/></a>
+</p>
+<h2><span class="mw-headline" id="Decreasing_Ultrasonic_Variability">Decreasing Ultrasonic Variability</span></h2>
+<p>The ultrasonic sensors will observe a sharp decrease in the distance as a car drives in front of the sensor. When the sensor is first configured, it establishes a baseline for an empty road. However, in the real world, the object it sees might not be flat or stationary, which could cause false detections. To ensure we had a consistent baseline for the ultrasonic sensors, we designed flat acrylic plates. 
+</p>
+<h2><span class="mw-headline" id="Arduino_Code">Arduino Code</span></h2>
+<p>Library that can read from multiple ultrasonic sensors at the same time and frequency. 
+</p>
+<pre>#include &lt;NewPing.h&gt;
+</pre>
+<p>Define variables with set values
+</p>
+<pre>#define SONAR_NUM 2      // Number of sensors.
+#define MAX_DISTANCE 100 // Maximum distance (in cm) to ping.
+#define THRESH 40
+</pre>
+<p>Define green and red led pins on Arduino for traffic light.
+</p>
+<pre>#define led_g 7
+#define led_r 8
+</pre>
+<p>Create a NewPing for each ultrasonic echo and trigger pairing.
+</p>
+<pre>NewPing sonar[SONAR_NUM] = {   // Sensor object array.
+  NewPing(10, 9, MAX_DISTANCE), // Each sensor's trigger pin, echo pin, and max distance to ping.
+  NewPing(6, 5, MAX_DISTANCE),
+};
+</pre>
+<pre>void setup() {
+  Serial.begin(115200); // Open serial monitor at 115200 baud to see ping results.
+  pinMode(led_r, OUTPUT);
+  pinMode(led_g, OUTPUT);
+  digitalWrite(led_g, LOW);
+  digitalWrite(led_r, HIGH);
+}
+</pre>
+<pre>void loop() {
+  Serial.print(sonar[0].ping_cm());
+  Serial.print(",");
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+  Serial.println(sonar[1].ping_cm());
+</pre>
+<p>First ultrasonic sensor detects an object then turn green for that side and red for the other side.
+</p>
+<pre>  if (sonar[0].ping_cm() &lt; THRESH) {
+    digitalWrite(led_g, HIGH);
+    digitalWrite(led_r, LOW);
+    delay(1000);
+  }
+</pre>
+<p>Second ultrasonic sensor detects an object then turn green for that side and red for the other side.
+</p>
+<pre>  else if (sonar[1].ping_cm() &lt; THRESH) {
+    digitalWrite(led_g, LOW);
+    digitalWrite(led_r, HIGH);
+    delay(1000);
+  }
+</pre>
+<p>No objects detected then turn red for both sides.
+</p>
+<pre>  else {
+    digitalWrite(led_g, LOW);
+    digitalWrite(led_r, LOW);
+  }
+}
+</pre>
+<h2><span class="mw-headline" id="Demo">Demo</span></h2>
+<p><video controls="" height="338" src="http://guitar.ucsd.edu/maeece148/images/9/9c/Demo2.mp4" style="max-width: 100%; max-height: 100%; width: 600px; height: 338px;" width="600"><a href="File:Demo2.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Demo2.mp4</a></video>
+</p>
+<h2><span class="mw-headline" id="Resources">Resources</span></h2>
+<p>Traffic Light STL:
+</p>
+<pre><a class="external free" href="https://www.thingiverse.com/thing:2826057" rel="nofollow">https://www.thingiverse.com/thing:2826057</a> 
+</pre>
+<p>NewPing Arduino Library :
+</p>
+<pre><a class="external free" href="https://playground.arduino.cc/Code/NewPing" rel="nofollow">https://playground.arduino.cc/Code/NewPing</a>
+</pre>
+<!-- 
+NewPP limit report
+Cached time: 20200814115737
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.009 seconds
+Real time usage: 0.011 seconds
+Preprocessor visited node count: 34/1000000
+Preprocessor generated node count: 40/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:318-0!*!*!!en!5!* and timestamp 20200814115737 and revision id 2418
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200814115737/https://guitar.ucsd.edu/maeece148/index.php/2019WinterTeam4">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

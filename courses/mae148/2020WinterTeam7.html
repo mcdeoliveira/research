@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2020WinterTeam7 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2020WinterTeam7</h1>
+      <p><br/>
+</p>
+<div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Project_Overview"><span class="tocnumber">1</span> <span class="toctext">Project Overview</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Team_Members"><span class="tocnumber">2</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Design_and_Assembly_of_Donkey"><span class="tocnumber">3</span> <span class="toctext">Design and Assembly of Donkey</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Camera_Mount"><span class="tocnumber">3.1</span> <span class="toctext">Camera Mount</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#GPS_Case"><span class="tocnumber">3.2</span> <span class="toctext">GPS Case</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Antenna_Base"><span class="tocnumber">3.3</span> <span class="toctext">Antenna Base</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Jetson_Nano_case"><span class="tocnumber">3.4</span> <span class="toctext">Jetson Nano case</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Jetson_Acrylic_plate"><span class="tocnumber">3.5</span> <span class="toctext">Jetson Acrylic plate</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Hardware"><span class="tocnumber">4</span> <span class="toctext">Hardware</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Circuitry"><span class="tocnumber">4.1</span> <span class="toctext">Circuitry</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#GPS-RTK_2"><span class="tocnumber">4.2</span> <span class="toctext">GPS-RTK 2</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#ODIN_Chip"><span class="tocnumber">4.3</span> <span class="toctext">ODIN Chip</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Major_Objectives"><span class="tocnumber">5</span> <span class="toctext">Major Objectives</span></a>
+<ul>
+<li class="toclevel-2 tocsection-14"><a href="#ODIN_Connection"><span class="tocnumber">5.1</span> <span class="toctext">ODIN Connection</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#GPS-RTK_Navigation"><span class="tocnumber">5.2</span> <span class="toctext">GPS-RTK Navigation</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Driving_Given_Path"><span class="tocnumber">5.3</span> <span class="toctext">Driving Given Path</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="#Autonomous_Driving_using_gradient_descent"><span class="tocnumber">6</span> <span class="toctext">Autonomous Driving using gradient descent</span></a>
+<ul>
+<li class="toclevel-2"><a href="#The_General_Idea"><span class="tocnumber">6.1</span> <span class="toctext">The General Idea</span></a></li>
+<li class="toclevel-2"><a href="#Artificial_Potential_Field_Methods"><span class="tocnumber">6.2</span> <span class="toctext">Artificial Potential Field Methods</span></a>
+<ul>
+<li class="toclevel-3"><a href="#The_Attractive_Potential"><span class="tocnumber">6.2.1</span> <span class="toctext">The Attractive Potential</span></a></li>
+<li class="toclevel-3"><a href="#The_Repulsive_Potential"><span class="tocnumber">6.2.2</span> <span class="toctext">The Repulsive Potential</span></a></li>
+<li class="toclevel-3"><a href="#Total_Potential_Function"><span class="tocnumber">6.2.3</span> <span class="toctext">Total Potential Function</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Gradient_Descent"><span class="tocnumber">6.3</span> <span class="toctext">Gradient Descent</span></a></li>
+<li class="toclevel-2"><a href="#Final_Result"><span class="tocnumber">6.4</span> <span class="toctext">Final Result</span></a></li>
+<li class="toclevel-2"><a href="#Demo_Video"><span class="tocnumber">6.5</span> <span class="toctext">Demo Video</span></a></li>
+<li class="toclevel-2"><a href="#Python_Code"><span class="tocnumber">6.6</span> <span class="toctext">Python Code</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-18"><a href="#Challenges"><span class="tocnumber">7</span> <span class="toctext">Challenges</span></a></li>
+<li class="toclevel-1 tocsection-19"><a href="#Future_Implement"><span class="tocnumber">8</span> <span class="toctext">Future Implement</span></a></li>
+<li class="toclevel-1 tocsection-20"><a href="#Conclusion"><span class="tocnumber">9</span> <span class="toctext">Conclusion</span></a></li>
+<li class="toclevel-1 tocsection-21"><a href="#Project_Links"><span class="tocnumber">10</span> <span class="toctext">Project Links</span></a></li>
+<li class="toclevel-1 tocsection-22"><a href="#Resources"><span class="tocnumber">11</span> <span class="toctext">Resources</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Project_Overview">Project Overview</span></h2>
+<p>Our goal was to provide our car with particular GPS coordinates, have the car navigate to the destination coordinates by using GPS and RTK2 corrections to achieve centimeter accuracy. We utilized Potential Functions and Gradient descent algorithm to avoid obstacles and find the path through objects.
+</p><p><b>Main objectives of adaptive cruise control are:</b>
+</p><p>1. GPS-RTK Navigation from source to the assigned destination
+</p><p>2. Connecting the two C099-F9P GPS-RTK2 modules using Odin (wifi)
+</p><p>3. Obstacle avoidance
+</p><p><b>Minor objectives</b>
+</p><p>1. Automatically collecting image with throttling and steering for donkey training while driving the lap
+</p><p>2. Finding a path to the goal from starting point with avoiding given obstacle location
+</p>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<p><b>Chanyang Yim</b> – Mechanical and Aerospace Engineering Department
+</p><p><b>Jiuqi Wang</b> – Mechanical and Aerospace Engineering Department 
+</p><p><b>Omid Hasanli</b> – Electrical and Computer Engineering Department
+</p>
+<h2><span class="mw-headline" id="Design_and_Assembly_of_Donkey">Design and Assembly of Donkey</span></h2>
+<p>This part includes all the CAD files during the project.
+</p>
+<h3><span class="mw-headline" id="Camera_Mount">Camera Mount</span></h3>
+<p>The camera mount contains three parts, the purpose of this design is to let the camera be adjustable with height and angle. The first part is the camera base, which mounts the camera with four bolts and nuts, and can be mounted on the upper stand with one bolt. The second part is the upper stand, this part has many holes on it to make sure the camera can adjust the height. The last part is the stand, the holes mate the holes on the upper stand.
+</p><p><br/>
+In our design, the first camera mount was not perfect, the camera did not have enough angles to adjust, and the stand was very thin. Therefore, here shows the modified design of our camera mount.
+</p><p><br/>
+<a class="image" href="File:CAMERA_MOUNT_-_CAMERA_BASE.jpg.html" title="Camera Base"><img alt="Camera Base" height="247" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/0/0d/CAMERA_MOUNT_-_CAMERA_BASE.jpg/250px-CAMERA_MOUNT_-_CAMERA_BASE.jpg" width="250"/></a>
+<a class="image" href="File:CAMERA_MOUNT_-_STAND.jpg.html" title="Stand"><img alt="Stand" height="287" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/0/00/CAMERA_MOUNT_-_STAND.jpg/250px-CAMERA_MOUNT_-_STAND.jpg" width="250"/></a>
+<a class="image" href="File:CAMERA_MOUNT_-_UPPER_STAND.jpg.html" title="Upper Stand"><img alt="Upper Stand" height="332" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/4/48/CAMERA_MOUNT_-_UPPER_STAND.jpg/200px-CAMERA_MOUNT_-_UPPER_STAND.jpg" width="200"/></a>
+</p><p><br/>
+<br/>
+<a class="image" href="File:CAMERA_MOUNT_1.jpg.html"><img alt="CAMERA MOUNT 1.jpg" height="432" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/92/CAMERA_MOUNT_1.jpg/300px-CAMERA_MOUNT_1.jpg" width="300"/></a>
+<a class="image" href="File:CAMERA_MOUNT_2.jpg.html"><img alt="CAMERA MOUNT 2.jpg" height="422" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/cc/CAMERA_MOUNT_2.jpg/300px-CAMERA_MOUNT_2.jpg" width="300"/></a>
+</p>
+<h3><span class="mw-headline" id="GPS_Case">GPS Case</span></h3>
+<p>The GPS we used is a bare circuit board, which needs protection. A GPS case was designed to protect the GPS from bumps. GPS case contains two parts, GPS cover and GPS base.
+</p><p><br/>
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:252px;"><a class="image" href="File:GPS_CASE_BASE.jpg.html"><img alt="" class="thumbimage" height="161" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/bb/GPS_CASE_BASE.jpg/250px-GPS_CASE_BASE.jpg" width="250"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:GPS_CASE_BASE.jpg.html" title="Enlarge"></a></div>Camera Base</div></div></div> <div class="thumb tright"><div class="thumbinner" style="width:252px;"><a class="image" href="File:GPS_CASE_COVER.jpg.html"><img alt="" class="thumbimage" height="176" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/fe/GPS_CASE_COVER.jpg/250px-GPS_CASE_COVER.jpg" width="250"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:GPS_CASE_COVER.jpg.html" title="Enlarge"></a></div>Upper Stand</div></div></div><a class="image" href="File:GPS_CASE.jpg.html"><img alt="GPS CASE.jpg" height="198" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/2/27/GPS_CASE.jpg/280px-GPS_CASE.jpg" width="280"/></a>
+<p><br/>
+</p>
+<h3><span class="mw-headline" id="Antenna_Base">Antenna Base</span></h3>
+<p>Similar to GPS, there was an antenna base to make sure the antenna was stable during operation.
+</p><p><br/>
+<a class="image" href="File:ANTENNA_BASE.jpg.html"><img alt="ANTENNA BASE.jpg" height="349" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/19/ANTENNA_BASE.jpg/550px-ANTENNA_BASE.jpg" width="550"/></a>
+</p>
+<h3><span class="mw-headline" id="Jetson_Nano_case">Jetson Nano case</span></h3>
+<p>To house our Jetson Nano, we 3D printed a case taken off of Thingiverse at:
+<a class="external free" href="https://www.thingiverse.com/thing:3518410" rel="nofollow">https://www.thingiverse.com/thing:3518410</a>
+<a class="image" href="File:Jetson_Case.jpg.html"><img alt="Jetson Case.jpg" height="301" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/cf/Jetson_Case.jpg/400px-Jetson_Case.jpg" width="400"/></a>
+</p>
+<h3><span class="mw-headline" id="Jetson_Acrylic_plate">Jetson Acrylic plate</span></h3>
+<p>It is just base plate for Jetson and other circuit and parts 
+<a class="image" href="File:Plate_design.PNG.html"><img alt="Plate design.PNG" height="167" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/de/Plate_design.PNG/300px-Plate_design.PNG" width="300"/></a>
+</p>
+<h2><span class="mw-headline" id="Hardware">Hardware</span></h2>
+<h3><span class="mw-headline" id="Circuitry">Circuitry</span></h3>
+<p><a class="image" href="File:Schematic1.png.html"><img alt="Schematic1.png" height="371" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/a/ac/Schematic1.png/400px-Schematic1.png" width="400"/></a>
+</p>
+<h3><span class="mw-headline" id="GPS-RTK_2">GPS-RTK 2</span></h3>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:Base_Station.png.html"><img alt="" class="thumbimage" height="266" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/a/a3/Base_Station.png/200px-Base_Station.png" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Base_Station.png.html" title="Enlarge"></a></div>Base Station</div></div></div>
+<p>GPS-RTK is the positioning is a satellite navigation technique used to enhance the precision of position data derived from satellite-based positioning systems (global navigation satellite systems, GNSS) such as GPS, GLONASS, Galileo, NavIC and BeiDou. It uses measurements of the phase of the signal's carrier wave in addition to the information content of the signal and relies on a single reference station or interpolated virtual station to provide real-time corrections, providing up to centimeter-level accuracy.
+</p><p>In our project, two GPS-RTK 2 were used. One of them was used for the base station, another one was attached to the robot and collect GPS data by communicating with Base Station.
+<br/>
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:GPSRTK2.png.html"><img alt="" class="thumbimage" height="143" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/4/46/GPSRTK2.png/200px-GPSRTK2.png" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:GPSRTK2.png.html" title="Enlarge"></a></div>GPS-RTK2 <a class="external free" href="https://www.u-blox.com/sites/default/files/C099-F9P-AppBoard-ODIN-W2-uCX_UserGuide_%28UBX-18055649%29.pdf" rel="nofollow">https://www.u-blox.com/sites/default/files/C099-F9P-AppBoard-ODIN-W2-uCX_UserGuide_%28UBX-18055649%29.pdf</a></div></div></div>
+<ul><li> Accuracy &lt; 2cm </li>
+<li> RTK response time: 100 ms </li>
+<li> Guide for connection of two GPS-RTK via ODIN(Wifi) in the GitHub: <a class="external free" href="https://github.com/chanyang719/GPSRTK-MAE148-" rel="nofollow">https://github.com/chanyang719/GPSRTK-MAE148-</a></li></ul>
+<p><br/>
+<br/>
+<br/>
+<br/>
+</p>
+<h3><span class="mw-headline" id="ODIN_Chip">ODIN Chip</span></h3>
+<p>The ODIN-W2 is a compact and powerful stand-alone multi-radio module, designed for Internet-of-Things gateway applications. The module includes an embedded Bluetooth stack, Wi-Fi driver, IP stack, and an application for wireless data transfer, all configurable using AT commands. The wireless support includes dual-mode Bluetooth v4.0 (BR/EDR and low energy) and dual-band Wi-Fi (2.4 and 5 GHz bands).
+</p><p>In our project, we used Wi-Fi to connect two ODIN chips on two GPS-RTK 2.
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:402px;"><a class="image" href="File:ODIN.png.html"><img alt="" class="thumbimage" height="82" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/81/ODIN.png/400px-ODIN.png" width="400"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:ODIN.png.html" title="Enlarge"></a></div>GPS-RTK2 <a class="external free" href="https://www.u-blox.com/sites/default/files/ODIN-W2_ProductSummary_%28UBX-15004332%29.pdf" rel="nofollow">https://www.u-blox.com/sites/default/files/ODIN-W2_ProductSummary_%28UBX-15004332%29.pdf</a></div></div></div>
+<p><br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Major_Objectives">Major Objectives</span></h2>
+<h3><span class="mw-headline" id="ODIN_Connection">ODIN Connection</span></h3>
+<p>Although we had some firmwork issue with ODIN chips during the first two weeks. However, we figured out how to solve this issue by initialized everything and used own configuration instead of provided configuration. After that, two ODIN chips can connect with each other through Wi-Fi.
+</p>
+<h3><span class="mw-headline" id="GPS-RTK_Navigation">GPS-RTK Navigation</span></h3>
+<p>We input the initial location, and final location, the vehicle will automatically drive from the starting point to its destination within 10 cm error.
+</p><p><a class="image" href="File:Hello.png.html"><img alt="Hello.png" height="240" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/d0/Hello.png/500px-Hello.png" width="500"/></a>
+</p><p><a class="external text" href="https://youtu.be/VtxWwig5mtg" rel="nofollow">Go to Goal Position (Within 10cm) from Anywhere</a>
+</p>
+<h3><span class="mw-headline" id="Driving_Given_Path">Driving Given Path</span></h3>
+<p>We input several GPS locations, connected each point to form a track. The vehicle will automatically follow the track and to the destination.
+</p><p><a class="image" href="File:Track.png.html"><img alt="Track.png" height="180" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/51/Track.png/300px-Track.png" width="300"/></a>
+</p><p><a class="external text" href="https://youtu.be/HyDrb0HAs7U" rel="nofollow">Following Track with GPS-RTK</a>
+</p>
+<h2><span class="mw-headline" id="Autonomous_Driving_using_gradient_descent">Autonomous Driving using gradient descent</span></h2>
+<h4><span class="mw-headline" id="The_General_Idea">The General Idea</span></h4>
+<p>To build potential fields, so that the point that represents the robot is attracted by the goal and repelled by the obstacle region. The robot moves to a lower energy configuration and energy are minimized by following the negative gradient of the potential energy function.
+</p>
+<h4><span class="mw-headline" id="Artificial_Potential_Field_Methods">Artificial Potential Field Methods</span></h4>
+<h5><span class="mw-headline" id="The_Attractive_Potential">The Attractive Potential</span></h5>
+<p>– Uatt is the “attractive” potential --- move to the goal
+</p><p><a class="image" href="File:10.PNG.html"><img alt="10.PNG" height="179" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/6a/10.PNG/300px-10.PNG" width="300"/></a><a class="image" href="File:Figure_3.png.html"><img alt="Figure 3.png" height="374" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/e2/Figure_3.png/500px-Figure_3.png" width="500"/></a>
+</p>
+<h5><span class="mw-headline" id="The_Repulsive_Potential">The Repulsive Potential</span></h5>
+<p>– Urep is the “repulsive” potential --- avoid obstacles
+</p><p><a class="image" href="File:13.PNG.html"><img alt="13.PNG" height="126" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/11/13.PNG/350px-13.PNG" width="350"/></a><a class="image" href="File:Figure_5.png.html"><img alt="Figure 5.png" height="374" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/67/Figure_5.png/500px-Figure_5.png" width="500"/></a>
+</p>
+<h5><span class="mw-headline" id="Total_Potential_Function">Total Potential Function</span></h5>
+<p>– Uatt is the “attractive” potential --- move to the goal
+– Urep is the “repulsive” potential --- avoid obstacles
+</p><p><a class="image" href="File:11.PNG.html"><img alt="11.PNG" height="37" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/0/01/11.PNG/200px-11.PNG" width="200"/></a>
+<a class="image" href="File:Figure_4.png.html"><img alt="Figure 4.png" height="374" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/79/Figure_4.png/500px-Figure_4.png" width="500"/></a>
+</p>
+<h4><span class="mw-headline" id="Gradient_Descent">Gradient Descent</span></h4>
+<p><a class="image" href="File:12.PNG.html"><img alt="12.PNG" height="49" loading="lazy" src="https://web.archive.org/web/20200918083948im_/http://guitar.ucsd.edu/maeece148/images/thumb/4/44/12.PNG/200px-12.PNG" width="200"/></a>
+</p>
+<div class="MediaTransformError" style="width: 640px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<h4><span class="mw-headline" id="Final_Result">Final Result</span></h4>
+<p>- This the result of a test in a real-life application of this algorithm that was used. Two arbitrary coordinates were chosen and between them, we placed another two arbitrary obstacles. the output of the function which was saved in .csv file was loaded to GoogleMyMaps to be plotted on the google map. As you can see in the images, the output of the Python code and the plot on google maps are the same shapes.
+</p>
+<div class="MediaTransformError" style="width: 480px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<div class="MediaTransformError" style="width: 480px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<h4><span class="mw-headline" id="Demo_Video">Demo Video</span></h4>
+<div class="embedvideo autoResize" style=""><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/isTGHfRijvA?" width="640"></iframe></div></div>
+<h4><span class="mw-headline" id="Python_Code">Python Code</span></h4>
+<p><a class="external free" href="https://github.com/sohasanl/ECE148Project/blob/master/PathFinder.py" rel="nofollow">https://github.com/sohasanl/ECE148Project/blob/master/PathFinder.py</a>
+</p>
+<h2><span class="mw-headline" id="Challenges">Challenges</span></h2>
+<p>We had a lot of trouble with our GPS-Odin module. Odin (WiFi and Bluetooth) on the C099-F9P was programmed factory default on rover Bluetooth and was in silent mode that wouldn't allow us to communicate with it through AT-Commands. Therefore, connecting two GPS, one as Rover and the other as Base station to transmit correction signals took almost 2 weeks of work. 
+</p><p>Also, programming the Artificial potential fields faced with lots of wired errors as the Sympy library still has some unknown bugs and figuring them out required extensive searching through the internet.
+</p>
+<h2><span class="mw-headline" id="Future_Implement">Future Implement</span></h2>
+<ul><li> Can implement to collect and train model  while following the known path </li></ul>
+<ul><li> Can make a delivery system with GPS-RTK </li></ul>
+<ul><li> Can implement Gradient Descent Algorithm (can add a camera image to find path)</li></ul>
+<h2><span class="mw-headline" id="Conclusion">Conclusion</span></h2>
+<p>Our car is capable of correcting its direction to move towards a specified GPS location using RTK2 corrections from base GPS-RTK within 1-10cm and avoiding larger objects. From our demo, we can see that the system is not robust enough to fully navigate to multiple locations while avoiding objects.
+</p>
+<h2><span class="mw-headline" id="Project_Links">Project Links</span></h2>
+<ol><li>For project hardware parts <a class="external free" href="https://github.com/sohasanl/ECE148Project" rel="nofollow">https://github.com/sohasanl/ECE148Project</a></li>
+<li>For donkey framework <a class="external free" href="https://github.com/chanyang719/GPSRTK-MAE148-" rel="nofollow">https://github.com/chanyang719/GPSRTK-MAE148-</a></li>
+<li>Indoor video: <a class="external free" href="https://youtu.be/T57XcH0vo0U" rel="nofollow">https://youtu.be/T57XcH0vo0U</a></li>
+<li>outdoor video: <a class="external free" href="https://youtu.be/56p86ULRfyU" rel="nofollow">https://youtu.be/56p86ULRfyU</a></li></ol>
+<h2><span class="mw-headline" id="Resources">Resources</span></h2>
+<ol><li> Robotic Motion Planning:  <a class="external free" href="http://www.cs.cmu.edu/~motionplanning/lecture/Chap4-Potential-Field_howie.pdf" rel="nofollow">http://www.cs.cmu.edu/~motionplanning/lecture/Chap4-Potential-Field_howie.pdf</a><br/></li>
+<li> Autonomous and Mobile Robotics:  <a class="external free" href="https://www.dis.uniroma1.it/~oriolo/amr/slides/MotionPlanning3_Slides.pdf" rel="nofollow">https://www.dis.uniroma1.it/~oriolo/amr/slides/MotionPlanning3_Slides.pdf</a></li>
+<li> C099-F9P related files and documents: <a class="external free" href="https://www.u-blox.com/en/product-resources/property_file_product_filter/2543" rel="nofollow">https://www.u-blox.com/en/product-resources/property_file_product_filter/2543</a></li></ol>
+<!-- 
+NewPP limit report
+Cached time: 20200918083948
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.022 seconds
+Real time usage: 0.024 seconds
+Preprocessor visited node count: 109/1000000
+Preprocessor generated node count: 146/1000000
+Post‐expand include size: 26/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:696-0!*!*!!en!5!* and timestamp 20200918083948 and revision id 5334
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200918083948/https://guitar.ucsd.edu/maeece148/index.php/2020WinterTeam7">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

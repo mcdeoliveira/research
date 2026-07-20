@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2019SpringTeam1 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2019SpringTeam1</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Problem_Overview"><span class="tocnumber">2</span> <span class="toctext">Problem Overview</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Objectives"><span class="tocnumber">3</span> <span class="toctext">Objectives</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Mechanical_Design"><span class="tocnumber">4</span> <span class="toctext">Mechanical Design</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Electrical_Design"><span class="tocnumber">5</span> <span class="toctext">Electrical Design</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Software"><span class="tocnumber">6</span> <span class="toctext">Software</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Useful_Knowledge"><span class="tocnumber">7</span> <span class="toctext">Useful Knowledge</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Results"><span class="tocnumber">8</span> <span class="toctext">Results</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Challenges"><span class="tocnumber">9</span> <span class="toctext">Challenges</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Future_Work"><span class="tocnumber">10</span> <span class="toctext">Future Work</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#References"><span class="tocnumber">11</span> <span class="toctext">References</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<p>• Ken Shaffer - Computer Engineering
+</p><p>• Benjamin Chang - Electrical Engineering
+</p><p>• Zizhao Gong - Mechanical Engineering
+</p><p>• Chris Cunningham - Aerospace Engineering
+</p>
+<h2><span class="mw-headline" id="Problem_Overview">Problem Overview</span></h2>
+<p>The goal of our project is to build a 1/10 scale autonomous car to showcase the capabilities of a self-driving car. 
+</p><p>We use a small and cheap RC car to minimize testing costs. The sensors on the vehicle are a small camera and a LIDAR sensor. Our project goal was to build on the donkeycar autonomous RC car framework by training a deep learning model with LIDAR data to see if we can significantly increase the self-driving accuracy of our car. 
+</p><p>Following this, our goal is to train our RC car to change road lanes to avoid downscaled roadway obstacles such as cones and water bottles. The ability for vehicles to be able to consistently avoid obstacles is useful in the real-world since the reaction time of a vehicle is faster than that of a person.
+</p><p><a class="image" href="File:IMG_2439.JPG.html"><img alt="IMG 2439.JPG" height="225" loading="lazy" src="https://web.archive.org/web/20200814112321im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/7d/IMG_2439.JPG/300px-IMG_2439.JPG" width="300"/></a>
+</p>
+<h2><span class="mw-headline" id="Objectives">Objectives</span></h2>
+<p>The car will be able to drive autonomously, switch lanes to avoid obstacles, and stay within a lane when there are no obstacles.
+</p><p><b>Primary Objectives</b>
+</p><p>Autonomous driving - Stay within road
+</p><p>Train new model with LIDAR data with camera data
+</p><p><b>Secondary Objectives</b>
+</p><p>Train model to avoid obstacles
+</p><p>Train model to switch lanes to avoid obstacles
+</p>
+<h2><span class="mw-headline" id="Mechanical_Design">Mechanical Design</span></h2>
+<p><b>Baseplate</b>
+The baseplate was made out of a quarter inch thick acrylic and cut out of a laser cutter.  It was cut with a relatively short width and length, to allow a thin and sleek aesthetic.  A slot was cut out of the middle to allow the connection between the motors and battery on the chassis to the electrical components on top of the baseplate. <br/>
+</p><p><a class="image" href="File:BaseplateTeam1.PNG.html" title="Baseplate"><img alt="Baseplate" height="309" loading="lazy" src="https://web.archive.org/web/20200814112321im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/7d/BaseplateTeam1.PNG/150px-BaseplateTeam1.PNG" width="150"/></a>
+</p><p><b>First Camera Mount Design</b>
+The initial design for the camera was made so that it would be robust and rigid, while capable to be adjusted with ease.  It was given two degrees of freedom, where it could rotate about the base-mount and slide radially along the camera-mount.: <br/>
+</p><p><a class="image" href="File:First_Camera_Mount1.jpg.html" title="First Camera Mount"><img alt="First Camera Mount" height="267" loading="lazy" src="https://web.archive.org/web/20200814112321im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/63/First_Camera_Mount1.jpg/200px-First_Camera_Mount1.jpg" width="200"/></a>
+</p><p><br/>
+<b>RPLIDAR and Camera Mount</b>
+This mount was design to hold both the camera and the RPLIDAR.  Although this design is not nearly as rigid and robust as the initial camera mount design, its flexibility allows for more options position and angle of the camera and RPLIDAR.  The design was made to be simplistic so that it can be rapidly produced and reproduced, if necessary.  All holes were designed with some clearance to allow a M3 screw to pass through. <br/>
+</p><p><a class="image" href="File:Camera_and_RPLIDAR_Mount.jpg.html" title="Camera and RPLIDAR Mount"><img alt="Camera and RPLIDAR Mount" height="267" loading="lazy" src="https://web.archive.org/web/20200814112321im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/8c/Camera_and_RPLIDAR_Mount.jpg/200px-Camera_and_RPLIDAR_Mount.jpg" width="200"/></a>
+<a class="image" href="File:RPLidarAndCamMount.png.html" title="Camera and RPLIDAR Mount"><img alt="Camera and RPLIDAR Mount" height="179" loading="lazy" src="https://web.archive.org/web/20200814112321im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/8f/RPLidarAndCamMount.png/200px-RPLidarAndCamMount.png" width="200"/></a>
+</p>
+<h2><span class="mw-headline" id="Electrical_Design">Electrical Design</span></h2>
+<p><b>Components</b>
+</p><p>• Raspberry Pi          
+</p><p>• PICAM          
+</p><p>• PCA9685 PWM      
+</p><p>• Wireless Relay      
+</p><p>• ESC
+</p><p>• LiPo Battery          
+</p><p>• RGB LED        
+</p><p>• Servo            
+</p><p>• Motor               
+</p><p>• RB LED
+</p><p>• Switches              
+</p><p>• Step-down module
+</p><p>• RPLidar A1 (Final Project)
+</p><p><b>Breadboard Schematic</b>
+</p><p><a class="image" href="File:ECE_148_-_Breadboard_Schematic.png.html"><img alt="ECE 148 - Breadboard Schematic.png" height="380" loading="lazy" src="https://web.archive.org/web/20200814112321im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/c3/ECE_148_-_Breadboard_Schematic.png/600px-ECE_148_-_Breadboard_Schematic.png" width="600"/></a>
+</p><p>(Note - The Lidar was the only thing added for our final project and the lidar was connected to the raspberry pi through a usb cable.)
+</p>
+<h2><span class="mw-headline" id="Software">Software</span></h2>
+<p>We used the default implementation of the raspberry pi as outlined in the google doc where a Rasbian OS was used with various packages (tensorflow) and frameworks (donkey car) installed.  
+</p><p><br/>
+All the other software changes we did during our project is outlined below.
+</p><p><br/>
+Most software was available to us due to RPLidar being a part in lidar.py. However, small tweaks had to be done in mainly 5 files: <b>datastore.py</b>, <b>lidar.py</b>, <b>keras.py</b>, <b>manage.py</b>, and <b>train.py</b>.
+</p><p><br/>
+<b>datastore.py</b>, <b>lidar.py</b>, and <b>keras.py</b> are in the donkeycar parts folder
+</p><p><b>manage.py</b> and <b>train.py</b> are in the d2t folder
+</p><p>These changes allowed us to get wanted data from the lidar and stored it in a tub to train on, allowing us to create a driving model that avoided obstacles.
+</p><p><br/>
+</p><p><br/>
+In <b>datastore.py:</b> function put_record()
+</p>
+<pre>
+elif typ == 'nparray':                         # if array type
+    json_data[key] = (np.array(val)).tolist()  # store the input as an array into tub
+</pre>
+<p><br/>
+</p><p><br/>
+In <b>lidar.py:</b> function run_threaded() for RPLidar
+</p><p>We took the outputted angle array and distance array data from the lidar, then performed python filtering since angle and distance array data correlate to eachother, angle[1] has a distance distance[1]
+</p>
+<pre>
+lowerang = 44
+higherang = 136
+
+angs = np.copy(self.angles)
+dists = np.copy(self.distances)
+
+filter_angs = angs[(angs &gt; lowerang) &amp; (angs &lt; higherang)]
+filter_dist = dists[(angs &gt; lowerang) &amp; (angs &lt; higherang)] #sorts distances based on angle values
+
+angles_ind = filter_angs.argsort()         # returns the indexes that sorts filter_angs
+sorted_distances = filter_dist(angles_ind) # sorts distances based on angle indexes
+</pre>
+<p><br/>
+</p><p><br/>
+In <b>keras.py:</b> Any keras model
+</p><p>(note - in donkey framework it allows one to create and call a specific model in the config file by typing in options like 'categorical' or 'linear',
+however it requires some code to setup so we didn't do that due to time taken to look through framework. Instead, we changed the default model (Categorical)
+to make the the default running of training run on our lidar model.)
+</p><p>Example of what was done
+</p>
+<pre>
+img = Input(shape=image_shape, name='img_in')
+x = Cropping2D( ...) (img)
+x = Convolution(2D ... )(x)
+x = ...
+.
+.                                # Default model for images until flattened
+.
+
+lidar_data = Input(shape=lidar_shape, name='dists_in')
+y = LocallyConnected1D( ...)(lidar_data)  # local convolution to maintain and emphasize
+y = Dropout(drop)(y)                      # the spatial nature of the data
+y = LocallyConnected1D( ...)(y)
+y = Dropout(drop)(y)
+y = LocallyConnected1D( ...)(y)
+y = Flatten(...)(y)
+y = Dense(...)(y)                         
+y = Dropout(drop)(y)
+y = Dense(...)(y)
+
+z = concatenate([x,y])     # Here is where the two data starts merging
+z = Dense(...)(z)
+z = Dropout(...)(z)
+z = Dense(...)(z)
+z = Dropout(...)(z)
+
+angle_out = Dense(...)(z)
+throttle_out = Dense(...)(z)
+
+</pre>
+<p>Also two lines of code was added to be able to run the trained model
+</p><p>The run function was adjusted to include two inputs img_arr and dists
+</p>
+<pre> 
+    def run(self, img_arr, dists):
+</pre>
+<p>The predict function was made to take in 2 inputs 
+</p>
+<pre>
+    angle_binned, throttle = self.model.predict([img_arr, dists])
+</pre>
+<p><br/>
+</p><p><br/>
+In <b>manage.py:</b> function drive()
+</p><p>Snippets of code was added to interface the lidar data with various parts like the tub and keras
+</p><p><br/>
+The RPLidar part was added and imported
+</p>
+<pre>
+from donkeycar.parts.lidar import RPLidar
+V.add(RPLidar(), inputs=[],outputs =["lidar/dist_array"], threaded=True)
+</pre>
+<p>The lidar data was added as an input to the keras model 
+</p><p>(Note - Have to search through manage.py since default manage.py has if,else statements to decide what inputs will go into the model)
+</p>
+<pre>
+    inputs = ['cam/image_array', 'lidar/dist_array']
+</pre>
+<p>The tub part input and types are edited to include lidar data
+</p><p>(Note - Again have to search through manage.py for where the tub part is located and added to the vehicle) 
+</p>
+<pre>
+    inputs = ['cam/image_array', 'lidar/dist_array',     # &lt;-- this string was added
+              'user/angle', 'user/throttle', 'user/mode']
+
+    types = ['image_array', 'nparray',  # &lt;-- this string was added 
+             'float', 'float', 'str']   # nparray type was accounted for in datastore.py
+</pre>
+<p><br/>
+</p><p><br/>
+In <b>train.py:</b>
+</p><p><br/>
+function collate_records(...)
+</p><p>This function takes the stored tub data and reads them 
+so more interfacing needs to be done to use and read the lidar data
+</p>
+<pre>
+for record_path in records:
+    ...
+    angle = float(json_data['user/angle'])
+    throttle = float(json_data['user/throttle'])
+    dists = np.array(json_data['lidar/data_array']) # &lt;-- this was added to 
+    ...                                             # retrieve the lidar data
+    .                                               # that was stored
+    .
+    sample['angle'] = angle
+    sample['throttle'] = throttle
+    sample['dists'] = dists.reshape(some_shape)     # &lt;-- this was added
+    ### MAKE sure that dists is of the right shape or else will get an error
+                                                  
+</pre>
+<p>function generator() in train(...)
+</p><p>while looping must create an array that stores a batch of lidar distance data
+that are then provided as an input batch to the model as X along with the images
+</p>
+<pre>
+    ...
+    dists = []                          # empty distance batch
+    for record in batch_data:           # record = sample in collate_records
+        ...
+        dists.append(record['dists'])   # creates a batch of distances in dists
+        ...
+    if ...
+    elif ...
+    else:
+        X = [img_arr, np.array(dists)]  # added the np.array(dists) as input
+    ...
+    yield X,y                           # yields batches X,y to model                         
+</pre>
+<p><br/>
+</p><p>Overall, the software implementation was done through trial and error along with a lot of code reading to understand exactly what
+needs to be done and how does the donkey framework connect and work together. The process we pretty much took with the software is defined below.
+</p>
+<pre>
+Needed data
+    so retrieved needed Lidar data in Lidar.py 
+Needed to add Lidar to Vehicle 
+    so we interfaced the Lidar data to the vehicle in manage.py
+Had 2 inputs of different shapes in a keras model
+    so Googled online and looked through other models in keras.py as templates
+        for how to create a multi-input keras model
+Encountered Errors When interfacing
+    so reduced amount of interface changes done at once in manage.py
+    and looked into how exactly the tub was stored (datastore.py)
+Got data to be stored however Vehicle couldn't train
+    so looked into train.py to figure out how to incorporate lidar tub data
+    and looked for the generic model that was being ran (KerasCategorical)
+Created the model but more errors encountered.
+    so code was debugged and various models were tested and trained to see
+        how keras model should be structured.
+Finally training of obstacle avoidance was done.
+
+
+</pre>
+<p><br/>
+During these steps, we accustomed to how the lidar gets data and brainstormed what data we should use. Since the angles were in a sorted array that ranged from 
+~0 to ~361, we thought that angles would not provide valuable data to the keras neural network. The rest of the steps were just implementation of our
+idea through the interfacing of the lidar with the vehicle and various parts of the donkey framework. Since getting the model to train and work
+took awhile, we got the tub writing for the lidar data working first. This allowed us to start training the car early in a variety of obstacle avoiding situations like swerving
+away from obstacles if the car was starting to almost crash into that obstacle. Initial models weren't able to work, and had a high training loss comparatively to the our regular and final
+lidar model.
+</p>
+<h2><span class="mw-headline" id="Useful_Knowledge">Useful Knowledge</span></h2>
+<p>This is certain information that gave us some trouble and would have been nice to know in the beginning. Most of this deals with the Lidar.
+</p><p><br/>
+<a class="image" href="File:Lidar_orientation.png.html"><img alt="Lidar orientation.png" height="337" loading="lazy" src="https://web.archive.org/web/20200814112321im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/12/Lidar_orientation.png/300px-Lidar_orientation.png" width="300"/></a>
+</p><p>1.) Information about what exactly is 0 degrees on the lidar was hard to come by so this image shows that the triangle portion of the lidar is where  we found the lidar to output 0 degrees.
+</p><p>2.) Lidar angle data is not exact integers but floats that range from 0 to  about ~361
+</p><p>3.) Lidar array data does not always start at angle 0.XX but could start at like angle 359.XX
+</p><p>4.) The Lidar array data it outputs is not all the same size (can be 333, 331, 330). Also depending on  how close an object is to the lidar, the lidar might reduce the amount of data it outputs to various sizes like 47, 17, or even 0 when too close.
+</p><p>5.) Training the Lidar model on the gpu cluster is either not possible currently or would require doing some coding or utilizing some workaround since you have no
+donkeycar/parts/keras.py to change that can change the model to the one being used. (Maybe train 1 epoch on the new model, put it in the gpu cluster, and then transfer the model when training in the gpu cluster)
+For our project, all the models were trained either overnight or for a couple hours on our personal computers.
+</p>
+<h2><span class="mw-headline" id="Results">Results</span></h2>
+<p>Overall, we achieved the goals we were aiming for. The original goals of doing some laps both on the outside and inside track were done. Not only that, but we were 
+able to achieve our proposed project of doing some kind of autonomous driving that avoids obstacles which could be seen in multiple videos with different
+configurations of obstacles.
+</p><p><br/>
+</p><p><br/>
+<b>Indoor Autonomous Driving</b>
+</p><p>This video shows the car completing 6 Autonomous Indoor Laps.  This was done using the "vanilla" Donkey Car training method, using data received only from the camera.  
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/pZW7uQrPQCU?" width="640"></iframe></div></div>
+<p><b>Outdoor Autonomous Driving</b>
+</p><p>This video shows the car completing 7 Autonomous Outdoor Laps.  This was done using the "vanilla" Donkey Car training method, using data received only from the camera.
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/-3FdsQ-Ax4s?" width="640"></iframe></div></div>
+<p><b>Obstacle Avoidance</b>
+</p><p>The following videos show the car's ability to avoid obstacles on the indoor race track.  This model was trained with the Modified Donkey Training Program, so that it would use data from the camera and RPLIDAR to determine its driving course.  
+</p><p>Multiple Turns in Succession
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/d-rc2r7Zs2I?" width="640"></iframe></div></div>
+<p>Tight Turns
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/ukC0i7Nlf6k?" width="640"></iframe></div></div>
+<p>Recovery From Turning Too Early
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/4aP-CTH-vYQ?" width="640"></iframe></div></div>
+<p>Another Different Obstacle Arrangement
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/rCyWEIYT35g?" width="640"></iframe></div></div>
+<p>Misc Obstacle Arrangement
+</p><p><video controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/d/d1/Misc_avoidance.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Misc_avoidance.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Misc_avoidance.mp4</a></video>
+</p>
+<h2><span class="mw-headline" id="Challenges">Challenges</span></h2>
+<p>1. RPLidar default part implementation outputs an array of both angles and distance of varying sizes (333, 331, 330, etc.) Objects too close to the Lidar reduced amount of output causing problems like crashing.
+</p>
+<pre> Sol: Edited Lidar part to filter out the front ~70 degrees of the car, and took only the middle 48 values from that filtered array. 
+ (Represents ~52 degrees in front of car)
+</pre>
+<p>2. Tub Writer wasn't able to store arrays of values
+</p>
+<pre> Sol: Tub Writer had new option added to store an array of values
+</pre>
+<p>3. Keras Neural Network does not include and run the Lidar data.
+</p>
+<pre> Sol: Keras models was implemented as two separate branches that merged with the default Keras model
+</pre>
+<p>4. Large Wire connections to parts such as motor were unreliable
+</p>
+<pre> Sol: User heat shrinks to maintain reliability of wire connections
+</pre>
+<p>5. LiPo Battery often nearly dies or loses connection to cells within the battery
+</p><p>6. Trained model on car would occasionally stop its throttle.
+</p>
+<pre> Temp Sol: A slight nudge on car would get it starting or the throttle in the config.py file is manually increased by a bit to get the car running.
+</pre>
+<h2><span class="mw-headline" id="Future_Work">Future Work</span></h2>
+<p>There are many more aspects regarding autonomous vehicles which can be worked on in the future. 
+For our project, some future work we would like to do to improve our vehicle includes using a higher quality camera for better quality 
+training images. We can also use grayscale images for training so that our driving model focuses less on the type of obstacles which are 
+detected, but more on when an obstacle actually appears in the sight of the vehicle. 
+</p><p>We would also like to train our vehicle to avoid a higher variety of obstacles and possibly try using stereo cameras for depth estimation as 
+stereo cameras have higher resolution and are cheaper than LIDAR for commercial use.
+</p><p>It would also be interesting to integrate object recognition of specific objects.This could enable the car to better determine how to avoid 
+specific obstacles, what to do in special cases scenarios such as dealing with pedestrians, other vehicles, or determining static and dynamic 
+objects.
+</p><p>Lastly, testing some histogram equalization on the camera images to see if it allows the car to drive better in different lighting situations
+would be an interesting thing to test.
+</p>
+<h2><span class="mw-headline" id="References">References</span></h2>
+<p>• DonkeyCar<br/>
+<a class="external free" href="https://github.com/tawnkramer/donkey" rel="nofollow">https://github.com/tawnkramer/donkey</a>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20200814112321
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.023 seconds
+Real time usage: 0.026 seconds
+Preprocessor visited node count: 168/1000000
+Preprocessor generated node count: 394/1000000
+Post‐expand include size: 162/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:397-0!*!*!!en!5!* and timestamp 20200814112321 and revision id 4369
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200814112321/https://guitar.ucsd.edu/maeece148/index.php/2019SpringTeam1">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

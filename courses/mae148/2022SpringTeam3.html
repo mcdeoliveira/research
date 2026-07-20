@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2022SpringTeam3 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2022SpringTeam3</h1>
+      <div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Project_Overview"><span class="tocnumber">2</span> <span class="toctext">Project Overview</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Main_Components"><span class="tocnumber">2.1</span> <span class="toctext">Main Components</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#Physical_Setup"><span class="tocnumber">2.1.1</span> <span class="toctext">Physical Setup</span></a>
+<ul>
+<li class="toclevel-4 tocsection-5"><a href="#Car"><span class="tocnumber">2.1.1.1</span> <span class="toctext">Car</span></a>
+<ul>
+<li class="toclevel-5 tocsection-6"><a href="#Progress"><span class="tocnumber">2.1.1.1.1</span> <span class="toctext">Progress</span></a></li>
+<li class="toclevel-5 tocsection-7"><a href="#Final_Product"><span class="tocnumber">2.1.1.1.2</span> <span class="toctext">Final Product</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-8"><a href="#Schematic"><span class="tocnumber">2.1.2</span> <span class="toctext">Schematic</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-9"><a href="#Implementation"><span class="tocnumber">2.2</span> <span class="toctext">Implementation</span></a>
+<ul>
+<li class="toclevel-3 tocsection-10"><a href="#Software_and_Hardware_List"><span class="tocnumber">2.2.1</span> <span class="toctext">Software and Hardware List</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Source_code"><span class="tocnumber">2.2.2</span> <span class="toctext">Source code</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Steps_Overview"><span class="tocnumber">2.2.3</span> <span class="toctext">Steps Overview</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#Results"><span class="tocnumber">2.2.4</span> <span class="toctext">Results</span></a>
+<ul>
+<li class="toclevel-4 tocsection-14"><a href="#Gantt_chart"><span class="tocnumber">2.2.4.1</span> <span class="toctext">Gantt chart</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-15"><a href="#Demonstrations"><span class="tocnumber">2.2.5</span> <span class="toctext">Demonstrations</span></a>
+<ul>
+<li class="toclevel-4 tocsection-16"><a href="#Entire_Project_at_Work_on_an_Apple_and_a_Banana"><span class="tocnumber">2.2.5.1</span> <span class="toctext">Entire Project at Work on an Apple and a Banana</span></a></li>
+<li class="toclevel-4 tocsection-17"><a href="#The_Camera_feed_to_Showcase_that_it_only_detects_one_object"><span class="tocnumber">2.2.5.2</span> <span class="toctext">The Camera feed to Showcase that it only detects one object</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-18"><a href="#Challenges"><span class="tocnumber">2.2.6</span> <span class="toctext">Challenges</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#Potential_Improvement"><span class="tocnumber">2.2.7</span> <span class="toctext">Potential Improvement</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-20"><a href="#Weekly_Presentations"><span class="tocnumber">2.3</span> <span class="toctext">Weekly Presentations</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#Reference"><span class="tocnumber">2.4</span> <span class="toctext">Reference</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#Disclaimer"><span class="tocnumber">2.5</span> <span class="toctext">Disclaimer</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1><span class="mw-headline" id="Team_Members">Team Members</span></h1>
+<ul><li><b>Ihyun Leo Park</b> - Electrical Chad Engineering <br/></li></ul>
+<ul><li><b>Brandon Espinoza Balbuena</b> - MAE<br/></li></ul>
+<ul><li><b>Ashenling Yang's Braised Chicken Rice</b> - MAE(Anagram for LAME, L's just a bonus) <br/></li></ul>
+<h1><span class="mw-headline" id="Project_Overview">Project Overview</span></h1>
+<p>Our project used tesseract and EAST text detection with openCV to detect text, then which the car will go and pick up the specified object using a model trained with the YOLO algorithm. For example, if we show the car the word apple, it will go and pick up an apple. We used openCV and imutils library to control the camera, pyVESC to control the vesc and the motor, and finally the python servo motor library to control the servo motor to pick up the actual item. We used a brushless DC motor, VESC, Jetson Nano, 1080p webcam, and a servo motor.
+</p>
+<h2><span class="mw-headline" id="Main_Components">Main Components</span></h2>
+<h3><span class="mw-headline" id="Physical_Setup">Physical Setup</span></h3>
+<h4><span class="mw-headline" id="Car">Car</span></h4>
+<h5><span class="mw-headline" id="Progress">Progress</span></h5>
+<p><a class="image" href="File:Car_3.jpg.html"><img alt="Car 3.jpg" decoding="async" height="533" loading="lazy" src="https://web.archive.org/web/20220814062224im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/c6/Car_3.jpg/400px-Car_3.jpg" width="400"/></a>
+</p>
+<h5><span class="mw-headline" id="Final_Product">Final Product</span></h5>
+<p><a class="image" href="File:Car_2.jpg.html"><img alt="Car 2.jpg" decoding="async" height="533" loading="lazy" src="https://web.archive.org/web/20220814062224im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/f8/Car_2.jpg/400px-Car_2.jpg" width="400"/></a>
+</p>
+<h3><span class="mw-headline" id="Schematic">Schematic</span></h3>
+<p><a class="image" href="File:Team3_circ_diag.png.html"><img alt="Team3 circ diag.png" decoding="async" height="267" loading="lazy" src="https://web.archive.org/web/20220814062224im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/7a/Team3_circ_diag.png/400px-Team3_circ_diag.png" width="400"/></a>
+</p>
+<h2><span class="mw-headline" id="Implementation">Implementation</span></h2>
+<h3><span class="mw-headline" id="Software_and_Hardware_List">Software and Hardware List</span></h3>
+<p>The following are needed to complete this project.
+</p>
+<ul><li>Jetson Nano</li>
+<li>64GB MicroSD card</li>
+<li>Camera</li>
+<li>Tesseract</li>
+<li>pyTorch</li>
+<li>seaborn</li>
+<li>imutils</li>
+<li>argparse</li>
+<li>OpenCV <br/></li>
+<li>Probably a lot more I'm forgetting</li></ul>
+<h3><span class="mw-headline" id="Source_code">Source code</span></h3>
+<p>The source code of the project can be found here. Good luck running it :): <a class="external free" href="https://github.com/SikGek/ECE_148_Final" rel="nofollow">https://github.com/SikGek/ECE_148_Final</a>
+</p>
+<h3><span class="mw-headline" id="Steps_Overview">Steps Overview</span></h3>
+<ul><li>Jetson Nano setup</li>
+<li>Clone git repo: <a class="external free" href="https://github.com/SikGek/ECE_148_Fina" rel="nofollow">https://github.com/SikGek/ECE_148_Fina</a></li>
+<li>Download all the libraries that it requires you to do so, you are probably missing at least 3 to 5</li>
+<li>Show the car a text from the list of detectable objects</li>
+<li>Let the car spin around until it finds the shown item and watch it as it goes and pick it up.</li></ul>
+<h3><span class="mw-headline" id="Results">Results</span></h3>
+<p>Our team was able to successfully have it retrieve 3 different types of items, although 2 is shown for saving time. The throttle is slow to compensate for the delay in camera feed due to poor processing power of the Jetson Nano.
+</p><p>Tesseract is painfully slow due to the model being trained for all the characters in the alphabet, while we reduced the YOLO model to the smallest size for best possible performance.
+</p>
+<h4><span class="mw-headline" id="Gantt_chart">Gantt chart</span></h4>
+<p><a class="image" href="File:Gantt_chart3.jpeg.html"><img alt="Gantt chart3.jpeg" decoding="async" height="405" loading="lazy" src="https://web.archive.org/web/20220814062224im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/c4/Gantt_chart3.jpeg/800px-Gantt_chart3.jpeg" width="800"/></a>
+</p>
+<h3><span class="mw-headline" id="Demonstrations">Demonstrations</span></h3>
+<h4><span class="mw-headline" id="Entire_Project_at_Work_on_an_Apple_and_a_Banana">Entire Project at Work on an Apple and a Banana</span></h4>
+<p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/U7MZx0XJJCI" style="border: none" width="425"></iframe>
+</p>
+<h4><span class="mw-headline" id="The_Camera_feed_to_Showcase_that_it_only_detects_one_object">The Camera feed to Showcase that it only detects one object</span></h4>
+<p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/RCgmAcYuXkE" style="border: none" width="425"></iframe>
+</p>
+<h3><span class="mw-headline" id="Challenges">Challenges</span></h3>
+<table class="wikitable">
+<tbody><tr>
+<th>Challenge
+</th>
+<th>Solution
+</th></tr>
+<tr>
+<td>Inconsistent object detection
+</td>
+<td>Higher resolution camera improved results
+</td></tr>
+<tr>
+<td>Little time to develop in ROS
+</td>
+<td>Used python libraries instead
+</td></tr>
+<tr>
+<td>Jetson doesn't have enough power to power the servo motor
+</td>
+<td>Use i2c power switch
+</td></tr>
+<tr>
+<td>Poor and slow object detection
+</td>
+<td>Training our specific model
+</td></tr></tbody></table>
+<h3><span class="mw-headline" id="Potential_Improvement">Potential Improvement</span></h3>
+<ul><li>Use ROS for VESC, camera and servo control</li>
+<li>Obtain a better camera</li>
+<li>Change the camera angle so that it can detect a basket after picking up the object and place it inside of it</li>
+<li>Train a new model with more detectable objects</li>
+<li>Implement speech detection for input instead of text detection for convenience</li></ul>
+<h2><span class="mw-headline" id="Weekly_Presentations">Weekly Presentations</span></h2>
+<p><a class="external text" href="https://docs.google.com/presentation/d/1qJLnPiTqpoWpysGEDBMNtCd2dcT9hRuk_c_Q697Jof4/edit?usp=sharing" rel="nofollow">Final Project Proposal</a> <br/>
+<a class="external text" href="https://docs.google.com/presentation/d/17nL-B1WNiA7nCRkNyTO3fd9gNR_ufJCBoVu3W8Go62Q/edit?usp=sharing" rel="nofollow">Progress Week 8</a> <br/>
+<a class="external text" href="https://docs.google.com/presentation/d/1CeiiI-ypnS0UrYGGdxu38NRPgaL87GsFDzeqF6J9XNY/edit?usp=sharing" rel="nofollow">Progress Week 9</a> <br/>
+<a class="external text" href="https://docs.google.com/presentation/d/1iMT2hlm4hvwBes49Y7YI2ofLjyD4PwGtLbh8N1fRyvU/edit?usp=sharing" rel="nofollow">Final Presentation</a>
+</p>
+<h2><span class="mw-headline" id="Reference">Reference</span></h2>
+<p>We would like to give special thanks to:
+</p>
+<ul><li><i>Professor Jack Silberman</i></li>
+<li><i>TA Dominic Nightingale</i></li>
+<li><i>TA Ivan Ferrier</i></li>
+<li><i>ECE Makerspace</i></li>
+<li><i>All my fantastic classmates</i></li></ul>
+<h2><span class="mw-headline" id="Disclaimer">Disclaimer</span></h2>
+<p>I kinda copied team 7's format, hope that's ok. Their project was very sick, go press a like and subscribe to them. Thank you. ^^7
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20220813232042
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.033 seconds
+Real time usage: 0.037 seconds
+Preprocessor visited node count: 80/1000000
+Post‐expand include size: 80/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:1383-0!canonical and timestamp 20220813232042 and revision id 9289. Serialized with JSON.
+ -->
+</div>
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20220814062224/https://guitar.ucsd.edu/maeece148/index.php/2022SpringTeam3">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

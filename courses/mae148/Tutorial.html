@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tutorial — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>Tutorial</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Build"><span class="tocnumber">1</span> <span class="toctext">Build</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Donkeycar"><span class="tocnumber">2</span> <span class="toctext">Donkeycar</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Raspberry_Pi_Setup"><span class="tocnumber">2.1</span> <span class="toctext">Raspberry Pi Setup</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Installation"><span class="tocnumber">2.2</span> <span class="toctext">Installation</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Testing_the_connection_of_the_RPI_to_the_Pulse_Width_Modulation_.28PWM.29_Controller"><span class="tocnumber">2.3</span> <span class="toctext">Testing the connection of the RPI to the Pulse Width Modulation (PWM) Controller</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Emergency_Stop_Circuit"><span class="tocnumber">2.4</span> <span class="toctext">Emergency Stop Circuit</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Before_Calibration"><span class="tocnumber">2.5</span> <span class="toctext">Before Calibration</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Steering_Calibration"><span class="tocnumber">2.6</span> <span class="toctext">Steering Calibration</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Throttle_Calibration"><span class="tocnumber">2.7</span> <span class="toctext">Throttle Calibration</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Update_the_configuration_file"><span class="tocnumber">2.8</span> <span class="toctext">Update the configuration file</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Connecting_the_PS3_Keypad.2FJoystick"><span class="tocnumber">2.9</span> <span class="toctext">Connecting the PS3 Keypad/Joystick</span></a>
+<ul>
+<li class="toclevel-3 tocsection-12"><a href="#Bluetooth_Setup"><span class="tocnumber">2.9.1</span> <span class="toctext">Bluetooth Setup</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#PS3_Controller_setup"><span class="tocnumber">2.9.2</span> <span class="toctext">PS3 Controller setup</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#Driving_the_Robot_to_Collect_data"><span class="tocnumber">2.10</span> <span class="toctext">Driving the Robot to Collect data</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-15"><a href="#Training_on_the_UCSD_GPU_Cluster"><span class="tocnumber">3</span> <span class="toctext">Training on the UCSD GPU Cluster</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="#Track"><span class="tocnumber">4</span> <span class="toctext">Track</span></a></li>
+<li class="toclevel-1 tocsection-17"><a href="#Neural_Networks"><span class="tocnumber">5</span> <span class="toctext">Neural Networks</span></a></li>
+<li class="toclevel-1 tocsection-18"><a href="#Open_CV"><span class="tocnumber">6</span> <span class="toctext">Open CV</span></a></li>
+<li class="toclevel-1 tocsection-19"><a href="#ROS"><span class="tocnumber">7</span> <span class="toctext">ROS</span></a></li>
+<li class="toclevel-1 tocsection-20"><a href="#Autonomous_Vehicles"><span class="tocnumber">8</span> <span class="toctext">Autonomous Vehicles</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Build">Build</span></h2>
+<p>Designing and fabricating a wheel based mobile robot vs. building on the top of a reliable platform such as an R/C truck 1/8 scale.
+</p>
+<ul><li> R/C Truck 1/8 Scale</li>
+<li> Embedded system 4 cores Linux</li>
+<li> 5 megapixel  camera</li>
+<li> Servo controller</li>
+<li> Power management</li>
+<li> LiPo Battery</li>
+<li> Safety on LiPo charging, use, and storage</li>
+<li> Wireless Emergency Off (EMO) circuit</li></ul>
+<h2><span class="mw-headline" id="Donkeycar">Donkeycar</span></h2>
+<p>When you're done you should be able to train and have your car drive autonomously on our track.
+</p><p>Here is a video from the <a class="external text" href="https://youtu.be/M7cTiZiI0co" rel="nofollow">Fall 2017 session</a>:
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/M7cTiZiI0co?" width="640"></iframe></div></div>
+<p>and another from the <a class="external text" href="https://youtu.be/QaK4jCgfr60" rel="nofollow">Spring 2018 session</a>:
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/QaK4jCgfr60?" width="640"></iframe></div></div>
+<p><br/>
+</p>
+<h3><span class="mw-headline" id="Raspberry_Pi_Setup">Raspberry Pi Setup</span></h3>
+<p>Follow the instructions from:
+</p><p><a class="external free" href="http://docs.donkeycar.com/guide/install_software" rel="nofollow">http://docs.donkeycar.com/guide/install_software</a>
+</p><p>to download an image that already contains all that you need to run the donkey car software.
+</p><p>Follow the instructions in <a class="external text" href="http://docs.donkeycar.com/guide/install_software/#get-the-raspberry-pi-working" rel="nofollow"><b>Get the Raspberry Pi working</b></a>. 
+</p><p><b>This next step is very important. If you miss this configuration before you boot for the first time you will not be able to connect to your Pi using the lab network!</b>
+</p><p>Substitute the content of the file <code>/boot/wpa_supplicant.conf</code> given in the section <a class="external text" href="http://docs.donkeycar.com/guide/install_software/#setup-the-pis-wifi-for-first-boot" rel="nofollow"><b>Setup the Pi's WiFi for first boot</b></a> by the following:
+</p>
+<pre>   ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+   update_config=1
+   country=US
+   
+   network={
+       ssid="UCSDRoboCar2.4GHz"
+       key_mgmt=WPA-PSK
+       psk="** ASK YOUR INSTRUCTOR **"
+       priority=60
+       id_str="ucsdrobocarsfield"
+   }
+   
+   network={
+       ssid="UCSDRoboCar2.4GHz_lab"
+       key_mgmt=WPA-PSK
+       psk="** ASK YOUR INSTRUCTOR **"
+       priority=50
+       id_str="ucsdrobocarlab"
+   }
+</pre>
+<p>and follow the instructions for booting your Pi for the first time, including the section <b>Setup Pi's Hostname</b>. After the first boot, this file will be moved to <code>/etc/wpa_supplicant/wpa_supplicant.conf</code> where it may be edited later.
+</p><p><b>STOP</b> do not run anything starting at <a class="external text" href="http://docs.donkeycar.com/guide/install_software/#connecting-to-the-pi" rel="nofollow"><b>Connecting to the Pi</b></a>.
+</p>
+<h3><span class="mw-headline" id="Installation">Installation</span></h3>
+<p>First remove the donkey and d2 directories
+</p>
+<pre>   (env)pi@jackrpi02:~ $ rm -rf donkeycar
+   (env)pi@jackrpi02:~ $ rm -rf d2
+</pre>
+<p>Download the latest Donkey code
+</p>
+<pre>   (env)pi@jackrpi02:~ $ git clone <a class="external free" href="https://github.com/wroscoe/donkey" rel="nofollow">https://github.com/wroscoe/donkey</a> donkeycar
+</pre>
+<p>Install Donkeycar:
+</p>
+<pre>   (env)pi@jackrpi02:~ $ pip install -e donkeycar
+</pre>
+<p>Create a car folder.
+</p>
+<pre>   (env)pi@jackrpi02:~ $ donkey createcar --path ~/d2
+</pre>
+<p>The latest command will produce an output similar to:
+</p>
+<pre>   Using TensorFlow backend.
+   Creating car folder: /home/pi/d2
+   making dir  /home/pi/d2
+   Creating data &amp; model folders.
+   making dir  /home/pi/d2/models
+   making dir  /home/pi/d2/data
+   making dir  /home/pi/d2/logs
+   Copying car application template: donkey2
+   Copying car config defaults. Adjust these before starting your car.
+   Donkey setup complete.
+</pre>
+<h3><span class="mw-headline" id="Testing_the_connection_of_the_RPI_to_the_Pulse_Width_Modulation_.28PWM.29_Controller">Testing the connection of the RPI to the Pulse Width Modulation (PWM) Controller</span></h3>
+<p>Type:
+</p>
+<pre>   (env)pi@jackrpi02:~ $ sudo i2cdetect -y 1
+</pre>
+<p>which should produce an output like:
+</p><p>(env)pi@jackrpi02:~ $ sudo i2cdetect -y 1
+</p>
+<pre>        0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+   00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
+   10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+   20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+   30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+   40: 40 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+   50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+   60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+   70: 70 -- -- -- -- -- -- --
+</pre>
+<p>The important point here is to get a response from the I2C addresses 40 and 70. If you do not see these numbers you are not connected to the ESC or the Servo controller.
+</p>
+<h3><span class="mw-headline" id="Emergency_Stop_Circuit">Emergency Stop Circuit</span></h3>
+<p>For this part of your robot, you will have to do some hacking.
+</p><p>First read the datasheet of the components provided with the robot kit and discuss them with your teammates how the emergency stop switch (EMO) will work:
+</p>
+<ul><li> What is the disable pin the PWM controller?</li>
+<li> Does is disable on logic 1 or 0?</li>
+<li> How to wire the wireless relay to provide the logic you need to disable PWM controller? (1 or 0)</li>
+<li> How to connect the LEDs (Blue and Red) to indicate (RED - hot/enabled), (BLUE - power is on / disabled). </li></ul>
+<p><b>Note:</b> The power to the PWM controller comes from ESC (Electronics Speed Controller). Therefore, you have to connect the robot batteries to the ESC and the ESC to the PWM controller. We are using Channel 2 for the ESC.
+</p><p>After you see that the EMO is working, i.e. wireless remote control disable the PWM, and the LEDs light up as planned, then you need to document your work. Please use Fritzing (<a class="external free" href="http://fritzing.org/home/" rel="nofollow">http://fritzing.org/home/</a>) to document your electrical schematic.
+</p><p>It may seem we did the opposite way; document after your build. In our case, you learned how to hack. Since you are an engineer you need to document even it if was a hack…
+</p><p>Working in a company you may do fast prototyping first then document. On larger projects you make schematics, diagrams, drawings, work instructions, then build it. Keep that in mind!
+</p>
+<h3><span class="mw-headline" id="Before_Calibration">Before Calibration</span></h3>
+<p>Before you develop code or you can use a someone's code to control a robot, we need to calibrate the steering servo and the brushless DC motor ESC to find out its range of motion compared to the control or command a computer will send to the controllers.
+</p><p>The calibration is car specific. However, because we are all using the same platform, the numbers for the different groups should be close.
+</p><p>We will following the standard connection from RC CAR world, that is we will use <i>Channel 1 for Steering</i> and <i>Channel 2 for Throttle</i>. Donkeycar uses Channels 0 and 1 so we will need to some settings later.
+</p><p>Perform the following steps:
+</p>
+<ol><li> Connect the <b>Steering Servo</b> connector to the Servo controller <b>Channel 1</b></li>
+<li> Connect the <b>Throttle</b> connector to the Servo controller <b>Channel 2</b></li></ol>
+<p>Before proceeding <b>MAKE SURE YOUR CAR IS IN THE STAND!</b>
+</p><p>Perform the following steps:
+</p>
+<ol><li> Connect the batteries and batteries monitor</li>
+<li> Power the RPI</li>
+<li> Power the Electronic Speed Controller (ESC)</li>
+<li> Enable the robot (EMO) - LED should be RED</li></ol>
+<h3><span class="mw-headline" id="Steering_Calibration">Steering Calibration</span></h3>
+<p>The following commands need to be run from the directory you created for your car, i.e., <code>d2</code>
+</p><p>Change directory to d2:
+</p>
+<pre>   (env)pi@jackrpi02:~ $ cd ~/d2
+   (env)pi@jackrpi02:~/d2 $ python manage.py calibrate
+</pre>
+<p>The above command is iterative. Provide the information as in the following output:
+</p>
+<pre>   Using TensorFlow backend.
+   loading config file: /home/pi/d2/config.py
+   config loaded
+   Enter the channel your actuator uses (0-15).1
+   Enter a PWM setting to test(100-600)365
+   Enter a PWM setting to test(100-600)285
+   Enter a PWM setting to test(100-600)440
+</pre>
+<p>Try some values around 360 to center the steering. Take note of the values that steer completely to the left and completely to the right. If you hear a buzzing noise you have reached the maximum left or right. My values are:
+</p><p>365 - Center
+285 - Steering left max
+440 - Steering right max
+</p><p><b>Notes:</b> If the command <code>python manage.py calibrate</code> times-out, just run it again. You can interrupt the calibration by typing <code>CTRL-C</code>
+</p>
+<h3><span class="mw-headline" id="Throttle_Calibration">Throttle Calibration</span></h3>
+<p>Repeat the commands used to calibrate the steering this time to calibrate the throttle, this time using <i>Channel 2</i> instead of Channel 1.
+</p>
+<pre>   (env)pi@jackrpi02:~/d2 $ python manage.py calibrate
+</pre>
+<p>The above command is iterative. Provide the information as in the following output:
+</p>
+<pre>   Using TensorFlow backend.
+   loading config file: /home/pi/d2/config.py
+   config loaded
+   Enter the channel your actuator uses (0-15).2
+   Enter a PWM setting to test(100-600)370
+   Enter a PWM setting to test(100-600)380
+   Enter a PWM setting to test(100-600)390
+</pre>
+<p>370 powers up the ESC and put it in neutral. Then go in increments of 10~20 until you can no longer hear increase on the speed of the car. Don’t worry much about the max speed since we won’t drive that fast autonomously and during training the speed will be limited.
+</p><p>My max speed forward was at around 460.
+</p><p>Reverse on RC cars is a little tricky because the ESC needs to receive a reverse pulse, zero pulse, then another reverse pulse, to start to go backwards. Any value below 370 is a reverse throttle.
+</p><p>To see how this works, use the same technique as above to set the PWM setting to your zero throttle (lets say 370). Enter the reverse value, then the zero throttle (e.g., 370)  value, then the reverse value again. Increment the reverse value by 10~20 to find a reasonable reverse speed. Remember this reverse PWM value.
+</p><p>An example of a reverse calibration session output is:
+</p>
+<pre>   (env)pi@jackrpi02:~/d2 $ python manage.py calibrate
+   Using TensorFlow backend.
+   loading config file: /home/pi/d2/config.py
+   config loaded
+   Enter the channel your actuator uses (0-15).2
+   Enter a PWM setting to test(100-600)360
+   Enter a PWM setting to test(100-600)370
+   Enter a PWM setting to test(100-600)360
+   Enter a PWM setting to test(100-600)350
+   Enter a PWM setting to test(100-600)340
+   Enter a PWM setting to test(100-600)330
+   Enter a PWM setting to test(100-600)320
+   Enter a PWM setting to test(100-600)310
+   Enter a PWM setting to test(100-600)300
+   Enter a PWM setting to test(100-600)290
+</pre>
+<h3><span class="mw-headline" id="Update_the_configuration_file">Update the configuration file</span></h3>
+<p>At this point you should have notes of the following extreme values for steering:
+</p>
+<ul><li> Center: 365</li>
+<li> Steering left max: 285 </li>
+<li> Steering right max: 440 </li></ul>
+<p>and throttle:
+</p>
+<ul><li> Neutral: 370</li>
+<li> Max speed forward: 460</li>
+<li> Max speed backwards: 280</li></ul>
+<p>Now let's write these values into the car configuration file <code>~/d2/config.py</code>. Edit this file config.py using your favorite editor, e.g.
+</p>
+<pre>   (env)pi@jackrpi02:~/ $ cd ~/d2
+   (env)pi@jackrpi02:~/d2 $ nano config.py
+</pre>
+<p>and locate and change the following values to match the ones you obtained in your calibration:
+</p>
+<pre>   #STEERING
+   STEERING_CHANNEL = 1
+   STEERING_LEFT_PWM = 285
+   STEERING_RIGHT_PWM = 440
+</pre>
+<pre>   #THROTTLE
+   THROTTLE_CHANNEL = 2
+   THROTTLE_FORWARD_PWM = 460
+   THROTTLE_STOPPED_PWM = 370
+   THROTTLE_REVERSE_PWM = 280
+</pre>
+<p>Also change these:
+</p>
+<pre>   #JOYSTICK
+   USE_JOYSTICK_AS_DEFAULT = True
+   JOYSTICK_MAX_THROTTLE = 0.5
+   JOYSTICK_STEERING_SCALE = 1.0
+   AUTO_RECORD_ON_THROTTLE = True
+</pre>
+<h3><span class="mw-headline" id="Connecting_the_PS3_Keypad.2FJoystick">Connecting the PS3 Keypad/Joystick</span></h3>
+<p>See <a class="external free" href="http://docs.donkeycar.com/parts/controllers/" rel="nofollow">http://docs.donkeycar.com/parts/controllers/</a> for more information.
+</p>
+<h4><span class="mw-headline" id="Bluetooth_Setup">Bluetooth Setup</span></h4>
+<p>First install the bluetooth software in the RPI:
+</p>
+<pre>   (env)pi@jackrpi02:~/d2 $ sudo apt-get install bluetooth libbluetooth3 libusb-dev
+   (env)pi@jackrpi02:~/d2 $ sudo systemctl enable bluetooth.service
+   (env)pi@jackrpi02:~/d2 $ sudo usermod -G bluetooth -a pi
+</pre>
+<p>You must now power cycle your RPI. Do not just reboot, actually shut down, pull the power, wait a few seconds and reconnect. This may be overkill. Do as follows:
+</p>
+<pre>   (env)pi@jackrpi02:~/d2 $ sudo shutdown now
+</pre>
+<p>Remove the power from the RPI. Wait 5 s then power it back.
+</p><p>Download, compile, and install the following bluetooth configuration software
+</p>
+<pre>   (env)pi@jackrpi02:~ $ cd ~/d2
+   (env)pi@jackrpi02:~/d2 $ wget <a class="external free" href="http://www.pabr.org/sixlinux/sixpair.c" rel="nofollow">http://www.pabr.org/sixlinux/sixpair.c</a>
+   (env)pi@jackrpi02:~/d2 $ gcc -o sixpair sixpair.c -lusb
+</pre>
+<h4><span class="mw-headline" id="PS3_Controller_setup">PS3 Controller setup</span></h4>
+<p>Now connect your PS3 Controller to the RPI using a USB Cable and run:
+</p>
+<pre>   (env)pi@jackrpi02:~/d2 $ sudo ./sixpair
+</pre>
+<p>which produces an output such as:
+</p>
+<pre>   Current Bluetooth master: b8:27:eb:49:2d:8c
+   Setting master bd_addr to b8:27:eb:49:2d:8c
+</pre>
+<p>Disconnect your controller from the USB port, and run the ‘bluetoothctl’ command as a regular user (you don’t need to be root for this). Pay attention to your PS3 controller mac address!
+</p>
+<pre>   (env)pi@jackrpi02:~/d2 $ bluetoothctl
+   [NEW] Controller B8:27:EB:49:2D:8C jackrpi02 [default]
+   [NEW] Device 00:16:FE:74:12:B7 PLAYSTATION(R)3 Controller
+   [bluetooth]# agent on
+   Agent registered
+   [bluetooth]# trust 00:16:FE:74:12:B7
+   [CHG] Device 00:16:FE:74:12:B7 Trusted: yes
+   Changing 00:16:FE:74:12:B7 trust succeeded
+   [bluetooth]# 
+   [bluetooth]# quit
+   Agent unregistered
+   [DEL] Controller B8:27:EB:49:2D:8C jackrpi02 [default]
+   (env)pi@jackrpi02:~/d2 $ 
+</pre>
+<p>If you inspect the input devices:
+</p>
+<pre>   (env)pi@jackrpi02:~/d2 $ ls /dev/input
+</pre>
+<p>alll you see is one entry for
+</p>
+<pre>   mice
+</pre>
+<p>Now press the PS button. The lights on the front of the controller should flash for a couple of seconds then stop, leaving a single light on. If you now look again at the contents of <code>/dev/input</code> you should see a new device, probably called something like <code>js0</code>:
+</p>
+<pre>   (env)pi@jackrpi02:~/d2 $ ls /dev/input
+</pre>
+<p>and you should see
+</p>
+<pre>   event0  js0  mice
+</pre>
+<p>If a new device has appeared here then congratulations, you have successfully paired your dongle and SixAxis controller. This will persist across reboots, so from now on you can just connect by pressing the PS button on the controller. Pressing and holding this button will shut the controller down - at the moment there’s no timeout so be sure to turn the controller off when you’re not going to be using it for a while.
+</p><p>If you need to remove a device, lets say a JoyStick you don’t use anymore, type:
+</p>
+<pre>   (env)pi@rpimine01:~ $ bluetoothctl
+   [NEW] Controller B8:27:EB:72:95:A6 rpimine01 [default]
+   [NEW] Device 00:1E:3D:D8:EA:15 PLAYSTATION(R)3 Controller
+   [NEW] Device 00:16:FE:74:12:B7 PLAYSTATION(R)3 Controller
+   [bluetooth]# remove 00:1E:3D:D8:EA:15
+   [DEL] Device 00:1E:3D:D8:EA:15 PLAYSTATION(R)3 Controller
+   Device has been removed
+   [bluetooth]#
+</pre>
+<h3><span class="mw-headline" id="Driving_the_Robot_to_Collect_data">Driving the Robot to Collect data</span></h3>
+<p>Now you are ready to drive you robot to collect data. Make sure to keep the EMO randy and use when needed!
+</p><p>Remember you are driving at ½ (0.50) of the speed of the robot based on the config.py that you edited. To reverse you have to reverse, stop, reverse. This is a feature of the ESC.
+</p><p><b>Notes:</b>
+</p>
+<ul><li> Use <code>CTRL-C</code> to stop the <code>python manage.py drive</code></li>
+<li> If you want to wipe clean the data collected remove the content of the <code>~/d2/data</code> directory. It should contain subdirectories named <code>tub_*</code>.</li></ul>
+<p>It is safe to delete the entire directory then create it again when you're not running <code>python manage.py</code>.
+</p><p>On the RPI issue the command:
+</p>
+<pre>   (env)pi@jackrpi02:~/d2 $ python manage.py drive
+</pre>
+<p>As you drive around, you should see something like this in your terminal window:
+</p>
+<pre>   Using TensorFlow backend.
+   loading config file: /home/pi/d2/config.py
+   config loaded
+   PiCamera loaded.. .warming camera
+   Adding part PiCamera.
+   Opening /dev/input/js0...
+   Device name: PLAYSTATION(R)3 Controller
+   Adding part JoystickController.
+   Adding part Lambda.
+   throttle -0.0
+   Adding part KerasCategorical.
+   Adding part Lambda.
+   Adding part PWMSteering.
+   Adding part PWMThrottle.
+   tub does NOT exist
+   Adding part TubWriter.
+   Starting vehicle...
+   /home/pi/env/lib/python3.4/site-packages/picamera/encoders.py:544: PiCameraResolutionRounded: frame size rounded up from 160x120 to 160x128 width, height, fwidth, fheight)))
+   angle 0.0
+   throttle 0.14949491866817224
+   throttle 0.18558305612353893
+   throttle 0.11340678121280556
+   throttle -0.0
+   throttle 0.010315256202887051
+   throttle 0.19074068422498244
+   throttle -0.05668813135166478
+   throttle -0.0
+   angle -0.010315256202887051
+   angle 0.0
+   angle 0.05154576250495926
+   angle 0.13400677510910367
+   angle 0.15463728751487776
+   angle 0.14432203131199073
+   ....
+
+</pre>
+<p><b>Note:</b> If you get the following error trying to drive it is because the PS3 game controller is of or not connected:
+</p>
+<pre>   file "manage.py", line 44, in drive
+       auto_record_on_throttle=cfg.AUTO_RECORD_ON_THROTTLE)
+     File "/home/pi/donkeycar/donkeycar/parts/controllers/joystick.py", line 220, in __init__
+       self.js.init()
+     File "/home/pi/donkeycar/donkeycar/parts/controllers/joystick.py", line 106, in init
+       self.jsdev = open(self.dev_fn, 'rb')
+   FileNotFoundError: [Errno 2] No such file or directory: '/dev/input/js0'
+</pre>
+<p>See <a class="external text" href="http://docs.donkeycar.com/guide/get_driving/#driving-with-physical-joystick-controller" rel="nofollow">Driving with Physical Joystick Controller</a> for more information on the buttons of the remote.
+</p>
+<h2><span class="mw-headline" id="Training_on_the_UCSD_GPU_Cluster">Training on the UCSD GPU Cluster</span></h2>
+<p>This quarter you will have access to the UCSD GPU cluster. You must use <code>ieng6</code> to log in.
+</p><p>If your primary UCSD student account is on this server just use that account to log in.
+</p><p>If you do not have an account on <code>ieng6</code>, a course specific account was created for you to log in. To find the course specific account go to the *Account Lookup* link under *Tools* at <a class="external free" href="http://acms.ucsd.edu" rel="nofollow">http://acms.ucsd.edu</a> and click on the details button. There are instructions for setting a password to the account. 
+</p><p>Instructions for using the cluster can be found at <a class="external free" href="http://go.ucsd.edu/2CZladZ" rel="nofollow">http://go.ucsd.edu/2CZladZ</a>.
+</p>
+<h2><span class="mw-headline" id="Track">Track</span></h2>
+<ul><li> Track building - hands-on ~ 40x20 m</li></ul>
+<p>See <a class="external text" href="https://diyrobocars.com/110th-scale-race-rules" rel="nofollow">1/10 scale race rules</a> for details. Note that we have to scale the curves to match out 1/8th scale!
+</p>
+<h2><span class="mw-headline" id="Neural_Networks">Neural Networks</span></h2>
+<p>Download the jupyter notebook tutorial from the github repository
+</p><p><a class="external free" href="https://github.com/mcdeoliveira/Notebooks/tree/master/mae198/NNTutorialWithKeras.ipynb" rel="nofollow">https://github.com/mcdeoliveira/Notebooks/tree/master/mae198/NNTutorialWithKeras.ipynb</a>
+</p>
+<h2><span class="mw-headline" id="Open_CV">Open CV</span></h2>
+<h2><span class="mw-headline" id="ROS">ROS</span></h2>
+<h2><span class="mw-headline" id="Autonomous_Vehicles">Autonomous Vehicles</span></h2>
+<ul><li> Odometry with wheels encoders and IMU</li>
+<li> Short range obstacle avoidance using low cost ultrasonic sensors</li>
+<li> Street light development RED/YELLOW/GREEN</li>
+<li> Image processing with OpenCV</li>
+<li> Image segmentation - far view, close view, fast processing</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20191113112604
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.011 seconds
+Real time usage: 0.012 seconds
+Preprocessor visited node count: 86/1000000
+Preprocessor generated node count: 124/1000000
+Post‐expand include size: 52/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:14-0!*!*!!en!*!* and timestamp 20191113112604 and revision id 854
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20191113170533/https://guitar.ucsd.edu/maeece148/index.php/Tutorial">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

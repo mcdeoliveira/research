@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2022WinterTeam7 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2022WinterTeam7</h1>
+      <div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#The_Maskcar"><span class="tocnumber">1</span> <span class="toctext">The Maskcar</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Team_Members(Left_to_Right)"><span class="tocnumber">2</span> <span class="toctext">Team Members(Left to Right)</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Project_Proposal"><span class="tocnumber">3</span> <span class="toctext">Project Proposal</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Robot_Schematics"><span class="tocnumber">4</span> <span class="toctext">Robot Schematics</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Wiring_Diagram"><span class="tocnumber">4.1</span> <span class="toctext">Wiring Diagram</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Mask_Dispenser"><span class="tocnumber">4.2</span> <span class="toctext">Mask Dispenser</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Videos_/_Quarter_Summary"><span class="tocnumber">5</span> <span class="toctext">Videos / Quarter Summary</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Final_Project_Sub-Systems"><span class="tocnumber">6</span> <span class="toctext">Final Project Sub-Systems</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#Mask_Dispenser_System"><span class="tocnumber">6.1</span> <span class="toctext">Mask Dispenser System</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#YOLOv5_Detection_System"><span class="tocnumber">6.2</span> <span class="toctext">YOLOv5 Detection System</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#ROS2_Implementation_System"><span class="tocnumber">6.3</span> <span class="toctext">ROS2 Implementation System</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Source_code"><span class="tocnumber">7</span> <span class="toctext">Source code</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Project_Gantt_Chart"><span class="tocnumber">8</span> <span class="toctext">Project Gantt Chart</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Final_Presentation"><span class="tocnumber">9</span> <span class="toctext">Final Presentation</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#Acknowledgement"><span class="tocnumber">10</span> <span class="toctext">Acknowledgement</span></a></li>
+</ul>
+</div>
+<h1><span class="mw-headline" id="The_Maskcar">The Maskcar</span></h1>
+<p><a class="image" href="File:Robot-Team7-WI22.jpeg.html"><img alt="Robot-Team7-WI22.jpeg" decoding="async" height="450" loading="lazy" src="https://web.archive.org/web/20220809044146im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/9a/Robot-Team7-WI22.jpeg/600px-Robot-Team7-WI22.jpeg" width="600"/></a> <br/>
+</p>
+<h1><span id="Team_Members.28Left_to_Right.29"></span><span class="mw-headline" id="Team_Members(Left_to_Right)">Team Members(Left to Right)</span></h1>
+<ol><li>Quynh Nguyen (MAE)</li>
+<li>Caitlin Le (MAE)</li>
+<li>Jian Qin (MAE &amp; MathCS)</li></ol>
+<p><a class="image" href="File:Team-Picture-Team7-WI22.jpg.html"><img alt="Team-Picture-Team7-WI22.jpg" decoding="async" height="375" loading="lazy" src="https://web.archive.org/web/20220809044146im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/e4/Team-Picture-Team7-WI22.jpg/500px-Team-Picture-Team7-WI22.jpg" width="500"/></a>
+</p>
+<h1><span class="mw-headline" id="Project_Proposal">Project Proposal</span></h1>
+<p><big><b>Use ROS2, YOLOv5 image classification, and a mechanical mask delivery system to deliver masks to unmasked people.</b><br/>
+<b>The car will drive around the track. The car will eject a mask when it sees an unmasked person.</b></big>
+</p>
+<h1><span class="mw-headline" id="Robot_Schematics">Robot Schematics</span></h1>
+<h2><span class="mw-headline" id="Wiring_Diagram">Wiring Diagram</span></h2>
+<p><a class="image" href="File:Wiring-Diagram-Team7-WI22.png.html"><img alt="Wiring-Diagram-Team7-WI22.png" decoding="async" height="331" loading="lazy" src="https://web.archive.org/web/20220809044146im_/http://guitar.ucsd.edu/maeece148/images/thumb/a/a7/Wiring-Diagram-Team7-WI22.png/500px-Wiring-Diagram-Team7-WI22.png" width="500"/></a> <br/>
+</p>
+<h2><span class="mw-headline" id="Mask_Dispenser">Mask Dispenser</span></h2>
+<p><a class="image" href="File:Mask-Dispenser-Team7-WI22.png.html"><img alt="Mask-Dispenser-Team7-WI22.png" decoding="async" height="643" loading="lazy" src="https://web.archive.org/web/20220809044146im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/82/Mask-Dispenser-Team7-WI22.png/500px-Mask-Dispenser-Team7-WI22.png" width="500"/></a> <br/>
+</p>
+<h1><span id="Videos_.2F_Quarter_Summary"></span><span class="mw-headline" id="Videos_/_Quarter_Summary">Videos / Quarter Summary</span></h1>
+<p><big>
+</big></p><big><ol><li>Emergency Off (EMO): 0:13 - 0:18</li>
+<li>Donkey Car (Deep Learning): 0:19 - 0:50</li>
+<li>ROS2 (openCV): 0:51 - 1:38</li>
+<li>Mask Detection: 1:39 - 2:04</li></ol></big><big></big><p><big></big>
+</p><p>{{#ev:youtube|<a class="external free" href="https://youtu.be/TlT4raD7VfE%7C700x500%7Cleft%7C" rel="nofollow">https://youtu.be/TlT4raD7VfE%7C700x500%7Cleft%7C</a> Quarter Summary |frame}}
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</p>
+<h1><span class="mw-headline" id="Final_Project_Sub-Systems">Final Project Sub-Systems</span></h1>
+<h2><span class="mw-headline" id="Mask_Dispenser_System">Mask Dispenser System</span></h2>
+<p><a class="image" href="File:Mask-Demo-Team7-WI22.png.html"><img alt="Mask-Demo-Team7-WI22.png" decoding="async" height="280" loading="lazy" src="https://web.archive.org/web/20220809044146im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/5b/Mask-Demo-Team7-WI22.png/500px-Mask-Demo-Team7-WI22.png" width="500"/></a> <br/>
+</p>
+<h2><span class="mw-headline" id="YOLOv5_Detection_System">YOLOv5 Detection System</span></h2>
+<p><a class="image" href="File:YOLO-Team7-WI22.png.html"><img alt="YOLO-Team7-WI22.png" decoding="async" height="281" loading="lazy" src="https://web.archive.org/web/20220809044146im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/50/YOLO-Team7-WI22.png/500px-YOLO-Team7-WI22.png" width="500"/></a> <br/>
+</p>
+<h2><span class="mw-headline" id="ROS2_Implementation_System">ROS2 Implementation System</span></h2>
+<p><a class="image" href="File:ROS2-Team7-WI22.png.html"><img alt="ROS2-Team7-WI22.png" decoding="async" height="281" loading="lazy" src="https://web.archive.org/web/20220809044146im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/11/ROS2-Team7-WI22.png/500px-ROS2-Team7-WI22.png" width="500"/></a> <br/>
+</p>
+<h1><span class="mw-headline" id="Source_code">Source code</span></h1>
+<p><big><b>The source code for the mask_pkg can be found here: <a class="external free" href="https://github.com/qinjianxyz/ros2_ws/tree/main/src/ucsd_robocar_hub2/mask_pkg" rel="nofollow">https://github.com/qinjianxyz/ros2_ws/tree/main/src/ucsd_robocar_hub2/mask_pkg</a></b></big>
+</p>
+<pre>import os
+import cv2
+import time
+import rclpy
+import numpy as np
+from rclpy.node import Node
+from cv_bridge import CvBridge
+from elements.yolo import OBJ_DETECTION
+from sensor_msgs.msg import Image
+from std_msgs.msg import Int32, Float32
+
+# Give names for nodes and topics for ROS
+NODE_NAME = 'mask_node'
+CAMERA_TOPIC_NAME = '/camera/color/image_raw'
+MASK_DETECTION_TOPIC_NAME = '/mask_detection'
+SERVO_TOPIC_NAME = '/servo'
+
+# types of objects that can be detected
+Object_classes = ['temp', 'with_mask', 'without_mask']
+Object_detector = OBJ_DETECTION('weights/best.pt', Object_classes)
+
+class MaskDetection(Node):
+
+    def __init__(self):
+        # initialize the node
+        super().__init__(NODE_NAME)
+        self.camera_subscriber = self.create_subscription(Image,
+        CAMERA_TOPIC_NAME, self.detect_mask, 10)
+        self.mask_publisher = self.create_publisher(Int32, MASK_DETECTION_TOPIC_NAME, 1)
+        self.servo_publisher = self.create_publisher(Float32,
+        SERVO_TOPIC_NAME, 10)
+        self.bridge = CvBridge()
+        self.mask_detected = Int32()
+        self.mask_degree = Float32()
+        
+
+
+    def detect_mask(self, data):
+
+        frame = self.bridge.imgmsg_to_cv2(data)  # camera feed
+
+        # detection process
+        objs = Object_detector.detect(frame)  # detect the object
+
+        if objs is None:
+            self.get_logger().info("Nothing detected")
+
+        # plotting
+        for obj in objs:
+            label = obj['label']
+            score = obj['score']
+            self.get_logger().info(f"Label: {label}, Score: {score}")
+            # if no mask is detected send out a 1 else send out 0
+            if label == 'without_mask' and score &gt; 0.85:
+                self.mask_detected.data = 1
+                self.mask_degree.data = 0.0
+            else:
+                self.mask_detected.data = 0
+                self.mask_degree.data = 90.0
+            self.mask_publisher.publish(self.mask_detected)
+            self.servo_publisher.publish(self.mask_degree)
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    mask_publisher = MaskDetection()
+    try:
+        rclpy.spin(mask_publisher)
+        mask_publisher.destroy_node()
+        rclpy.shutdown()
+    except KeyboardInterrupt:
+        mask_publisher.get_logger().info(
+            f'Shutting down {NODE_NAME}...')
+        time.sleep(1)
+        mask_publisher.destroy_node()
+        rclpy.shutdown()
+        mask_publisher.get_logger().info(
+        f'{NODE_NAME} shut down successfully.')
+
+if __name__ == '__main__':
+    main()
+
+</pre>
+<h1><span class="mw-headline" id="Project_Gantt_Chart">Project Gantt Chart</span></h1>
+<p><a class="image" href="File:Gantt.png.html"><img alt="Gantt.png" decoding="async" height="257" loading="lazy" src="https://web.archive.org/web/20220809044146im_/http://guitar.ucsd.edu/maeece148/images/6/6e/Gantt.png" width="1917"/></a>
+</p>
+<h1><span class="mw-headline" id="Final_Presentation">Final Presentation</span></h1>
+<p>{{#ev:youtube|<a class="external free" href="https://youtu.be/ACYHri5avdQ%7C700x500%7Cleft%7C" rel="nofollow">https://youtu.be/ACYHri5avdQ%7C700x500%7Cleft%7C</a> Quarter Summary |frame}}
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</p><p>Final Presentation Slides: <a class="external free" href="https://docs.google.com/presentation/d/1GB6YJGGhiWTTizWGuItnPPd6_Nby0S8jRiF3QP13Sm0/" rel="nofollow">https://docs.google.com/presentation/d/1GB6YJGGhiWTTizWGuItnPPd6_Nby0S8jRiF3QP13Sm0/</a>
+</p>
+<h1><span class="mw-headline" id="Acknowledgement">Acknowledgement</span></h1>
+<p>Instructor - Prof. Jack Silberman
+</p><p>TA - Dominic Nightingale
+</p><p>TA - Ivan Ferrier
+</p><p>ECE Makerspace
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20220809044146
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.023 seconds
+Real time usage: 0.026 seconds
+Preprocessor visited node count: 63/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 2539/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:1235-0!canonical and timestamp 20220809044146 and revision id 8627. Serialized with JSON.
+ -->
+</div>
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20220809044146/https://guitar.ucsd.edu/maeece148/index.php/2022WinterTeam7">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

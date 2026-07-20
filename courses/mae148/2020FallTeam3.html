@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2020FallTeam3 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2020FallTeam3</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Overview"><span class="tocnumber">2</span> <span class="toctext">Overview</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Hardware"><span class="tocnumber">3</span> <span class="toctext">Hardware</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#ROS_Package:_potatoInside"><span class="tocnumber">4</span> <span class="toctext">ROS Package: potatoInside</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Description"><span class="tocnumber">4.1</span> <span class="toctext">Description</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Wiring_Schematic"><span class="tocnumber">4.2</span> <span class="toctext">Wiring Schematic</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#CAD"><span class="tocnumber">4.3</span> <span class="toctext">CAD</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Dependencies"><span class="tocnumber">4.4</span> <span class="toctext">Dependencies</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#cv2"><span class="tocnumber">4.4.1</span> <span class="toctext">cv2</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#adafruit_servokit"><span class="tocnumber">4.4.2</span> <span class="toctext">adafruit_servokit</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#cv_bridge"><span class="tocnumber">4.4.3</span> <span class="toctext">cv_bridge</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#simple-pid"><span class="tocnumber">4.4.4</span> <span class="toctext">simple-pid</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-13"><a href="#Environment_Configuration"><span class="tocnumber">4.5</span> <span class="toctext">Environment Configuration</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Package_Map"><span class="tocnumber">4.6</span> <span class="toctext">Package Map</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Structure"><span class="tocnumber">4.7</span> <span class="toctext">Structure</span></a>
+<ul>
+<li class="toclevel-3 tocsection-16"><a href="#Nodes"><span class="tocnumber">4.7.1</span> <span class="toctext">Nodes</span></a>
+<ul>
+<li class="toclevel-4 tocsection-17"><a href="#throttle_client"><span class="tocnumber">4.7.1.1</span> <span class="toctext">throttle_client</span></a></li>
+<li class="toclevel-4 tocsection-18"><a href="#steering_client"><span class="tocnumber">4.7.1.2</span> <span class="toctext">steering_client</span></a></li>
+<li class="toclevel-4 tocsection-19"><a href="#camera_server"><span class="tocnumber">4.7.1.3</span> <span class="toctext">camera_server</span></a></li>
+<li class="toclevel-4 tocsection-20"><a href="#lane_detection_node"><span class="tocnumber">4.7.1.4</span> <span class="toctext">lane_detection_node</span></a></li>
+<li class="toclevel-4 tocsection-21"><a href="#lane_guidance_node"><span class="tocnumber">4.7.1.5</span> <span class="toctext">lane_guidance_node</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-22"><a href="#Calibration"><span class="tocnumber">4.7.2</span> <span class="toctext">Calibration</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-23"><a href="#Topics"><span class="tocnumber">4.8</span> <span class="toctext">Topics</span></a></li>
+<li class="toclevel-2 tocsection-24"><a href="#Launch"><span class="tocnumber">4.9</span> <span class="toctext">Launch</span></a></li>
+<li class="toclevel-2 tocsection-25"><a href="#Issues_and_Fixes"><span class="tocnumber">4.10</span> <span class="toctext">Issues and Fixes</span></a>
+<ul>
+<li class="toclevel-3 tocsection-26"><a href="#Error_with_CV_Bridge_conversion_from_Image_message_to_OpenCV_image"><span class="tocnumber">4.10.1</span> <span class="toctext">Error with CV_Bridge conversion from Image message to OpenCV image</span></a></li>
+<li class="toclevel-3 tocsection-27"><a href="#Throttle_not_working"><span class="tocnumber">4.10.2</span> <span class="toctext">Throttle not working</span></a></li>
+<li class="toclevel-3 tocsection-28"><a href="#cv2_thesholding_not_picking_up_road_lines"><span class="tocnumber">4.10.3</span> <span class="toctext">cv2 thesholding not picking up road lines</span></a></li>
+<li class="toclevel-3 tocsection-29"><a href="#Steering.2Fthrottle_is_too_hard_or_too_soft"><span class="tocnumber">4.10.4</span> <span class="toctext">Steering/throttle is too hard or too soft</span></a></li>
+<li class="toclevel-3 tocsection-30"><a href="#ROS_version_is_not_compatible_with_Python3"><span class="tocnumber">4.10.5</span> <span class="toctext">ROS version is not compatible with Python3</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-31"><a href="#Media"><span class="tocnumber">5</span> <span class="toctext">Media</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<ul><li> Dominic Nightingale – MAE Senior</li>
+<li> Parker Goddard – MAE Senior</li>
+<li> Boyuan Fang – CSE Senior</li>
+<li> Hao Le – ECE Junior</li></ul>
+<h2><span class="mw-headline" id="Overview">Overview</span></h2>
+<h2><span class="mw-headline" id="Hardware">Hardware</span></h2>
+<h2><span class="mw-headline" id="ROS_Package:_potatoInside">ROS Package: potatoInside</span></h2>
+<p>Gitlab repository: <a class="external free" href="https://gitlab.com/djnighti/potatoinside/-/tree/master" rel="nofollow">https://gitlab.com/djnighti/potatoinside/-/tree/master</a>
+</p><p><i> This is a migration of the gitlab readme, the original readme is <a class="external text" href="https://gitlab.com/djnighti/potatoinside/-/blob/master/README.md" rel="nofollow">here</a></i>
+</p>
+<h3><span class="mw-headline" id="Description">Description</span></h3>
+<p>A ROS package using OpenCV on an RC car to do autonomous laps around a track using line following algorithms.
+</p><p><br/>
+<a class="image" href="File:Tokyo-drift.jpeg.html"><img alt="Tokyo-drift.jpeg" height="513" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/c/c6/Tokyo-drift.jpeg" width="684"/></a>
+</p><p><b>Making School News!</b>
+</p><p><a class="image" href="File:Team3_dom_ins.jpeg.html"><img alt="Team3 dom ins.jpeg" height="638" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/3/38/Team3_dom_ins.jpeg" width="640"/></a>
+</p><p><br/>
+</p>
+<h3><span class="mw-headline" id="Wiring_Schematic">Wiring Schematic</span></h3>
+<p><a class="image" href="File:Schematic_team3_Fall2020.png.html"><img alt="Schematic team3 Fall2020.png" height="420" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/3/37/Schematic_team3_Fall2020.png" width="594"/></a>
+</p>
+<h3><span class="mw-headline" id="CAD">CAD</span></h3>
+<p>Our design features the following:
+</p><p>-modular plate to make the assembly process more flexible as well as to be able to mount new hardware for future projects
+</p><p>-full enclosure design (meaning all electronics besides camera were inside our enclosure) with ventilation openings to increase cooling
+</p><p>-Jetson was mounted to custom plate and the rest of the components were velcroed to the ceiling of enclosure
+</p><p>-sliding access panel to electronics inside enclosure
+</p><p>-3D printed hinges to allow extremely easy access to the battery below the modular plate
+</p><p>-tilt adjustable (fixed height) camera mount
+</p><p>-custom license plate and decals (including our signatures on the baseplate!)
+</p><p><b>Base plate</b>
+</p><p><a class="image" href="File:Plate_team3_fall_2020.PNG.html"><img alt="Plate team3 fall 2020.PNG" height="741" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/a/af/Plate_team3_fall_2020.PNG" width="567"/></a>
+</p><p><b>Custom Jetson plate</b>
+</p><p><a class="image" href="File:Jetson_mount_team3_fall_2020.PNG.html"><img alt="Jetson mount team3 fall 2020.PNG" height="744" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/4/44/Jetson_mount_team3_fall_2020.PNG" width="612"/></a>
+</p><p><b>Hinges</b>
+</p><p><a class="image" href="File:Hinges_team3_fall_2020.PNG.html"><img alt="Hinges team3 fall 2020.PNG" height="537" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/a/a5/Hinges_team3_fall_2020.PNG" width="556"/></a>
+</p><p><b>Enclosure (cooling) </b>
+</p><p><a class="image" href="File:Enclosure_front_team3_fall_2020.PNG.html"><img alt="Enclosure front team3 fall 2020.PNG" height="765" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/5/57/Enclosure_front_team3_fall_2020.PNG" width="888"/></a>
+</p><p><b>Enclosure (access panel) </b>
+</p><p><a class="image" href="File:Enclosure_rear_team3_fall_2020.PNG.html"><img alt="Enclosure rear team3 fall 2020.PNG" height="762" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/6/6d/Enclosure_rear_team3_fall_2020.PNG" width="935"/></a>
+</p><p><b>Animations demonstrating design intentions</b>
+</p><p><video controls="" height="169" src="https://guitar.ucsd.edu/maeece148/images/3/3b/Sliding_door.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Sliding_door.mp4.html">https://guitar.ucsd.edu/maeece148/index.php/File:Sliding_door.mp4</a></video>
+<video controls="" height="169" src="https://guitar.ucsd.edu/maeece148/images/b/b3/Hinges.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Hinges.mp4.html">https://guitar.ucsd.edu/maeece148/index.php/File:Hinges.mp4</a></video>
+</p>
+<h3><span class="mw-headline" id="Dependencies">Dependencies</span></h3>
+<h4><span class="mw-headline" id="cv2"><a class="external text" href="https://opencv.org/" rel="nofollow">cv2</a></span></h4>
+<p>OpenCV is a library, in our case for Python, that provides high-level functions for computer vision and image processing.
+</p>
+<h4><span class="mw-headline" id="adafruit_servokit"><a class="external text" href="https://circuitpython.readthedocs.io/projects/servokit/en/latest/" rel="nofollow">adafruit_servokit</a></span></h4>
+<p>Adafruit Servokit is a Python library that provides a high-level interface with low-level PWM controls. In our case, we are using the library to control PWM servos connected to channels of the PCA9685 I2C breakout board.
+</p>
+<h4><span class="mw-headline" id="cv_bridge"><a class="external text" href="http://wiki.ros.org/cv_bridge" rel="nofollow">cv_bridge</a></span></h4>
+<p>CV Bridge provides functions to easily convert (encode/decode) in between ROS image message types to OpenCV-workable Numpy arrays.
+</p>
+<h4><span class="mw-headline" id="simple-pid"><a class="external text" href="https://pypi.org/project/simple-pid/" rel="nofollow">simple-pid</a></span></h4>
+<p>Simple PID is a Python library that provides a way to turn a PID controller into a simplified Python object.
+</p>
+<h3><span class="mw-headline" id="Environment_Configuration">Environment Configuration</span></h3>
+<p>If you are running a ROS version that defaults to Python3, you can install the dependencies to the host Python3 or some virtual environment such as Conda. However, ROS versions that default to Python2 will require a virtual environment that has Python3 as the Python PATH i.e. if you type "python" into the terminal Python3 should begin. 
+</p><p>Clone this repo to the <i>src</i> of your Catkin workspace. Then, go to the workspace directory and do <i>catkin_make</i>. This should register the package as part of your ROS environment. You can check by looking for the package name with **rospack**.
+</p>
+<h3><span class="mw-headline" id="Package_Map">Package Map</span></h3>
+<p><a class="image" href="File:Ros_overview_team3_fall_2020.png.html"><img alt="Ros overview team3 fall 2020.png" height="525" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/1/1c/Ros_overview_team3_fall_2020.png" width="1178"/></a>
+</p>
+<h3><span class="mw-headline" id="Structure">Structure</span></h3>
+<h4><span class="mw-headline" id="Nodes">Nodes</span></h4>
+<h5><span class="mw-headline" id="throttle_client">throttle_client</span></h5>
+<p>Associated file: throttle_client.py
+</p><p>This node subscribes to the throttle topic. We use subscriber callback function
+to validate and normalize throttle value, and then use the adafruit_servokit
+module on channel 0 for sending signals to the hardware.
+</p><p>This node is also responsible for reading and setting the throttle calibration values.
+</p>
+<h5><span class="mw-headline" id="steering_client">steering_client</span></h5>
+<p>Associated file: steering_client.py
+</p><p>Similar to throttle_client, this node subscribes to the steering
+topic and passes the signals to the hardware. The steering servo is on channel 1.
+</p><p>The ServoKit class from the adafruit_servokit library proved to be a simple way to control both our steering servo and drive motor, acting as the interface between user specified steering angles and throttle values and the PWM (Pulse Width Modulation) signal required by the steering servo and drive motor ESC. Our team utilized both the servo and continuous_servo methods of the ServoKit class. The implementation of these can be found in the throttle_client.py and steering_client.py scripts, as well as in potato_calibration.py.
+</p><p>The servo method (without any modifications from stock) accepts user inputs in range [0:180] degrees. Zero corresponds to full left and 180 corresponds to full right steering. Within the ServoKit class 0 and 180 correspond to the minimum and maximum pulse widths sent by the PWM board to the servo motor corresponding to a 1ms to 2ms PWM pulse width range, respectively. Servos standardly are at 0 degrees with a 1ms pulse width and 180 degrees with a 2ms pulse width, with the pulses occuring at a frequency of 50Hz. If for some reason the max steering angle is not achieved when one feeds the ServoKit class a value of 180, the maximum pulse with can be increased beyone the stock value given to the class (standard range is 1000 micro-seconds to 2000 micro-seconds). In the documentation there is also a function to edit the max actuation range, allowing the user to change the max steering value from the stock 180 degrees to a different value.
+</p><p>The continuous_servo method allows for control of an ESC driven DC motor, designed for continuous rotation (compare to a standard servo motor which has a finite range of motion). The input range for this method is [-1:1], with -1 corresponding to the maximum reverse PWM output and 1 corresponding to the maximum forward throttle value. The throttle range for our car was very small before making any changes to the PWM pulse widths. Outputs ranging from no throttle to what appeared to be close to 100% throttle were contained in the range [.28:.3].
+</p><p><br/>
+</p>
+<h5><span class="mw-headline" id="camera_server">camera_server</span></h5>
+<p>Associated file: camera_server.py
+</p><p>This node simply reads from the camera with cv2's interface and publishes the image to the
+camera_rgb topic. Before publishing, the image is reformatted from the cv image format
+so it can be passed through the ROS topic message structure.
+</p>
+<h5><span class="mw-headline" id="lane_detection_node">lane_detection_node</span></h5>
+<p>Associated file: lane_detection.py
+</p><p>In this node, we read from camera_rgb topic and use opencv to identify line
+information from the image, and publish the information of the middle point between
+all identified lines to the centroid topic.
+</p><p><br/>
+<a class="image" href="File:Filtering_process_team3_fall_2020.png.html"><img alt="Filtering process team3 fall 2020.png" height="525" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/7/7e/Filtering_process_team3_fall_2020.png" width="1197"/></a>
+</p><p><a class="image" href="File:Applying_methods_team3_fall_2020.png.html"><img alt="Applying methods team3 fall 2020.png" height="513" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/2/21/Applying_methods_team3_fall_2020.png" width="1201"/></a>
+</p><p><a class="image" href="File:Applying_logic_team3_fall_2020.png.html"><img alt="Applying logic team3 fall 2020.png" height="541" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/7/75/Applying_logic_team3_fall_2020.png" width="636"/></a>
+</p><p><b>NOTE:</b> <i>The colors used in the last two boxes are intentional and demonstrate the decision making process that the robot is making real time which is demonstrated in the video below.</i>
+</p><p><video controls="" height="169" src="https://guitar.ucsd.edu/maeece148/images/9/9b/Contours_new_colors_Trim.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Contours_new_colors_Trim.mp4.html">https://guitar.ucsd.edu/maeece148/index.php/File:Contours_new_colors_Trim.mp4</a></video>
+</p>
+<h5><span class="mw-headline" id="lane_guidance_node">lane_guidance_node</span></h5>
+<p>Associated file: lane_guidance.py
+</p><p>This node subscribes to the centroid topic, calculates the throttle and steering
+based on the centroid value, and then publish them to their corresponding topics.
+</p><p>Throttle is based on whether or not a centroid exists - car goes faster when centroid is present and slows down when there is none.
+</p><p>Steering is based on a PID controller implemented by the simple-pid module. Gains can be tweaked in the <code>lane_guidance.py</code> script.
+</p>
+<h4><span class="mw-headline" id="Calibration">Calibration</span></h4>
+<p>Associated file: potato_calibration.py
+</p><p>A calibration script was created to allow the driver to ensure that the software commands that are sent to the hardware are both within the hardware
+limitations, as well as accurately mapped to hardware actuation.
+</p><p>This script utilizes the servokit class from the adafruit_servokit library to send steering and throttle commands to the car to be observed by the user. The
+script contains of a sequence of prompts, asking the user to input steering and throttle values that correspond to maximums, minimums and straight/neutral
+values. At the end of the script the user can choose to save these values to a configuration file that will be read when the steering and throttle nodes are
+launched.
+</p>
+<ul><li>Dicsuss the beginning of the script where the user can decide PWM values for the max and min servo actuation. Also need to test to see if this works with the continuous_servo class.</li></ul>
+<p><br/>
+</p>
+<h3><span class="mw-headline" id="Topics">Topics</span></h3>
+<table class="wikitable">
+<tr>
+<th> Name
+</th>
+<th> MsgType
+</th>
+<th> Info
+</th></tr>
+<tr>
+<td> throttle
+</td>
+<td> std_msgs.msg.Float32
+</td>
+<td> Float value from -1 to 1 for controlling throttle
+</td></tr>
+<tr>
+<td> steering
+</td>
+<td> std_msgs.msg.Float32
+</td>
+<td> Float value from -1 to 1 for controlling steering
+</td></tr>
+<tr>
+<td> camera_rgb
+</td>
+<td> sensor_msgs.msg.Image
+</td>
+<td> Image last read from USB camera image
+</td></tr>
+<tr>
+<td> centroid
+</td>
+<td> std_msgs.msg.Int32
+</td>
+<td> Integer for x coordinate of centroid in camera image space
+</td></tr></table>
+<h3><span class="mw-headline" id="Launch">Launch</span></h3>
+<p>Launching the package is as simple as <code>roslaunch potatoinside potato.launch</code> This should begin all the necessary nodes and get the car moving.
+</p><p><br/>
+</p>
+<h3><span class="mw-headline" id="Issues_and_Fixes">Issues and Fixes</span></h3>
+<h4><span class="mw-headline" id="Error_with_CV_Bridge_conversion_from_Image_message_to_OpenCV_image">Error with CV_Bridge conversion from Image message to OpenCV image</span></h4>
+<p>Using <code>bridge_object.imgmsg_to_cv2()</code> threw errors on our Jetson Nano environment, so we had to resort to our own image decoder function. Function <code>decodeImage()</code> can be imported from <code>decoder.py</code>. If you don't want to use our function, the problem can be avoided by properly building CV_Bridge with Python3 in the ROS package.
+</p>
+<h4><span class="mw-headline" id="Throttle_not_working">Throttle not working</span></h4>
+<p>This issue can vary between cars, but generally the problem lies in the PWM range that is mapped by the Adafruit library. If the "start" PWM is too low, then even a maxed out "1" might not map to the PWM value that will trigger the ESC. First make sure the -1 to 1 range is properly calibrated. During runtime, the scale constant found in <code>throttle_client.py</code> can also be tweaked.
+</p>
+<h4><span class="mw-headline" id="cv2_thesholding_not_picking_up_road_lines">cv2 thesholding not picking up road lines</span></h4>
+<p>This issue stems from two sources that are not mutually exclusive:
+</p><p>It can be that the lower and upper HSV ranges configured in <code>lane_detection.py</code> are not properly recognizing the color of whatever marks you are trying to parse on your road environment. This can be done through trial and error or by using online color pickers.
+</p><p>Most USB cameras have minds of their own. Essentially, it can do its own processing independent from cv2 like constrast, saturation, and more importantly auto exposure. Adapting to the ambient light means certain HSV ranges may not apply when lighting changes, messing up algorithms. To combat this, you would need to configure your USB camera to manual exposure, ensuring that your HSV range is consistent everywhere. To do this, follow <a class="external text" href="https://www.kurokesu.com/main/2016/01/16/manual-usb-camera-settings-in-linux/" rel="nofollow">this</a> page for more information on how to access camera variables via Linux terminal.
+</p><p><br/>
+</p>
+<h4><span class="mw-headline" id="Steering.2Fthrottle_is_too_hard_or_too_soft">Steering/throttle is too hard or too soft</span></h4>
+<p>You would need to tune the PID control gains of both steering and throttle via <code>lane_guidance.py</code>. This can be done by simply playing around with the constants. Caution is needed when altering the throttle values since too high of throttle draw too much current, shutting down all other electronics on the car including the Jetson. To avoid this, do <code>rostopic pub throttle</code> and publish incremental values starting from 0 to the throttle topic to guage the "right" range.
+</p>
+<h4><span class="mw-headline" id="ROS_version_is_not_compatible_with_Python3">ROS version is not compatible with Python3</span></h4>
+<p>This can be solved with virtual environments such as Conda. Simply make sure all terminals opened are sourced to that environment. This can be automated by editing <code>bashrc</code>. To check, type in <code>python</code> in the terminal; some terminal version of Python3 should begin.
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Media">Media</span></h2>
+<p><a class="image" href="File:Side_team3_fall_2020.jpg.html"><img alt="Side team3 fall 2020.jpg" height="433" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/d/db/Side_team3_fall_2020.jpg" width="577"/></a>
+<a class="image" href="File:Rear_team3_fall_2020.png.html"><img alt="Rear team3 fall 2020.png" height="513" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/9/99/Rear_team3_fall_2020.png" width="684"/></a>
+<a class="image" href="File:Is_That_VTEC.jpeg.html"><img alt="Is That VTEC.jpeg" height="433" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/a/a4/Is_That_VTEC.jpeg" width="577"/></a>
+</p><p><video controls="" height="169" src="https://guitar.ucsd.edu/maeece148/images/7/71/Hinges_test.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Hinges_test.mp4.html">https://guitar.ucsd.edu/maeece148/index.php/File:Hinges_test.mp4</a></video>
+</p><p><a class="image" href="File:Final_team3_fall_2020.jpg.html"><img alt="Final team3 fall 2020.jpg" height="1600" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/5/58/Final_team3_fall_2020.jpg" width="1200"/></a>
+</p><p><a class="image" href="File:Team3_fall_2020.jpeg.html"><img alt="Team3 fall 2020.jpeg" height="454" loading="lazy" src="https://web.archive.org/web/20210412071333im_/http://guitar.ucsd.edu/maeece148/images/0/00/Team3_fall_2020.jpeg" width="550"/></a>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20210411093906
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.042 seconds
+Real time usage: 0.088 seconds
+Preprocessor visited node count: 122/1000000
+Preprocessor generated node count: 128/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:748-0!*!*!!en!5!* and timestamp 20210411093906 and revision id 5812
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20210412071333/https://guitar.ucsd.edu/maeece148/index.php/2020FallTeam3">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2021FallTeam8 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2021FallTeam8</h1>
+      <div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Robot"><span class="tocnumber">2</span> <span class="toctext">Robot</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Mechanical_Design"><span class="tocnumber">3</span> <span class="toctext">Mechanical Design</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Electrical_Design"><span class="tocnumber">4</span> <span class="toctext">Electrical Design</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Autonomous_Laps"><span class="tocnumber">5</span> <span class="toctext">Autonomous Laps</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Final_Project"><span class="tocnumber">6</span> <span class="toctext">Final Project</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Presentations"><span class="tocnumber">7</span> <span class="toctext">Presentations</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Source_Code"><span class="tocnumber">8</span> <span class="toctext">Source Code</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<ul><li><b>Colin Riccio</b> - Mechanical Engineering</li></ul>
+<ul><li><b>Brian Pack</b> - Mechanical Engineering</li></ul>
+<ul><li><b>Carolin Lehmacher</b> - Electrical Engineering</li></ul>
+<h2><span class="mw-headline" id="Robot">Robot</span></h2>
+<p><b>Robocar - Project</b>
+</p><p>The picture on the right shows our Robocar and part of the wiring for our used project. 
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:352px;"><a class="image" href="File:Robocar.JPG.html"><img alt="" class="thumbimage" decoding="async" height="467" loading="lazy" src="https://web.archive.org/web/20220522081758im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/70/Robocar.JPG/350px-Robocar.JPG" width="350"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Robocar.JPG.html" title="Enlarge"></a></div>Robocar for our Project</div></div></div>
+<p><br/>
+</p>
+<h2><span class="mw-headline" id="Mechanical_Design">Mechanical Design</span></h2>
+<p><b>Camera Mount</b>
+</p><p>The mount system was 3d printed and had 3 parts: a camera backplate, a stand and a lidar mount.  The Lidar mount ties into the front standoffs and the stand attaches to the electronics plate.
+</p><p>The camera mount has a pivot joint to allow for repositioning the camera angle.  This proved to be initially helpful to set an optimal angle, but we ran into issues where if the mount was bumped it would lead to failures with our DonkeyCar models.  It might be a good idea to first have a variable angle mount, find the best setting for the camera, and then create a static mount to use for training.
+</p><p><a class="image" href="File:Camera_assembly_8.PNG.html"><img alt="Camera assembly 8.PNG" decoding="async" height="414" loading="lazy" src="https://web.archive.org/web/20220522081758im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/8f/Camera_assembly_8.PNG/350px-Camera_assembly_8.PNG" width="350"/></a>
+</p><p><b>Electronic Plate</b>
+The plate was designed with a full array of mounting holes (with 1cm spacing) to facilitate the attachment of parts anywhere on the plate.  It was laser cut from 1/8th inch acrylic.
+</p><p><a class="image" href="File:Assembly_8.PNG.html"><img alt="Assembly 8.PNG" decoding="async" height="184" loading="lazy" src="https://web.archive.org/web/20220522081758im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/c9/Assembly_8.PNG/350px-Assembly_8.PNG" width="350"/></a>
+</p>
+<h2><span class="mw-headline" id="Electrical_Design">Electrical Design</span></h2>
+<p><b>Components</b>
+</p>
+<ul><li>Jetson Nano 2GB</li></ul>
+<ul><li>Battery</li></ul>
+<ul><li>USB Camera</li></ul>
+<ul><li>Servo</li></ul>
+<ul><li>Xerun 360</li></ul>
+<ul><li>Anti spark switch</li></ul>
+<ul><li>12V to 5V Converter</li></ul>
+<ul><li>Flipsky mini</li></ul>
+<p><br/>
+<b>Wiring</b>
+</p><p>The following picture shows the wiring of the robocar used for the project.
+</p><p><a class="image" href="File:Wiring_8.jpg.html" title="wiring_8.jpg"><img alt="wiring_8.jpg" decoding="async" height="720" loading="lazy" src="https://web.archive.org/web/20220522081758im_/http://guitar.ucsd.edu/maeece148/images/1/1e/Wiring_8.jpg" width="960"/></a>
+</p><p><b>EMO Demonstration</b>
+</p><p><a class="external text" href="https://youtu.be/4rgLgJuEVUQ" rel="nofollow">EMO demonstration</a>
+</p>
+<h2><span class="mw-headline" id="Autonomous_Laps">Autonomous Laps</span></h2>
+<p><a class="external text" href="https://youtu.be/_ZV8vktB8Zs" rel="nofollow">Warren Tent, 3 laps with DonkeyCar</a>
+</p><p><a class="external text" href="https://youtu.be/4yHVhv_IfqM" rel="nofollow">Circuit Tent, 3 laps with Donkey Car</a>
+</p><p><a class="external text" href="https://www.youtube.com/watch?v=kVbEHH_laNU" rel="nofollow">Warren Tent, 3 Labs with ROS</a>
+</p>
+<h2><span class="mw-headline" id="Final_Project">Final Project</span></h2>
+<p><b>Project Overview</b>
+</p><p>Our goal for the final project was to build an image recognition node onto the ucsd_robocar2 that can detect a speed sign placed on the track and dynamically change the speed of the car.  
+</p><p><br/>
+<b>Electronic Changes</b>
+</p><p>To control the speed of our car, we had to switch out the majority of our electronics and incorporate a VESC motor controller.  The VESC can read the sensor in our brushless motor and use that information to set the RPM of the motor, meaning that instead of using PWM to control the motor we can now just send RPM values, directly changing the speed of the car.  Because we switched to the VESC, we had to change from the ucsd_robo_car_simple_ros to the ucsd_robocar2 docker package as the ucsd_robo_car_simple_ros system cannot make use of the VESC.
+</p><p><br/>
+<b>Image Recognition</b>
+</p><p>To recognize different speed signs, we chose to use an Image Classification Neural Network.  We decided to use image processing with OpenCV to filter the camera images delivered by the ros camera_node so that only the speed sign is visible in the hope it would make the Classification model stronger.  We then used the ros calibration_node to find the best values for our filter, and then collected data for our 3 speed sign classes (~100 images of each sign for training and ~30 for validation) and one null class (~350 training images and ~90 for validation).  To actually collect the data, a python script was written to capture an image from the camera, filter that image, and save it in the data folder structure used by the training pipeline we used (Data_Collection).
+</p><p><a class="image" href="File:Image_recognition_8.jpg.html"><img alt="Image recognition 8.jpg" decoding="async" height="250" loading="lazy" src="https://web.archive.org/web/20220522081758im_/http://guitar.ucsd.edu/maeece148/images/7/75/Image_recognition_8.jpg" width="640"/></a>
+</p><p>Example of the webcam image after filtering
+</p><p><br/>
+After collecting the data, we used a training pipeline built by Team 1 for their final project which created a model built off of transfer learning from ResNet18 (Training_Pipeline).
+</p><p>We created a python script to test the model by taking the webcam image, filtering it, passing that image to the model, and printing out which sign it sees (Model_Live_Tester).
+</p><p><a class="external text" href="https://youtu.be/QcHbDmTbdOE" rel="nofollow">Video of the image recognition</a>
+</p><p><br/>
+</p><p><b>Creating a ROS Node</b>
+</p><p>We then created a new ros speed_reader_node which will subscribe to the camera_node to receive images from the webcam, and will publish a speed value to the lane_guidence_node (Speed_Sign_Node).  First we build the node to get a speed value from the user and publish that value, which would then change the speed of the car (Speed_Node).  After confirming publishing worked, we added a subscription to the camera_node to get the image and applied OpenCV filters to that image. That filtered image is then passed to the image recognition model which classifies which sign the camera currently sees.  The speed associated with that sign is then published to the lane_guidence_node, which in turn changes the speed of the car.
+</p><p><a class="external text" href="https://youtu.be/rRUThJwOXfw" rel="nofollow">Testing changing the speed of the car with Speed_Node</a>
+</p><p><b>Obstacles</b>
+</p><p>There were several major roadblocks that we dealt with in our project:
+</p><p>- Changing our electronics took a significant amount of time as we had to solder a bunch of components, remove the old parts, redo wiring and install the new parts
+</p><p>- The ROS2 docker package had several major bugs as it is still in beta
+</p><p>- Lighting conditions in the tents meant it was difficult to use the line following package any time before the sun set
+</p><p>- We were unable to get Pytorch(the package which runs the image classification model) loaded into the Docker container, which meant we were unable to actually get the final speed_reader_node to run
+</p><p><b>Future Improvements</b>
+</p><p>If given more time to work on the project, we would first want to get Pytorch loaded into the Docker container so that we can use the lane_guidence_node with the speed_reader_node running, recognizing signs and changing the speed.  Then, we would like to improve the model by adding more speed signs and collecting more data to do more training.  We would also like to experiment with the filter we used to try and make it less noisy.
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Presentations">Presentations</span></h2>
+<p><a class="external text" href="https://drive.google.com/file/d/1NnJG-uJfDUytKJTUBVqZCusDAmdGDr4a/view?usp=sharing" rel="nofollow">Weekly presentation including project proposal and gantt chart</a>
+</p><p><br/>
+<a class="external text" href="https://drive.google.com/file/d/1si61Pi-BI0j6OD8YfJAfboRB4ykRHmYe/view?usp=sharing" rel="nofollow">Final Presentation</a>
+</p>
+<h2><span class="mw-headline" id="Source_Code">Source Code</span></h2>
+<p>Modified Lane_Guidence_node:
+</p>
+<pre>import rclpy
+from rclpy.node import Node
+from std_msgs.msg import Float32, Int32, Int32MultiArray
+from geometry_msgs.msg import Twist
+import time
+import os
+
+NODE_NAME = 'lane_guidance_node'
+CENTROID_TOPIC_NAME = '/centroid'
+ACTUATOR_TOPIC_NAME = '/cmd_vel'
+SIGN_TOPIC_NAME = '/speed'
+
+class PathPlanner(Node):
+    def __init__(self):
+        super().__init__(NODE_NAME)
+        self.twist_publisher = self.create_publisher(Twist, ACTUATOR_TOPIC_NAME, 10)
+        self.twist_cmd = Twist()
+        self.centroid_subscriber = self.create_subscription(Float32, CENTROID_TOPIC_NAME, self.controller, 10)
+        self.sign_subscriber = self.create_subscription(Float32, SIGN_TOPIC_NAME, self.sign_check, 10)
+        self.sign_subscriber
+        self.centroid_subscriber
+
+        # Default actuator values
+        self.declare_parameters(
+            namespace='',
+            parameters=[
+                ('steering_sensitivity', 1),
+                ('no_error_throttle', 1),
+                ('error_throttle', 1),
+                ('error_threshold', 1),
+                ('zero_throttle',1)
+            ])
+        self.steering_sensitivity = self.get_parameter('steering_sensitivity').value
+        self.no_error_throttle = self.get_parameter('no_error_throttle').value
+        self.error_throttle = self.get_parameter('error_throttle').value
+        self.error_threshold = self.get_parameter('error_threshold').value
+        self.zero_throttle = self.get_parameter('zero_throttle').value
+        self.get_logger().info(
+            f'\nsteering_sensitivity: {self.steering_sensitivity}'
+            f'\nno_error_throttle: {self.no_error_throttle}'
+            f'\nerror_throttle: {self.error_throttle}'
+            f'\nerror_threshold: {self.error_threshold}'
+            f'\nzero_throttle: {self.zero_throttle}'
+        )
+
+        # Default speed multiplier
+        self.speed_mult = 1.0
+    
+    # Get speed multipier data from speed topic
+    def sign_check(self, data):
+        self.speed_mult = data.data
+        print('speed set \n')
+
+
+    def controller(self, data):
+        try:
+            kp = self.steering_sensitivity
+            sm = self.speed_mult
+            error_x = data.data
+            self.get_logger().info(f"{error_x}")
+            if error_x &lt;= self.error_threshold:
+                throttle_float = float(self.no_error_throttle)
+            else:
+                throttle_float = float(self.error_throttle)
+            steering_float = float(kp * error_x) #Apply multiplier
+            if steering_float &lt; -1.0:
+                steering_float = -1.0
+            elif steering_float &gt; 1.0:
+                steering_float = 1.0
+            else:
+                pass
+            self.twist_cmd.angular.z = steering_float
+            self.twist_cmd.linear.x = throttle_float*sm
+            self.twist_publisher.publish(self.twist_cmd)
+
+        except KeyboardInterrupt:
+            self.twist_cmd.linear.x = self.zero_throttle
+            self.twist_publisher.publish(self.twist_cmd)
+
+
+    # def call_pub(self, twist_msg):
+    #     self.twist_publisher.publish(self.twist_cmd)
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    path_planner_publisher = PathPlanner()
+    try:
+        rclpy.spin(path_planner_publisher)
+        path_planner_publisher.destroy_node()
+        rclpy.shutdown()
+    except KeyboardInterrupt:
+        path_planner_publisher.get_logger().info(f'Shutting down {NODE_NAME}...')
+        path_planner_publisher.twist_cmd.linear.x = path_planner_publisher.zero_throttle
+        path_planner_publisher.twist_publisher.publish(path_planner_publisher.twist_cmd)
+        time.sleep(1)
+        path_planner_publisher.destroy_node()
+        rclpy.shutdown()
+        path_planner_publisher.get_logger().info(f'{NODE_NAME} shut down successfully.')
+
+
+if __name__ == '__main__':
+    main()
+</pre>
+<p>Speed_Reader_node:
+</p>
+<pre>import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import Image
+from std_msgs.msg import Float32, Int32, Int32MultiArray
+import cv2
+from cv_bridge import CvBridge
+import numpy as np
+import os
+import torch
+from torchvision import transforms
+import time
+from PIL import Image as image_pil
+
+NODE_NAME = 'sign_reader_node'
+SIGN_TOPIC_NAME = '/speed'
+
+# Topics subcribed/published to in this program
+CAMERA_TOPIC_NAME = '/camera/color/image_raw'
+
+
+class SignReader(Node):
+    def __init__(self):
+        super().__init__(NODE_NAME)
+        self.speed_publisher = self.create_publisher(Float32, SIGN_TOPIC_NAME, 10)
+        self.speed_publisher
+        self.camera_subscriber = self.create_subscription(Image, CAMERA_TOPIC_NAME, self.read, 10)
+        self.camera_subscriber
+        self.bridge = CvBridge()
+
+        self.speed_num = Float32()
+        self.speed_num.data = 0
+        print('speed topic started \n')
+        self.frequency = 1
+        self.timer_period = 1 / self.frequency
+        #self.timer = self.create_timer(self.timer_period, self.read)  # Create the timer
+
+        # self.current_speed=None
+        #self.sign_detected = False
+        
+        #image manipulation values
+        
+        self.Hue_low = 84
+        self.Hue_high = 179
+        self.Saturation_low = 54
+        self.Saturation_high = 173
+        self.Value_low = 34
+        self.Value_high = 148
+        
+        self.gray_lower = 32
+        self.inverted_filter = 0
+
+        self.start_height = 200
+        self.bottom_height = 450
+        self.left_width = 0
+        self.right_width = 800
+        
+        self.model_loc = 'model_1.pb'
+        
+        self.class_list = ['no_sign', 'sign_1', 'sign_2', 'sign_3']
+        self.threshold = 0.99
+        self.class_prediction = "no_sign"
+        
+        #getting the model ready
+        self.model = torch.load(self.model_loc)
+        self.data_transform = transforms.Compose([
+            transforms.Resize(256),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485,0.456,0.406],[.229,.224,.225])
+            ])
+
+    def read(self, data):
+        frame = self.bridge.imgmsg_to_cv2(data)
+
+        self.image_width = int(self.right_width - self.left_width)
+
+        img = frame[self.start_height:self.bottom_height, self.left_width:self.right_width]
+
+        # changing color space to HSV
+        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+
+        # setting threshold limits for white color filter
+        lower = np.array([self.Hue_low, self.Saturation_low, self.Value_low])
+        upper = np.array([self.Hue_high, self.Saturation_high, self.Value_high])
+        mask = cv2.inRange(hsv, lower, upper)
+
+        if self.inverted_filter == 1:
+            bitwise_mask = cv2.bitwise_and(img, img, mask=cv2.bitwise_not(mask))
+        else:
+            bitwise_mask = cv2.bitwise_and(img, img, mask=mask)
+
+        # changing to gray color space
+        gray = cv2.cvtColor(bitwise_mask, cv2.COLOR_BGR2GRAY)
+
+        # changing to black and white color space
+        gray_upper = 255
+        (dummy, blackAndWhiteImage) = cv2.threshold(gray, self.gray_lower, gray_upper, cv2.THRESH_BINARY)
+        
+        
+        #running the model on the image
+        #converting black and white back to rgb
+        rgb = cv2.cvtColor(blackAndWhiteImage, cv2.COLOR_GRAY2RGB)
+        #converting image from nparray to regular image
+        frame_altered = image_pil.fromarray(rgb)
+	    # Performing data transformations to tensor
+        temp_tensor = self.data_transform(frame_altered)
+	    # altering to fit the input of the prediction pipeline (annoying artifict since it expects a batch of data
+        # rather than a single datapoint)
+        temp_tensor = temp_tensor.unsqueeze(0)
+        # Making the prediction
+        test_predicts = self.model(temp_tensor)
+        # Finding the index of the highest prediction
+        _, pred = torch.max(test_predicts,1)
+        
+        # if that prediction is above a threshold, then change the current prediction
+        if test_predicts[0][int(pred[0])] &gt;= self.threshold:
+            self.sign_prediction = self.class_list[int(pred[0])]
+            
+            if self.sign_prediction != self.class_list[0]:
+                print(self.sign_prediction+"detected with "+test_predicts[0][int(pred[0])]+" confidence")
+                self.speed_num.data = float(pred[0])/2
+                self.speed_publisher.publish(self.speed_num)
+                
+                #this might break ros, not sure
+                time.sleep(2)
+        else:
+            print("no sign detected")
+
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    sign_reader_publisher = ()
+    try:
+        rclpy.spin(sign_reader_publisher)
+        sign_reader_publisher.destroy_node()
+        rclpy.shutdown()
+    except KeyboardInterrupt:
+        sign_reader_publisher.get_logger().info(f'Shutting down {NODE_NAME}...')
+
+        sign_reader_publisher.destroy_node()
+        rclpy.shutdown()
+        sign_reader_publisher.get_logger().info(f'{NODE_NAME} shut down successfully.')
+
+
+if __name__ == '__main__':
+    main()
+
+</pre>
+<p>Data_Collection:
+</p>
+<pre>import cv2
+
+import numpy as np
+from datetime import datetime
+import sys
+
+
+
+# set image manipulation values based on calibration node
+lowH = 84
+highH = 179
+lowS = 54
+highS = 173
+lowV = 34
+highV = 148
+
+gray_lower = 32
+
+inverted = 0
+
+start_height = 200
+bottom_height = 450
+left_width = 0
+right_width = 800
+
+counter = 0
+
+
+
+while(True):
+    user_input = input("Press &lt;Enter&gt; key to take a photo. Press &lt;Ctrl&gt; + &lt;c&gt; to exit")
+
+    if user_input == "":
+        # Image processing from slider values
+        cap = cv2.VideoCapture(0)
+        
+        ret, frame = cap.read()
+
+        img = frame[start_height:bottom_height, left_width:right_width]
+        # changing color space to HSV
+        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+        lower = np.array([lowH, lowS, lowV])
+        higher = np.array([highH, highS, highV])
+        mask = cv2.inRange(hsv, lower, higher)
+
+        if inverted == 1:
+            bitwise_mask = cv2.bitwise_and(img, img, mask=cv2.bitwise_not(mask))
+        else:
+            bitwise_mask = cv2.bitwise_and(img, img, mask=mask)
+
+        # changing to gray color space
+        gray = cv2.cvtColor(bitwise_mask, cv2.COLOR_BGR2GRAY)
+
+        # changing to black and white color space
+        gray_upper = 255
+        (dummy, blackAndWhiteImage) = cv2.threshold(gray, gray_lower, gray_upper, cv2.THRESH_BINARY)
+                #'~/data/sign_1/train'
+                #'~/data/sign_1/val'
+                #'~/data/sign_2/train'
+                #'~/data/sign_2/val'
+                #'~/data/sign_3/train'
+                #'~/data/sign_3/val'
+        if ret:
+            cur_time = datetime.now().strftime("%H%M%S")
+            capture = cv2.imwrite(sys.argv[1]+cur_time+".jpg", blackAndWhiteImage)
+            counter += 1
+            print("Image written to: " + sys.argv[1],capture)
+            print("You now have ",counter, " images in "+sys.argv[1])
+        else:
+            print("an error")
+
+
+
+        cv2.waitKey(1)
+        cap.release()
+
+
+cap.release()
+cv2.destroyAllWindows()
+</pre>
+<p>Model_Live_Tester:
+</p>
+<pre>import numpy as np
+import cv2
+import torch
+from torchvision import transforms
+import time
+from PIL import Image as image_pil
+
+lowH = 84
+highH = 179
+lowS = 54
+highS = 173
+lowV = 34
+highV = 148
+
+gray_lower = 32
+
+inverted = 0
+
+start_height = 200
+bottom_height = 450
+left_width = 0
+right_width = 800
+
+class_list = ['no_sign', 'sign_1', 'sign_2', 'sign_3']
+threshold = 0.70
+class_prediction = "None"
+
+def run():
+
+    cap = cv2.VideoCapture(0)
+    
+    if not cap.isOpened():
+        print("Cannot open camera")
+        exit()
+    
+    while True:
+        ret, frame = cap.read()
+        img = frame[start_height:bottom_height, left_width:right_width]
+    
+        # changing color space to HSV
+        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+        lower = np.array([lowH, lowS, lowV])
+        higher = np.array([highH, highS, highV])
+        mask = cv2.inRange(hsv, lower, higher)
+    
+        if inverted == 1:
+            bitwise_mask = cv2.bitwise_and(img, img, mask=cv2.bitwise_not(mask))
+        else:
+            bitwise_mask = cv2.bitwise_and(img, img, mask=mask)
+    
+        # changing to gray color space
+        gray = cv2.cvtColor(bitwise_mask, cv2.COLOR_BGR2GRAY)
+    
+        # changing to black and white color space
+        gray_upper = 255
+        (dummy, blackAndWhiteImage) = cv2.threshold(gray, gray_lower, gray_upper, cv2.THRESH_BINARY)
+        # Display the resulting frame
+    
+    
+        #point to the model location
+        model_loc = 'C:/Users/Robert Pack/Downloads/model_1.pb'
+        #getting the model ready
+        device = torch.device('cpu')
+        model = torch.load(model_loc, device)
+        data_transform = transforms.Compose([
+            transforms.Resize(256),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485,0.456,0.406],[.229,.224,.225])
+            ])
+    
+        
+        rgb = cv2.cvtColor(blackAndWhiteImage, cv2.COLOR_GRAY2RGB)
+        
+        frame_altered = image_pil.fromarray(rgb)
+    	# Performing data transformations to tensor
+        temp_tensor = data_transform(frame_altered)
+    	# altering to fit the input of the prediction pipeline (annoying artifict since it expects a batch of data
+            # rather than a single datapoint)
+        temp_tensor = temp_tensor.unsqueeze(0)
+            # Making the prediction
+        test_predicts = model(temp_tensor)
+            # Finding the index of the highest prediction
+        _, pred = torch.max(test_predicts,1)
+        
+        prob = round(float(test_predicts[0][int(pred[0])]),2)
+        #print(test_predicts)
+        if prob &gt;= threshold:
+            class_prediction = class_list[int(pred[0])]
+            print(class_prediction+" detected with ",prob," confidence")
+        else:
+            print("no class above threshold")
+                
+        cv2.imshow('frame',blackAndWhiteImage)
+        
+        if cv2.waitKey(1) == ord('q'):
+            break
+    
+    cap.release()
+    cv2.destroyAllWindows()
+    
+# When everything done, release the capture
+if __name__ == '__main__':
+    run()
+</pre>
+<p>Training_Pipeline:
+We got this code from Jacob Glenn Ayers and Team 1
+</p>
+<pre># Import statements
+from __future__ import print_function, division
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.optim import lr_scheduler
+import numpy as np
+import torchvision
+from torchvision import datasets, models, transforms
+import matplotlib.pyplot as plt
+import time
+import os
+import copy
+from datetime import datetime
+
+# Loading in the datasets
+# Data augmentation and normalization for training
+# Just normalization for validation
+data_transforms = {
+    'train': transforms.Compose([
+        transforms.RandomResizedCrop(224),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    ]),
+    'val': transforms.Compose([
+        transforms.Resize(256),
+        transforms.CenterCrop(224),
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    ]),
+}
+# Change this based on the data being worked on
+data_dir = '../test_images'
+
+image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x),
+                                          data_transforms[x])
+                  for x in ['train', 'val']}
+dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=4,
+                                             shuffle=True, num_workers=4)
+              for x in ['train', 'val']}
+dataset_sizes = {x: len(image_datasets[x]) for x in ['train', 'val']}
+class_names = image_datasets['train'].classes
+
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+inputs, classes = next(iter(dataloaders['train']))
+
+out = torchvision.utils.make_grid(inputs)
+
+# function to train the model using transfer learning of resnet18
+def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
+    since = time.time()
+
+    best_model_wts = copy.deepcopy(model.state_dict())
+    best_acc = 0.0
+
+    for epoch in range(num_epochs):
+        print('Epoch {}/{}'.format(epoch, num_epochs - 1))
+        print('-' * 10)
+
+        # Each epoch has a training and validation phase
+        for phase in ['train', 'val']:
+            if phase == 'train':
+                model.train()  # Set model to training mode
+            else:
+                model.eval()   # Set model to evaluate mode
+
+            running_loss = 0.0
+            running_corrects = 0
+
+            # Iterate over data.
+            for inputs, labels in dataloaders[phase]:
+                inputs = inputs.to(device)
+                labels = labels.to(device)
+
+                # zero the parameter gradients
+                optimizer.zero_grad()
+
+                # forward
+                # track history if only in train
+                with torch.set_grad_enabled(phase == 'train'):
+                    outputs = model(inputs)
+                    _, preds = torch.max(outputs, 1)
+                    loss = criterion(outputs, labels)
+
+                    # backward + optimize only if in training phase
+                    if phase == 'train':
+                        loss.backward()
+                        optimizer.step()
+
+                # statistics
+                running_loss += loss.item() * inputs.size(0)
+                running_corrects += torch.sum(preds == labels.data)
+            if phase == 'train':
+                scheduler.step()
+
+            epoch_loss = running_loss / dataset_sizes[phase]
+            epoch_acc = running_corrects.double() / dataset_sizes[phase]
+
+            print('{} Loss: {:.4f} Acc: {:.4f}'.format(
+                phase, epoch_loss, epoch_acc))
+
+            # deep copy the model
+            if phase == 'val' and epoch_acc &gt; best_acc:
+                best_acc = epoch_acc
+                best_model_wts = copy.deepcopy(model.state_dict())
+
+        print()
+
+    time_elapsed = time.time() - since
+    print('Training complete in {:.0f}m {:.0f}s'.format(
+        time_elapsed // 60, time_elapsed % 60))
+    print('Best val Acc: {:4f}'.format(best_acc))
+
+    # load best model weights
+    model.load_state_dict(best_model_wts)
+    return model
+
+
+# Performing the Training
+model_ft = models.resnet18(pretrained=True)
+num_ftrs = model_ft.fc.in_features
+# Here the size of each output sample is set to 2.
+# Alternatively, it can be generalized to nn.Linear(num_ftrs, len(class_names)).
+# This would need to be changed to 5
+print("Relevant Classes -\n")
+print(class_names)
+model_ft.fc = nn.Linear(num_ftrs, len(class_names))
+
+model_ft = model_ft.to(device)
+
+criterion = nn.CrossEntropyLoss()
+
+# Observe that all parameters are being optimized
+optimizer_ft = optim.SGD(model_ft.parameters(), lr=0.001, momentum=0.9)
+
+# Decay LR by a factor of 0.1 every 7 epochs
+exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=7, gamma=0.1)
+
+model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler,
+                       num_epochs=10)
+
+# Saving the model
+cur_time = datetime.now().strftime("%H%M%S")
+torch.save(model_ft,"model_"+cur_time+".pb")
+</pre>
+<p>Speed_Node:
+Node we used to test publishing to the lane_guidence_node to change speed
+</p>
+<pre>import rclpy
+from rclpy.node import Node
+from std_msgs.msg import Float32, Int32, Int32MultiArray
+import cv2
+from cv_bridge import CvBridge
+import time
+import os
+
+NODE_NAME = 'speed_node'
+SIGN_TOPIC_NAME = '/speed'
+
+class SignReader(Node):
+    def __init__(self):
+        super().__init__(NODE_NAME)
+        self.speed_publisher = self.create_publisher(Float32, SIGN_TOPIC_NAME, 10)
+        self.speed_publisher
+        self.speed_num = Float32()
+        self.speed_num.data = 1.0
+        print('speed topic started \n')
+        self.frequency = 1
+        self.timer_period = 1 / self.frequency
+        self.timer = self.create_timer(self.timer_period, self.read)  # Create the timer
+
+        # self.current_speed=None
+        #self.sign_detected = False
+
+
+    def read(self):
+        print('trying input \n')
+        try:
+            num_in = float(input("Set Speed: "))
+            if num_in &lt; 0.0:
+                num_in = 0.0
+            elif num_in &gt; 2.0:
+                num_in = 2.0
+            else:
+                pass
+            
+            self.speed_num.data = num_in
+            self.speed_publisher.publish(self.speed_num)
+
+        except KeyboardInterrupt:
+            self.speed_num.data = 1.0
+            self.speed_publisher.publish(self.speed_num)
+
+
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    sign_reader_publisher = SignReader()
+    try:
+        rclpy.spin(sign_reader_publisher)
+        sign_reader_publisher.destroy_node()
+        rclpy.shutdown()
+    except KeyboardInterrupt:
+        sign_reader_publisher.get_logger().info(f'Shutting down {NODE_NAME}...')
+        time.sleep(1)
+        sign_reader_publisher.destroy_node()
+        rclpy.shutdown()
+        sign_reader_publisher.get_logger().info(f'{NODE_NAME} shut down successfully.')
+
+
+if __name__ == '__main__':
+    main()
+
+</pre>
+<!-- 
+NewPP limit report
+Cached time: 20220521152525
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.070 seconds
+Real time usage: 0.079 seconds
+Preprocessor visited node count: 47/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 20949/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:1141-0!canonical and timestamp 20220521152525 and revision id 8337. Serialized with JSON.
+ -->
+</div>
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20220522081758/https://guitar.ucsd.edu/maeece148/index.php/2021FallTeam8">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

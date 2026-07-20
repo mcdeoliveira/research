@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2018SpringTeam3 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2018SpringTeam3</h1>
+      <p>The goal of this project is to expand upon the previous quarter's group, <a class="external text" href="Project_gps.html" rel="nofollow">Project GPS</a>. We wish to increase the accuracy and reduce the variance so that the car will drive a straight path to a given waypoint. Obstacle avoidance will also be implemented via ultrasonic sensors.
+</p>
+<div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Spring_2018"><span class="tocnumber">1.1</span> <span class="toctext">Spring 2018</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Project_Links"><span class="tocnumber">2</span> <span class="toctext">Project Links</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#The_Idea"><span class="tocnumber">3</span> <span class="toctext">The Idea</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Hardware"><span class="tocnumber">4</span> <span class="toctext">Hardware</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Devices"><span class="tocnumber">4.1</span> <span class="toctext">Devices</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="#Raspberry_Pi_3"><span class="tocnumber">4.1.1</span> <span class="toctext">Raspberry Pi 3</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Arduino_Micro"><span class="tocnumber">4.1.2</span> <span class="toctext">Arduino Micro</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-9"><a href="#Wiring"><span class="tocnumber">4.2</span> <span class="toctext">Wiring</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#GPS"><span class="tocnumber">5</span> <span class="toctext">GPS</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#GPS_Test_Script"><span class="tocnumber">5.1</span> <span class="toctext">GPS Test Script</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#GPS_Visualizer"><span class="tocnumber">5.2</span> <span class="toctext">GPS Visualizer</span></a>
+<ul>
+<li class="toclevel-3 tocsection-13"><a href="#Installation"><span class="tocnumber">5.2.1</span> <span class="toctext">Installation</span></a>
+<ul>
+<li class="toclevel-4 tocsection-14"><a href="#Python"><span class="tocnumber">5.2.1.1</span> <span class="toctext">Python</span></a></li>
+<li class="toclevel-4 tocsection-15"><a href="#Google_Maps_API"><span class="tocnumber">5.2.1.2</span> <span class="toctext">Google Maps API</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-16"><a href="#Running"><span class="tocnumber">5.2.2</span> <span class="toctext">Running</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#Format"><span class="tocnumber">5.2.3</span> <span class="toctext">Format</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-18"><a href="#IMU"><span class="tocnumber">6</span> <span class="toctext">IMU</span></a></li>
+<li class="toclevel-1 tocsection-19"><a href="#Ultrasonics_Object_Detection"><span class="tocnumber">7</span> <span class="toctext">Ultrasonics Object Detection</span></a></li>
+<li class="toclevel-1 tocsection-20"><a href="#Conclusion"><span class="tocnumber">8</span> <span class="toctext">Conclusion</span></a>
+<ul>
+<li class="toclevel-2 tocsection-21"><a href="#Possible_Improvements"><span class="tocnumber">8.1</span> <span class="toctext">Possible Improvements</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-22"><a href="#Resources"><span class="tocnumber">9</span> <span class="toctext">Resources</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<h3><span class="mw-headline" id="Spring_2018">Spring 2018</span></h3>
+<ul><li>Simon Fong,            <i>Electrical Engineering BS</i></li>
+<li>Saurabh Kulkarni,    <i>Computer Science BS</i> </li>
+<li>Kevin Tan,                 <i>Aerospace Engineering BS</i> </li>
+<li>Yingqiao Jiang,         <i>Mechanical Engineering BS</i></li></ul>
+<h2><span class="mw-headline" id="Project_Links">Project Links</span></h2>
+<ul><li><a class="external text" href="https://github.com/simonfong6/not-kiwi-bot" rel="nofollow">GitHub</a></li></ul>
+<h2><span class="mw-headline" id="The_Idea">The Idea</span></h2>
+<p>Following the build and training of the autonomous vehicle to drive laps around the track, Team 3 decided to pursue a project involving autonomous navigation. The goal was for the car to be able to drive to a given input trajectory. Utilizing a GPS system and an IMU, a control system was implemented to minimize the error between the car's angle and the angle to the coordinate it should be heading towards.
+</p>
+<div class="embedvideo autoResize" style=""><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/DWIevl_gdpI?" width="640"></iframe></div></div>
+<h2><span class="mw-headline" id="Hardware">Hardware</span></h2>
+<h3><span class="mw-headline" id="Devices">Devices</span></h3>
+<h4><span class="mw-headline" id="Raspberry_Pi_3">Raspberry Pi 3</span></h4>
+<ul><li>PWM Controller (PCA9685) via I2C</li>
+<li>GPS (GP-20U7) via Serial</li>
+<li>Arduino Micro via Seruial</li></ul>
+<h4><span class="mw-headline" id="Arduino_Micro">Arduino Micro</span></h4>
+<ul><li> 2 Ultrasonics (HC-SR04) via Digital I/O</li></ul>
+<p><br/>
+</p><p><br/>
+</p>
+<h3><span class="mw-headline" id="Wiring">Wiring</span></h3>
+<p><a class="image" href="File:SP18_T03_full_wiring.jpg.html"><img alt="SP18 T03 full wiring.jpg" height="861" loading="lazy" src="https://web.archive.org/web/20200807183740im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/8e/SP18_T03_full_wiring.jpg/1000px-SP18_T03_full_wiring.jpg" width="1000"/></a>
+</p>
+<h2><span class="mw-headline" id="GPS">GPS</span></h2>
+<p>Building off of ProjectGPS, the <i>gps.py</i> and <i>planner.py</i> parts were added to the donkeycar system, with modifications made by the team.
+</p>
+<h3><span class="mw-headline" id="GPS_Test_Script">GPS Test Script</span></h3>
+<pre><i>gps_script.py</i>
+</pre>
+<p>This script can run and output a <i>data.json</i> that holds GPS points in JSON format the visualizer can show on a map.
+</p>
+<h3><span class="mw-headline" id="GPS_Visualizer">GPS Visualizer</span></h3>
+<p><a class="external text" href="http://not-kiwi-bot.mothakes.com/" rel="nofollow">Visualizer</a>
+</p>
+<h4><span class="mw-headline" id="Installation">Installation</span></h4>
+<h5><span class="mw-headline" id="Python">Python</span></h5>
+<p>Install python web development framework.
+</p>
+<pre>pip install flask
+</pre>
+<h5><span class="mw-headline" id="Google_Maps_API">Google Maps API</span></h5>
+<ol><li>Sign up for an account on Google Cloud Platform.</li>
+<li>Get API Key</li>
+<li>Change the <i>key=</i> in <i>index.html</i></li></ol>
+<pre>&lt;script src="<a class="external free" href="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6JltnkeQh3hVYnLu1X4HB9yt5mZ8vTrg&amp;callback=initMap" rel="nofollow">https://maps.googleapis.com/maps/api/js?key=AIzaSyB6JltnkeQh3hVYnLu1X4HB9yt5mZ8vTrg&amp;callback=initMap</a>"
+   async defer&gt;&lt;/script&gt;
+</pre>
+<p>Helpful tutorial <a class="external text" href="https://developers.google.com/maps/documentation/embed/guide" rel="nofollow">here</a>.
+</p><p><br/>
+</p>
+<h4><span class="mw-headline" id="Running">Running</span></h4>
+<ol><li>Update <i>data.json</i> so that all the GPS points that you want to show up.</li>
+<li>Run the following the command below.</li>
+<li>Go to the device's IP address at port 3148 using a web browser.</li></ol>
+<p>Command for 2
+</p>
+<pre>python server.py
+</pre>
+<p>After 2, you should see this:
+</p>
+<pre> * Serving Flask app "server" (lazy loading)
+ * Environment: production
+  WARNING: Do not use the development server in a production environment.
+  Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on <a class="external free" href="http://0.0.0.0:3148/" rel="nofollow">http://0.0.0.0:3148/</a> (Press CTRL+C to quit)
+</pre>
+<p>Put <i><a class="external free" href="http://0.0.0.0:3148/" rel="nofollow">http://0.0.0.0:3148/</a></i> in your web browser while on the same network as the device and replace <b>0.0.0.0</b> with the device's <b>IP address</b>.
+</p>
+<h4><span class="mw-headline" id="Format">Format</span></h4>
+<pre>data.json
+</pre>
+<pre>{
+   "markers": [
+       {
+           "position": {
+               "lat": 32.88126233333333, 
+               "lng": -117.23551116666667
+           }, 
+           "label": "Start: 0"
+       }, 
+       {
+           "position": {
+               "lat": 32.881258833333334, 
+               "lng": -117.23551266666666
+           }, 
+           "label": "1"
+       }
+ ]
+}
+</pre>
+<h2><span class="mw-headline" id="IMU">IMU</span></h2>
+<p>The IMU given utilized the InvenSense MPU 92/65 9-axis sensor. The IMU gave readings for the acceleration, magnetic field, and rate gyros for the x, y, and z directions, and came equipped with a Digital Motion Processor (DMP) to calculate motion algorithms that filter variation from noise and magnetic drift. 
+</p><p>We found a C <a class="external text" href="https://github.com/StrawsonDesign/rc_mpu" rel="nofollow">library</a> that uses the DMP in the 92/65 sensor to read the data from the IMU to the Raspberry Pi.
+</p><p>A Python <a class="external text" href="https://github.com/mcdeoliveira/rcmpupy" rel="nofollow">library</a> was provided by Professor de Oliveira to help us integrate that functionality into the donkeycar framework.
+</p><p>Unfortunately, the problem with this setup was that the heading would drift far too quickly for the absolute angle reading to be useful for intervals of time longer than a few seconds. This could be because the library had no calibration files for the magnetometer nor the gyroscope. We were not able to figure out to create these calibration files, but we believe it has something to do with the calibration scripts in the rc_mpu C library. You use the 'make' command, which will generate executables and store them in the 'bin/' directory. That was all we could figure out.
+</p><p>Professor de Oliveira told us we could potentially use the IMU for short periods of time and use the GPS to determine the correct heading between GPS readings, but we think it's far better to simply draw straight lines between GPS readings.
+</p>
+<h2><span class="mw-headline" id="Ultrasonics_Object_Detection">Ultrasonics Object Detection</span></h2>
+<p>Another improvement to the ProjectGPS frame is the utilization of ultrasonic sensors for the purpose of object avoidance. The team was able to achieve successful incorporation of the ultrasonic sensors as a donkeycar part.
+</p><p>We used the HC-SR04 sensor for this. We used two of these; initially, both were faced parallel to the ground but a few degrees off the line of symmetry of the car. However, this setup was not able to detect obstacles that were very narrow at the level of the car - for example, human legs. Thus, we placed both sensors along the line of symmetry, with one facing low for obstacles such as curbs, and the other facing up looking for obstacles like people. 
+</p><p>We also implemented a basic low-pass filter to smoothen the potentially noisy data that the ultrasonics would sometimes get due to moving obstacles.
+</p>
+<pre>new_distance = WEIGHT*old_distance + (1-WEIGHT)*new_reading
+</pre>
+<p>As WEIGHT goes up, the "filtering" becomes stronger and the data becomes less sensitive to sudden and unsustained changes in the reading. We turned this up to 0.3 because the car was quite slow and had no need to be able to react quickly. You may want to turn this down if you decide to have the car drive faster.
+</p><p>Here is a video demo of the ultrasonic sensors on our car:
+</p>
+<div class="embedvideo autoResize" style=""><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/ZLw_fLTwAfA?" width="640"></iframe></div></div>
+<h2><span class="mw-headline" id="Conclusion">Conclusion</span></h2>
+<p>From multiple attempts of correction and filtering, the car was still unable to perform as desired when incorporating data from the IMU. The overall consensus reached by Team03 is that the utilization of the MPU9250 only worsened the performance of the GPS navigation.
+</p>
+<h3><span class="mw-headline" id="Possible_Improvements">Possible Improvements</span></h3>
+<ul><li>Buying a better IMU such as the <a class="external text" href="https://www.sparkfun.com/products/13284" rel="nofollow">LSM9DS1</a></li>
+<li>Implement better filtering algorithms</li>
+<li>Incorporate Computer Vision</li></ul>
+<h2><span class="mw-headline" id="Resources">Resources</span></h2>
+<ul><li><a class="external text" href="https://github.com/StrawsonDesign/rc_mpu" rel="nofollow">MPU C Library</a></li>
+<li><a class="external text" href="https://github.com/mcdeoliveira/rcmpupy" rel="nofollow">MPU Python Library</a></li>
+<li><a class="external text" href="Project_gps.html" rel="nofollow">Project GPS</a></li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20200807183740
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.016 seconds
+Real time usage: 0.018 seconds
+Preprocessor visited node count: 95/1000000
+Preprocessor generated node count: 130/1000000
+Post‐expand include size: 52/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:75-0!*!*!!en!5!* and timestamp 20200807183740 and revision id 822
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200807183740/https://guitar.ucsd.edu/maeece148/index.php/2018SpringTeam3">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

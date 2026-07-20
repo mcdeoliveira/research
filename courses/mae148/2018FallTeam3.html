@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2018FallTeam3 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2018FallTeam3</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Team_Members"><span class="tocnumber">2</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Mechanical"><span class="tocnumber">3</span> <span class="toctext">Mechanical</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Plate_and_Camera_Mount_Design"><span class="tocnumber">3.1</span> <span class="toctext">Plate and Camera Mount Design</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Assembly"><span class="tocnumber">4</span> <span class="toctext">Assembly</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Components"><span class="tocnumber">4.1</span> <span class="toctext">Components</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Wiring_Process"><span class="tocnumber">4.2</span> <span class="toctext">Wiring Process</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#Wiring_Schematic"><span class="tocnumber">4.2.1</span> <span class="toctext">Wiring Schematic</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Soldering"><span class="tocnumber">4.2.2</span> <span class="toctext">Soldering</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="#Autonomous_Driving_using_Neural_Network_and_GPU_Cluster"><span class="tocnumber">4.3</span> <span class="toctext">Autonomous Driving using Neural Network and GPU Cluster</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#Training"><span class="tocnumber">4.3.1</span> <span class="toctext">Training</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="#Project"><span class="tocnumber">4.4</span> <span class="toctext">Project</span></a>
+<ul>
+<li class="toclevel-3 tocsection-13"><a href="#Obstacle_Avoidance_using_Structure_Depth_Sensor"><span class="tocnumber">4.4.1</span> <span class="toctext">Obstacle Avoidance using Structure Depth Sensor</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#Neural_Network"><span class="tocnumber">4.4.2</span> <span class="toctext">Neural Network</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#New_Camera_Mount"><span class="tocnumber">4.4.3</span> <span class="toctext">New Camera Mount</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Issues_with_Dark_IR_images"><span class="tocnumber">4.4.4</span> <span class="toctext">Issues with Dark IR images</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#Issues_with_minimum_depth_distance_readings"><span class="tocnumber">4.4.5</span> <span class="toctext">Issues with minimum depth distance readings</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="#Training_2"><span class="tocnumber">4.4.6</span> <span class="toctext">Training</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#OpenNI2"><span class="tocnumber">4.4.7</span> <span class="toctext">OpenNI2</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="#Integration_with_Donkey"><span class="tocnumber">4.4.8</span> <span class="toctext">Integration with Donkey</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#Creating_the_Part"><span class="tocnumber">4.4.9</span> <span class="toctext">Creating the Part</span></a></li>
+<li class="toclevel-3 tocsection-22"><a href="#Driving"><span class="tocnumber">4.4.10</span> <span class="toctext">Driving</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1><span class="mw-headline" id="Introduction">Introduction</span></h1>
+<p>Our project mainly concentrates on the donkey car's ability to avoid the object on its way. In real life, car is the most popular vehicle in the world, and naturally, people drive their cars every single day. Of course, there will be days when they are absolutely exhausted after a long day at work, and accidents might happen. With the thought of reducing the possibilities of car accident and improving human life, we attempted to develop the car function to avoid the object by using structure depth sensors and camera.
+</p>
+<h1><span class="mw-headline" id="Team_Members">Team Members</span></h1>
+<p>Tejas Bhakta 
+</p><p>Walter Zimmer
+</p><p>Alex Graff
+</p><p>Kevin Nguyen
+</p>
+<h1><span class="mw-headline" id="Mechanical">Mechanical</span></h1>
+<h3><span class="mw-headline" id="Plate_and_Camera_Mount_Design">Plate and Camera Mount Design</span></h3>
+<dl><dd>The camera mount was designed to be as simple as possible. This meant keeping the angle static--a dynamic camera mount with variable angle would have taken longer to design well--and minimizing assembly requirements. A single part with few bolts/screws was the solution. The camera angle turned out to be relatively reasonable. This was ensured in the base sketch of the part in Solidworks, where a line was drawn from the location on the mount where the camera sits down to the ground (measured in real life from the top of the plate). This represented the line of sight of the Raspberry Pi camera and indicated the camera would be looking about 11 inches in front of the car's bumper. </dd></dl>
+<dl><dd>A similar method was utilized for the design of the new camera mount that held both the Pi camera and the Structure depth sensor used in our team's <a class="external text" href="2018FallTeam3.html#Project" rel="nofollow">project</a>.</dd></dl>
+<table style="margin: 0 auto;">
+<tr>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:232px;"><a class="image" href="File:Team3_car_plate.PNG.html"><img alt="" class="thumbimage" height="335" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/6f/Team3_car_plate.PNG/230px-Team3_car_plate.PNG" width="230"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team3_car_plate.PNG.html" title="Enlarge"></a></div>CAD file of acrylic car plate. Slots were used for mounting posts due to unknown tolerance in manufacturing methods.</div></div></div>
+</td>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:232px;"><a class="image" href="File:Team3_camera_mount_1.PNG.html"><img alt="" class="thumbimage" height="331" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/c3/Team3_camera_mount_1.PNG/230px-Team3_camera_mount_1.PNG" width="230"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team3_camera_mount_1.PNG.html" title="Enlarge"></a></div>CAD file of 3D printed Raspberry Pi Camera mount. Mount was made with a static angle as minimal assembly (screws, bolts, number of parts) was desired.</div></div></div>
+</td>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:502px;"><a class="image" href="File:Team3_camera_mount_2.PNG.html"><img alt="" class="thumbimage" height="359" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/2/23/Team3_camera_mount_2.PNG/500px-Team3_camera_mount_2.PNG" width="500"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team3_camera_mount_2.PNG.html" title="Enlarge"></a></div>Camera geometry shows Raspberry Pi camera line of sight (diagonal dashed line) and bumper plane (selected line). Pi camera was pointing at a point ~11" in front of car.</div></div></div>
+</td></tr></table>
+<h1><span class="mw-headline" id="Assembly">Assembly</span></h1>
+<h3><span class="mw-headline" id="Components">Components</span></h3>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Board.png.html"><img alt="Puzzle globe" class="thumbimage" height="362" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/5e/Board.png/300px-Board.png" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Board.png.html" title="Enlarge"></a></div>PWM Controller</div></div></div>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Raspberry.png.html"><img alt="Puzzle globe" class="thumbimage" height="263" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/1f/Raspberry.png/300px-Raspberry.png" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Raspberry.png.html" title="Enlarge"></a></div>Raspberry Pi</div></div></div></div>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Motor.png.html"><img alt="Puzzle globe" class="thumbimage" height="290" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/0/0f/Motor.png/300px-Motor.png" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Motor.png.html" title="Enlarge"></a></div>Motor</div></div></div>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a class="image" href="File:ServoMotor.png.html"><img alt="Puzzle globe" class="thumbimage" height="225" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/2/2d/ServoMotor.png/300px-ServoMotor.png" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:ServoMotor.png.html" title="Enlarge"></a></div>Servo Motor</div></div></div></div>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Battery.png.html"><img alt="" class="thumbimage" height="164" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/6d/Battery.png/300px-Battery.png" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Battery.png.html" title="Enlarge"></a></div>Battery</div></div></div>
+<p><br clear="all"/>
+</p>
+<h3><span class="mw-headline" id="Wiring_Process">Wiring Process</span></h3>
+<h4><span class="mw-headline" id="Wiring_Schematic">Wiring Schematic</span></h4>
+<dl><dd>Based on the instruction, the wiring schematic was made to ensure that the wiring process was carefully done without crucial mistakes which might lead to short circuit.</dd></dl>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:752px;"><a class="image" href="File:Team_3_Schematic_Final.png.html"><img alt="" class="thumbimage" height="498" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/6a/Team_3_Schematic_Final.png/750px-Team_3_Schematic_Final.png" width="750"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team_3_Schematic_Final.png.html" title="Enlarge"></a></div>Team 3 Wiring Schematic</div></div></div></div>
+<h4><span class="mw-headline" id="Soldering">Soldering</span></h4>
+<p>The soldering was essential for the whole circuit to work. If the soldered connection was bad, it might short-circuit and burn valuable parts. Thus, every step was carefully done throughout the entire wiring process. 
+Unfortunately, somehow, one of the bad connections actually short-circuited and burned the relay at the end of week 5. However, the car was assembled and wired back again in time.
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Wire.png.html"><img alt="" class="thumbimage" height="487" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/77/Wire.png/300px-Wire.png" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Wire.png.html" title="Enlarge"></a></div>Soldered Connection</div></div></div>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Wire2.png.html"><img alt="" class="thumbimage" height="423" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/39/Wire2.png/300px-Wire2.png" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Wire2.png.html" title="Enlarge"></a></div>Soldered Connection</div></div></div>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Team3_relay_short.jpg.html"><img alt="" class="thumbimage" height="225" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/7f/Team3_relay_short.jpg/300px-Team3_relay_short.jpg" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team3_relay_short.jpg.html" title="Enlarge"></a></div>Short circuit on relay</div></div></div>
+<p><br clear="all"/>
+</p>
+<h2><span class="mw-headline" id="Autonomous_Driving_using_Neural_Network_and_GPU_Cluster">Autonomous Driving using Neural Network and GPU Cluster</span></h2>
+<h3><span class="mw-headline" id="Training">Training</span></h3>
+<p>See the autonomous driving <a class="external text" href="https://drive.google.com/open?id=1-oFOgb0rNqNyUgWAD9PH9hT5t0LVcMe2/" rel="nofollow">here</a>:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:387px;"><div class="MediaTransformError" style="width: 385px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:7.png.html" title="Enlarge"></a></div>Indoor</div></div></div></div>
+<h2><span class="mw-headline" id="Project">Project</span></h2>
+<h3><span class="mw-headline" id="Obstacle_Avoidance_using_Structure_Depth_Sensor">Obstacle Avoidance using Structure Depth Sensor</span></h3>
+The structure depth sensor is used a 3D scanner in this project. With the ability to capture the dense geometry in real-time, the structure depth sensor allows the Raspberry Pi to recognize the object on the way of the car. Specifically, from the image of the structure depth sensor and video from the camera, the Raspberry Pi extracts the image frame by frames from the video, and with the neural networks, the donkey car will be able to recognize the object due to the repetition of objects in training. Thus, the car will be able to recognize the objects on its path and move away from them. <div class="thumb tright"><div class="thumbinner" style="width:252px;"><a class="image" href="File:Team3_shaun_structure.png.html"><img alt="" class="thumbimage" height="176" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/ed/Team3_shaun_structure.png/250px-Team3_shaun_structure.png" width="250"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team3_shaun_structure.png.html" title="Enlarge"></a></div>Scan of Alex's friend using Structure sensor with Skanect application</div></div></div>
+<p>The original idea was to use the images from the Pi camera (RGB) combined with the depth information from the Structure sensor, and use this data to train a model on the Neural Network. It theory, this could be as simple as increasing the dimension of the image array sent to the neural network from 3 layers deep (RGB) to 4 layers (RGB &amp; depth). In practice, being able to combine and align the two images both in terms of position and resolution matching, was enough of a hassle to consider a different method. 
+</p><p>The Structure sensor has a built in IR camera and the SDK has a built in function to align the images from the IR camera and the depth sensor. Since color information would potentially be irrelevant with the introduction of depth information, the IR camera was used in place of the Pi camera.
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Structure_Sensor.png.html"><img alt="" class="thumbimage" height="182" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/58/Structure_Sensor.png/300px-Structure_Sensor.png" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Structure_Sensor.png.html" title="Enlarge"></a></div>Structure Sensor</div></div></div>
+<p><br clear="all"/>
+</p>
+<h3><span class="mw-headline" id="Neural_Network">Neural Network</span></h3>
+<p>As mentioned above, the neural networks plays an essential part for donkey car to recognize the object in its path, so it is important to understand the fundamental concept about neural network. First of all, the neural network is an artificial intelligence. It is acting like a brain, but how it operates is different from a biological brain. Apparently, its structure contains several nodes connected together like neurons in a brain, and each node can transmit signal from one to another. However, its main ability is <b>visual pattern recognition</b>. In the other word, visual pattern recognition simply means learning from examples. For instance, the neural networks learn from car training, and throughout multiple training examples, it develops a rule or an idea that recognizes the pattern of the car, thereby driving the car on its own without hitting the cones in the same path as training.
+</p>
+<h3><span class="mw-headline" id="New_Camera_Mount">New Camera Mount</span></h3>
+<p>Occipital provides CAD files (here, under <a class="external text" href="https://structure.io/developers" rel="nofollow">"Download Starter CAD"</a>) for developers who would like to 3D print or create their own mounts for the Structure sensor. They also provide instructions for position and tolerance for combined usage with visual-light cameras. 
+</p>
+<table style="margin: 0 auto;">
+<tr>
+<td> <div class="thumb tright"><div class="thumbinner" style="width:252px;"><a class="image" href="File:Team3_structure_bracket.PNG.html"><img alt="" class="thumbimage" height="171" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/68/Team3_structure_bracket.PNG/250px-Team3_structure_bracket.PNG" width="250"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team3_structure_bracket.PNG.html" title="Enlarge"></a></div>Structure sensor base bracket provided by Occiptal</div></div></div>
+</td>
+<td> <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:252px;"><a class="image" href="File:Team3_structure_mount_withSensor.PNG.html"><img alt="" class="thumbimage" height="247" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/dc/Team3_structure_mount_withSensor.PNG/250px-Team3_structure_mount_withSensor.PNG" width="250"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team3_structure_mount_withSensor.PNG.html" title="Enlarge"></a></div>New camera mount designed to hold both Raspberry Pi camera and Structure sensor.</div></div></div></div>
+</td>
+<td> <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:402px;"><a class="image" href="File:Team3_camera_mount_progression.PNG.html"><img alt="" class="thumbimage" height="187" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/a/a2/Team3_camera_mount_progression.PNG/400px-Team3_camera_mount_progression.PNG" width="400"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team3_camera_mount_progression.PNG.html" title="Enlarge"></a></div>Progression of camera mounts: (Left) Pi camera only; (Middle) 1st iteration for structure mount; (Right) Final iteration when decided not to use Pi camera at all for depth training</div></div></div></div>
+</td></tr></table>
+<h3><span class="mw-headline" id="Issues_with_Dark_IR_images">Issues with Dark IR images</span></h3>
+<p>The picture below shows a side-by-side of the IR image captured by the IR camera on the Structure sensor (left) and the depth image created (right). Clearly, the images are fairly dark, and potentially not all depth data is being captured. To increase autonomous driving performance, it was suggested we build a small circuit to power some IR LEDs that can light up the environment in front of the car with more IR-wavelength light. 940nm IR LEDs were used. 
+</p>
+<table style="margin: 0 auto;">
+<tr>
+<td> <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:402px;"><a class="image" href="File:Team3_IR_dark.jpg.html"><img alt="" class="thumbimage" height="150" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/3e/Team3_IR_dark.jpg/400px-Team3_IR_dark.jpg" width="400"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team3_IR_dark.jpg.html" title="Enlarge"></a></div>(Left) IR image; (Right) depth point cloud</div></div></div></div>
+</td>
+<td> <div class="center"><div class="floatnone"><a class="image" href="File:Team3_IR_circuit_schem_2.png.html"><img alt="Team3 IR circuit schem 2.png" height="388" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/2/23/Team3_IR_circuit_schem_2.png/400px-Team3_IR_circuit_schem_2.png" width="400"/></a></div></div>
+</td></tr></table>
+<h3><span class="mw-headline" id="Issues_with_minimum_depth_distance_readings">Issues with minimum depth distance readings</span></h3>
+<p>The Structure Sensor camera has a minimum reading distance of about 1 foot. This means every obstacle/line must be at least 1 foot away from the sensor in order to be properly read. The final iteration of the camera mount solves this issue by making the focus point 2 feet away. 
+</p>
+<h3><span class="mw-headline" id="Training_2">Training</span></h3>
+<p>The goal of training the car is to collect the data as much as possible. With our light levels and angles optimized so that the sensor is able to detect the lane lines correctly, we needed to collect as much data as possible. This meant training laps indoors and outdoors multiple times, with different cone setups.
+</p>
+<h3><span class="mw-headline" id="OpenNI2">OpenNI2</span></h3>
+<p>OpenNI2 was a difficult SDK to get started with. In order to begin, we needed to install the OpenNI2 SDK binary for our Rasberry Pi. Since our Pi is a Linux device with an ARM processor, we needed to install the OpenNI 2.2.0.33 Beta (ARM) package, which is usually as straight-forward as running the setup and Make file. However, this release from Structure was bugged and gave us errors saying that a library we needed was not there, when that library was there.
+</p><p>In order to try to resolve this we simply cloned the uncompiled GitHub repo and compiled it locally on our Pi. Luckily, the GitHub repo did not have the same bug, and we were able to proceed. This mishap from Occipital used up a lot of our time, so if you are setting this sensor up for use on a Pi, be sure to use the GitHub repo and not the ARM SDK binary Occiptal provides!
+</p>
+<table style="margin: 0 auto;">
+<tr>
+<td> <div class="center"><div class="floatnone"><a class="image" href="File:1.png.html"><img alt="1.png" height="127" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/4/4a/1.png/300px-1.png" width="300"/></a></div></div>
+</td></tr></table>
+<h3><span class="mw-headline" id="Integration_with_Donkey">Integration with Donkey</span></h3>
+<p>In order to use our Structure Sensor with the Donkey Framework which is written in Python, we needed to install the proper Python bindings for OpenNI2. This allows us to call the functions needed to operate the camera in a Donkey Framework part, which we created. 
+</p>
+<table style="margin: 0 auto;">
+<tr>
+<td> <div class="center"><div class="floatnone"><a class="image" href="File:2.png.html"><img alt="2.png" height="170" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/fb/2.png/400px-2.png" width="400"/></a></div></div>
+</td></tr></table>
+<h3><span class="mw-headline" id="Creating_the_Part">Creating the Part</span></h3>
+<p>We use these bindings to get a infrared and depth array, then we concatenate them and input it to the neural network as a multidimensional array, mimicking how a normal Camera would input the array (as a 3D RGB array). We need to add a part so Donkey can collect data with the Structure Sensor every time we drive.
+</p><p>You can view the part we made for the Donkey Framework 
+<a class="external text" href="https://github.com/walzimmer/donkey/blob/master/donkeycar/parts/structure_sensor_part.py/" rel="nofollow">here</a>:
+</p>
+<table style="margin: 0 auto;">
+<tr>
+<td> <div class="center"><div class="floatnone"><a class="image" href="File:3.png.html"><img alt="3.png" height="511" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/10/3.png/400px-3.png" width="400"/></a></div></div>
+</td>
+<td> <div class="center"><div class="floatnone"><a class="image" href="File:4.png.html"><img alt="4.png" height="292" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/0/09/4.png/400px-4.png" width="400"/></a></div></div>
+</td></tr></table>
+<h3><span class="mw-headline" id="Driving">Driving</span></h3>
+<p>Watch footage of the driving <a class="external text" href="https://drive.google.com/file/d/1U-H881WJWLKJID9tY8qtpattQRFj7ggR/view?usp=sharing/" rel="nofollow">here</a>:
+</p><p>While to the human eye, this may not seem like anything discernible, to our car, it sees the lines with the Infrared camera and the cones with the Depth camera. After enough training, our model will be able to follow the lane lines, and avoid the cones at the proper time because of Depth data. 
+</p><p>Obstacle avoidance can be done with a normal RGB camera, but turns to avoid the obstacle can be off-timed sometimes and cause accidents because of it. Avoidance maneuvers trained on the model without depth information could screw up with changing cone sizes (taller cones look closer than the cones used to train, and shorter cones look farther). With the depth sensor, this cannot happen since it is able to see distance data as well, and can turn at the right moment every time.
+</p><p>This footage is on the indoor track. Because of rain, lighting, and scheduling, we were unable to train a model outside in time before next quarters students needed the Structure Sensor .
+</p>
+<table style="margin: 0 auto;">
+<tr>
+<td> <div class="center"><div class="floatnone"><a class="image" href="File:6.png.html"><img alt="6.png" height="284" loading="lazy" src="https://web.archive.org/web/20200807181214im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/f1/6.png/400px-6.png" width="400"/></a></div></div>
+</td></tr></table>
+<!-- 
+NewPP limit report
+Cached time: 20200807181214
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.022 seconds
+Real time usage: 0.026 seconds
+Preprocessor visited node count: 89/1000000
+Preprocessor generated node count: 98/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:147-0!*!*!!en!5!* and timestamp 20200807181214 and revision id 1885
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200807181214/https://guitar.ucsd.edu/maeece148/index.php/2018FallTeam3">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2022WinterTeam5 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2022WinterTeam5</h1>
+      <div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_5:_Charging_On_The_Go"><span class="tocnumber">1</span> <span class="toctext">Team 5: Charging On The Go</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Team_Members"><span class="tocnumber">2</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Project_Overview"><span class="tocnumber">3</span> <span class="toctext">Project Overview</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Gantt_Chart"><span class="tocnumber">4</span> <span class="toctext">Gantt Chart</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Autonomous_Vehicles"><span class="tocnumber">5</span> <span class="toctext">Autonomous Vehicles</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#CAD/Mechanical_Designs"><span class="tocnumber">5.1</span> <span class="toctext">CAD/Mechanical Designs</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Wiring"><span class="tocnumber">5.2</span> <span class="toctext">Wiring</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#DonkeyCar"><span class="tocnumber">6</span> <span class="toctext">DonkeyCar</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#3_Laps_Video"><span class="tocnumber">6.1</span> <span class="toctext">3 Laps Video</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#OpenCV/ROS2"><span class="tocnumber">7</span> <span class="toctext">OpenCV/ROS2</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#3_Laps_Video_2"><span class="tocnumber">7.1</span> <span class="toctext">3 Laps Video</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Final_Project"><span class="tocnumber">8</span> <span class="toctext">Final Project</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="#Autonomous_Driving"><span class="tocnumber">8.1</span> <span class="toctext">Autonomous Driving</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Vehicle_Tracking"><span class="tocnumber">8.2</span> <span class="toctext">Vehicle Tracking</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Updating_Steering_and_Throttle_Commands"><span class="tocnumber">8.3</span> <span class="toctext">Updating Steering and Throttle Commands</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Pose_Estimation"><span class="tocnumber">8.4</span> <span class="toctext">Pose Estimation</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Demonstrations"><span class="tocnumber">8.5</span> <span class="toctext">Demonstrations</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-18"><a href="#Presentation"><span class="tocnumber">9</span> <span class="toctext">Presentation</span></a></li>
+<li class="toclevel-1 tocsection-19"><a href="#Challenges"><span class="tocnumber">10</span> <span class="toctext">Challenges</span></a></li>
+<li class="toclevel-1 tocsection-20"><a href="#Future_Developments"><span class="tocnumber">11</span> <span class="toctext">Future Developments</span></a></li>
+<li class="toclevel-1 tocsection-21"><a href="#Acknowledgements"><span class="tocnumber">12</span> <span class="toctext">Acknowledgements</span></a></li>
+</ul>
+</div>
+<h1><span class="mw-headline" id="Team_5:_Charging_On_The_Go">Team 5: Charging On The Go</span></h1>
+<p><a class="image" href="File:TheVehicles.jpg.html"><img alt="TheVehicles.jpg" decoding="async" height="450" loading="lazy" src="https://web.archive.org/web/20220819060136im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/85/TheVehicles.jpg/600px-TheVehicles.jpg" width="600"/></a>
+</p>
+<h1><span class="mw-headline" id="Team_Members">Team Members</span></h1>
+<ul><li>Andrew Hallett, MAE</li>
+<li>Juan SanJuan, ECE</li></ul>
+<h1><span class="mw-headline" id="Project_Overview">Project Overview</span></h1>
+<p>Concept Inspiration:
+</p>
+<ul><li>We were inspired by in-flight refueling of aircraft. Taking this concept and applying it to electric autonomous vehicles we could potentially recharge vehicles out on the road without them needing to slow down or stop from their current task. In this project we explore methods of autonomous driving and tracking while the recharging concept is only visualized through an augmented reality overlay on the back of the low power state vehicle. If we were to explore the charging method in another project we thought about ways of doing this through cable connections, inductive charging, or regenerative braking.</li></ul>
+<p>Goals:
+</p>
+<ul><li>Build 2 autonomous vehicles</li>
+<li>Implement autonomous driving using ROS2</li>
+<li>Implement a tracking solution to identify the low power state car</li>
+<li>Use the tracking solution to update the steering and throttle controls</li>
+<li>Simulate recharging through a visual representation</li></ul>
+<h1><span class="mw-headline" id="Gantt_Chart">Gantt Chart</span></h1>
+<p><a class="image" href="File:Gantt-wi-22-team5.jpg.html"><img alt="Gantt-wi-22-team5.jpg" decoding="async" height="201" loading="lazy" src="https://web.archive.org/web/20220819060136im_/http://guitar.ucsd.edu/maeece148/images/thumb/0/0b/Gantt-wi-22-team5.jpg/1200px-Gantt-wi-22-team5.jpg" width="1200"/></a>
+</p>
+<h1><span class="mw-headline" id="Autonomous_Vehicles">Autonomous Vehicles</span></h1>
+<h2><span id="CAD.2FMechanical_Designs"></span><span class="mw-headline" id="CAD/Mechanical_Designs">CAD/Mechanical Designs</span></h2>
+<p>There was no need for 2 different designs here. The black car was the original design, which featured a hinged mechanism to flip open the electronics bay. The blue car was updated based on features that didn't work on the first vehicle. The goal for the 2nd design was to have an open, more sleek concept so the parts were easily accessible if troubleshooting needed to be performed. This vehicle also included a new feature which clipped onto the rear bumper to hold the purple tracking solution card.
+</p><p><a class="image" href="File:Chargingcar-wi-22-team5.jpg.html"><img alt="Chargingcar-wi-22-team5.jpg" decoding="async" height="336" loading="lazy" src="https://web.archive.org/web/20220819060136im_/http://guitar.ucsd.edu/maeece148/images/9/93/Chargingcar-wi-22-team5.jpg" width="444"/></a>
+<a class="image" href="File:Leadcar-wi-22-team5.jpg.html"><img alt="Leadcar-wi-22-team5.jpg" decoding="async" height="354" loading="lazy" src="https://web.archive.org/web/20220819060136im_/http://guitar.ucsd.edu/maeece148/images/f/f7/Leadcar-wi-22-team5.jpg" width="546"/></a>
+</p>
+<h2><span class="mw-headline" id="Wiring">Wiring</span></h2>
+<p><a class="image" href="File:Schematic-wi-22-team5.jpg.html"><img alt="Schematic-wi-22-team5.jpg" decoding="async" height="783" loading="lazy" src="https://web.archive.org/web/20220819060136im_/http://guitar.ucsd.edu/maeece148/images/0/01/Schematic-wi-22-team5.jpg" width="1122"/></a>
+</p>
+<h1><span class="mw-headline" id="DonkeyCar">DonkeyCar</span></h1>
+<h2><span class="mw-headline" id="3_Laps_Video">3 Laps Video</span></h2>
+<p><a class="external text" href="https://drive.google.com/file/d/1PRmn_ppSpMyot3_7SIbfDtqF3bMQmb-s/view?usp=sharing" rel="nofollow">DonkeyCar Autonomous Laps</a>
+</p>
+<h1><span id="OpenCV.2FROS2"></span><span class="mw-headline" id="OpenCV/ROS2">OpenCV/ROS2</span></h1>
+<h2><span class="mw-headline" id="3_Laps_Video_2">3 Laps Video</span></h2>
+<p><a class="external text" href="https://drive.google.com/file/d/1Z8NQuAf5pJ3RJnrHfS0_6Ya5RzRdAeVj/view?usp=sharing" rel="nofollow">ROS2 Autonomous Laps</a>
+</p>
+<h1><span class="mw-headline" id="Final_Project">Final Project</span></h1>
+<h2><span class="mw-headline" id="Autonomous_Driving">Autonomous Driving</span></h2>
+<p>The first goal of the project was to get both vehicles driving on the class track using the provide ROS2 code. This process involved calibrating the camera to track the contours of the yellow lines on the road, and calibrating the steering and throttle controls.
+</p><p>Issues:
+</p>
+<ul><li>The camera calibration depends on the lighting of the environment.</li>
+<li>We tried to calibrate the motors so the vehicles would drive as slow as possible on the track. This became an issue when we swapped batteries and would sometimes result in the car not moving at all when testing our code.</li></ul>
+<p>Solutions:
+</p>
+<ul><li>It is recommended to do the calibration at night where the lighting is more consistent and always test on the track in those conditions.</li>
+<li>To fix the battery issue we would use "ros2 launch ucsd_robocar_nav2_pkg all_components.launch.py" to activate all components and then send velocity commands to the motor using "ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}" to find the minimum threshold every time we swapped a battery. In the future it would be nice to have an encoder on the wheels to control speed based on rotation of the tires.</li></ul>
+<h2><span class="mw-headline" id="Vehicle_Tracking">Vehicle Tracking</span></h2>
+<p>The next goal of the project was for the charging car to be able to track the low power state car once it caught up to it on the track. We explored complete tracking solutions such as AprilTag and ArUco Markers to accomplish this goal. Both of these methods are able to compute the precise 3D position, orientation, and identity of their respective tags relative to the camera. We wanted to use this information to help update the steering based on how far the centroid of the tag was away from the center of the camera capture. We also wanted to use the distance to update the throttle commands to either speed up or slow down in order to maintain a pacing distance of 2-3ft behind the low power state vehicle.
+</p><p>Issues:
+</p>
+<ul><li>Lack of coding experience prior to the class.</li>
+<li>We had trouble finding examples that implemented these libraries with ROS.</li>
+<li>The examples we did find were built using a different ROS distribution.</li></ul>
+<p>Solutions:
+</p>
+<ul><li>The code we needed to implement tracking the low power state vehicle was already solved with the provided ROS2 code. We spent the time to learn how it tracked the lines of the road and implemented a solution to track a purple tag as well on the back of the low power state vehicle. To accomplish this we created a new camera color calibration to track the purple tag and added logic to update steering and throttle commands.</li></ul>
+<p><a class="image" href="File:Trackingpurple.jpg.html"><img alt="Trackingpurple.jpg" decoding="async" height="329" loading="lazy" src="https://web.archive.org/web/20220819060136im_/http://guitar.ucsd.edu/maeece148/images/3/38/Trackingpurple.jpg" width="774"/></a>
+</p>
+<h2><span class="mw-headline" id="Updating_Steering_and_Throttle_Commands">Updating Steering and Throttle Commands</span></h2>
+<p>Once we began our project we decided we were going to use the source code of the lane detection package in order to move our charging car. For the steering we implemented a new mask with to track the color purple as well as the original mask to track the yellow lines on the road. After this our logic was simple: 
+</p><p>In the Lane_detection node:
+</p>
+<ol>
+<li>Using the masks created for each color find both the yellow and purple contours (if any) using openCV's findContours function.</li>
+<li>Check if we have found any purple contours </li>
+<li> If so calculate the area of the biggest contour and apply the homography matrix of the battery on the purple contour </li>
+<li> If the area is big enough(meaning the car is close enough to start tracking) calculate error for the purple contour</li>
+<li>If the area is not big enough calculate the error for the yellow contour(s).</li>
+<li>Publish the error and the area of the purple contour( Area = 0 if not found). </li>
+</ol>
+<p>In the Lane_Guidance node:
+</p>
+<ol>
+<li>Get data from Lane Detection node</li>
+<li>For the steering we use the same towards error method used in the original lane guidance source code </li>
+<li> For the throttle if we have not found purple(Area = 0) same as original code, else calculate percentage of area compared to min area(how far do I want the car to follow purple) and the max area( how close do I want to be from the lead car) </li>
+<li>Publish Steering and Throttle</li>
+</ol>
+<p>Issues: <br/>
+Some issues we had was that we were publishing an array of floats so we had to add some libraries as well as fix some of the syntax. Another issue that we had was that our throttle and steering wasn't working at the end which might have been a problem with either publishing our error/area. Also towards the end the calibration for the RC car changed a bit which also didn't help us finish. 
+</p><p>Solutions:<br/>
+The solution would be to debug our code to check if the problem was with the car, with the published data that we receive, or with the code itself.
+</p>
+<h2><span class="mw-headline" id="Pose_Estimation">Pose Estimation</span></h2>
+<p>Although we had trouble implementing AprilTags and ArUco Markers we were still able to use the homography matrix idea to overlay the battery state on the purple tag. To accomplish this goal we used a combination of the code already provided to find the contours of the purple box which led to the coordinates of the points of the box. We then used the command getPerspectiveTransform() to find the matrix required to rotate, translate, and scale our battery image from the file default shape to overlay onto the purple tag on screen. The command warpPerspective() then multiplies the matrix by our image to then make the transformation. After that we separated the battery image from the black background and stitch the 2 images together. Below is our static demo getting the code to work on a still image. In the final demonstration, you can see this concept working with live video.
+</p><p><a class="image" href="File:Full.png.html"><img alt="Full.png" decoding="async" height="185" loading="lazy" src="https://web.archive.org/web/20220819060136im_/http://guitar.ucsd.edu/maeece148/images/0/05/Full.png" width="292"/></a>
+<a class="image" href="File:WarpPerspective.jpg.html"><img alt="WarpPerspective.jpg" decoding="async" height="546" loading="lazy" src="https://web.archive.org/web/20220819060136im_/http://guitar.ucsd.edu/maeece148/images/6/67/WarpPerspective.jpg" width="454"/></a>
+<a class="image" href="File:WarpPerspectiveOverlay.jpg.html"><img alt="WarpPerspectiveOverlay.jpg" decoding="async" height="556" loading="lazy" src="https://web.archive.org/web/20220819060136im_/http://guitar.ucsd.edu/maeece148/images/4/42/WarpPerspectiveOverlay.jpg" width="451"/></a>
+</p>
+<h2><span class="mw-headline" id="Demonstrations">Demonstrations</span></h2>
+<p><a class="external text" href="https://drive.google.com/file/d/1pkO2LAOK97NGoAFugIrGwQXvjKYCYfui/view?usp=sharing" rel="nofollow">Final Demonstration</a>
+</p>
+<h1><span class="mw-headline" id="Presentation">Presentation</span></h1>
+<p><a class="external text" href="https://docs.google.com/presentation/d/1AApguPcGStr5OREWBL7tqFJmuDm9SWtIyj_PA277KSU/edit?usp=sharing" rel="nofollow">Final Presentation</a>
+</p>
+<h1><span class="mw-headline" id="Challenges">Challenges</span></h1>
+<ul><li>When we were using donkey to train our car we encountered some problems with not installing all the libraries correctly. We solved this by using the play ready image that was provided at the end of the documentation.</li>
+<li>We had some problems publishing an array in ROS2.</li>
+<li>Calibration for the actual car(actuators &amp; Webcam filters) proved time consuming and difficult at times</li>
+<li>Had problem with the docker container a couple of times(had to pull new image)</li>
+<li>Ran out of time at the end</li></ul>
+<p>Advice:<br/>
+Some advice we would provide is to start early on the project. If your project won't be using donkeyCar but will use ROS2 start with ROS2 early. Give yourself some time to test and fail early. Structure task accordingly and distribute them to all the team members.
+</p>
+<h1><span class="mw-headline" id="Future_Developments">Future Developments</span></h1>
+<ul><li>Add some sort of communication between the two cars
+<ul><li>Connect Jetsons and subscribe to nodes</li></ul></li>
+<li>Set throttle and steering based of the lead cars signal</li>
+<li>Add hardware(light strip) that reacts to charging stage</li>
+<li>Manage Battery levels to output same output no matter the battery</li></ul>
+<h1><span class="mw-headline" id="Acknowledgements">Acknowledgements</span></h1>
+<p>Thank you Professor Jack Silberman, Dominic Nightingale, and Ivan Ferrier for all the help and guidance with our project.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20220819043321
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.035 seconds
+Real time usage: 0.040 seconds
+Preprocessor visited node count: 72/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:1265-0!canonical and timestamp 20220819043321 and revision id 8947. Serialized with JSON.
+ -->
+</div>
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20220819060136/https://guitar.ucsd.edu/maeece148/index.php/2022WinterTeam5">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

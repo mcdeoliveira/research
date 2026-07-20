@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2019WinterTeam10 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2019WinterTeam10</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Team_Member"><span class="tocnumber">2</span> <span class="toctext">Team Member</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Hardware_Design"><span class="tocnumber">3</span> <span class="toctext">Hardware Design</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Mounting_Plate"><span class="tocnumber">3.1</span> <span class="toctext">Mounting Plate</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Camera_Mount"><span class="tocnumber">3.2</span> <span class="toctext">Camera Mount</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Webcam"><span class="tocnumber">3.3</span> <span class="toctext">Webcam</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Distance_Sensor"><span class="tocnumber">3.4</span> <span class="toctext">Distance Sensor</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Schematic"><span class="tocnumber">4</span> <span class="toctext">Schematic</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Software_Process"><span class="tocnumber">5</span> <span class="toctext">Software Process</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#OpenCV"><span class="tocnumber">5.1</span> <span class="toctext">OpenCV</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Fusion_Image"><span class="tocnumber">5.2</span> <span class="toctext">Fusion Image</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Training_.26_Testing"><span class="tocnumber">6</span> <span class="toctext">Training &amp; Testing</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#References"><span class="tocnumber">7</span> <span class="toctext">References</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Introduction">Introduction</span></h2>
+<p>Our project aims to demonstrate the possibility of implementing adaptive cruising for autonomous driving. We wanted to focus on training our car to detect a change in its environment while driving autonomously. Specifically for our case, a tennis ball was used to signify a change in the car’s surrounding. Through the use of two cameras, two time-of-flight sensors, and OpenCV, we were able to train our car to detect and follow a tennis ball while driving autonomously. 
+</p>
+<h2><span class="mw-headline" id="Team_Member">Team Member</span></h2>
+<p>Jiayun Ju - MAE <br/>
+Sivleng Kouv - BENG <br/>
+Chunyao Liu - ECE <br/>
+Yangting Sun - ECE <br/>
+</p><p><a class="image" href="File:Team10.JPG.html"><img alt="Team10.JPG" height="247" loading="lazy" src="https://web.archive.org/web/20200814114655im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/6d/Team10.JPG/250px-Team10.JPG" width="250"/></a>
+</p>
+<h2><span class="mw-headline" id="Hardware_Design">Hardware Design</span></h2>
+<h3><span class="mw-headline" id="Mounting_Plate">Mounting Plate</span></h3>
+<p>The design of the mounting plate allowed for a lot of surface area to attach the components. Moreover, the spacing in the middle was crucial in enabling easy access to other components and easy wiring. 
+</p><p><a class="image" href="File:MountPlate.jpg.html"><img alt="MountPlate.jpg" height="400" loading="lazy" src="https://web.archive.org/web/20200814114655im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/96/MountPlate.jpg/518px-MountPlate.jpg" width="518"/></a>
+</p><p>We used AutoCAD to design the mounting plate and a laser cutter to cut out the plate.
+</p>
+<h3><span class="mw-headline" id="Camera_Mount">Camera Mount</span></h3>
+<p>For our camera mount, we wanted flexibility in both the height and angle of the camera. That being said, the handles attached to the base of the camera mount is moveable so the height can be adjustable. Likewise the flat piece that is directly attached to the camera is also adjustable so that the camera angle can be modified for optimal viewing.
+</p><p><a class="image" href="File:PicamMount.jpg.html"><img alt="PicamMount.jpg" height="450" loading="lazy" src="https://web.archive.org/web/20200814114655im_/http://guitar.ucsd.edu/maeece148/images/thumb/4/4e/PicamMount.jpg/253px-PicamMount.jpg" width="253"/></a>
+</p>
+<h3><span class="mw-headline" id="Webcam">Webcam</span></h3>
+<p>The webcam was positioned below the mounting plate because it guaranteed the most security and additionally, placing it there prevents it from interfering with the peripherals of the piCamera.
+</p><p><a class="image" href="File:WebcamMount.jpg.html"><img alt="WebcamMount.jpg" height="533" loading="lazy" src="https://web.archive.org/web/20200814114655im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/c1/WebcamMount.jpg/300px-WebcamMount.jpg" width="300"/></a>
+</p><p>A USB camera is used for detecting the tennis ball. The output of the webcam will go through OpenCV and become a mask of the tennis ball. With this mask, the Donkey Car can locate the tennis ball according to the ball's radius and xy position in the mask.
+</p>
+<h3><span class="mw-headline" id="Distance_Sensor">Distance Sensor</span></h3>
+<p>We used two Pololu VL53L1X TOF sensors to detect the distance. Since both of the sensors had default address 0x29 for the Raspberry Pi, XSHUTDOWN ports were used to change the addresses of the sensors. We used the function 'change_address' in  VL53L1X2 library to assign two different addresses (--0x29 and --0x30) to the sensors.
+</p><p><a class="image" href="File:Sensors.jpg.html"><img alt="Sensors.jpg" height="253" loading="lazy" src="https://web.archive.org/web/20200814114655im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/cf/Sensors.jpg/450px-Sensors.jpg" width="450"/></a>
+</p>
+<h2><span class="mw-headline" id="Schematic">Schematic</span></h2>
+<div class="MediaTransformError" style="width: 955px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<h2><span class="mw-headline" id="Software_Process">Software Process</span></h2>
+<h3><span class="mw-headline" id="OpenCV">OpenCV</span></h3>
+<p>OpenCV is used to create a filter for the image taken by the webcam. The upper and lower bound for the filter in HSV color space are (30,45,70) and (64,255,255). The detail codes for this step is shown as follows:
+</p>
+<ul><li><b>WebCam Picture</b></li></ul>
+<pre>           snapshot = self.cam.get_image()
+           snapshot1 = pygame.transform.scale(snapshot, self.resolution)
+           frame1 = pygame.surfarray.pixels3d(
+               pygame.transform.rotate(pygame.transform.flip(snapshot1, True, False), -90))
+</pre>
+<ul><li><b>Filter</b></li></ul>
+<pre>           greenLower = (30, 45, 70)  # Set boundary for green (HSV Color Space)
+           greenUpper = (64, 255, 255)
+           img = frame1.copy()  # Import image
+           blurred = cv2.GaussianBlur(img, (11, 11), 0)
+           hsv = cv2.cvtColor(blurred, cv2.COLOR_RGB2HSV)  # Transfer to HSV color space
+           mask = cv2.inRange(hsv, greenLower, greenUpper) # Create mask to find green areas
+           mask = cv2.erode(mask, None, iterations=2)  
+           mask = cv2.dilate(mask, None, iterations=2)
+           cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE) #Find all the contours in the mask
+</pre>
+<ul><li><b>Find the tennis ball</b></li></ul>
+<pre>           if cnts[1] == []: #In case no tennis ball
+               x, y, radius = [0, 0, 0]
+           else:
+               c = max(cnts[1], key=cv2.contourArea) #Select the contour with the maximum area as the contour of the ball
+               ((y, x), radius) = cv2.minEnclosingCircle(c)  # get center and radius of the ball
+               # img = cv2.circle(img, (int(y), int(x)), int(radius), (255, 0, 0), 2)
+               for row in range(mask.shape[0]):
+                   for col in range(mask.shape[1]): 
+                       if (row-x)**2 + (col-y)**2 &gt; radius**2:
+                           mask[row][col] = 0
+                       else:
+                           mask[row][col] = 255
+</pre>
+<h3><span class="mw-headline" id="Fusion_Image">Fusion Image</span></h3>
+<ul><li><b>Data sources</b></li></ul>
+<p>-In order to use the neural network, we use only one image as the input of the training process at a time. To achieve that, we replace three channels of the image with the data from three different sources.(Picam, Webcam and TOF sensor)
+</p>
+<ul><li><b>Fusion Picture</b></li></ul>
+<p>-We create a new class called MutilCamera in camera.py to get the fusion image. For Picam, we transform the image from RGB color space to gray scale in order to compress 3 channels into one channel. For webcam, we use the mask as mentioned before. For the sensors, the outputs are the distances measured by two sensors. We expand two numbers into a matrix of the image's size so as to combine them with the other two pictures.
+</p>
+<div class="MediaTransformError" style="width: 320px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<ul><li><b>Reason for this</b></li></ul>
+<p>-The reason why we process the datas like this is because we can easily fit the data pipeline of the car. We can store and train the datas as same as how we did before. For the future works, we will change the structure of the Neural Network to make it trainable with 7 channels: 3 for PiCamera picture, 3 for WebCamera picture and 1 for ToF sensor data.
+</p><p><video controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/0/09/Fusion1.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Fusion1.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Fusion1.mp4</a></video>
+</p><p><b>Demo of Convolution Operation <i>[1]</i></b>
+</p>
+<ul><li><b>Code sample:</b> </li></ul>
+<pre>           # PiCamera: frame2
+           f = next(self.stream)
+           frame2 = rgb2gray(f.array)
+           self.rawCapture.truncate(0)
+           #---------------------------
+           # Sensor info
+           Dist_M = np.zeros((self.image_h, self.image_w))
+           distance_in_mm1 = self.tof.get_distance(1) # Get the output of the sensors
+           distance_in_mm2 = self.tof.get_distance(2)
+           d1 = np.round(min(distance_in_mm1 / 1000 * 255, 255)) # map the distance to 0-255
+           d2 = np.round(min(distance_in_mm2 / 1000 * 255, 255))
+           Dist_M[:, :int(self.image_w / 2)] = int(d1) # Fill the matrix with the output number
+           Dist_M[:, int(self.image_w / 2):] = int(d2)
+           #--------------------------
+           # Fusion of both cameras, testing
+           self.fusion[:, :, 0] = frame2 #Picam for channel 1
+           self.fusion[:, :, 1] = mask #Webcam for channel 2
+           self.fusion[:, :, 2] = Dist_M #Distance Sensor for channel 3
+           self.frame = self.fusion #Get final fusion image
+</pre>
+<p><br/>
+<b>Full codes of the camera can be found <a class="external text" href="https://github.com/TedSYt/DonkeyX" rel="nofollow">here</a>.</b>
+</p>
+<h2><span class="mw-headline" id="Training_.26_Testing">Training &amp; Testing</span></h2>
+<p>At the very begining, we tried to follow the tennis ball only. For this purpose, we didn't care about the surroudings, and thus, we only used the mask images processed by the webcam for training. The Donkey car was placed on the car stand facing the wall during data collecting to decrease the noise. The results turned out to be acceptable as shown in the video below.
+</p><p><video controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/8/80/Training1.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Training1.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Training1.mp4</a></video>
+</p><p><br/>
+Next step, we used multiple cameras and trained the car on the outdoor track in EBU2. Though the outdoor track was much easier to be influenced by the weather, it was available to us at any time and the white track could be easily distinguished from the tennis ball. Two datasets are collected for training --one following the track only and the other following both the track and the tennis ball.
+</p><p><video controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/2/23/Fusion.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Fusion.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Fusion.mp4</a></video>
+</p><p><br/>
+Here is the link to our
+<a class="external text" href="https://www.youtube.com/watch?v=N6o3hodSrbY&amp;feature=youtu.be&amp;fbclid=IwAR2BV3GjVnsC72VYrC8nNXw6JRZgQfksJeyXwxHkuLgd7erYJEdRBSBKFHc" rel="nofollow">Testing with Outdoor Track demo</a>
+</p><p>After the training process, we took the car outside to test its ability to recognize a tennis ball while driving autonomously. Although the performance is poor in that the car is very slow to detect the change in its environment, our result nevertheless serves as a proof of concept that adaptive cruising is possible. Optimizing this project, however, would require more time, training, and other resources.
+</p>
+<h2><span class="mw-headline" id="References">References</span></h2>
+<p>[1] Convolutional Neural Networks (CNNs / ConvNets). (n.d.). Retrieved from <a class="external free" href="http://cs231n.github.io/convolutional-networks/?fbclid=IwAR3YB5qpfcB2gNavsqt_9O9FEQ6rLwIM_lGFmrV-eGGevotb624XPm0yO1Q" rel="nofollow">http://cs231n.github.io/convolutional-networks/?fbclid=IwAR3YB5qpfcB2gNavsqt_9O9FEQ6rLwIM_lGFmrV-eGGevotb624XPm0yO1Q</a>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20200814114655
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.027 seconds
+Real time usage: 0.032 seconds
+Preprocessor visited node count: 50/1000000
+Preprocessor generated node count: 56/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:326-0!*!*!!en!5!* and timestamp 20200814114655 and revision id 2236
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200814114655/https://guitar.ucsd.edu/maeece148/index.php/2019WinterTeam10">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

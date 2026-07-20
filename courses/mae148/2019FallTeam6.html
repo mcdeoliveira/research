@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2019FallTeam6 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2019FallTeam6</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Project_Overview"><span class="tocnumber">1</span> <span class="toctext">Project Overview</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Team_Members"><span class="tocnumber">2</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Design"><span class="tocnumber">3</span> <span class="toctext">Design</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Mechanical_Design"><span class="tocnumber">3.1</span> <span class="toctext">Mechanical Design</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Car_Circuitry"><span class="tocnumber">3.2</span> <span class="toctext">Car Circuitry</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Aspect_Ratios_and_Cropping"><span class="tocnumber">3.3</span> <span class="toctext">Aspect Ratios and Cropping</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Integrating_OpenCV"><span class="tocnumber">3.4</span> <span class="toctext">Integrating OpenCV</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#Newly_Added_Configuration_Settings"><span class="tocnumber">3.4.1</span> <span class="toctext">Newly Added Configuration Settings</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Changes_to_manage.py"><span class="tocnumber">3.4.2</span> <span class="toctext">Changes to manage.py</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Changes_to_train.py_.28mainly_in_donkeycar.utils.29"><span class="tocnumber">3.4.3</span> <span class="toctext">Changes to train.py (mainly in donkeycar.utils)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Lane_Finding_with_OpenCV"><span class="tocnumber">4</span> <span class="toctext">Lane Finding with OpenCV</span></a>
+<ul>
+<li class="toclevel-2 tocsection-12"><a href="#HSL_Colors_for_Lane_Detection"><span class="tocnumber">4.1</span> <span class="toctext">HSL Colors for Lane Detection</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Canny_Edge_Detection"><span class="tocnumber">4.2</span> <span class="toctext">Canny Edge Detection</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Combined_3-D_image"><span class="tocnumber">4.3</span> <span class="toctext">Combined 3-D image</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-15"><a href="#Project"><span class="tocnumber">5</span> <span class="toctext">Project</span></a>
+<ul>
+<li class="toclevel-2 tocsection-16"><a href="#Methodology"><span class="tocnumber">5.1</span> <span class="toctext">Methodology</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Indoor_Track_Model_Results"><span class="tocnumber">5.2</span> <span class="toctext">Indoor Track Model Results</span></a>
+<ul>
+<li class="toclevel-3 tocsection-18"><a href="#Robustness_Against_Brighter_Environment"><span class="tocnumber">5.2.1</span> <span class="toctext">Robustness Against Brighter Environment</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#Faster_Training_Time"><span class="tocnumber">5.2.2</span> <span class="toctext">Faster Training Time</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="#Less_Training_Data_Required"><span class="tocnumber">5.2.3</span> <span class="toctext">Less Training Data Required</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#Model_Comparison"><span class="tocnumber">5.2.4</span> <span class="toctext">Model Comparison</span></a>
+<ul>
+<li class="toclevel-4 tocsection-22"><a href="#Default"><span class="tocnumber">5.2.4.1</span> <span class="toctext">Default</span></a></li>
+<li class="toclevel-4 tocsection-23"><a href="#OpenCV"><span class="tocnumber">5.2.4.2</span> <span class="toctext">OpenCV</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-24"><a href="#Outdoor_Track_Model_Results"><span class="tocnumber">5.3</span> <span class="toctext">Outdoor Track Model Results</span></a>
+<ul>
+<li class="toclevel-3 tocsection-25"><a href="#Default_2"><span class="tocnumber">5.3.1</span> <span class="toctext">Default</span></a></li>
+<li class="toclevel-3 tocsection-26"><a href="#OpenCV_2"><span class="tocnumber">5.3.2</span> <span class="toctext">OpenCV</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-27"><a href="#Software_Code"><span class="tocnumber">6</span> <span class="toctext">Software Code</span></a></li>
+<li class="toclevel-1 tocsection-28"><a href="#Project_Video"><span class="tocnumber">7</span> <span class="toctext">Project Video</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Project_Overview">Project Overview</span></h2>
+<p>Our project was to integrate OpenCV into donkeycar in order to try and improve training time and robustness of the model. We used OpenCV to pre-process images in order to extract edges and highlight the white and yellow lanes. We wanted to see if using those images as a combined 3-D image (edges, white lane, yellow lane) would improve training time and robustness of the model compared to the original default donkeycar model which trained using RGB images.
+</p><p>Here is our google drive with our <a class="external text" href="https://drive.google.com/drive/folders/1R3o3gp_6U0-ENJFvVXcKW5Gd8uwWx4dZ?usp=sharing" rel="nofollow">presentations.</a>
+</p>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<ul><li>Cyrus Shen - ECE</li>
+<li>Chenfeng Wu - ECE</li>
+<li>Maximilian Stadler - CSE (UCSD Extension) </li>
+<li>Isabella Franco - MAE</li></ul>
+<p><a class="image" href="File:Team6.jpg.html"><img alt="Team6.jpg" height="348" loading="lazy" src="https://web.archive.org/web/20200803130214im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/b2/Team6.jpg/500px-Team6.jpg" width="500"/></a>
+</p>
+<h2><span class="mw-headline" id="Design">Design</span></h2>
+<h3><span class="mw-headline" id="Mechanical_Design">Mechanical Design</span></h3>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:Team6_basenodims.JPG.html"><img alt="" class="thumbimage" height="128" loading="lazy" src="https://web.archive.org/web/20200803130214im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/e0/Team6_basenodims.JPG/200px-Team6_basenodims.JPG" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team6_basenodims.JPG.html" title="Enlarge"></a></div>3D model of baseplate</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:Team6_basewdims.JPG.html"><img alt="" class="thumbimage" height="115" loading="lazy" src="https://web.archive.org/web/20200803130214im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/8b/Team6_basewdims.JPG/200px-Team6_basewdims.JPG" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team6_basewdims.JPG.html" title="Enlarge"></a></div>baseplate dimensions</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:Team6_camera.JPG.html"><img alt="" class="thumbimage" height="213" loading="lazy" src="https://web.archive.org/web/20200803130214im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/5e/Team6_camera.JPG/200px-Team6_camera.JPG" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team6_camera.JPG.html" title="Enlarge"></a></div>3D model of camera mount used</div></div></div>
+<p>Our mechanical design is relatively simple. We designed a baseplate to be fitted onto the four mounting points originally meant to fix the chassis. A large slot in the middle gives us the necessary space for the cables. All the other things are fixed on the plate using Velcro. In retrospective, it would have been better to use screws drilled through the baseplate to do so. Inertia effects are large in the corners causing the parts to come loose. This is a problem, especially on the outdoor track. 
+</p><p>To keep our recorded images valid, we fixed the camera right from the beginning with four screws. The camera design itself is rather simple but provides sufficient housing for the lens. We used two iterations as the first camera mount's inclination was too flat which lead to images mainly focusing on the parts of the track right in front of the car. Therefore, we changed the inclination in the second iteration leading to - at least by human inspection - better-looking recordings.
+</p>
+<h3><span class="mw-headline" id="Car_Circuitry">Car Circuitry</span></h3>
+<p>The circuity follows the descriptions given in class. As we do not have additional hardware, no further changes were necessary. For unsafe situations, a wireless relay acts as an emergency switch by deactivating the PWM outputs. Therefore, set outputs are not active, i.e. not sent to the motors for example, which leads to the desired effect of stopping the car without resetting anything in the running driving lop on the Jetson. A LED-indicator shows the status of the car: a red light indicates a stopped car while a blue light indicates that the car is in the 'driving' state. Since we use the default circuitry, we do not give further details but only append our layout for an overview. 
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:802px;"><a class="image" href="File:ECE148_circuit.JPG.html"><img alt="" class="thumbimage" height="394" loading="lazy" src="https://web.archive.org/web/20200803130214im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/14/ECE148_circuit.JPG/800px-ECE148_circuit.JPG" width="800"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:ECE148_circuit.JPG.html" title="Enlarge"></a></div>circuit layout of car</div></div></div>
+<p><br clear="all"/>
+</p>
+<h3><span class="mw-headline" id="Aspect_Ratios_and_Cropping">Aspect Ratios and Cropping</span></h3>
+<p>The original configuration suggested the recording of images with the size of 160x120 pixels resulting in a 4 by 3 aspect ratio and doubling the resolution for the outdoor setting, i.e. to 320x240. The used camera is itself a 2 MP camera being capable of recording FHD images. Thus its native resolution is 16 by 9. To allow for easy comparison, we decided to record indoor and outdoor images at the same resolution. We furthermore tried different aspect ratios to find how much information, especially in the corners, is lost due to cropping. We modified the framework such that only the height and the aspect ratio are specified in the configuration files. The image width is derived. We tested 1 by 1, 4 by 3, and 16 by 9. We concluded that the native wide angle resolution gives us the most information in the corners, which seemed to be prone to errors in the beginning anyway.
+</p>
+<pre>   # newly added flags for aspect ratio and image sizes
+   IMAGE_H = 144
+   IMAGE_ASPECT_RATIO = 16 / 9
+   IMAGE_W = round(IMAGE_H * IMAGE_ASPECT_RATIO)
+</pre>
+<p><br clear="all"/>
+</p>
+<table class="wikitable">
+<tr>
+<th> <b>track / aspect ratio</b> </th>
+<th> 1x1  </th>
+<th>     4x3 </th>
+<th> 16x9
+</th></tr>
+<tr>
+<td> <b>straight</b> </td>
+<td> <div class="center"><div class="floatnone"><div class="MediaTransformError" style="width: 240px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div></div></div> </td>
+<td> <div class="center"><div class="floatnone"><div class="MediaTransformError" style="width: 320px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div></div></div> </td>
+<td><div class="center"><div class="floatnone"><div class="MediaTransformError" style="width: 426px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div></div></div>
+</td></tr>
+<tr>
+<td> <b>curve</b> </td>
+<td> <div class="center"><div class="floatnone"><div class="MediaTransformError" style="width: 240px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div></div></div> </td>
+<td> <div class="center"><div class="floatnone"><div class="MediaTransformError" style="width: 320px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div></div></div> </td>
+<td> <div class="center"><div class="floatnone"><div class="MediaTransformError" style="width: 426px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div></div></div>
+</td></tr></table>
+<p><br clear="all"/>
+</p>
+<h3><span class="mw-headline" id="Integrating_OpenCV">Integrating OpenCV</span></h3>
+<p>The Donkeycar-Framework is coded in a relatively rigid fashion. Many hard-coded sections and in-line definitions make any customization hard. Our goal was to compare the original models with models using visual primitives as priors, namely edges and lane segmentations. While these primitives can be easily computed using OpenCV, coding had to be done carefully to keep the code modular and allow an easy comparison of the original version without any code changes and the OpenCV-based models. Furthermore, to allow flexible modifications, our code was kept parametric which resulted in several additions to config.py  allowing for customizable preprocessing. 
+</p><p>Our code-changes support different "modes". Each mode implements the abstract _OpenCvPreProcessor. Depending on the specification in the config file, the corresponding preprocessor is initialized and used. More details about the different modes are given in the next section. 
+</p>
+<pre>   class _OpenCvPreProcessor:
+       
+       Abstract class of image processor
+       Implement framework of shutdown and run function as required by 
+       Donkey car framework.
+       
+       def __init__(self, cfg):
+           self.cfg = cfg
+           pass
+       
+       def shutdown(self):
+           return
+       
+       def run(self, image_arr):
+           raise NotImplementedError
+</pre>
+<pre>   class OpenCvPreProcessor:
+       
+       preprocessor-manager defining kind of pre-processing based 
+       on a string-argument loads corresponding class in init
+       
+       def __init__(self, cfg):
+           self.cfg = cfg
+           
+           if cfg.CV_PREPROCESSOR_TYPE == 'canny':
+               assert cfg.CV_TARGET_IMAGE_DEPTH == 1
+               self.processor = OpenCvCanny(cfg)
+           
+           elif cfg.CV_PREPROCESSOR_TYPE == 'segmentation':
+               assert cfg.CV_TARGET_IMAGE_DEPTH == 1
+               self.processor = OpenCvColorSegmentation(cfg)
+           
+           elif cfg.CV_PREPROCESSOR_TYPE == 'combined':
+               assert cfg.CV_TARGET_IMAGE_DEPTH == 3
+               self.processor = OpenCvCannyAndSegmentation(cfg)
+           
+           elif cfg.CV_PREPROCESSOR_TYPE == 'combined_with_gray':
+               assert cfg.CV_TARGET_IMAGE_DEPTH == 3
+               self.processor = OpenCvCannySegmentationAndGray(cfg)
+           
+           else:
+               raise NotImplementedError
+           
+       def run(self, image_arr):
+           if image_arr is None:
+               return None
+           
+           processed_image = self.processor.run(image_arr)
+           return processed_image
+       
+       def shutdown(self):
+           self.processor.shutdown()
+</pre>
+<h4><span class="mw-headline" id="Newly_Added_Configuration_Settings">Newly Added Configuration Settings</span></h4>
+<p>To achieve easy changes to our cv-framework, we kept all parameters modular and added corresponding flags to the configuration. The newly added configuration possibilites are given here. 
+</p>
+<pre>   USE_OPENCV = False # boolean flag for whether images are preprocessed using opencv
+   CV_STORE = False  # whether to store raw-image or pre-processed image (TRUE == store cv-processed image)
+   CV_PREPROCESSOR_TYPE = 'combined_with_gray' # describes type of pre-processing (canny | segmentation | combined | combined_with_gray)
+   CV_TARGET_IMAGE_DEPTH = 3
+   CV_STORE_INF = False # whether to store "inference-input" during ai-mode for testing
+   CV_COLOR_MODE = 'indoor'  # mode for color segmentation (indoor | outdoor)
+</pre>
+<pre>   # OPENCV COLOR SEGMENTATION SETTING - INDOOR
+   # WHITE
+   CV_WHITE_LOWER_IN = [140, 140, 140]
+   CV_WHITE_UPPER_IN = [255, 255, 255]
+   # YELLOW
+   CV_YELLOW_LOWER_IN = [25, 110, 30]
+   CV_YELLOW_UPPER_IN = [70, 160, 70]
+</pre>
+<pre>   # OPENCV COLOR SEGMENTATION SETTING - OUTDOOR
+   # WHITE
+   CV_WHITE_LOWER_OUT = [170, 170, 170]
+   CV_WHITE_UPPER_OUT = [255, 255, 255]  
+   # YELLOW
+   CV_YELLOW_LOWER_OUT = [5, 100, 70]
+   CV_YELLOW_UPPER_OUT = [20, 180, 170]
+</pre>
+<pre>   # OPENCV CANNY SETTING
+   CV_CANNY_MIN = 50
+   CV_CANNY_MAX = 125
+   CV_CANNY_APPLY_HOUGH = False
+   CV_HOUGH_MIN_VOTES = 20
+   CV_HOUGH_LINE_THICKNESS = 5
+   CV_MIN_LINE_LENGTH = 5
+   CV_MAX_LINE_GAP = 10
+</pre>
+<pre>   # OPENCV ROI SELECTION SETTING
+   CV_MAKE_COORDINATE_UPPER_LIMIT = 3 / 4
+   CV_ROI_TYPE = 'crop'                # type of roi-operation (crop | mask | None)
+   CV_ROI_Y_UPPER_EDGE = 65
+</pre>
+<pre>   # OPENCV GAUSSIAN BLUR setting
+   CV_GAUSSIAN_KERNEL = (5, 5)
+   CV_GAUSSIAN_SIGMA = 0.0  # might be unnecessary at all, if 0 is being used
+</pre>
+<h4><span class="mw-headline" id="Changes_to_manage.py">Changes to manage.py</span></h4>
+<p>To include the preprocessor during running the car, we mainly modified the sections of the code where image preprocessing already takes place (cropping and normalization). We introduced an if-else branch to include the new pipeline. Furthermore, we changed several other lines of code to allow storing preprocessed images or the inference input for debugging purposes.     
+</p>
+<pre>   if "coral" in model_type:
+       inf_input = 'cam/image_array'
+   # new OPENCV-flag: insert preprocessor between cropping and normalize
+   # therefore splitting the normalize_and_crop function was necessary
+   # default-code in else-branch
+   elif cfg.USE_OPENCV:
+       from opencv.preprocessor import OpenCvPreProcessor
+       
+       if cfg.CV_ROI_TYPE == 'crop':
+           V.add(ImgPreProcessCrop(cfg),
+                 inputs=['cam/image_array'],
+                 outputs=['cam/cropped']
+                 )
+       
+           V.add(OpenCvPreProcessor(cfg),
+                 inputs=['cam/cropped'],
+                 outputs=['cam/image_array_cv'], threaded=False)
+       else:
+           V.add(OpenCvPreProcessor(cfg),
+                 inputs=['cam/image_array'],
+                 outputs=['cam/image_array_cv'], threaded=False)
+       
+       inf_input = 'cam/normalized/cropped'
+       V.add(ImgPreProcessNormalize(cfg),
+             inputs=['cam/image_array_cv'],
+             outputs=[inf_input],
+             run_condition='run_pilot')
+      
+   else:
+       inf_input = 'cam/normalized/cropped'
+       V.add(ImgPreProcess(cfg),
+             inputs=['cam/image_array'],
+             outputs=[inf_input],
+             run_condition='run_pilot')
+</pre>
+<h4><span class="mw-headline" id="Changes_to_train.py_.28mainly_in_donkeycar.utils.29">Changes to train.py (mainly in donkeycar.utils)</span></h4>
+<p>Also, changes in the training-loop were necesary to include the preprocessor on loading the training images. Herefore, mainly changes in the load_scaled_image functino were necessary - besides several small changes in the training loop. 
+</p>
+<pre>   def load_scaled_image_arr(filename, cfg, cv_preprocessor=None):
+   
+       load an image from the filename, and use the cfg to resize if needed
+       also apply cropping and normalize
+   
+       import donkeycar as dk
+       try:
+           img = Image.open(filename)
+           if img.height != cfg.IMAGE_H or img.width != cfg.IMAGE_W:
+               img = img.resize((cfg.IMAGE_W, cfg.IMAGE_H))
+           img_arr = np.array(img)
+           # new OPENCV-flag
+           # run preprocessor before loading training image_arr
+           if cfg.USE_OPENCV:
+               img_arr = crop(img_arr, cfg)
+               img_arr = cv_preprocessor.run(img_arr)
+               img_arr = normalize(img_arr)
+           else:
+               img_arr = normalize_and_crop(img_arr, cfg)
+           
+           croppedImgH = img_arr.shape[0]
+           croppedImgW = img_arr.shape[1]
+           
+           # account for canny image
+           if cfg.CV_TARGET_IMAGE_DEPTH == 1:
+               img_arr = img_arr.reshape(croppedImgH, croppedImgW, 1)
+           elif img_arr.shape[2] == 3 and cfg.IMAGE_DEPTH == 1:
+               img_arr = dk.utils.rgb2gray(img_arr).reshape(croppedImgH, croppedImgW, 1) 
+           
+       except Exception as e:
+           print(e)
+           print('failed to load image:', filename)
+           img_arr = None
+       return img_arr
+</pre>
+<h2><span class="mw-headline" id="Lane_Finding_with_OpenCV">Lane Finding with OpenCV</span></h2>
+<h3><span class="mw-headline" id="HSL_Colors_for_Lane_Detection">HSL Colors for Lane Detection</span></h3>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:Cv.png.html"><img alt="" class="thumbimage" height="150" loading="lazy" src="https://web.archive.org/web/20200803130214im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/6a/Cv.png/200px-Cv.png" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Cv.png.html" title="Enlarge"></a></div>HSL description</div></div></div>
+<p>In order to single out the white and yellow lanes from the rest of the image, we used HSL color-space to threshold the image for the colors white and yellow.
+The RGB image taken by the camera was converted to HSL using OpenCV's COLOR_RGB2HLS and then thresholded so that only white and yellow colors in the image were kept.
+<br clear="all"/>
+</p>
+<table class="wikitable">
+<tr>
+<th><b>white lange segmentation</b> </th>
+<th> <b>orange lange segmentation</b> </th>
+<th> <b>final segmentation result</b>
+</th></tr>
+<tr>
+<td> <a class="image" href="File:Segmented_lane_white_screenshot_10.12.2019.png.html"><img alt="Segmented lane white screenshot 10.12.2019.png" height="169" loading="lazy" src="https://web.archive.org/web/20200803130214im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/3b/Segmented_lane_white_screenshot_10.12.2019.png/300px-Segmented_lane_white_screenshot_10.12.2019.png" width="300"/></a> </td>
+<td> <a class="image" href="File:Segmented_lane_orange_screenshot_10.12.2019.png.html"><img alt="Segmented lane orange screenshot 10.12.2019.png" height="169" loading="lazy" src="https://web.archive.org/web/20200803130214im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/e8/Segmented_lane_orange_screenshot_10.12.2019.png/300px-Segmented_lane_orange_screenshot_10.12.2019.png" width="300"/></a> </td>
+<td> <a class="image" href="File:Result_screenshot_10.12.2019_segmentation.png.html"><img alt="Result screenshot 10.12.2019 segmentation.png" height="169" loading="lazy" src="https://web.archive.org/web/20200803130214im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/10/Result_screenshot_10.12.2019_segmentation.png/300px-Result_screenshot_10.12.2019_segmentation.png" width="300"/></a>
+</td></tr></table>
+<h3><span class="mw-headline" id="Canny_Edge_Detection">Canny Edge Detection</span></h3>
+<p>To outline the lanes, we used OpenCV's canny function which shows edges in an image.
+</p>
+<table class="wikitable">
+<tr>
+<th> <b>Canny</b>
+</th></tr>
+<tr>
+<td> <div class="MediaTransformError" style="width: 426px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+</td></tr></table>
+<h3><span class="mw-headline" id="Combined_3-D_image">Combined 3-D image</span></h3>
+<p>We combined the white, yellow, and canny edge images into a 3-D image and trained on that instead of the original RGB image.
+</p>
+<table class="wikitable">
+<tr>
+<th> <b>combined</b> </th>
+<th> <b>combined with grey-scale</b>
+</th></tr>
+<tr>
+<td> <div class="MediaTransformError" style="width: 426px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div> </td>
+<td> <div class="MediaTransformError" style="width: 426px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+</td></tr>
+<tr>
+<td> canny edges (blue) <br/> white segmentation (green)  <br/> yellow segmentation (red) </td>
+<td>
+<p>gray-scale image (blue)  <br/> canny edges (green)  <br/> white and yellow segmentation (pink)
+</p>
+</td></tr></table>
+<h2><span class="mw-headline" id="Project">Project</span></h2>
+<h3><span class="mw-headline" id="Methodology">Methodology</span></h3>
+<p>In order to compare our OpenCV model to the current default model, we trained both models on the same images. For the indoor models, we trained separate models on 1000, 5000, 10000, 20000, and 30000 clockwise training images from the indoor track. For the outdoor models, we trained on 1000, 5000, and 10000 clockwise training images from the outdoor track.
+</p><p>None of the clockwise models worked when driving counterclockwise.
+</p><p>We tested each model based on the following criteria: 
+</p>
+<ol><li> Training time</li>
+<li> Local Angle completion of 3 clockwise laps on the respective track</li>
+<li> Autonomous completion of 3 clockwise laps on the respective track</li>
+<li> Able to drive when environment is brighter or darker than the trained images?</li></ol>
+<h3><span class="mw-headline" id="Indoor_Track_Model_Results">Indoor Track Model Results</span></h3>
+<h4><span class="mw-headline" id="Robustness_Against_Brighter_Environment">Robustness Against Brighter Environment</span></h4>
+<p>For the 1000, 5000, and 10000 indoor images, they were taken with the Makerspace doors closed so the images of the track in front of the door were darker. When we tried testing those 3 models with the Makerspace doors open, brightening the area of the track in front of the doors, none of the 3 default models could pass that part of the track. However, the OpenCV 10000 model could pass that part of the track most of the time which is significantly better than the default 10000 model which passed it 0 times. This is a good sign that our OpenCV model works better than the default under brighter track conditions.
+</p><p>Example of default models failing with door open:
+</p>
+<div class="embedvideo ev_right autoResize" style=" width: 456px;"><div class="embedvideowrap" style="width: 450px;"><iframe allowfullscreen="true" frameborder="0" height="253" src="//www.youtube.com/embed/DyJCZD855_w?" width="450"></iframe></div></div>
+<div class="embedvideo ev_left autoResize" style=" width: 456px;"><div class="embedvideowrap" style="width: 450px;"><iframe allowfullscreen="true" frameborder="0" height="253" src="//www.youtube.com/embed/bqiO8O5vuyw?" width="450"></iframe></div></div>
+<p><br clear="all"/>
+At 20000 and 30000 train images, both default and OpenCV models could pass that part of the track which could be due to overfitting.
+</p>
+<h4><span class="mw-headline" id="Faster_Training_Time">Faster Training Time</span></h4>
+<p>Our OpenCV models trained on average 1 minute faster than the default models.
+</p>
+<h4><span class="mw-headline" id="Less_Training_Data_Required">Less Training Data Required</span></h4>
+<p>Our OpenCV models could run autonomously on 5000 training images while the default model required 10000 training images.
+</p>
+<h4><span class="mw-headline" id="Model_Comparison">Model Comparison</span></h4>
+<p>The following training times are from training with 420 x 175 pixel images using Ubuntu 18.04.3 LTS on a GeForce GTX 965M NVIDIA GPU. Those marked with "N/A" were trained using the UCSD Supercomputer Center and are thus not comparable.
+</p>
+<h5><span class="mw-headline" id="Default">Default</span></h5>
+<table class="wikitable">
+<tr>
+<th> Criteria \ Images Trained </th>
+<th> 1000 </th>
+<th> 5000 </th>
+<th> 10000 </th>
+<th> 20000 </th>
+<th> 30000
+</th></tr>
+<tr>
+<td> <b>Training Time (min:sec)</b> </td>
+<td>02:23 </td>
+<td> 06:10     </td>
+<td> 09:35     </td>
+<td> N/A      </td>
+<td> N/A
+</td></tr>
+<tr>
+<td> <b>Local Angle Completion</b> </td>
+<td> Χ </td>
+<td> Χ    </td>
+<td> ✓       </td>
+<td> ✓    </td>
+<td> ✓
+</td></tr>
+<tr>
+<td> <b>Autonomous Completion</b> </td>
+<td> Χ </td>
+<td> Χ      </td>
+<td> ✓       </td>
+<td> ✓    </td>
+<td> ✓
+</td></tr>
+<tr>
+<td> <b>Brighter Environment</b> </td>
+<td> Χ </td>
+<td> Χ      </td>
+<td> Χ       </td>
+<td> ✓    </td>
+<td> ✓
+</td></tr></table>
+<h5><span class="mw-headline" id="OpenCV">OpenCV</span></h5>
+<table class="wikitable">
+<tr>
+<th> Criteria \ Images Trained </th>
+<th> 1000 </th>
+<th> 5000 </th>
+<th> 10000 </th>
+<th> 20000 </th>
+<th> 30000
+</th></tr>
+<tr>
+<td> <b>Training Time (min:sec)</b> </td>
+<td> 01:24 </td>
+<td> 05:20     </td>
+<td> 08:21     </td>
+<td> N/A      </td>
+<td> N/A
+</td></tr>
+<tr>
+<td> <b>Local Angle Completion</b> </td>
+<td> Χ </td>
+<td> ✓   </td>
+<td> ✓      </td>
+<td> ✓    </td>
+<td> ✓
+</td></tr>
+<tr>
+<td> <b>Autonomous Completion</b> </td>
+<td> Χ </td>
+<td> ✓      </td>
+<td> ✓      </td>
+<td> ✓    </td>
+<td> ✓
+</td></tr>
+<tr>
+<td> <b>Brighter Environment</b> </td>
+<td> Χ  </td>
+<td> Χ     </td>
+<td> ✓     </td>
+<td> ✓  </td>
+<td> ✓
+</td></tr></table>
+<h3><span class="mw-headline" id="Outdoor_Track_Model_Results">Outdoor Track Model Results</span></h3>
+<p>Our OpenCV outdoor models performed significantly better than the default outdoor models. The 5000 and 10000 OpenCV models completed the 3 laps around the outdoor track while the 5000 and 10000 default models could not finish half of the track, failing on the curves.
+</p><p>During the third week of class, we trained a default outdoor model with ~20000 images and it successfully completed 3 laps on the track (so we know that the default model can be used on the outdoor track). With our OpenCV preprocessing, we significantly reduce the amount of training images needed from ~20000 to 5000 at minimum.
+</p><p>In order to test criteria 4 (Darker Environment), we also tested the model at 5pm when the sun was setting so the track was darker than the train images used. Unfortunately, none of the models worked when the track was darker although our OpenCV models did get farther on the track than the default models.
+</p>
+<h4><span class="mw-headline" id="Default_2">Default</span></h4>
+<table class="wikitable">
+<tr>
+<th> Criteria \ Images Trained </th>
+<th> 1000 </th>
+<th> 5000 </th>
+<th> 10000
+</th></tr>
+<tr>
+<td> <b>Training Time (min:sec)</b> </td>
+<td> 00:55 </td>
+<td> 04:19    </td>
+<td> 06:56
+</td></tr>
+<tr>
+<td> <b>Local Angle Completion</b> </td>
+<td> Χ </td>
+<td> Χ    </td>
+<td> ✓
+</td></tr>
+<tr>
+<td> <b>Autonomous Completion</b> </td>
+<td> Χ </td>
+<td> Χ     </td>
+<td> Χ
+</td></tr>
+<tr>
+<td> <b>Darker Environment</b> </td>
+<td> Χ </td>
+<td> Χ </td>
+<td>  Χ
+</td></tr></table>
+<h4><span class="mw-headline" id="OpenCV_2">OpenCV</span></h4>
+<table class="wikitable">
+<tr>
+<th> Criteria \ Images Trained </th>
+<th> 1000 </th>
+<th> 5000 </th>
+<th> 10000
+</th></tr>
+<tr>
+<td> <b>Training Time (min:sec)</b></td>
+<td> 01:19 </td>
+<td> 03:45    </td>
+<td> 6:30
+</td></tr>
+<tr>
+<td> <b>Local Angle Completion</b> </td>
+<td> Χ </td>
+<td> ✓   </td>
+<td> ✓
+</td></tr>
+<tr>
+<td> <b>Autonomous Completion</b> </td>
+<td> Χ </td>
+<td> ✓   </td>
+<td> ✓
+</td></tr>
+<tr>
+<td> <b>Darker Environment</b> </td>
+<td>  Χ </td>
+<td> Χ  </td>
+<td> Χ
+</td></tr></table>
+<p>Trained on identical image size and hardware as that of the indoor track.
+</p>
+<h2><span class="mw-headline" id="Software_Code">Software Code</span></h2>
+<p><b><a class="external text" href="https://github.com/StadlerMaximilian/d3" rel="nofollow">OpenCv image processing code</a></b>
+</p><p><b><a class="external text" href="https://github.com/StadlerMaximilian/donkeycar" rel="nofollow">Modified donkeycar framework</a></b>
+</p>
+<h2><span class="mw-headline" id="Project_Video">Project Video</span></h2>
+<p>OpenCV image processing allows our car to drive autonomously with as little as 5k training images.
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 906px;"><div class="embedvideowrap" style="width: 900px;"><iframe allowfullscreen="true" frameborder="0" height="506" src="//www.youtube.com/embed/6CVpCkw2eE4?" width="900"></iframe></div></div>
+<!-- 
+NewPP limit report
+Cached time: 20200803130214
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.031 seconds
+Real time usage: 0.036 seconds
+Preprocessor visited node count: 132/1000000
+Preprocessor generated node count: 230/1000000
+Post‐expand include size: 78/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:502-0!*!*!!en!5!* and timestamp 20200803130214 and revision id 4461
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200803130214/https://guitar.ucsd.edu/maeece148/index.php/2019FallTeam6">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

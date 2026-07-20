@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2021SummerTeam2 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2021SummerTeam2</h1>
+      <p><b>Team 2 Final Project: Reinforcement Learning Racer</b>
+<i>Christopher Crutchfield, David Goncalves, David Morales</i>
+</p><p><b>Summary</b>
+</p><p>Team 2 has successfully developed a novel reinforcement deep learning approach and framework for the UCSD Donkey Car, and has demonstrated at least six laps of the Warren East track with times, equalling the team’s lap times for supervised learning and OpenCV based approaches used in the course. This nearly met the success criteria set in our Final Project proposal [1].
+</p><p>This new capability was developed without any additional hardware to the car; this may be loaded onto any UCSD Donkey Car of the same design. The only current requirement is the addition of a start line queue (blue tape) for simplicity in development.
+</p><p>For this effort, a new deep learning framework (“PonyCar”) was developed, removing some of the complexity and overhead of Donkey and ROS. This framework is a set of 13 short Python scripts running on a base Jetson Jetpack 4.6 image and additional ML libraries. This distillation of the core elements of Donkey and ROS puts control back into the hands of the developer - from basic car operations, through computer vision, then up through supervised and reinforcement learning. 
+</p><p>Lap times using this framework have substantially improved on the straightforward OpenCV lane-following and match (and are capable to best) the supervised learning approach. These lap times DECREASE over each successive runs of laps, demonstrating that the machine is successfully learning to optimize for shortening lap times while keeping on the track. The reinforcement model has exhibited natural behaviors for successful racing, like maintaining a good line through curves and minimizing any extraneous motion. With further training and development, such a framework could be the basis for a competitive autonomous vehicle racing.
+</p><p>Background
+</p><p>For the completion of ECE/MAE 148, the team proposed to implement and demonstrate the capability for reinforcement learning on the UCSD Donkey Car with the goal to put the machine to work teaching itself how to drive better, with a small set of criteria and constraints that can be written in a few Python scripts.
+</p><p><br/>
+The existing learning model in basic Donkey Car is supervised learning, based on data sets obtained through manual driving of the course by joystick. While this approach is more than acceptable for the purposes of an introductory course, the performance of the car does not get much better than the driver who originally drove it. Indeed, the machine has little sense of what is the goal other than that to match the response (throttle, steering) performed by the human driver to the observed features encountered along the way. No improvement is possible beyond getting a better driver at the joystick, or addition of filters to the camera stream to highlight key features along the track. 
+</p><p>In a reinforcement model, it is possible to allow the machine to learn to drive itself, based on 3 layers:
+</p><p>160 x 120 x 3 feature layer, linear - image input
+		100 node hidden layer, ReLU activation function
+		2 node output layer - steering and throttle
+</p><p>File:Rl.jpg
+</p><p><br/>
+Figure 1: Reinforcement Learning Model
+</p><p><br/>
+There are three key systems for the operation, observation and reward:
+</p><p>Reward / Penalties: Lap times, counted by the time between passing the blue starting line, are rewarded as those times decrease. This is a rough means of providing feedback. Finer feedback is provided by dividing the track into a set of ~64 segments (lengths of the yellow lane markers). Excursion from the course is highly penalized (by addition of time to a lap) as well as events that cause an E-STOP. 
+</p><p>Observation: Progress on the course is monitored by watching and counting the yellow markers and lane edge features that the car passes on the way 
+</p><p>Running this model from a purely reinforcement basis would require a large (&gt;100) number of episodes before any success is found. This work may be shortcut by performing supervised training to produce a primed model. In this effort, at least 20 laps of manual training were done prior to starting reinforcement training - the value and risk of vehicle damage were great so effort was made to give the model a good start.
+</p><p><b>Issues with Donkey and ROS</b>
+</p><p>Implementing a new learning model into an existing autonomous vehicle framework is a challenge, as there are TWO two acts the developer needs to manage simultaneously. First, they have to understand the framework, its internal architecture and idioms - which for a large project, will often call for studying its history and rationale for key design decisions. Second, they need to handle the new functionality and its concepts and needs. 
+</p><p>While the Donkey framework has previous work for support of reinforcement learning [2][3], these implementations are ‘off the track’ of where the current UCSD customized version is. Effort was put into attempting to use that support, with no clear path to resolving the issues that occurred, including mismatching library needs, incomplete example sets, and the common ‘merge’ problem of leveraging old work in a substantially revised Donkey. Several days of review and experimentation were put into the effort to use Donkey without success.
+</p><p>With ROS, the team did not run into these detailed issues, rather, the additional overhead of learning this new framework late in the semester, especially the modular architecture of managing components communicating over internal interprocess communication (‘publisher-subscriber’) and the different calls for vehicle control, computer vision, and model incorporation seemed also to ask for more effort than time allowed. 
+</p><p><b>“PonyCar” Development and Architecture</b>
+</p><p>The work done on ‘hard coded’ OpenCV driving proved to be the key to solving the issues of developing this project. In that effort, a set of basic Python scripts were written to process image data from the camera, looking for features on the course - the white course edges and yellow centerline. 
+</p><p>A basic script [4] for OpenCV based driving was developed. This script attempts to highlight the yellow centerline, determine the centroid of the centerline segment, and use the current trajectory of the car to find the horizontal distance from the centroid and slew the steering angle meet that centroid with proportional angle control. For that effort, throttle is kept constant and fairly slow, in order to allow sufficient time to acquire and identify a centerline segment and steering towards its centroid. 
+</p><p>The development of this script gave us direct control of vehicle controls, camera, Python libraries for handling data and OpenCV. In light of the successful implementation of the hardcoded line follower, the effort to add other features appeared to just be a matter of additional scripts. This implies that the knowledge and skill to implement the following features was within the grasp of the developer:
+</p>
+<pre>* Deep Learning and Neural Net Development 
+* Dataset Selection
+* Python Software Development
+</pre>
+<p>Thankfully this was - Christopher Crutchfield was the developer and lead on this effort, and all of these were well within his experience. 
+</p><p>Following from the success of the OpenCV effort, development of the full system was begun on August 28 2021, with a minimal set of additional libraries, including Pytorch, Torchvision and the set of libraries required for handling the camera and images (Pillow) and vehicle control (servokit)
+</p><p>The “PonyCar” software [6] is built with a particular core script, selected based on the need - whether that be line-following, model training or fully autonomous operation. Each of these are built as separate scripts at the top level (opencv.py, train.py, rl.py). These scripts are run exclusively - only one is used for the desired function. 
+</p><p>Supporting scripts  - called writers, readers and drivers - handle the support of the main scripts’ tasks. 
+</p><p><i>Writers</i> are used to write out training data - images, steering and throttle - into a date stamped data directory with a CSV and image set, in the same vein as the TUBs produced by Donkey. 
+</p><p><i>Readers</i> are used to read in and prepare this data for model training.
+</p><p><i>Drivers</i> are used to abstract the handling of external functions and hardware into simpler forms for the main script. An example is the joystick driver, which handles translating the steering and throttle input and formatting them for use a ‘throttle’ and ‘steering’ input for manual driving. 
+</p><p>Similarly, an AI driver handles the mechanisms to standing up the desired neural net model and producing a defined set of methods (including getting lap times, loss, data recording) for what the developer has called for in the top level network_model.py. This convenience allows the developer to adjust the network model while leaving the mechanisms of how this model is connected out of the way. 
+</p><p>For the stated goal, the key script is rl.py, which governs the simultaneous control of the car and lap-to-lap training.
+</p><p><b>“PonyCar” Installation and Requirements</b>
+</p><p>A Jetson Nano 4GB is required on the vehicle and meets nearly all needs.  A development laptop or GPU processing capability is required for accelerating the training of an initial supervised learning model.
+</p><p>PonyCar required the following base image, libraries and support on both the Jetson Nano and the developer’s machine.
+</p><p>NVIDIA Jetpack 4.6 base image (only for Jetson Nano)
+<i>Python libraries through PyPi</i>
+</p>
+<pre> numpy
+ Adafruit-servokit (PWM servo control)
+ Pygame (joystick control)
+ Pillow (image handling)
+ opencv-python
+ tqdm (progress bar)
+</pre>
+<p><i>ML Python libraries</i>
+</p>
+<pre> pyTorch
+ torchvision
+</pre>
+<p>NVIDIA specific branches for ML libraries were used for the Jetson Nano build; the prebuilt libraries for x86 processors was used on the development laptop.
+</p><p><b>Using “PonyCar”</b>
+</p><p>The most complex part of the install is the use of a NVIDIA custom library for PyTorch, which requires a specified download from NVIDIA and a source build since the Jetson Nano is an ARM-based machine instead of x86. This was required to take full advantage of CUDA on the Jetson. This build took about 35-45 minutes. Most of the  other libraries were handled by a python pip install, and could be moved to a setup.py/requirements.txt or other packaging means.  One such example of packaging we did for x86 can be found in the pyproject.toml file.
+</p><p>Once the user SSHs into the car, they can simply run the desired running scripts:
+</p><p><i>opencv.py</i>: run a line-following ‘hard-coded’ computer vision control system to drive the car
+</p><p><i>train.py</i>: perform training using acquired datasets (note: for a base supervised model, this is run on a laptop rather than on the Jetson)
+</p><p><i>rl.py</i>: perform reinforcement driving AND supervised training with continuous lap-to-lap assessment and model update
+</p><p><i>move_models.py</i>: model file management tool to help move/shift as needed for backup for rollback for retraining.
+</p><p><br/>
+<b>“PonyCar” Features</b>
+</p><p><i>Vehicle and Operator Support</i>
+</p><p>Manual operation of the vehicle is much like Donkey. Manual Driving is by joystick (steering) and right trigger for throttle. Autonomous operation monitors for the operator either pressing A (for reset) or B (E-STOP). 
+</p><p>E-STOP is also built-in for any observation of the car leaving the course; a runaway car scenario is not likely as long as the software is running. 
+</p><p>Control of throttle and steering is through the same library used by Donkey.
+</p><p><i>Reinforcement Support</i>
+</p><p>Initial model generation  - by supervised training - is done by configuring rl.py to allow data recording while the car is driven by joystick, saving a substantial amount of time from a purely reinforcement training. The base model training is more than can be done on the Jetson--in a reasonable amount of time--so it is currently moved off to a separate machine for processing. A future opportunity for improvement is to write a driver or script for automatically connecting out to a machine or GPU cluster to generate an initial model.
+</p><p>This ‘base’ model, generated from this supervised learning, is then added to in successive runs, using transfer learning to add to the model incrementally. New reinforcement evaluated models are incrementally generated as laps are completed, and saved off into a new model file. If a particular reinforcement path is getting into a situation where it is not able to continue optimizing, it is easy to call on an earlier saved model to start again and see if the learning improves.
+</p><p>If an area is particularly troublesome or the behavior seems to be ‘stuck’, it is possible to add to the training through manual driving through those areas. This limited supervised training adds to the model, highlighting better behaviors to take. However, this is not a foolproof tool as the ‘bad’ behavior may be a result of attempting to make the lowest cost opportunities to improve time and other means to issue highlighting should be investigated.
+</p><p><b>Driving Results</b>
+</p><p>Our lap times from an OpenCV lane following approach range from 40 - 50 seconds. supervised trained laps [8] ranged from 22 to 25 seconds. Figure 1 is a plot of times from the most recent set of laps on September 2:
+</p><p>File:Pony progress.jpg
+</p><p>Figure 2: Reinforcement Learning Evolution over 6 laps
+</p><p>This result was obtained with a base model with a training set of 40 laps through supervised learning and a further 6 autonomous laps completed and incorporated into the model.
+</p><p>Several interesting behaviors were demonstrated as the car aimed to minimize lap times while staying on the course:
+</p><p>The best time came at the end of a series of laps; each time becomes lower than the other
+With the simple penalty model, the machine was seen to occasionally clip tight right turns and get right up onto the edge of the line on the 2nd straightaway
+During an evaluation on September 1, the training would alternate between getting better, then clipping the cone at the right turn, then overcorrecting at the other end of the course by not turning enough in the broad curve and leaving the course. This was determined to be from a bug in the penalty equation and was corrected for the laps presented in Figure 1.
+</p><p>These are natural outgrowths of the simple models and penalty functions used in this effort. It is suspected that with a better term for handling nearness to tight turns, cone presence and optimized lane detection logic to automatically handle color adjustment that these would be minimized.
+</p><p><b>Other Findings</b>
+</p><p>The team found that this simplified framework greatly facilitated the development of all the levels of autonomous vehicle software development, from computer vision through supervised learning and finally to reinforcement learning. It is possible to refine the model set by the “PonyCar” framework as a means to facilitate education in autonomous vehicle development. While it does not currently encompass all of the desirable aspects desired, like simulator training or compatibility with simulator servers, these desirable features that may find good use in courses that seek to emphasise the path from basic operations through to customized learning model development:
+</p><p>The framework is minimal - with each script being short and requiring only typical Python experience and the knowledge with tools including OpenCV and PyTorch. The project uses a base Jetson Jetpack 4.6 image with a handful of additional Python libraries. A Docker container for this would allow setup and readiness for use to be brought to less than an hour.
+</p><p>The framework takes every opportunity to put control in the hands of the developer. Steering and throttle are direct calls to the servo control library, neural nets are directly formed by call to the Torch library for a defined neural net, and file reading and writing done by short scripts making human-readable files. If the developer wants more debug data, they may simply drop in print statements where needed. 
+</p><p>The framework is flexible, evidenced by its own development. Starting from a basic OpenCV project, as features were needed they grew in a way that kept development focused on the functionality. Different models may be dropped in place of the existing one
+</p><p><br/>
+<b>References:</b>
+</p><p>[1] Team 2 Final Project Proposal: <a class="external autonumber" href="https://docs.google.com/document/d/1MN_I8S_lpAZZl3TXCUr_c3lMAlNDuV9Yr6e9qw9bBrc/" rel="nofollow">[1]</a>
+</p><p>[2] <a class="external autonumber" href="https://github.com/tawnkramer/gym-donkeycar/tree/master/examples/reinforcement_learning" rel="nofollow">[2]</a>
+</p><p>[3] <a class="external autonumber" href="https://flyyufelix.github.io/2018/09/11/donkey-rl-simulation.html" rel="nofollow">[3]</a>
+</p><p>[4] Team 2 OvenCV Driving Software: <a class="external autonumber" href="https://github.com/ccrutchf/ece148-opencv-driving/blob/2142b8ec700d9ac724fd317cfa8799e11dbe7930/main.py" rel="nofollow">[4]</a>
+</p><p>[5] Team 2 OpenCV Driving Demo: <a class="external autonumber" href="https://youtu.be/e4bFzlSthLM" rel="nofollow">[5]</a>
+</p><p>[6] Team 2 “PonyCar” Software: <a class="external autonumber" href="https://github.com/ccrutchf/ece148-opencv-driving" rel="nofollow">[6]</a>
+</p><p>[7] Team 2 “PonyCar” Based Reinforcement Model Driving Demo: <a class="external autonumber" href="https://youtu.be/g7a5dZdD1d8" rel="nofollow">[7]</a>
+</p><p>[8] Team 2 Donkey Autonomous Laps Demo: <a class="external autonumber" href="https://www.youtube.com/watch?v=EwqRDRgGz9c" rel="nofollow">[8]</a>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20211207025040
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.009 seconds
+Real time usage: 0.011 seconds
+Preprocessor visited node count: 1/1000000
+Preprocessor generated node count: 4/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 1/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:1061-0!*!*!*!*!5!* and timestamp 20211207025040 and revision id 7376
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20211207025040/https://guitar.ucsd.edu/maeece148/index.php/2021SummerTeam2">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

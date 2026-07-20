@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2021FallTeam7 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2021FallTeam7</h1>
+      <div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Project_Overview_&amp;_Proposal"><span class="tocnumber">2</span> <span class="toctext">Project Overview &amp; Proposal</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Lap_videos"><span class="tocnumber">3</span> <span class="toctext">Lap videos</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Project_Schedule_/_Gantt_Chart"><span class="tocnumber">4</span> <span class="toctext">Project Schedule / Gantt Chart</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Software_Development"><span class="tocnumber">5</span> <span class="toctext">Software Development</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Calibrating_the_existing_ROS_framework"><span class="tocnumber">5.1</span> <span class="toctext">Calibrating the existing ROS framework</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Software_Subsystems"><span class="tocnumber">5.2</span> <span class="toctext">Software Subsystems</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Final_Product_Example"><span class="tocnumber">5.3</span> <span class="toctext">Final Product Example</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Schematics"><span class="tocnumber">5.4</span> <span class="toctext">Schematics</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Links_to_additional_resources_(presentations/source_code/GitHub/videos)"><span class="tocnumber">6</span> <span class="toctext">Links to additional resources (presentations/source code/GitHub/videos)</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Acknowledgement"><span class="tocnumber">7</span> <span class="toctext"><b>Acknowledgement</b></span></a></li>
+</ul>
+</div>
+<h1><span class="mw-headline" id="Team_Members">Team Members</span></h1>
+<ul><li>Andrew Liang (ECE)</li>
+<li>Jiansong Wang (MAE)</li>
+<li>Shane Benetz (ECE)</li>
+<li>Kevin Kruse (Extension/BIS)</li></ul>
+<h1><span id="Project_Overview_.26_Proposal"></span><span class="mw-headline" id="Project_Overview_&amp;_Proposal">Project Overview &amp; Proposal</span></h1>
+<p>The goal of this project is to enhance the existing framework of the ROS Navigation system with the integration of a Lidar in order to avoid obstacles while navigating and return to the correct route. In a short amount of words, our upgraded ROS navigation package integrated onto the Jetson Nano powered autonomous car allows it to detect objects in its path and correct its steering while still following a lane detection/guidance model based on onboard camera imaging. The cursed "DNF" should rarely ever happen. Our objective was to make a car that would be able to continue on despite the circumstance, and unless something else ran into the car, it would find its way around things and not just follow a straight line blindly. 
+</p><p><br/>
+</p><p><b>More in Depth:</b>
+</p><p>While the car navigates the track using openCV lane detection, the lidar runs in the background scanning obstacles in front of the car in a certain range.  
+Out-of-range detections and long distances are filtered out. Once an obstacle is detected in that range, the car will steer to a direction based on the 
+angle and distance feedback from the lidar. The steering magnitude is determined by a proportional controller. Once the car passes the obstacle and is 
+obstacle is out of range of the scan, the car will keep executing lane detection, detecting the yellow stripes on the track.
+</p><p><br/>
+</p>
+<div class="floatright"><a class="image" href="File:NavImage.jpg.html"><img alt="NavImage.jpg" decoding="async" height="416" loading="lazy" src="https://web.archive.org/web/20220523072502im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/dd/NavImage.jpg/400px-NavImage.jpg" width="400"/></a></div>
+<div class="floatleft"><a class="image" href="File:Car3_team7_2021.jpg.html"><img alt="Car3 team7 2021.jpg" decoding="async" height="400" loading="lazy" src="https://web.archive.org/web/20220523072502im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/df/Car3_team7_2021.jpg/300px-Car3_team7_2021.jpg" width="300"/></a></div>
+<p><br/>
+</p>
+<div class="center"><div class="floatnone"><a class="image" href="File:Car2_team7_2021.jpg.html"><img alt="Car2 team7 2021.jpg" decoding="async" height="375" loading="lazy" src="https://web.archive.org/web/20220523072502im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/e7/Car2_team7_2021.jpg/500px-Car2_team7_2021.jpg" width="500"/></a></div></div>
+<h1><span class="mw-headline" id="Lap_videos">Lap videos</span></h1>
+<p>ROS Laps <a class="external text" href="https://youtu.be/CBhw0hiJWwo" rel="nofollow">Here</a>
+</p><p>DonkeyCar Laps at two locations <a class="external text" href="https://youtu.be/T4n4dW6wzLA" rel="nofollow">Here</a> and <a class="external text" href="https://youtu.be/NdxYFkHFzxE" rel="nofollow">Here</a>
+</p>
+<h1><span id="Project_Schedule_.2F_Gantt_Chart"></span><span class="mw-headline" id="Project_Schedule_/_Gantt_Chart">Project Schedule / Gantt Chart</span></h1>
+<p><a class="image" href="File:Newgantt.jpg.html"><img alt="Newgantt.jpg" decoding="async" height="298" loading="lazy" src="https://web.archive.org/web/20220523072502im_/http://guitar.ucsd.edu/maeece148/images/f/fe/Newgantt.jpg" width="1240"/></a>
+</p>
+<h1><span class="mw-headline" id="Software_Development">Software Development</span></h1>
+<p>There are two parts presented here now; the first part being the calibration and setup of the existing ROS framework. The second part consists of the actual development of the new software subsystem integrated in the existing framework.
+</p>
+<h2><span class="mw-headline" id="Calibrating_the_existing_ROS_framework">Calibrating the existing ROS framework</span></h2>
+<p>One especially important thing for our project is a properly calibrated framework.
+</p><p>To achieve this, you can either adjust the controls to make it fit. However, an alternative and more precise solution is to apply a specific color filter.
+To do this, we first started a live transfer of the current image. 
+</p><p><a class="image" href="File:Bild1.png.html"><img alt="Bild1.png" decoding="async" height="145" loading="lazy" src="https://web.archive.org/web/20220523072502im_/http://guitar.ucsd.edu/maeece148/images/thumb/2/25/Bild1.png/350px-Bild1.png" width="350"/></a>
+</p><p>Once we had the image, we opened a color tweezer using Microsoft Word and detected the color of the yellow center track. 
+</p><p><a class="image" href="File:Bild2.png.html"><img alt="Bild2.png" decoding="async" height="230" loading="lazy" src="https://web.archive.org/web/20220523072502im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/57/Bild2.png/150px-Bild2.png" width="150"/></a>
+</p><p>The program now gives us the color in RGB color space. Using a converter, e.g. <a class="external free" href="https://www.peko-step.com/en/tool/hsvrgb_en.html" rel="nofollow">https://www.peko-step.com/en/tool/hsvrgb_en.html</a> we can now convert this color code into the HSV color code used by our OpenCV module. Finally we just have to configure this filter correctly and add some tolerances, because especially in twilight the colors vary. Once this process is complete, we get a perfectly calibrated system, as shown in the image below. We have to remark, that in this picture even the red line on the left is not detected at all (which is what we aimed for).
+Lastly, we have to mention that this scales of the HSV color space very by application: The website uses scales up 100 or 360, while our robot uses a scale up to 180. Thus, we used the scale of 360 and devided the resulting numbers by 2 to get the desired configuration.
+</p><p><br/>
+<a class="image" href="File:Bild3.png.html"><img alt="Bild3.png" decoding="async" height="196" loading="lazy" src="https://web.archive.org/web/20220523072502im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/63/Bild3.png/350px-Bild3.png" width="350"/></a>
+</p>
+<h2><span class="mw-headline" id="Software_Subsystems">Software Subsystems</span></h2>
+<p>Link to source code found here: <a class="external text" href="https://github.com/BunnyFuFuu/ucsd_robo_car_simple_ros" rel="nofollow">Team7_Final_Project</a>
+</p><p>The origin of the majority of this code comes from <a class="external text" href="https://gitlab.com/djnighti" rel="nofollow">Dominic Nightingale's</a> project <a class="external text" href="https://gitlab.com/djnighti/ucsd_robo_car_simple_ros" rel="nofollow"><b>ucsd_robo_car_simple_ros</b></a>. We borrowed and modified the existing code base environment, added a pre-existing ROS package to communicate with the LiDAR onboard, and added our own steering logic corresponding to both the lane guidance model and the LiDAR model.
+</p>
+<div class="floatright"><a class="image" href="File:Softwarediagram_team7_2021.jpg.html"><img alt="Softwarediagram team7 2021.jpg" decoding="async" height="508" loading="lazy" src="https://web.archive.org/web/20220523072502im_/http://guitar.ucsd.edu/maeece148/images/8/88/Softwarediagram_team7_2021.jpg" width="600"/></a></div>
+<p><br/>
+LiDAR: Detects objects at 5 degree increments in a cone in front of the robot
+(-65 to +65) degrees range so as not to detect obstacles on the sides of the 
+robot.
+</p><p>This cone has a range of 0.15 to 1.2 meters 
+</p><p>Output: 3 Element Float32 Array: 
+[Distance to object in meters, angle of strongest detection in degrees, object detected flag]
+</p>
+<div class="floatleft"><a class="image" href="File:Lidardata.jpg.html"><img alt="Lidardata.jpg" decoding="async" height="330" loading="lazy" src="https://web.archive.org/web/20220523072502im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/d9/Lidardata.jpg/1050px-Lidardata.jpg" width="1050"/></a></div>
+<p><br/>
+</p><p>Potential Improvements: 
+</p>
+<ul><li>LiDAR currently works like a directional range sensor</li>
+<li>Maybe with better LiDAR or more detailed point cloud could train an actual object detection algorithm based on a currently existing backbone</li></ul>
+<p><br/>
+</p><p>Given the three obj detection outputs: We can actually create a steering 
+equation for steering around obstacles concurrently with waypoints.
+</p><p>Baseline steering equation (standard P controller): 
+</p><p><b>Θ = -(k<sub>p</sub> * err<sub>x</sub>)</b>
+</p><p>New steering equation (two-part P controller for second sensor input):
+It’s opposite sign because baseline steers toward the point while we want to steer away from the waypoint (obstacle).
+</p><p><a class="image" href="File:Equation_team7.jpg.html"><img alt="Equation team7.jpg" decoding="async" height="43" loading="lazy" src="https://web.archive.org/web/20220523072502im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/de/Equation_team7.jpg/1000px-Equation_team7.jpg" width="1000"/></a>
+</p><p>Where k<sub>p</sub> is steering sensitivity from 0 to 1, err<sub>x</sub> is distance to center waypoint in meters, obj<sub>detected</sub> is a 0 or 1 dependent on if there was a detection,
+Θ<sub>detection</sub> is the angle of detection, Θ<sub>max</sub> is 65 for our angle range of detection, and obj<sub>dist</sub> is the distance from the ego vehicle to the detected object.
+</p><p>This equation will not differ from the old equation if there is no detection, but if there is, it will add a scaled constant based on which side the object
+was detected on (if it’s slightly to the left of the vehicle then steer right and vice versa), the inverse normalized angular distance from 0 to determine how hard the turn should be (turn should be proportionally less if the object was far from center), and the inverse normalized distance from the detected object to make the vehicle turn proportionally less the farther away from the object it is. Because all of these constants are normalized, the final output of the added portion will always be less than 1 as this portion is designed to provide a correction to the camera navigation and not overshadow it completely.
+</p><p>Potential Improvements: 
+</p>
+<ul><li>Adjust the algorithm to smoothen the driving and steering harshness</li>
+<li>Design it to look ahead a few waypoints to profile a path of motion rather than relying on camera to always have the next waypoint in frame (localization and odometry w/motor encoders, IMU, stereo camera navigation for depth estimation a huge plus)</li>
+<li>Implement I and D control logic so it is better at staying corrected to the track in the first place</li></ul>
+<h2><span class="mw-headline" id="Final_Product_Example">Final Product Example</span></h2>
+<p>Our car can pass obstacles on the way to it's destination:
+</p><p><a href="File:Object_avoided.mp4.html" title="File:Object avoided.mp4">File:Object avoided.mp4</a>
+</p><p>... and it can even pass other cars!
+</p><p>(our DC/DC transformer is broken, so we had to use ground power)
+</p><p><a class="external text" href="https://www.youtube.com/watch?v=HeHp9kNEgbo" rel="nofollow">High speed passing</a>
+</p><p><br/>
+<a class="external text" href="https://www.youtube.com/watch?v=jAuHQc4hMnU" rel="nofollow">Low speed passing</a>
+</p>
+<h2><span class="mw-headline" id="Schematics">Schematics</span></h2>
+<p><a class="image" href="File:Circuitry.jpg.html"><img alt="Circuitry.jpg" decoding="async" height="566" loading="lazy" src="https://web.archive.org/web/20220523072502im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/c9/Circuitry.jpg/1000px-Circuitry.jpg" width="1000"/></a>
+</p>
+<div class="floatright"><a class="image" href="File:Pieces_together_team7_2021.jpg.html"><img alt="Pieces together team7 2021.jpg" decoding="async" height="354" loading="lazy" src="https://web.archive.org/web/20220523072502im_/http://guitar.ucsd.edu/maeece148/images/b/b3/Pieces_together_team7_2021.jpg" width="600"/></a></div>
+<p><a class="image" href="File:Pieces_team7_2021.png.html"><img alt="Pieces team7 2021.png" decoding="async" height="653" loading="lazy" src="https://web.archive.org/web/20220523072502im_/http://guitar.ucsd.edu/maeece148/images/e/e3/Pieces_team7_2021.png" width="800"/></a>
+</p>
+<h1><span id="Links_to_additional_resources_.28presentations.2Fsource_code.2FGitHub.2Fvideos.29"></span><span class="mw-headline" id="Links_to_additional_resources_(presentations/source_code/GitHub/videos)">Links to additional resources (presentations/source code/GitHub/videos)</span></h1>
+<p><a class="external text" href="https://github.com/BunnyFuFuu/ucsd_robo_car_simple_ros" rel="nofollow">Github Source Code for Project Here</a>
+</p><p><a class="external text" href="https://3.basecamp.com/3838715/buckets/24178487/vaults/4244929417" rel="nofollow">Basecamp folder containing all videos/weekly presentations</a>
+</p>
+<h1><span class="mw-headline" id="Acknowledgement"><b>Acknowledgement</b></span></h1>
+<ul><li>Jack Silberman (Professor)</li>
+<li>Dominic Nightingale (TA)</li>
+<li>Haoru Xue (TA)</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20220522174830
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.033 seconds
+Real time usage: 0.038 seconds
+Preprocessor visited node count: 46/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:1137-0!canonical and timestamp 20220522174830 and revision id 8336. Serialized with JSON.
+ -->
+</div>
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20220523072502/https://guitar.ucsd.edu/maeece148/index.php/2021FallTeam7">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

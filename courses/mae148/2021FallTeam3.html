@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2021FallTeam3 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2021FallTeam3</h1>
+      <div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Project_Overview"><span class="tocnumber">2</span> <span class="toctext">Project Overview</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Must_Haves"><span class="tocnumber">2.1</span> <span class="toctext">Must Haves</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Nice_to_Haves"><span class="tocnumber">2.2</span> <span class="toctext">Nice to Haves</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#What_if_We_Have_More_Time"><span class="tocnumber">2.3</span> <span class="toctext">What if We Have More Time</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Project_Video"><span class="tocnumber">2.4</span> <span class="toctext">Project Video</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Hardware"><span class="tocnumber">2.5</span> <span class="toctext">Hardware</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Mechanical_Design"><span class="tocnumber">2.6</span> <span class="toctext">Mechanical Design</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#Baseplate"><span class="tocnumber">2.6.1</span> <span class="toctext">Baseplate</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Camera_Mount"><span class="tocnumber">2.6.2</span> <span class="toctext">Camera Mount</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Jetson_Nano_Case"><span class="tocnumber">2.6.3</span> <span class="toctext">Jetson Nano Case</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="#Electrical_Design"><span class="tocnumber">2.7</span> <span class="toctext">Electrical Design</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Code"><span class="tocnumber">3</span> <span class="toctext">Code</span></a>
+<ul>
+<li class="toclevel-2 tocsection-14"><a href="#Code_For_Speed_Trap"><span class="tocnumber">3.1</span> <span class="toctext">Code For Speed Trap</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Code_For_Robocar"><span class="tocnumber">3.2</span> <span class="toctext">Code For Robocar</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Code_for_play_sound"><span class="tocnumber">3.3</span> <span class="toctext">Code for play sound</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="#Demonstration"><span class="tocnumber">4</span> <span class="toctext">Demonstration</span></a>
+<ul>
+<li class="toclevel-2 tocsection-18"><a href="#Donkey_Car_Deep_Learning_Autonomous_Laps"><span class="tocnumber">4.1</span> <span class="toctext">Donkey Car Deep Learning Autonomous Laps</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#ROS_Autonomous_Laps"><span class="tocnumber">4.2</span> <span class="toctext">ROS Autonomous Laps</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#EMO"><span class="tocnumber">4.3</span> <span class="toctext">EMO</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-21"><a href="#Acknowledgements"><span class="tocnumber">5</span> <span class="toctext">Acknowledgements</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<ul><li>Han Zhao(ECE)</li>
+<li>Zhetai Zhou(ECE)</li>
+<li>Felix Koch(MAE)</li></ul>
+<h2><span class="mw-headline" id="Project_Overview">Project Overview</span></h2>
+<p>The objective is to measure another car's speed using a second stationary jetson nano with two webcams plugged into it. Those two cameras will be set up at a given distance (e.g. 3m) and be trained using AI to give a signal when detecting a car passing. With this data and the time we can calculate the velocity and compare it to our speed limit. If the car turns out to be speeding our parked police car will turn on some LED lights and join the track to chase the traffic law violator. 
+</p><p><a class="image" href="File:Demo.png.html"><img alt="Demo.png" decoding="async" height="342" loading="lazy" src="https://web.archive.org/web/20220523092501im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/e9/Demo.png/800px-Demo.png" width="800"/></a>
+</p>
+<h3><span class="mw-headline" id="Must_Haves">Must Haves</span></h3>
+<ul><li>Two webcams</li>
+<li>Two jetson nanos(One can be replaced by a virtual machine)</li>
+<li>Another RC car for speed trap</li></ul>
+<h3><span class="mw-headline" id="Nice_to_Haves">Nice to Haves</span></h3>
+<ul><li>Two lidars which can be used to replace two webcams to measure the speed</li></ul>
+<h3><span class="mw-headline" id="What_if_We_Have_More_Time">What if We Have More Time</span></h3>
+<p>For now, our program can only activate the car to follow the track, when the speeding car is detected. If we have more time, we would like to use Lidar to avoid the obstacles and adjust the speed to catch the car. Besides, the algorithm for our speed trap may not measure the speed so accurate, so if we have more time, we would like to try some other algorithm to make the measurement more accurate
+</p>
+<h3><span class="mw-headline" id="Project_Video">Project Video</span></h3>
+<p>If the video cannot be view properly, you can go to Youtube through this link
+</p><p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/udW9TzQgQ18" style="border: none" width="425"></iframe>
+</p>
+<h3><span class="mw-headline" id="Hardware">Hardware</span></h3>
+<p>Our car is pretty basic with one jetson nano, one lidar, one camera, one PWM board to control the throttle and steering, and one dc/dc converter to supply the power.
+</p><p><a class="image" href="File:Cars.jpg.html"><img alt="Cars.jpg" decoding="async" height="600" loading="lazy" src="https://web.archive.org/web/20220523092501im_/http://guitar.ucsd.edu/maeece148/images/thumb/0/01/Cars.jpg/800px-Cars.jpg" width="800"/></a>
+</p><p>Besides, the hardware provided by the professor, we also buy and solder a speaking to play the sound on our robocar.
+</p><p><a class="image" href="File:Speaker.jpg.html"><img alt="Speaker.jpg" decoding="async" height="450" loading="lazy" src="https://web.archive.org/web/20220523092501im_/http://guitar.ucsd.edu/maeece148/images/thumb/a/ac/Speaker.jpg/800px-Speaker.jpg" width="800"/></a>
+</p>
+<h3><span class="mw-headline" id="Mechanical_Design">Mechanical Design</span></h3>
+<p>The major components of the mechanical design include the baseplate, camera mount, and Jetson Nano case.
+</p>
+<h4><span class="mw-headline" id="Baseplate">Baseplate</span></h4>
+<p><a class="image" href="File:Platea.png.html"><img alt="Platea.png" decoding="async" height="225" loading="lazy" src="https://web.archive.org/web/20220523092501im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/8e/Platea.png/400px-Platea.png" width="400"/></a>
+</p>
+<h4><span class="mw-headline" id="Camera_Mount">Camera Mount</span></h4>
+<p>Our camera mount is not adjustable, which makes us hard to calibrate when we run the ROS files, so if we can have time to redesign the camera mount, we will make it more flexible and the angle of the camera can be adjusted
+</p><p><a class="image" href="File:Mount.png.html"><img alt="Mount.png" decoding="async" height="366" loading="lazy" src="https://web.archive.org/web/20220523092501im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/1c/Mount.png/400px-Mount.png" width="400"/></a>
+</p>
+<h4><span class="mw-headline" id="Jetson_Nano_Case">Jetson Nano Case</span></h4>
+<p><a class="image" href="File:Case1.png.html"><img alt="Case1.png" decoding="async" height="284" loading="lazy" src="https://web.archive.org/web/20220523092501im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/b7/Case1.png/400px-Case1.png" width="400"/></a>
+<a class="image" href="File:Case2.png.html"><img alt="Case2.png" decoding="async" height="264" loading="lazy" src="https://web.archive.org/web/20220523092501im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/f2/Case2.png/400px-Case2.png" width="400"/></a>
+</p>
+<h3><span class="mw-headline" id="Electrical_Design">Electrical Design</span></h3>
+<p><a class="image" href="File:Schemetics.png.html"><img alt="Schemetics.png" decoding="async" height="523" loading="lazy" src="https://web.archive.org/web/20220523092501im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/b6/Schemetics.png/800px-Schemetics.png" width="800"/></a>
+</p>
+<h2><span class="mw-headline" id="Code">Code</span></h2>
+<h3><span class="mw-headline" id="Code_For_Speed_Trap">Code For Speed Trap</span></h3>
+<p>For the speed Trap, we use one jetson nano connected with two webcams. For each webcam, we use OpenCV to read the image from it and calculate the pixels difference compared with the initial image. If the pixels change is greater than the threshold (we set the threshold to eliminate the effect of light change or some minors change of image which is not caused by the speeding car), we start the timer. We also add a "lock" in our algorithm, the car has to pass through the first camera to activate the second camera. After the speeding car pass through both cameras, we calculate the speed, and if the speed is greater than the limits we set, we send the signal to our robocar car to activate it.
+</p><p>We also set a time interval to ret the state of the cameras, so we can use it repeatedly.
+</p><p>For the communication between two jetsons, since we do not need to use ROS on our speed trap, instead of using ROS server, we use socket in python.
+</p>
+<pre># OpenCV Python program to detect cars in video frame
+# import libraries of python OpenCV
+import socket
+import cv2
+import time
+# capture frames from a video
+first = False 
+second = False
+start = 0
+end = 0
+#First Camera
+cap1 = cv2.VideoCapture(0) 
+#Second Camera 
+cap2 = cv2.VideoCapture(1)
+#threshold for first Camera
+threshold1 = 7
+#Threshold for second Camera
+threshold2 = 2
+#Distance between two cameras
+distance = 2.2
+idle = 20
+v = 0
+speed = False
+current = 0
+stop = 0
+sleep_time = 5
+#Speed Limit
+speed_limit = 2
+#Background for first camera 
+background1 = None
+#Background for second camera
+background2 = None
+scale1 = None
+scale2 = None
+#create a server
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind(("192.168.33.74",23878))
+s.listen(5)
+data = "0"
+old_data ="0"
+# loop runs if capturing has been initialized.
+while True:
+  #check connection
+  clientsocket, address = s.accept()
+  print(f"Connection from {address} has been establish.") 
+  while True:
+      # reads frames from a video
+      ret1, frames1 = cap1.read()
+      ret2,frames2 = cap2.read()
+      # convert to gray scale of each frames
+      gray1 = cv2.cvtColor(frames1, cv2.COLOR_BGR2GRAY)
+      gray2 = cv2.cvtColor(frames2, cv2.COLOR_BGR2GRAY)
+      if background1 is None:
+        background1 = gray1
+      if background2 is None:
+        background2 = gray2
+      substraction1 = cv2.absdiff(background1, gray1)
+      substraction2 = cv2.absdiff(background2,gray2)
+      sum1 = cv2.sumElems(substraction1)
+      sum2 = cv2.sumElems(substraction2)
+      if scale1 is None or scale1 == 0:
+        scale1 = sum1[0]
+      if scale2 is None or scale2 == 0:
+        scale2 = sum2[0]
+      if scale1 != 0:
+        #if the change is greater than the threshould, set the change be true
+        if(sum1[0]/scale1 &gt; threshold1 and not first):
+          first = True
+          #time starts 
+          start = time.time()
+          print(sum1[0] /scale1)
+          print("Car passing in first")
+      if scale2 != 0:
+        if(sum2[0]/scale2 &gt; threshold2 and not second and first):
+          second = True
+          #time ends
+          end = time.time()
+          print(sum2[0] /scale2)
+          print("Car passing in second")
+      current = time.time()
+      #print the speed of the car
+      if(first and second and not speed):
+        print("speed:")
+        v = round(distance/(end-start),2)
+        print(str(v) + "m/s")
+        speed = True
+        stop = time.time()
+      
+      if(stop != 0 and (current - stop) &gt; sleep_time):
+        first = False
+        second = False
+        stop = 0
+        speed = False
+      #send the signal to client
+      if(old_data != data):
+        clientsocket.send(bytes(data,"utf-8"))
+        old_data = data
+      if(v &gt; speed_limit):
+        data = "1"
+      time.sleep(0.05)
+      cv2.waitKey(1)
+
+cv2.destroyAllWindows()
+
+
+</pre>
+<h3><span class="mw-headline" id="Code_For_Robocar">Code For Robocar</span></h3>
+<p>For the robocar part, we modify the file of lane_guidence_node.py to receive data from our host machine. If the signal we receive is 1, we will set the throttle rate will 'no_error_throttle'.  
+</p>
+<pre>#!/usr/bin/env python
+import rospy
+from std_msgs.msg import Float32, Int32, Int32MultiArray
+import socket
+
+LANE_GUIDANCE_NODE_NAME = 'lane_guidance_node'
+STEERING_TOPIC_NAME = '/steering'
+THROTTLE_TOPIC_NAME = '/throttle'
+CENTROID_TOPIC_NAME = '/centroid'
+HOST = "&lt;The IP address of Host Machine&gt;"
+PORT = &lt;The port number you want&gt;
+
+class PathPlanner:
+     def __init__(self):
+        # Initialize node and create publishers/subscribers
+        self.init_node = rospy.init_node(LANE_GUIDANCE_NODE_NAME, anonymous=False)
+        self.camera_subscriber = rospy.Subscriber(CAMERA_TOPIC_NAME, Image, self.live_calibration_values)
+        self.steering_publisher = rospy.Publisher(STEERING_TOPIC_NAME, Float32, queue_size=1)
+        self.throttle_publisher = rospy.Publisher(THROTTLE_TOPIC_NAME, Float32, queue_size=1)
+        self.steering_float = Float32()
+        self.throttle_float = Float32()
+        self.centroid_subscriber = rospy.Subscriber(CENTROID_TOPIC_NAME, Float32, self.controller)
+        self.s = socket.socket(socket.AF_INET, socket.Sock_STREAM)
+        self.s.connect((HOST,PORT)) #connect with the host machine
+        # Getting ROS parameters set from calibration Node
+        self.steering_sensitivity = rospy.get_param('steering_sensitivity')
+        self.no_error_throttle = rospy.get_param('no_error_throttle')
+        self.error_throttle = rospy.get_param('error_throttle')
+        self.error_threshold = rospy.get_param('error_threshold')
+        self.zero_throttle = rospy.get_param('zero_throttle')
+        self.signal = 0
+        # Display Parameters
+        rospy.loginfo(
+            f'\nsteering_sensitivity: {self.steering_sensitivity}'
+            f'\nno_error_throttle: {self.no_error_throttle}'
+            f'\nerror_throttle: {self.error_throttle}'
+            f'\nerror_threshold: {self.error_threshold}')
+
+    def controller(msg):
+        try:
+            #recv the msg from host machine, if the msg is 1 start the car
+            msg = self.s.recv(1)
+            msg = msg.decode("utf-8")
+            if msg == "1":
+                self.signal = 1
+                self.s.close()
+            kp = self.steering_sensitivity
+            error_x = data.data
+            self.get_logger().info(f"{error_x}")
+            if error_x &lt;= self.error_threshold:
+                throttle_float = self.no_error_throttle
+            else:
+                throttle_float = self.error_throttle
+            steering_float = float(kp * error_x)
+            if steering_float &lt; -1.0:
+                steering_float = -1.0
+            elif steering_float &gt; 1.0:
+                steering_float = 1.0
+            else:
+                pass
+            self.steering_float.data = steering_float
+            self.throttle_float.data = throttle_float
+            self.steering_publisher.publish(self.steering_float)
+            self.throttle_publisher.publish(self.throttle_float)
+        except KeyboardInterrupt:
+            self.throttle_publisher.data = self.zero_throttle
+            self.throttle_publisher.publish(self.throttle_float)
+
+def main():
+    path_planner = PathPlanner()
+    rate = rospy.Rate(15)
+    while not rospy.is_shutdown():
+        rospy.spin()
+        rate.sleep()
+
+if __name__ == '__main__':
+    main()
+
+</pre>
+<h3><span class="mw-headline" id="Code_for_play_sound">Code for play sound</span></h3>
+<p>To play sound, we use the playsound module in python.(p.s if you do not have playsound in your machine, you can install in by running the command "pip install playsound") Besides, we also use the threading in python to make the sound playing in background so we can run the program while playing the sound.
+</p>
+<pre>from playground import playsound
+import trheading
+threading.Thread(target=playsound, args=('police_siren.mp3',),daemon=True).start() 
+
+</pre>
+<h2><span class="mw-headline" id="Demonstration">Demonstration</span></h2>
+<h3><span class="mw-headline" id="Donkey_Car_Deep_Learning_Autonomous_Laps">Donkey Car Deep Learning Autonomous Laps</span></h3>
+<p><a class="image" href="File:Logo.jpg.html"><img alt="Logo.jpg" decoding="async" height="150" loading="lazy" src="https://web.archive.org/web/20220523092501im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/d4/Logo.jpg/200px-Logo.jpg" width="200"/></a>
+</p><p>For this part, we use the Donkey Car model to train our robocar to drive within the track. We also use the GPU cluster from UCSD Super-Computer Center to accelerate our training which makes the training part complete in 5 minutes.
+</p><p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/O8_r3n9UIco" style="border: none" width="425"></iframe>
+</p><p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/Ar8LHa24EHA" style="border: none" width="425"></iframe>
+</p>
+<h3><span class="mw-headline" id="ROS_Autonomous_Laps">ROS Autonomous Laps</span></h3>
+<p>For this part, we use the ROS programs given by our TA Dominic. The program will detect the yellow dash lines on the track, and calculate the error between the dash lines and the centerline of the camera. Based on the errors the car gets, the program will control the robocar to correct the direction. (You can find more information on <a class="external free" href="https://gitlab.com/djnighti/ucsd_robo_car_simple_ros#lane_guidance_node" rel="nofollow">https://gitlab.com/djnighti/ucsd_robo_car_simple_ros#lane_guidance_node</a>)
+</p><p>However, we faced some problems when we calibrate our cars. The first problem is that the steering of the robocar is reversed. To solve this problem, we have to edit the config file of the ROS files to invert the steering parameter. Besides, when we use X11 to view the images the jetson gets on our host machine, it has a significant delay on the images transfers. It tasks about 5 seconds to get the refresh of the image. To solve this problem, we have to disable the X11 server when we run the program.
+</p><p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/zp8BFvS78a0" style="border: none" width="425"></iframe>
+</p>
+<h3><span class="mw-headline" id="EMO">EMO</span></h3>
+<p>We use an AB controller to perform an emergency stop of our car. When we hit bottom B, the power for the steering and throttle will be cut off to stop the car immediately.
+</p><p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/mM2gVYU3_Bk" style="border: none" width="425"></iframe>
+</p>
+<h2><span class="mw-headline" id="Acknowledgements">Acknowledgements</span></h2>
+<p>Instructor - Prof. Jack Silberman
+</p><p>TA - Dominic Nightingale
+</p><p>TA - Haoru Xue
+</p><p>ECE Makerspace
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20220523092501
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.035 seconds
+Real time usage: 0.041 seconds
+Preprocessor visited node count: 106/1000000
+Post‐expand include size: 200/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 6259/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:1150-0!canonical and timestamp 20220523092501 and revision id 8981. Serialized with JSON.
+ -->
+</div>
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20220523092501/https://guitar.ucsd.edu/maeece148/index.php/2021FallTeam3">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

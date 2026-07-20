@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Project gps — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>Project gps</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#GPS_and_Autonomous_Vehicles"><span class="tocnumber">2</span> <span class="toctext">GPS and Autonomous Vehicles</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Project_Overview"><span class="tocnumber">3</span> <span class="toctext">Project Overview</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Hardware_Implementation"><span class="tocnumber">4</span> <span class="toctext">Hardware Implementation</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Software_Implementation"><span class="tocnumber">5</span> <span class="toctext">Software Implementation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Summary"><span class="tocnumber">5.1</span> <span class="toctext">Summary</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Mathematical_Equations"><span class="tocnumber">5.2</span> <span class="toctext">Mathematical Equations</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#Distance_Calculation"><span class="tocnumber">5.2.1</span> <span class="toctext">Distance Calculation</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Bearing_Calculation"><span class="tocnumber">5.2.2</span> <span class="toctext">Bearing Calculation</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="#GPS_Interfacing:_gps.py"><span class="tocnumber">5.3</span> <span class="toctext">GPS Interfacing: gps.py</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#Multi-threading"><span class="tocnumber">5.3.1</span> <span class="toctext">Multi-threading</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Methods"><span class="tocnumber">5.3.2</span> <span class="toctext">Methods</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-13"><a href="#Planning_Implementation:_planner.py"><span class="tocnumber">5.4</span> <span class="toctext">Planning Implementation: planner.py</span></a>
+<ul>
+<li class="toclevel-3 tocsection-14"><a href="#Overview"><span class="tocnumber">5.4.1</span> <span class="toctext">Overview</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#Methods_2"><span class="tocnumber">5.4.2</span> <span class="toctext">Methods</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-16"><a href="#Results"><span class="tocnumber">6</span> <span class="toctext">Results</span></a></li>
+<li class="toclevel-1 tocsection-17"><a href="#Future_Work"><span class="tocnumber">7</span> <span class="toctext">Future Work</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<p>Winter 2018
+</p>
+<ul><li> Matthew Gilli, Electrical Engineering B.S.</li>
+<li> Yu-Chia Hsu, Mechanical Engineering M.S.</li>
+<li> Jason Mayeda, Mechanical Engineering B.S.</li>
+<li> Roy Sun, Mechanical Engineering B.S.</li></ul>
+<h2><span class="mw-headline" id="GPS_and_Autonomous_Vehicles">GPS and Autonomous Vehicles</span></h2>
+<p>Global Positioning System (GPS) is formed by a network of satellites that provides geolocation data (time stamps, coordinates) to compatible GPS receivers. GPS data is commonly used along with a suite of other sensors in autonomous systems for navigation and control. The data provides coordinates in a global coordinate frame (latitude, longitude) that can be used to perform simply point-to-point navigation tasks. For more information about GPS fundamentals, see <a class="external text" href="https://www.gps.gov/systems/gps/" rel="nofollow">GPS.gov.</a>.
+</p>
+<h2><span class="mw-headline" id="Project_Overview">Project Overview</span></h2>
+<p>Due to complications with previous plug-and-play GPS modules for DonkeyCar autonomous vehicles, we sought to build our own DonkeyCar-compatible GPS module from scratch. The main flow of our project is as follows:
+</p>
+<ol><li> Initialize a list of waypoints.</li>
+<li> Recieve GPS data from GP-20U7 reciever.</li>
+<li> Determine current position and bearing of the car with respect to the waypoint.</li>
+<li> Calculate throttle and steering commands to direct the car to the waypoint.</li>
+<li> Repeat steps 2-4 until the waypoint is reached.</li>
+<li> Once the car reaches a waypoint, drive in circle for X amount of time.</li>
+<li> Repeat steps 2-6 until all waypoints in the list have been visited.</li></ol>
+<p>This project was implemented with two main processes: planning and GPS interface.
+</p><p><br/>
+<b>GPS Interface</b>
+</p>
+<ul><li> Polls for GPS data through the Pi serial port. </li>
+<li> Parses GPS strings for relevant coordinate and time data.</li>
+<li> Inputs: Bit/s</li>
+<li> Outputs: Car location: GPS coordinates in latitude and longitude.</li></ul>
+<p><b>Planner</b>
+</p>
+<ul><li> Implements control algorithms to calculate actuator commands for the car.</li>
+<li> Keeps track of additional stop conditions.</li>
+<li> Manages waypoint list.</li>
+<li> Inputs: Car location: GPS coordinates in latitude and longitude</li>
+<li> Outputs: Throttle and steering commands</li></ul>
+<h2><span class="mw-headline" id="Hardware_Implementation">Hardware Implementation</span></h2>
+<p>To implement our navigation tasks, we used the inexpensive GP-20U7 GPS receiver. <a class="external text" href="https://www.sparkfun.com/products/13740" rel="nofollow">Here</a> you can find more information on the receiver including cost, sample projects, and a data sheet. 
+</p><p>An embedded system is a system with dedicated function within larger system. 
+</p><p>The gps system was embedded into car system
+</p><p>In order for gps to communicate with car they must share a common communication protocol. In this case, serial communication.
+</p><p>Serial interfaces stream their data, one single bit at a time. These interfaces can operate on as little as one wire, usually never more than four. A serial bus consists of just two wires - one for sending data and another for receiving. As such, serial devices should have two serial pins: the receiver, <b>RX</b>, and the transmitter, <b>TX</b>.
+</p>
+<div class="MediaTransformError" style="width: 390px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<p>It's important to note that those RX and TX labels are with respect to the device itself. So the RX from one device should go to the TX of the other, and vice-versa. 
+</p><p>Some serial busses might get away with just a single connection between a sending and receiving device. In our case, the RPI does not need to relay any data back to the GPS. All that is needed is a single wire from the GP's TX to the pi's RX
+An example of this is shown in wiring diagram below.
+</p>
+<div class="MediaTransformError" style="width: 478px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<p><br/>
+To connect the GPS unit to the Pi, follow these pinout instructions:
+</p>
+<pre>GP-20U7 --&gt; Pi
+VCC --&gt; 3V
+GND --&gt; GND
+TX --&gt; RX
+RX --&gt; None
+</pre>
+<h2><span class="mw-headline" id="Software_Implementation">Software Implementation</span></h2>
+<h3><span class="mw-headline" id="Summary">Summary</span></h3>
+<p><b>gps_manage.py</b>
+</p><p>Our GPS analog to the Donkey Car manage.py. Add parts to the DK vehicle and calls Vehicle.py.
+</p><p>Dependent libraries: 
+</p>
+<pre>DonkeyCar, time, threading
+</pre>
+<p><br/>
+<b>gps.py</b>
+</p><p>Threaded Donkey Car part that reads GPS data from the Pi serial port. Waits for identifier in strings to parse relevant GPS data (latitude, longitude coordinates).
+</p><p>Dependent libraries: 
+</p>
+<pre>numpy, serial, <a class="external text" href="https://github.com/Knio/pynmea2" rel="nofollow">pynmea2</a>
+</pre>
+<p><br/>
+<b>planner.py</b>
+</p><p>Donkey Car part that takes GPS coordinates of current and previous time step to calculate distance and bearing to goal. Uses distance and bearing data to calculate the throttle and steering commands, respectively. Manages list of waypoints and stop conditions.
+</p><p>Dependent libraries: 
+</p>
+<pre>numpy, time
+</pre>
+<h3><span class="mw-headline" id="Mathematical_Equations">Mathematical Equations</span></h3>
+<h4><span class="mw-headline" id="Distance_Calculation">Distance Calculation</span></h4>
+<p>Our distance equations were based on the haversine derivations on <b><a class="external text" href="https://www.movable-type.co.uk/scripts/latlong.html" rel="nofollow">this page</a></b>. 
+</p><p>A Python implementation of the haversine equation can be found in our planner.py part.
+</p>
+<h4><span class="mw-headline" id="Bearing_Calculation">Bearing Calculation</span></h4>
+<p><a class="image" href="File:GPS.jpg.html"><img alt="GPS.jpg" height="326" loading="lazy" src="https://web.archive.org/web/20200814144050im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/f3/GPS.jpg/600px-GPS.jpg" width="600"/></a>
+</p><p>Important Parameters:
+</p>
+<ol><li> Calculate the bearing φ<sub>i</sub> of the vector made by the current location and the goal point, with respect to North.</li>
+<li> Calculate the bearing ψ<sub>i</sub> of the vector made by the previous time step location and the current location, with respect to North.</li></ol>
+<p>Method:
+</p><p>Our bearing calculation method is outlined at <b><a class="external text" href="https://www.movable-type.co.uk/scripts/latlong.html" rel="nofollow">this page</a></b>.
+</p><p>Also included on this page is sample JavaScript implementation of all of the equations.
+</p><p>Sample code:
+</p>
+<pre>   <i>def</i> calc_bearing(self, pointA, pointB):
+       <i># extract lat and long coordinates</i>
+       lat1 = pointA[0]
+       lon1 = pointA[1]
+       lat2 = pointB[0]
+       lon2 = pointB[1]
+       diffLon = lon2 - lon1
+       x = sin(diffLon) * cos(lat2)
+       y = cos(lat1) * sin(lat2) - (sin(lat1)*cos(lat2)*cos(diffLon))
+       initialBeading = arctan2(x, y)  <i># bearing (deg)</i>
+       compassBearingRad = (initialBearing + 2*pi) % (2*pi)
+</pre>
+<h3><span class="mw-headline" id="GPS_Interfacing:_gps.py">GPS Interfacing: gps.py</span></h3>
+<h4><span class="mw-headline" id="Multi-threading">Multi-threading</span></h4>
+<p>gps.py is a <b>threaded</b> donkey car part. This allows us to run our gps polling method in parallel to the Donkey Car Vehicle.py loop.
+</p><p>For more information on multi-threading in Python, see the official documentation <b><a class="external text" href="https://docs.python.org/3/library/threading.html" rel="nofollow">here</a></b>.
+</p><p>A great introduction to Donkey Car parts from the developers can be found <b><a class="external text" href="https://www.youtube.com/watch?v=YZ4ESrtfShs&amp;t=150s" rel="nofollow">here</a></b> and <b><a class="external text" href="https://www.youtube.com/watch?v=G1JjAw_NdnE" rel="nofollow">here</a></b>. It is <b>HIGHLY RECOMMENDED</b> that you watch these videos first to save time later.
+Adding threaded functionality to Donkey Car parts is a very simple process.
+</p><p>(1) First, define a Donkey Car part (python class) with the following methods:
+</p>
+<pre><i>def</i> <b>__init__</b>(self, ...):
+     <i># initialize any attributes for the class</i>
+</pre>
+<pre><i>def</i> <b>run</b>(self, ...):
+     <i># main function that will be called in each loop of Vehicle.py</i>
+</pre>
+<pre><i>def</i> <b>shutdown</b>(self, ...):
+     <i># shutdown function when Vehicle.py exits loop</i>
+</pre>
+<p>(2) To define a process as threaded, add the following two methods to the class:
+</p>
+<pre><i>def</i> <b>update</b>(self, ...):
+     while self.on:
+         <i># call methods that you would like to run in the thread</i>
+</pre>
+<pre><i>def</i> <b>run_threaded</b>(self, ...):
+     return output1, output2
+</pre>
+<p>Instead of calling "run", Vehicle.py will call "update" while the flag self.on is "on". 
+</p><p>(3) When adding the part to the Vehicle.py use the following syntax:
+</p>
+<pre>V.add(gps, outputs=[], inputs=[], <b>threaded=True</b>)
+</pre>
+<h4><span class="mw-headline" id="Methods">Methods</span></h4>
+<pre><i>def</i> <b>poll</b>(self):
+    gpsdataByte = self.gpsObj.readline()  <i># read data from serial port</i>
+    gpddata = gpsdataByte.decode('utf-8')  <i># convert from byte to string</i>
+    if 'GPGGA' in gpsdata:
+        self.prevLocation = self.currLocation  <i># update previous location</i>
+        self.currLocation = self.GPStoRad(gpsdata)  <i># GPStoRad converts parses GPS string to radians</i>
+    else:
+        pass
+    return self.currLocation, self.prevLocation
+</pre>
+<p>Poll is the main method called in the GPS class. It monitors the serial port, and converts the data from byte to string to float.
+</p>
+<h3><span class="mw-headline" id="Planning_Implementation:_planner.py">Planning Implementation: planner.py</span></h3>
+<h4><span class="mw-headline" id="Overview">Overview</span></h4>
+<p>The planner consists of two controllers: one for steering and one for throttle. At the moment, they are simply proportional controllers that take in their respective error signals and output a control signal. Future tuning of these controllers or implementation of a different controller altogether is suggested to improve the car performance.
+</p><p>When the Planner loops through waypoints, the car will drive in a circle for X amount of time before continuing on to the next point.
+</p>
+<h4><span class="mw-headline" id="Methods_2">Methods</span></h4>
+<p>Here are the methods used in the planner class.
+</p>
+<pre><i>def</i> <b>run</b>(self):
+    <i># loop through waypoints, check for stop conditions, write data to a textfile, and call controllers</i>
+    return steering_cmd, throttle_cmd
+</pre>
+<pre><i>def</i> <b>update_distance</b>(self):
+    <i># implement haversine formula outlined in the distance section above</i>
+    return self.distance
+</pre>
+<pre><i>def</i> <b>calc_bearing</b>(self):
+    <i># calculate the bearing error using the process outlined in the bearing section above</i>
+    return self.bearing
+</pre>
+<pre><i>def</i> <b>steering_controller</b>(self, currLocation, prevLocation)
+    <i># implement control algorithm based on bearing</i>
+    return steering_cmd
+</pre>
+<pre><i>def</i> <b>throttle_controller</b>(self, currLocation):
+     <i># implement control algorithm based on distance to goal</i>
+     return throttle_cmd
+</pre>
+<pre><i>def</i> <b>drive_in_circle</b>(self):
+     <i># send constant throttle and steering to drive in a circle once waypoint is reached</i>
+     return throttle_cmd, steering_cmd
+</pre>
+<h2><span class="mw-headline" id="Results">Results</span></h2>
+<p><a class="image" href="File:Trajectory.png.html"><img alt="Trajectory.png" height="408" loading="lazy" src="https://web.archive.org/web/20200814144050im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/87/Trajectory.png/750px-Trajectory.png" width="750"/></a>
+</p><p>Results of a typical two point waypoint navigation. The starting point is shown in black. The first waypoint, "Warren Mall", is shown in red. The threshold goal circle surrounding the waypoint is shown as the dashed circle. The graph shows that the car did trigger the "drive in circle" method once the goal threshold was reached. The second waypoint, Geisel Library, is not shown.
+</p><p>You can see the car LIVE in action <b><a class="external text" href="https://www.youtube.com/watch?v=O6DhMk9fdZ4" rel="nofollow">here</a></b>.
+</p>
+<h2><span class="mw-headline" id="Future_Work">Future Work</span></h2>
+<ul><li> Implement a better control algorithm for improved steering performance.</li>
+<li> Timing Issues
+<ul><li> Default loop frequency for Vehicle.py is 20Hz, consider changing refresh rate.</li>
+<li> Threaded GPS part updates GPS location slowly, consider different baud rates.</li></ul></li>
+<li> Heading calculation issues
+<ul><li> Because the bearing with respect to goal is calculated between the current and previous time step, small perturbations in the car trajectory (due to poorly tuned controllers, high speed, or difference in frequencies of main loop and threaded loop), can cause large deviations from the straight-line trajectory from start to goal.</li>
+<li> Adjusting these parameters will improve performance.</li></ul></li>
+<li> Create an APP to set waypoints and destination and plan a route.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20200814144050
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.012 seconds
+Real time usage: 0.015 seconds
+Preprocessor visited node count: 66/1000000
+Preprocessor generated node count: 72/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:37-0!*!*!!en!5!* and timestamp 20200814144050 and revision id 379
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200814144050/https://guitar.ucsd.edu/maeece148/index.php/Project_gps">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

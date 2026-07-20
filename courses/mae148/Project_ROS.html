@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Project ROS — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>Project ROS</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#What_is_ROS.3F"><span class="tocnumber">1</span> <span class="toctext">What is ROS?</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Getting_Started_with_ROS"><span class="tocnumber">2</span> <span class="toctext">Getting Started with ROS</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Controlling_the_Donkey_Car_Using_ROS_Nodes"><span class="tocnumber">3</span> <span class="toctext">Controlling the Donkey Car Using ROS Nodes</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Main_Publisher_Node:_keyboard_inputs"><span class="tocnumber">3.1</span> <span class="toctext">Main Publisher Node: keyboard_inputs</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Main_Subscriber_Node:_controls_receiver"><span class="tocnumber">3.2</span> <span class="toctext">Main Subscriber Node: controls_receiver</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#Controlling_the_Motor_and_Servo:_actuator"><span class="tocnumber">3.2.1</span> <span class="toctext">Controlling the Motor and Servo: actuator</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-7"><a href="#Additional_Nodes"><span class="tocnumber">3.3</span> <span class="toctext">Additional Nodes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Challenges"><span class="tocnumber">4</span> <span class="toctext">Challenges</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Potential_Future_Work"><span class="tocnumber">5</span> <span class="toctext">Potential Future Work</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="What_is_ROS.3F">What is ROS?</span></h2>
+<p>The open-source Robot Operating System, otherwise known as ROS, is a Linux based framework for robotic control. It aims to simplify the task of creating complex and robust robot behavior across a wide variety of robotic platforms. A ROS system is comprised of a number of independent nodes, each of which communicates with the other nodes using a publish/subscribe messaging model.  For example, a particular sensor’s driver might be implemented as a node, which publishes sensor data in a stream of messages. These messages could be consumed by any number of other nodes, including guidance, pathfinding, etc.
+</p><p><br/>
+ROS was built from the ground up to encourage collaborative robotics software development. For example, one laboratory might have experts in mapping indoor environments, and could contribute a world-class system for producing maps. Another group might have experts at using maps to navigate, and yet another group might have discovered a computer vision approach that works well for recognizing small objects in clutter. ROS was designed specifically for groups like these to <b>collaborate</b> and <b>build upon each other's work</b>.
+</p>
+<h2><span class="mw-headline" id="Getting_Started_with_ROS">Getting Started with ROS</span></h2>
+<p>Since there is limited time span for each version, we recommend you to install ROS kinetics, which lasts until 2021.
+</p><p>This instruction helps you install ROS Kinetic Kame on your platform. For Mac users, to install ROS on Ubuntu through Virtual Machine is preferred.
+</p>
+<pre>  <a class="external text" href="http://wiki.ros.org/kinetic/Installation" rel="nofollow">ROS Kinetic installation instructions</a>
+</pre>
+<p>The followings are step by step instructions for learning ROS from the start.
+</p><p>1.<a class="external text" href="http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment" rel="nofollow">Installing and Configuring Your ROS Environment</a>
+</p><p>This tutorial helps you installing ROS and setting up the ROS environment on your computer.
+</p><p>2.<a class="external text" href="http://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem" rel="nofollow">Navigating the ROS Filesystem</a>
+</p><p>This tutorial introduces ROS filesystem concepts, and covers command like roscd, rosls, and rospack.
+</p><p>3.<a class="external text" href="http://wiki.ros.org/ROS/Tutorials/CreatingPackage" rel="nofollow">Creating a ROS Package</a>
+<a class="external text" href="http://wiki.ros.org/ROS/Tutorials/BuildingPackages" rel="nofollow">Building a ROS Package</a>
+</p><p>These tutorial cover using roscreate-pkg or catkin to create a new package,  rospack to list package dependencies and also the toolchain to build a package.
+</p><p>4.<a class="external text" href="http://wiki.ros.org/ROS/Tutorials/UnderstandingNodes" rel="nofollow">Understanding ROS Nodes</a>
+</p>
+<ul><li>A node is an <b>executable file</b> within a ROS package. The use of roscore, rosnode, and rosrun is also discussed in this tutorial.</li></ul>
+<p>5.<a class="external text" href="http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics" rel="nofollow">Understanding ROS Topics</a>
+</p>
+<ul><li>This tutorial introduces ROS topics, basically how ROS works as well as how to use the rostopic and rqt_plot.</li></ul>
+<p>6.<a class="external text" href="http://wiki.ros.org/ROS/Tutorials/UnderstandingServicesParams" rel="nofollow">Understanding ROS Services and Parameters</a>
+</p><p>This tutorial introduces ROS services, and parameters as well as using the rosservice and rosparam commandline tools.
+</p><p>7.<a class="external text" href="http://wiki.ros.org/ROS/Tutorials/UsingRqtconsoleRoslaunch" rel="nofollow">Using rqt_console and roslaunch</a>
+</p><p>This tutorial introduces ROS using rqt_console and rqt_logger_level for debugging and roslaunch for starting many nodes at once.
+</p><p>8.<a class="external text" href="http://wiki.ros.org/ROS/Tutorials/UsingRosEd" rel="nofollow">Using rosed to edit files in ROS</a>
+</p><p>This tutorial shows how to use rosed to make editing easier.
+</p><p>9.<a class="external text" href="http://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv" rel="nofollow">Creating a ROS msg and srv</a>
+</p><p>This tutorial covers how to create and build msg and srv files as well as the using rosmsg, rossrv and roscp.
+</p><p><br/>
+10. *Writing nodes. By following the template in these tutorials, you will be able to create your own node!
+</p><p><a class="external text" href="http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29" rel="nofollow">Writing a Simple Publisher and Subscriber (C++)</a>
+</p><p><a class="external text" href="http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29" rel="nofollow">Writing a Simple Publisher and Subscriber (Python)</a>
+</p><p><a class="external text" href="http://wiki.ros.org/ROS/Tutorials/ExaminingPublisherSubscriber" rel="nofollow">Examining the Simple Publisher and Subscriber</a>
+</p><p><br/>
+For further study, a complete tutorials can be found from <a class="external text" href="http://wiki.ros.org/ROS/Tutorials" rel="nofollow">ROS Tutorials</a>
+</p><p>For reference, a list of commonly-used, core ROS commands and functions have been compiled for your convenience and can be accessed <a class="external text" href="https://drive.google.com/open?id=1bY-BdCF2-IZiV7DybYfufrefr8EV_izg" rel="nofollow">HERE</a>.
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Controlling_the_Donkey_Car_Using_ROS_Nodes">Controlling the Donkey Car Using ROS Nodes</span></h2>
+<p>Utilizing the Donkeycar framework, in theory, should be simple: a direct publisher-subscriber connection should suffice to directly operate and control the Donkeycar. To accomplish this, the following is implemented:
+</p>
+<pre>  &gt; A <b>publisher</b> node to receive specified keyboard inputs and post them to the <i>controls</i> topic for subscribers to draw from.
+  &gt; A <b>subscriber</b> node to receive values posted to the <i>controls</i> topic and send them to the motors to operate the Donkeycar.
+</pre>
+<p>Specified details are described below. All of the following code can be found on GitHub at the following repository:
+</p><p><a class="external text" href="http://needtofillingithublinkhere!!!!.com" rel="nofollow">Winter 2018 "driving_donkey" ROS Package</a>
+</p><p><br/>
+</p>
+<h3><span class="mw-headline" id="Main_Publisher_Node:_keyboard_inputs">Main Publisher Node: keyboard_inputs</span></h3>
+<p>Our central publisher node is named <b>keyboard_inputs.py</b>, and utilizes Python as the language of operation. This publisher node is organized such that additional keyboard-input features can easily be implemented for future projects.
+</p><p>The backbone of this node is built from the curses library, a powerful set of functions leveraging user keyboard inputs. Please note that this publisher node utilizes the curses library, so if you do not have it downloaded on your RPi (or similarly, if you receive an error stating that "import curses" failed), run the command:
+</p>
+<pre>  pip install curses
+</pre>
+<p>This will install the curses library on your machine.
+</p><p>Documentation for the curses library can be found <a class="external text" href="https://docs.python.org/2/library/curses.html" rel="nofollow">HERE</a>. We highly recommend taking a look through the various functions available through this library, to understand the scope of its functionality as well as to inspire potential add-ons to the current set of curses functions implemented in our publisher node.
+</p><p>In general, this program takes in a specified keyboard input (namely, the arrow keys, q, or spacebar) to modify the servo and speed control motors' PWM values. A list of currently-accepted keyboard inputs is shown below:
+</p>
+<pre>  &gt; q: Shutsdown the user interface and node. NOTE: This command <b>must</b> be used in place of CTRL-C.
+     Attempting to use CTRL-C to exit the node will effectively crash the terminal window.
+  &gt; spacebar: Fast stop. Pressing this immediately resets the speed control PWM to its neutral value.
+  &gt; left/right arrow: Decreases/Increases the servo (steering) motor PWM values posted to the <i>controls</i> topic
+  &gt; up/down arrow: Decreases/increases the speed control motor PWM values posted to the <i>controls</i> topic
+</pre>
+<p>Let's break down the code to see exactly what is going on. The first thing to note is that this file references the config.py file utilized in our traditional Donkey framework:
+</p>
+<pre>  from config import *
+</pre>
+<p>From here, the script pulls the max/neutral/min steering/throttle PWM values determined from the original Donkeycar calibration. Make sure an (updated) copy of this file identical to the one in your d2 folder exists in the same directory where keyboard_input.py exists. The next thing to note is that the type of message we'll be uploading to the <i>controls</i> topic is a double-precision float set of arrays:
+</p>
+<pre>  from std_msgs.msg import Int16MultiArray
+</pre>
+<p>This allows us to post all the PWM values simultaneously to our topic without having to send multiple messages. Each PWM value will be held in a different element of the array. This also allows to easily expand the scope of our message to send additional commands to the topic, should future features be implemented (for example, a binary on/off switch to initialize stereo vision). The next few sets of lines initialize the curses UI. Specific documentation of these commands may be found in the curses library link posted above. The next important line is the initialization of our safety timeout value:
+</p>
+<pre>  no_response_max_time = 5000 # milliseconds
+</pre>
+<p>Every time a keyboard input is triggered, a built-in counter within the curses framework resets to 0. This timer then counts the number of milliseconds before another keyboard input occurs; if no input is detected within the specified time (in this case, 5000 ms = 5 seconds), the interrupt-style function screen.getch() outputs -1 (in contrast to 'q', 'b', or any other character on the keyboard). This allows us to create a case that does something in the case that we experience a user timeout, i.e.: screen.getch() == -1. For our purposes, this will be a safety switch that automatically resets both the steering and throttle to its neutral positions (more on that below). The next important lines are the initialization of important parameters:
+</p>
+<pre>  rate = rospy.Rate(100) # 100hz
+  steering_neutral = round((STEERING_RIGHT_PWM + STEERING_LEFT_PWM)/2.0)
+  throttle_neutral = THROTTLE_STOPPED_PWM + 10
+  throttle_max = THROTTLE_STOPPED_PWM + THROTTLE_RANGE
+  throttle_min = THROTTLE_STOPPED_PWM - THROTTLE_RANGE
+  steering_scale = 15
+</pre>
+<p>Our rospy rate is set to 100Hz -- thus messages are being published to the <i>controls</i> topic at a maximum rate of 100/second. This, of course, will rarely happen since messages are only going to be published when the user presses a key! Steering_neutral, throttle_neutral, throttle_max, throttle_min are all straightforward -- as mentioned earlier, these commands draw upon the config.py values to determine the bounds of potential PWM values to be posted to the topic. Lastly, steering_scale determines how much the PWM changes each time the user presses the right/left arrow keys. Next is our initialization of our publisher message:
+</p>
+<pre>  pwm_input = Int16MultiArray()
+  pwm_input.data = [steering_neutral,throttle_neutral]
+</pre>
+<p>We initialize message pwm_input or type Int16MultiArray, which currently includes [steering, throttle] values set to their respective neutral values. These values will be dynamically updated and reposted to the <i>controls</i> topic as the user provides keyboard inputs. Additional parameters can easily be appended to the message by adding additional elements to the current array.
+</p><p>Now, onto the bulk of the script -- the case-based commands. In general, right/left and up/down keys do the same thing, but in a reverse direction, so only one of each will be documented here. The first part of the right key case checks to see if the current PWM is already maxed out -- if it is, nothing changes:
+</p>
+<pre>  elif char == curses.KEY_RIGHT:
+       # print doesn't work with curses, use addstr instead
+       if pwm_input.data[0] &gt;= STEERING_RIGHT_PWM:
+            # limit the steering max value (right side)
+            pwm_input.data[0] = STEERING_RIGHT_PWM
+</pre>
+<p>If the current steering PWM falls between the MIN and MAX values, it will be changed by +steering_scale (+15):
+</p>
+<pre>       else:
+            pwm_input.data[0] += steering_scale
+</pre>
+<p>The next chunk of text is purely for ease-of-use purposes. If a user is remotely controlling the car, they will be unable to visually see how far their wheels are turned -- that is, it will be hard to intuitively know how dramatic they are currently turning. Thus a visual aid was provided: Each time the right arrow is triggered, a '&gt;' added to the screen so the user can see relatively how far over the user is turning. For example, if the node is currently posting a steering_PWM of neutral+3*steering_scale, the user would see the following on the terminal window:
+</p>
+<pre>  [         O&gt;&gt;&gt;   ]
+</pre>
+<p>The reverse would be true for the user pressing the left arrow key.
+</p><p>The up/down cases are much more straightforward. Similar to the right/left case, the node checks to make sure the user input doesn't cause the resulting PWM throttle value to fall outside of its MIN/MAX range:
+</p>
+<pre>  elif char == curses.KEY_UP:
+       if pwm_input.data[1] &gt;= throttle_max:
+            # limit the steering max value
+            pwm_input.data[1] = throttle_max
+</pre>
+<p>Otherwise, the node adjusts its throttle PWM by +1
+</p>
+<pre>       else:
+       pwm_input.data[1] += 1
+</pre>
+<p>Now, let's analyze the special cases. The first occurs when the user presses spacebar. This immediately resets the throttle to zero:
+</p>
+<pre>  elif char == ord(' '):
+       # hard stop -- hitting spacebar resets the throttle PWM to neutral 
+       pwm_input.data[1] = throttle_neutral
+</pre>
+<p>Lastly, the timeout case is utilized -- this resets both the steering and throttle PWMs to neutral:
+</p>
+<pre>  elif char == -1:
+       # Increase the safety counter, in case connection is lost this will trigger a stop
+       pwm_input.data = [steering_neutral,throttle_neutral]
+</pre>
+<p>In each case, the user terminal screen is updated to reflect the current state of the steering/throttle PWM values:
+</p>
+<pre>       screen.addstr(3, 0, \
+                   'Currently outputting:'\
+                   '[Steering PWM, Throttle PWM] = ')
+       screen.addstr(3, 52, str(pwm_input.data))
+</pre>
+<p><br/>
+The remainder of the code cleans up the curses platform in the case the node is exited.
+</p><p><b>LOGISTICAL CHALLENGES:</b> We (sadly) found out that most laptop keyboards only accept 2 simultaneous keys at once, and can only read a single key continuously at a time. This holds problems when trying to quickly and dynamically control the car, such as rapidly changing steering from right to left, or trying to control both throttle and steering simultaneously (ex: holding both the right and up keys at once). This can be solved by utilizing an external/separate keyboard, but this is clearly not optimal. It would be practical to find an alternate solution to this problem.
+</p><p><br/>
+</p>
+<h3><span class="mw-headline" id="Main_Subscriber_Node:_controls_receiver">Main Subscriber Node: controls_receiver</span></h3>
+<p>Our central subscriber node is named <b>controls_receiver.py</b>, and utilizes Python as the language of operation. The controls_receiver node makes use of the <b>actuator.py</b> file located in the same folder. The <b>actuator.py</b> file is explained in more detail in the following sub-section.
+</p><p>To run this node, make sure roscore is running. On the terminal:
+</p>
+<pre>roscore
+</pre>
+<p>Then run the command:
+</p>
+<pre>rosrun (package location) controls_receiver.py
+</pre>
+<p>By default, if you are using <b>driving_donkey</b> as the name for the package:
+</p>
+<pre>rosrun driving_donkey controls_receiver.py
+</pre>
+<p>Now, let's break down each line in the code:
+</p>
+<pre>import rospy
+</pre>
+<p>We must import <b>rospy</b> in order to use classes and functions for ROS.
+</p>
+<pre>from std_msgs.msg import Int16MultiArray as PWM
+</pre>
+<p>This imports the <b>Int16MultiArray</b> message type from the <b>std_msgs/msg</b> folder, and uses <b>PWM</b> as a nickname.
+</p>
+<pre>from actuator import PWMController
+</pre>
+<p>This imports the <b>PWMController</b> class from <b>actuator.py</b>, and allows us to send PWM to the Raspberry Pi and PWM controller.
+</p>
+<pre>from config import *
+</pre>
+<p>This imports all of our custom settings, such as the <b>STEERING_CHANNEL</b>, <b>THROTTLE_STOPPED_PWM</b>, etc.
+</p>
+<pre>STEERING = 0
+THROTTLE = 1
+</pre>
+<p>This is the array position for steering or throttle in the Int16MultiArray message that is sent from the publisher.
+</p>
+<pre>steering_controller = PWMController(channel=STEERING_CHANNEL) 
+throttle_controller = PWMController(channel=THROTTLE_CHANNEL)
+</pre>
+<p>Here we create an instance of <b>PWMController</b> to control each of the steering and throttle.
+</p>
+<pre>slower_downer = 0
+</pre>
+<p>This variable needs a better name. It is not entirely tested to actually work, but it was created in an attempt to slow down our motor, since it was too fast. Explained in detail later.
+</p>
+<pre>def listener():
+    rospy.init_node("actuator", anonymous=True)
+    print("Running actuator subscriber")
+    rospy.Subscriber("controls", PWM, callback)
+    rospy.spin()    
+</pre>
+<p>The <b>listener</b> function receives the messages from the publisher via the <b>controls</b> topic. The first line creates the node and names it <b>actuator</b>. The third line creates a subscriber so that we can receive <b>PWM</b> type messages from the <b>controls</b> topic. When a message is received, the function <b>callback</b> is called. Finally, <b>rospy.spin()</b> makes it so Python will not exit until this node is stopped.
+</p>
+<pre>def callback(data):
+    global slower_downer
+    rospy.loginfo(rospy.get_caller_id() + " Data received: %s", data)
+   
+    new_throttle = data.data[THROTTLE]
+    new_steering = data.data[STEERING]
+
+    slower_downer += 1
+    slower_downer %= 10
+    print("slower downer %d" % slower_downer)
+    if (slower_downer == 0):
+        throttle_controller.set_pwm(THROTTLE_STOPPED_PWM)
+    elif (new_throttle &lt; THROTTLE_STOPPED_PWM+THROTTLE_RANGE and new_throttle &gt; THROTTLE_STOPPED_PWM- THROTTLE_RANGE):
+        print("new throttle %d" % new_throttle)
+        throttle_controller.set_pwm(new_throttle)
+    
+    print("new steering %d" % new_steering)
+    steering_controller.set_pwm(new_steering)
+</pre>
+<p>This function is called whenever a message is received by the <b>listener</b>. We use <b>global slower_downer</b> to keep track of how many times <b>slower_downer</b> has been incremented. <b>rospy.loginfo(rospy.get_caller_id() + " Data received: %s", data)</b> allows us to print the data that is received from the <b>controls</b> topic to the terminal.
+</p>
+<pre>    new_throttle = data.data[THROTTLE]
+    new_steering = data.data[STEERING]
+</pre>
+<p>This is the new PWM for both the throttle and the steering received from the <b>controls</b> topic.
+</p>
+<pre>    slower_downer += 1
+    slower_downer %= 10
+    print("slower downer %d" % slower_downer)
+    if (slower_downer == 0):
+        throttle_controller.set_pwm(THROTTLE_STOPPED_PWM)
+</pre>
+<p>The slower downer attempts to set the PWM to the stopped PWM every 10 times <b>callback</b> is called. This does not work entirely as expected, since callback is called only when a message is sent, so when we actually change the steering/throttle PWM from the <b>keyboard_input</b> node.
+</p>
+<pre>elif (new_throttle &lt; THROTTLE_STOPPED_PWM+THROTTLE_RANGE and new_throttle &gt; THROTTLE_STOPPED_PWM- THROTTLE_RANGE):
+         print("new throttle %d" % new_throttle)
+         throttle_controller.set_pwm(new_throttle)
+</pre>
+<p>The if condition allows us to set a maximum PWM (or minimum PWM for reverse direction) in order to prevent our car from moving too fast. The PWM for the throttle is then set to that of <b>new_throttle</b>.
+</p>
+<pre>    steering_controller.set_pwm(new_steering)
+</pre>
+<p>This simply sets the steering PWM to the value of <b>new_steering</b>.
+</p>
+<pre>if __name__ == '__main__':
+    listener()
+</pre>
+<p>This simply calls the <b>listener()</b> function if <b>controls_receiver.py</b> is called from the terminal.
+</p><p><br/>
+</p>
+<h4><span class="mw-headline" id="Controlling_the_Motor_and_Servo:_actuator">Controlling the Motor and Servo: actuator</span></h4>
+<p>The <b>actuator.py</b> script allows us to control the motors and servo. To use <b>actuator.py</b>, make sure you have the <b>Adafruit_PCA9685</b> library installed. Installation instructions <a class="external text" href="https://github.com/adafruit/Adafruit_Python_PCA9685" rel="nofollow">here</a>.
+</p>
+<pre>   def __init__(self, channel, frequency=60):
+       import Adafruit_PCA9685
+       self.pwm = Adafruit_PCA9685.PCA9685() 
+       self.pwm.set_pwm_freq(frequency)
+       self.channel = channel
+</pre>
+<p>This creates an instance of the <b>PWMController</b> class. The user must provide a <b>channel</b> when creating an instance of this class. The user can also set a <b>frequency</b>, but it is set to 60 Hz by default. The first line of the function imports the <b>Adafruit_PCA9685</b> library. Next we set the class variable <b>pwm</b>, which allows us to control the PWM at a specific channel on the PWM controller. The frequency of <b>pwm</b> is then set to the provided <b>frequency</b>. By default it is 60 Hz. Next, the channel for the PWM is set to <b>self.channel</b>.
+</p>
+<pre>   def set_pwm(self, pulse):
+       self.pwm.set_pwm(self.channel, 0, pulse)
+</pre>
+<p>This function is a wrapper that makes it simpler to control the PWM by just providing the PWM <b>pulse</b> as input.
+</p>
+<h3><span class="mw-headline" id="Additional_Nodes">Additional Nodes</span></h3>
+<p><b>NOTE: These nodes DO NOT CURRENTLY WORK.</b> Our team was unable to solve the logistical bug issues that resulted when attempting to run these nodes. Specific errors and their speculated causes are described below.
+</p>
+<h2><span class="mw-headline" id="Challenges">Challenges</span></h2>
+<p>One of the major problems we faced was inconsistent platform support from ROS. The version of ROS which we used, ROS Kinetic, was built for Ubuntu systems, so we ran into many issues with running it on the Raspberry Pi, which ran on a Raspbian. As a result, there were many issues with incompatibility between ROS and our Raspberry Pi.
+</p><p>Another problem we ran into was lack of memory (RAM) on our Raspberry Pi when running some ROS commands. When trying to run <b>catkin_make</b> on our Raspberry Pi, our Raspberry Pi would usually freeze. We fixed this issue by running <b>catkin_make</b> only on specific packages. Specifically, we used the command <b>catkin_make -DCATKIN_WHITELIST_PACKAGES="package1;package2"</b> More information <a class="external text" href="http://wiki.ros.org/catkin/commands/catkin_make" rel="nofollow">here</a>.
+</p>
+<h2><span class="mw-headline" id="Potential_Future_Work">Potential Future Work</span></h2>
+<p>Since ROS  is a new software platform with a different framework from that of donkeycar, navigation, odometry and image recognition are all potential works that can be accomplished through ROS.
+</p>
+<ul><li>Writing an image transcript publisher node and subscriber node to capture image.</li></ul>
+<p>There are many problems our group met when we  build our own publisher and subscriber node for image transports. There is a package called cvbridge which allows us to transform the Opencv image to the image ROS accept. It is a necessary step. But our RPI could not find this module no matter how we fixed it. Make sure the workspace is tidy and the version corresponds to your python version before download any packages and dependencies.
+</p>
+<ul><li>Writing a publisher node and subscriber node for ps3 joysticks.</li></ul>
+<p>We used weeks to debug errors from <a class="external text" href="http://wiki.ros.org/joystick_drivers" rel="nofollow">Joystick_drivers </a> package. Again, RPI could not find roslib for unknown reasons. Setting nodes for Joysticks is more difficult than the keyboard. But joystick allows you to control your car way better than the keyboard does, which has a high latency. 
+</p>
+<ul><li> Motion Planning which involves odometry and navigation</li></ul>
+<p>This is the key part ROS played on industrial robots nowadays. Mostly TurtleBot and drone are used to achieve locomotion following certain paths. You can assemble encoders or range sensors on the RC car to capture distance while driving. Then several algorithms can be published to follow specific paths or to avoid blocks on the track. There will be more interactions between different nodes.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20200807183519
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.007 seconds
+Real time usage: 0.007 seconds
+Preprocessor visited node count: 35/1000000
+Preprocessor generated node count: 40/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:23-0!*!*!!en!*!* and timestamp 20200807183519 and revision id 257
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200807183519/https://guitar.ucsd.edu/maeece148/index.php/Project_ROS">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

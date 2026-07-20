@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2019FallTeam7 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2019FallTeam7</h1>
+      <div class="thumb tright"><div class="thumbinner" style="width:702px;"><a class="image" href="File:Car_Side_View_R.JPG.html"><img alt="" class="thumbimage" height="340" loading="lazy" src="https://web.archive.org/web/20200918090442im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/da/Car_Side_View_R.JPG/700px-Car_Side_View_R.JPG" width="700"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Car_Side_View_R.JPG.html" title="Enlarge"></a></div>Fully built robocar with integrated LIDAR</div></div></div>
+<div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Project_Overview"><span class="tocnumber">2</span> <span class="toctext">Project Overview</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Objectives"><span class="tocnumber">3</span> <span class="toctext">Objectives</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Adaptive_Cruise_Control"><span class="tocnumber">3.1</span> <span class="toctext">Adaptive Cruise Control</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Pedestrian_and_Traffic_Sign_Detection"><span class="tocnumber">3.2</span> <span class="toctext">Pedestrian and Traffic Sign Detection</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Mechanical_Design"><span class="tocnumber">4</span> <span class="toctext">Mechanical Design</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Suspension_Adjustment"><span class="tocnumber">4.1</span> <span class="toctext">Suspension Adjustment</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Electrical_Schematic.2FCircuitry"><span class="tocnumber">5</span> <span class="toctext">Electrical Schematic/Circuitry</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Software_Integration"><span class="tocnumber">6</span> <span class="toctext">Software Integration</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#LIDAR_Processor"><span class="tocnumber">6.1</span> <span class="toctext">LIDAR Processor</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#LIDAR_Filter_Player_Tool"><span class="tocnumber">6.1.1</span> <span class="toctext">LIDAR Filter Player Tool</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="#Adaptive_Cruise_Controller"><span class="tocnumber">6.2</span> <span class="toctext">Adaptive Cruise Controller</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#YOLO_Detector"><span class="tocnumber">6.3</span> <span class="toctext">YOLO Detector</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Robot_Operating_System_.28ROS.29"><span class="tocnumber">6.4</span> <span class="toctext">Robot Operating System (ROS)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-15"><a href="#Results"><span class="tocnumber">7</span> <span class="toctext">Results</span></a>
+<ul>
+<li class="toclevel-2 tocsection-16"><a href="#Issues"><span class="tocnumber">7.1</span> <span class="toctext">Issues</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="#References"><span class="tocnumber">8</span> <span class="toctext">References</span></a></li>
+</ul>
+</div>
+<h1><span class="mw-headline" id="Team_Members">Team Members</span></h1>
+<p>Kenan O'Connor - Mechanical Engineering
+</p><p>Mingwei Xu - Electrical and Computer Engineering
+</p><p>Haiyang Yu - Electrical Engineering
+</p>
+<h1><span class="mw-headline" id="Project_Overview">Project Overview</span></h1>
+<p>In this project, we implemented adaptive cruise control on the donkey car. We used LIDAR for distance measurement, utilized ROS within the donkey framework to get LIDAR data and designed a cruise controller to control throttle in order to maintain vehicle speed and safe distance. Meanwhile, the adaptive cruise controller is still compatible with the original donkey autopilot, hence our autonomous can safely navigate while in autonomous mode.
+</p><p>In addition, we utilized the YOLO network for pedestrian and traffic sign detection, which enhanced the safety features of our autonomous driving RC car.
+</p>
+<h1><span class="mw-headline" id="Objectives">Objectives</span></h1>
+<p>Must have: adaptive cruise control
+</p><p>Nice to have: pedestrian and traffic sign detection
+</p>
+<h2><span class="mw-headline" id="Adaptive_Cruise_Control">Adaptive Cruise Control</span></h2>
+<p>Adaptive cruise control automatically adjusts the vehicle speed to maintain a safe distance from vehicles ahead. It is a key component of autonomous cars and has been proven to be an effective safety feature of road vehicles.
+</p><p>Main objectives of adaptive cruise control are:
+</p><p>1. Use ROS to get LIDAR scan data from RPLidar
+</p><p>2. Subscribe to ROS LIDAR topic, apply LIDAR filter to reduce sensor noise and add distance calculator to check the object distance in front of the car
+</p><p>3. Implement adaptive cruise control that takes distance sequence and control throttle accordingly
+</p>
+<h2><span class="mw-headline" id="Pedestrian_and_Traffic_Sign_Detection">Pedestrian and Traffic Sign Detection</span></h2>
+<h1><span class="mw-headline" id="Mechanical_Design">Mechanical Design</span></h1>
+<p>The first major mechanical design challenge was to integrate all the components needed to run an autonomous vehicle with the chassis of the RC car. To start, a mounting plate needed to be designed and laser cut in order to accommodate all the electrical hardware.
+</p><p><br/>
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:552px;"><a class="image" href="File:Mounting_Plate.JPG.html"><img alt="" class="thumbimage" height="321" loading="lazy" src="https://web.archive.org/web/20200918090442im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/bb/Mounting_Plate.JPG/550px-Mounting_Plate.JPG" width="550"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Mounting_Plate.JPG.html" title="Enlarge"></a></div>CAD rendering of mounting plate for robocar.</div></div></div></div>
+<p><br/>
+Since our robocar needed a camera to drive autonomously, the next big challenge was to design a mount for the camera. There were a few major design considerations for this camera mount. First, the mount needed to provide adequate protection for the camera in in case of a car accident. In addition, the camera needed to be angled towards the ground in order to view the track. During the design process for the mount, the optimal viewing angle and height of the camera was not known. As a workaround, the camera angle was designed to be adjustable. This feature would allow us to not only experiment with different viewing angles, but it would allow us to easily reconfigure the layout of the car when new components were added to the car (as was done for our final project).    
+</p><p><br/>
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:402px;"><a class="image" href="File:Camera_Mount_team7.JPG.html"><img alt="" class="thumbimage" height="527" loading="lazy" src="https://web.archive.org/web/20200918090442im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/85/Camera_Mount_team7.JPG/400px-Camera_Mount_team7.JPG" width="400"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Camera_Mount_team7.JPG.html" title="Enlarge"></a></div>CAD rendering of camera case.</div></div></div></div>
+<p><br/>
+Our team's project involved integrating a LIDAR to our existing robocar. The LIDAR needed a case to protect it in case of collision and to allow it to be attached to the deck.
+</p><p><br/>
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:552px;"><a class="image" href="File:LIDAR_Case.JPG.html"><img alt="" class="thumbimage" height="379" loading="lazy" src="https://web.archive.org/web/20200918090442im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/35/LIDAR_Case.JPG/550px-LIDAR_Case.JPG" width="550"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:LIDAR_Case.JPG.html" title="Enlarge"></a></div>CAD rendering of case for LIDAR.</div></div></div></div>
+<p><br/>
+</p>
+<h2><span class="mw-headline" id="Suspension_Adjustment">Suspension Adjustment</span></h2>
+<p>It is important to note that since the LIDAR needed be mounted at the front of the car, the increased weight resulted in a large amount of downward deflection of the mounting deck. This was problematic because this resulted in the LIDAR being angled towards the ground instead of horizontally leveled. To solve this problem, stiffer springs were added to the front of the vehicle to counteract the increased weight.
+</p>
+<h1><span class="mw-headline" id="Electrical_Schematic.2FCircuitry">Electrical Schematic/Circuitry</span></h1>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:362px;"><a class="image" href="File:Team7_schematic.jpg.html"><img alt="" class="thumbimage" height="346" loading="lazy" src="https://web.archive.org/web/20200918090442im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/30/Team7_schematic.jpg/360px-Team7_schematic.jpg" width="360"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team7_schematic.jpg.html" title="Enlarge"></a></div>The Electrical Schematic includes basic parts and radar.</div></div></div></div>
+<h1><span class="mw-headline" id="Software_Integration">Software Integration</span></h1>
+<p>We integrated our project into the donkey framework by developing several donkey parts and a modified_manage.py script to use those parts.
+</p><p>The parts are:
+</p><p>1. LIDAR Processor to get LIDAR data from ROS and return calculated distance
+</p><p>2. Adaptive Cruise Controller to take calculated distance and return throttle output
+</p><p>3. YOLO Detector for pedestrian and traffic sign detection
+</p><p><b>For software setup and usage, please refer to the README page on Github. Check references section for Github link.</b>
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:643px;"><div class="MediaTransformError" style="width: 641px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team7_Software_Diagram.png.html" title="Enlarge"></a></div>Software Structure Diagram</div></div></div></div>
+<p><br/>
+</p>
+<h2><span class="mw-headline" id="LIDAR_Processor">LIDAR Processor</span></h2>
+<p>In this project, we use Robot Operation System (ROS) to read LIDAR data, since RPLidar, the LIDAR we used in this project has an official ROS package. Therefore we can develop our application on top of that more efficiently.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:722px;"><a class="image" href="File:Team7_Rviz.png.html"><img alt="" class="thumbimage" height="526" loading="lazy" src="https://web.archive.org/web/20200918090442im_/http://guitar.ucsd.edu/maeece148/images/thumb/a/ab/Team7_Rviz.png/720px-Team7_Rviz.png" width="720"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team7_Rviz.png.html" title="Enlarge"></a></div>LIDAR scan visualization in ROS Rviz</div></div></div></div>
+<p>We developed a handful of functions to process the raw ROS Laser Scan Message, including LIDAR filters and distance calculator. We created a donkey part: lidar processor, to integrate all the LIDAR functions into the donkey car framework. In a nutshell, the LIDAR processor will subscribe to the Laser Scan Message from RPLidar, apply necessary filters and return back the relative distance between our car and the object in front of the car. The flow chart below shows the workflow of the lidar processor part.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:283px;"><div class="MediaTransformError" style="width: 281px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team7_LIDAR_Filters.png.html" title="Enlarge"></a></div>Lidar Processor Part Flowchart</div></div></div></div>
+<p><br/>
+</p>
+<h3><span class="mw-headline" id="LIDAR_Filter_Player_Tool">LIDAR Filter Player Tool</span></h3>
+<p>To visualize the LIDAR filters for easier debug and tuning purposes, we created a lidar filter player tool that subscribes to LIDAR ROS message in real-time and visualizes LIDAR scans with different filters applied, as well as the distance calculator. Different line colors correspond to different filtered scans, and the radius of the circle in the medium indicates the calculated distance.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:641px;"><div class="MediaTransformError" style="width: 639px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team7_Lidar_Filter_Player.png.html" title="Enlarge"></a></div>LIDAR filter visualization in our own lidar filter player tool</div></div></div></div>
+<h2><span class="mw-headline" id="Adaptive_Cruise_Controller">Adaptive Cruise Controller</span></h2>
+<p>In this project, we designed the control model in Simulink and then tested it by taking a "sin" signal as input. In this control model, the output throttle of the vehicle is influenced by both the relative distance between the two cars and the relative velocity of them (the derivative of distance). 
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:482px;"><a class="image" href="File:Control_design.png.html"><img alt="" class="thumbimage" height="239" loading="lazy" src="https://web.archive.org/web/20200918090442im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/b2/Control_design.png/480px-Control_design.png" width="480"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Control_design.png.html" title="Enlarge"></a></div>control model</div></div></div></div>
+<p>In the simulation of the control model, the throttle turned to a high value when the relative distance is too large. However, compare to the distance, the throttle may change in advance because of the influence of the relative velocity. 
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:242px;"><a class="image" href="File:Distance.png.html"><img alt="" class="thumbimage" height="162" loading="lazy" src="https://web.archive.org/web/20200918090442im_/http://guitar.ucsd.edu/maeece148/images/thumb/4/40/Distance.png/240px-Distance.png" width="240"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Distance.png.html" title="Enlarge"></a></div>input(relative distance)</div></div></div></div><div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:242px;"><a class="image" href="File:Throttle.png.html"><img alt="" class="thumbimage" height="153" loading="lazy" src="https://web.archive.org/web/20200918090442im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/63/Throttle.png/240px-Throttle.png" width="240"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Throttle.png.html" title="Enlarge"></a></div>output(throttle)</div></div></div></div>
+<h2><span class="mw-headline" id="YOLO_Detector">YOLO Detector</span></h2>
+<p>You only look once (YOLO) is a state-of-the-art, real-time object detection system. It is fast and accurate in object detection, hence we use it in our pedestrian and traffic detection donkey part. Due to the relatively low computational resource on Nvidia Jetson, we use a lightweight YOLO structure: Tiny YOLO.
+</p><p>The stop sign detection result is shown below.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:602px;"><a class="image" href="File:Team7_YOLO_Test.png.html"><img alt="" class="thumbimage" height="404" loading="lazy" src="https://web.archive.org/web/20200918090442im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/bd/Team7_YOLO_Test.png/600px-Team7_YOLO_Test.png" width="600"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team7_YOLO_Test.png.html" title="Enlarge"></a></div>Stop sign detection result</div></div></div></div>
+<p>Due to time limitation, the YOLO detector only warns the driver and it does not affect car behavior and throttle output.
+</p>
+<h2><span class="mw-headline" id="Robot_Operating_System_.28ROS.29">Robot Operating System (ROS)</span></h2>
+<p>The Robot Operating System (ROS) is a framework for developing robot applications. It includes many useful libraries and tools to let the user develop robotics applications easier and faster.
+</p><p>Using ROS in this project, we have saved a lot of time from dealing with LIDAR firmware, connection, and data transfer. Because ROS is running outside donkey, LIDAR performance consistent as it is not affected by the donkey python script.
+</p><p>A ROS subscriber is implemented in the donkey part: lidar_processor. This allows us to transfer LIDAR scan data from ROS into donkey.
+</p>
+<h1><span class="mw-headline" id="Results">Results</span></h1>
+<p>The video below shows the result of our adaptive cruise controller.
+</p><p>In the first video, the robocar's throttle is being controlled autonomously by adaptive cruise control, but the steering is being controlled manually.
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/ujF8LwRqb8U?" width="640"></iframe></div></div>
+<p>In the second video, the robocar's throttle is being controlled autonomously adaptive cruise control, and the steering is being controlled by donkey autopilot.
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/uCxfDcp70HA?" width="640"></iframe></div></div>
+<h2><span class="mw-headline" id="Issues">Issues</span></h2>
+<p>1. Not very responsive at low speeds, because the DC ESC and motor are not responsive to small throttle input. And due to this fact, the controller tends to overshoot by giving too much throttle when starts. Also during low speed, it may stop frequently if the frontal car slows down because the throttle output is too low for the motor to move. We tested our code using different artificial input signals, and the throttle response works as expected (please see unit test cases in our code: <b>test_cruise_controller.py</b>). However real-world test on robocar is not ideal. The next team should try to upgrade to more responsive ESC and motor, see if it can solve this issue.
+</p><p>2. Date issue with Jetson. Every time our Jetson would power-up, the date would reset and would be incorrect. This issue could possibly be due to a faulty internal clock battery.
+</p><p>3. Firmware error when loading intel WIFI card (could be hardware or clock issue).
+</p>
+<h1><span class="mw-headline" id="References">References</span></h1>
+<p>Github page for this project <a class="external free" href="https://github.com/InspireX96/ECE148AdaptiveCruiseControl" rel="nofollow">https://github.com/InspireX96/ECE148AdaptiveCruiseControl</a>
+</p><p>Robot Operating System (ROS) <a class="external free" href="https://www.ros.org/" rel="nofollow">https://www.ros.org/</a>
+</p><p>RPLidar ROS Package <a class="external free" href="http://wiki.ros.org/rplidar" rel="nofollow">http://wiki.ros.org/rplidar</a>
+</p><p>YOLO: Real-Time Object Detection <a class="external free" href="https://pjreddie.com/darknet/yolo/" rel="nofollow">https://pjreddie.com/darknet/yolo/</a>
+</p><p>Our final presentation slides <a class="external free" href="https://drive.google.com/open?id=1rISUhG9unI13RRrHbpjEntcPtAj7lYmWisbntjl9lrM" rel="nofollow">https://drive.google.com/open?id=1rISUhG9unI13RRrHbpjEntcPtAj7lYmWisbntjl9lrM</a>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20200918090442
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.019 seconds
+Real time usage: 0.022 seconds
+Preprocessor visited node count: 75/1000000
+Preprocessor generated node count: 112/1000000
+Post‐expand include size: 52/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:503-0!*!*!!en!5!* and timestamp 20200918090442 and revision id 4358
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200918090442/https://guitar.ucsd.edu/maeece148/index.php/2019FallTeam7">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

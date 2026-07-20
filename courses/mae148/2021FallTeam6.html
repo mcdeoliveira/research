@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2021FallTeam6 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2021FallTeam6</h1>
+      <div class="mw-parser-output"><p><a class="image" href="File:Robot.jpg.html"><img alt="Robot.jpg" decoding="async" height="600" loading="lazy" src="https://web.archive.org/web/20220522073732im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/3f/Robot.jpg/800px-Robot.jpg" width="800"/></a>
+</p><p><br/>
+</p>
+<div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Mechanical"><span class="tocnumber">2</span> <span class="toctext">Mechanical</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Circuit_Design"><span class="tocnumber">3</span> <span class="toctext">Circuit Design</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Donkey_Car_Laps"><span class="tocnumber">4</span> <span class="toctext">Donkey Car Laps</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#ROS_Laps"><span class="tocnumber">5</span> <span class="toctext">ROS Laps</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#EMO_Demonstration"><span class="tocnumber">6</span> <span class="toctext">EMO Demonstration</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Our_Project"><span class="tocnumber">7</span> <span class="toctext">Our Project</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Gantt_Chart"><span class="tocnumber">8</span> <span class="toctext">Gantt Chart</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Our_Code"><span class="tocnumber">9</span> <span class="toctext">Our Code</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Weekly_Presentations"><span class="tocnumber">10</span> <span class="toctext">Weekly Presentations</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Final_Presentation"><span class="tocnumber">11</span> <span class="toctext">Final Presentation</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Accomplishments"><span class="tocnumber">12</span> <span class="toctext">Accomplishments</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Further_Development"><span class="tocnumber">13</span> <span class="toctext">Further Development</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Acknowledgements"><span class="tocnumber">14</span> <span class="toctext">Acknowledgements</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#Resources_Used_for_Final_Project"><span class="tocnumber">15</span> <span class="toctext">Resources Used for Final Project</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<p>For our final project, we joined with Team 5 to create a team of 4, which we called Team 5.5. We've built everything separately except for the vehicle-to-vehicle communication final project. You can find much of the same final project info on their page as well.
+</p><p><b>Team 5:</b>
+<b></b>
+</p><p>Zoey Huang - Aerospace Engineering
+</p><p>Jason Almeda - Computer Engineering
+</p><p><b>Team 6:</b>
+<b></b>
+</p><p>Liam Fowler - Mechanical Engineering
+</p><p>Johannes Diehm - UCSD Extension
+</p>
+<div class="floatleft"><a class="image" href="File:Team_6.jpeg.html" title="Liam (left) and Johannes (right)"><img alt="Liam (left) and Johannes (right)" decoding="async" height="267" loading="lazy" src="https://web.archive.org/web/20220522073732im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/6b/Team_6.jpeg/200px-Team_6.jpeg" width="200"/></a></div>
+<p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Mechanical">Mechanical</span></h2>
+<p>Our robot design needed to incorporate mounts for multiple systems - the IMU, the Lidar Mount, the Camera Mount, and the Jetson Case. Our guiding design principle was easy access to internal cables and wiring, as well as protection from the numerous crashes we foresaw could happen frequently and which prior teams had warned us about.
+</p><p><br/>
+<a class="image" href="File:Robot_Assembly.jpg.html"><img alt="Robot Assembly.jpg" decoding="async" height="662" loading="lazy" src="https://web.archive.org/web/20220522073732im_/http://guitar.ucsd.edu/maeece148/images/6/6b/Robot_Assembly.jpg" width="1225"/></a>
+</p><p>We designed our electronics plate to allow for adjustability of our many components, to be well protected by the foam front bumper of the car, and to leave room for error and uncertainty in the mounting holes of our various components. The electronics plate was the only component laser cut in the ECE Makerspace. All other components were 3D printed.
+</p><p><a class="image" href="File:Electronics_Mount.jpg.html"><img alt="Electronics Mount.jpg" decoding="async" height="622" loading="lazy" src="https://web.archive.org/web/20220522073732im_/http://guitar.ucsd.edu/maeece148/images/b/bc/Electronics_Mount.jpg" width="996"/></a>
+</p><p>We designed our camera mount to be highly adjustable, yet strong enough to withstand a direct crash with a chair or table (a common issue experienced by past teams). That's why we also included a protective front plate to protect the camera breakout board.
+</p><p><a class="image" href="File:Camera_Mount_Assembly.jpg.html"><img alt="Camera Mount Assembly.jpg" decoding="async" height="598" loading="lazy" src="https://web.archive.org/web/20220522073732im_/http://guitar.ucsd.edu/maeece148/images/0/05/Camera_Mount_Assembly.jpg" width="891"/></a>
+</p><p>We sourced our CAD for the Jetson Case from Thingverse and modified the bottom piece to create holes we could use to mount to the electronics mount.
+</p><p><a class="image" href="File:JetsonCase.jpg.html"><img alt="JetsonCase.jpg" decoding="async" height="811" loading="lazy" src="https://web.archive.org/web/20220522073732im_/http://guitar.ucsd.edu/maeece148/images/3/37/JetsonCase.jpg" width="1258"/></a>
+</p><p>Our IMU and Lidar Mounts were relatively simple and relied on force-threading the soft PLA 3D prints with M2 machine screws in order to create tapped holes.
+</p><p><a class="image" href="File:IMU_Mount.jpg.html" title="alignment=left IMU Mount"><img alt="alignment=left IMU Mount" decoding="async" height="614" loading="lazy" src="https://web.archive.org/web/20220522073732im_/http://guitar.ucsd.edu/maeece148/images/1/1f/IMU_Mount.jpg" width="1107"/></a> <a class="image" href="File:Lidar_Mount.jpg.html" title="alignment=right Lidar Mount"><img alt="alignment=right Lidar Mount" decoding="async" height="642" loading="lazy" src="https://web.archive.org/web/20220522073732im_/http://guitar.ucsd.edu/maeece148/images/2/26/Lidar_Mount.jpg" width="956"/></a>
+</p><p>Lastly, after witnessing hard collisions with classroom obstacles (chairs, desks, etc.), we decided to create additional protection for our lidar and electronics plate. We did this by 3D printing a second bumper mounted directly to the electronics plate. When a load is applied to the bumper, it bends the bumper back, absorbing the impact energy. The filaments of the 3D print are also aligned to maximize the bending strength of the part as well.
+</p><p><a class="image" href="File:Secondary_Bumper.jpg.html"><img alt="Secondary Bumper.jpg" decoding="async" height="723" loading="lazy" src="https://web.archive.org/web/20220522073732im_/http://guitar.ucsd.edu/maeece148/images/f/ff/Secondary_Bumper.jpg" width="713"/></a>
+</p>
+<h2><span class="mw-headline" id="Circuit_Design">Circuit Design</span></h2>
+<p><a class="image" href="File:Electrical_Schematic.drawio.png.html"><img alt="Electrical Schematic.drawio.png" decoding="async" height="626" loading="lazy" src="https://web.archive.org/web/20220522073732im_/http://guitar.ucsd.edu/maeece148/images/6/63/Electrical_Schematic.drawio.png" width="1481"/></a>
+</p>
+<h2><span class="mw-headline" id="Donkey_Car_Laps">Donkey Car Laps</span></h2>
+<p><a class="external text" href="https://youtu.be/NJ4Xhcqg0Ec" rel="nofollow">Donkey Car Laps, Twisty Track</a>
+</p><p><a class="external text" href="https://youtu.be/x1SFcGi0FBk" rel="nofollow">Donkey Car Laps, Classroom Track</a>
+</p>
+<h2><span class="mw-headline" id="ROS_Laps">ROS Laps</span></h2>
+<p><a class="external text" href="https://youtu.be/P95orcNsTyQ" rel="nofollow">ROS Laps</a>
+</p>
+<h2><span class="mw-headline" id="EMO_Demonstration">EMO Demonstration</span></h2>
+<p><a class="external text" href="https://youtu.be/-XGD5h4L4WQ" rel="nofollow">EMO Demonstration</a>
+</p>
+<h2><span class="mw-headline" id="Our_Project">Our Project</span></h2>
+<p>Our goal was to develop a system of nodes in ROS to enable vehicle to vehicle communication between 2 cars. We took inspiration for our project from the "Black Ice" phenomenon, whereby cars in icy conditions slide out and crash due to difficult-to-see ice on the road. By allowing cars to communicate with one another, a car involved in a crash could tell other cars that there is an issue on the road ahead, allowing the cars to slow down or stop to avoid the road hazard. 
+</p><p>Our project consists of two cars: the lead car and the follower car. If the lead car should crash, it shall publish a message to the follower car, which causes it to stop, thus preventing that the follower car from crashing into the same obstacle. For sensing the crash, we use the accelerometer sensor on an Openlog Artemis IMU in the lead car, which we initialized by adding the device when creating the Docker Container with the robot image. If a specific deceleration threshold  is met (i.e. 10 milli g), the car publishes a message to a connected following car. If the follower car receives this specific message, it should cause an immediate stop.
+</p><p>In order to prevent hackers from slowing down or stopping the follower car without a road hazard being present, we also include a unique security string published by the lead car and subscribed to by the follower car. If the security string being sent to the follower car before a stop command does not match the expected security string stored on the follower car, then the follower car will not accept a message to stop, and will continue to move around the track.
+</p><p>In our case, we set the lead car to be the "Master" roscore, to which we connected the follower car (so that both cars use the same roscore). Both cars run many of the same nodes, clients, and servers as described in <a class="external text" href="https://gitlab.com/djnighti/ucsd_robo_car_simple_ros" rel="nofollow">Dominic Nightingale's Simple ROS framework</a>. However, in order to ensure the topics being published and subscribed do not cross cars (i.e. camera on one car is used by the lane guidance on the other car), we gave the each topic with the potential to cross over a new unique identifier.
+</p>
+<h2><span class="mw-headline" id="Gantt_Chart">Gantt Chart</span></h2>
+<div class="floatleft"><a class="image" href="File:Pasted_Graphic.jpg.html"><img alt="Pasted Graphic.jpg" decoding="async" height="391" loading="lazy" src="https://web.archive.org/web/20220522073732im_/http://guitar.ucsd.edu/maeece148/images/thumb/a/ad/Pasted_Graphic.jpg/700px-Pasted_Graphic.jpg" width="700"/></a></div>
+<p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Our_Code">Our Code</span></h2>
+<p>You can find the GitHub repository to our code here: <a class="external free" href="https://github.com/LiamEFowler/ECE-MAE-148-Group5.5-Black-Ice" rel="nofollow">https://github.com/LiamEFowler/ECE-MAE-148-Group5.5-Black-Ice</a>
+</p><p>In summary, we added a talker node on the lead car, a listener node on the follower car and the according launch files. In the talker node, we implemented a module to read the output of the IMU, filter it for the axis of acceleration that would give us frontal deceleration to detect crashes, and ignore acceleration due to road vibrations or centripetal acceleration while going around corners. After comparing this acceleration value to an acceleration expected in a crash (i.e. how an airbag works), the talker node publishes the security code and a message to continue running or to stop if the threshold was met. In the listener node we implemented a subscriber that read the security code and the message to stop or continue. If the security code was correct and a stop command was sent from the talker node, the listener node would publish a stop command to the lane guidance node. If the stop command was received by the lane guidance node, that node would publish a zero throttle to the ESC, stopping the follower car. The follower car also needed to have different topic names and script names in 
+</p><p><b>talker_node.py</b> <code>
+</code></p><code></code><pre><code>#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import rospy
+import serial
+import math
+import time
+from std_msgs.msg import String
+
+security = 'I am Autonomous Prime, Autobots, roll out!' # Security code to confirm hacker is not$
+CAMERA_FREQUENCY = 10 # in Hz, set sensing rate
+accelerometerThreshold = -10.0 # set deceleration threshold in g where the stop command is sent
+history = 'running' # Initialize history string
+ser = serial.Serial(
+  port='/dev/ttyUSB1',\
+  baudrate=57600,\
+  parity=serial.PARITY_NONE,\
+  stopbits=serial.STOPBITS_ONE,\
+  bytesize=serial.EIGHTBITS,\
+  timeout=0) # Open Serial Port to the OLA
+time.sleep(5) # Wait 5 seconds for serial port to initialize
+
+# Read Data from IMU
+def callback(ser):
+  line = ser.readline()
+  line = str(line, 'utf-8', errors='ignore')
+  splitLine = line.split(',')
+  if len(splitLine) &lt; 2:
+    a = 0
+ else:
+    a = float(splitLine[1])
+ rospy.loginfo(f"/Acceleration: {a}")
+ return a
+ #b = a[0].decode('utf-8')
+ #c = int.from_bytes(a[0], byteorder='little', signed=False) 
+ #a = line.split(comma
+ #ser.close()
+ #return c
+
+# Publish security and stop commands
+def talker(history, ser):
+  rospy.init_node('talker_node', anonymous=True)
+  pubSecurity = rospy.Publisher('SecurityCode', String, queue_size=10)
+  pubCommand = rospy.Publisher('CrashAlert', String, queue_size=10)
+  rate = rospy.Rate(CAMERA_FREQUENCY)
+
+  while not rospy.is_shutdown():
+    # Publish Security Code to confirm correct correction
+    pubSecurity.publish(security)
+    acceleration = callback(ser)
+
+    # Detect if there is a crash or slowdown, publish command 
+    if acceleration &lt; accelerometerThreshold or history == 'stopped':
+      pubCommand.publish('stop')
+      history = 'stopped'
+      rospy.loginfo(f"/Command sent: {history}")
+      rospy.loginfo(f"/Acceleration: {acceleration}")
+      rospy.spin()
+    else:
+      pubCommand.publish('continue')
+      rospy.loginfo(f"/Command sent: {history}")
+      rospy.loginfo(f"/Acceleration: {acceleration}")
+      rospy.spin()
+    rate.sleep()
+
+if __name__ == '__main__':
+    try:
+        talker(history, ser)
+    except rospy.ROSInterruptException:
+        pass</code>
+</pre>
+<p><b>talker_node_launch.launch</b><code>
+</code></p><code></code><pre><code>&lt;launch&gt;
+  &lt;node name="talker_node" pkg="ucsd_robo_car_simple_ros" type="talker_node.py" /&gt;
+&lt;/launch&gt;</code>
+</pre>
+<p><b>listener_node.py</b> <code>
+</code></p><code></code><pre><code>#!/usr/bin/env python3
+
+import rospy
+from std_msgs.msg import String
+sec = None
+alert = None
+stopSignal = 'continue'
+
+def callbackSec(data):
+    global sec
+    sec = data.data
+    rospy.loginfo(rospy.get_caller_id() + "%s", data.data)
+
+def callbackAlert(data):
+    global alert
+    alert = data.data
+    rospy.loginfo(rospy.get_caller_id() + "%s", data.data)   
+
+def listener():
+    rospy.init_node('listener', anonymous=True)
+    rospy.Subscriber("SecurityCode", String, callbackSec)
+    rospy.Subscriber("CrashAlert", String, callbackAlert)
+    #stopSignal = rospy.Publisher('ThrottleStop', String, queue_size=10)
+
+    if sec == 'I am Autonomous Prime, Autobots, roll out!':
+        if alert == 'stop':
+            stop()
+    rospy.spin()
+
+def stop():
+    global stopSignal
+    stopSignal = 'stop'
+    #stopSignal.publish('Stop')
+
+if __name__ == '__main__':
+    listener()</code>
+</pre>
+<p><b>listener_node_launch.launch</b><code>
+</code></p><code></code><pre><code>&lt;launch&gt;
+  &lt;node name="listener_node" pkg="ucsd_robo_car_simple_ros" type="listener_node.py" /&gt;
+&lt;/launch&gt;</code>
+</pre>
+<p>Files Modified:
+</p><p><b>lane_guidance_node.py (follower car only)</b><code>
+</code></p><code></code><pre><code>#!/usr/bin/env python3
+import rospy
+import listener_node_follow as listener_node
+from std_msgs.msg import Float32, Int32, Int32MultiArray, String
+
+
+LANE_GUIDANCE_NODE_NAME = 'lane_guidance_node'
+STEERING_TOPIC_NAME = '/steering_follow'
+THROTTLE_TOPIC_NAME = '/throttle_follow'
+CENTROID_TOPIC_NAME = '/centroid_follow'
+#LISTENER_TOPIC_NAME = 'ThrottleStop'
+#throttle_message = 'go'
+
+class PathPlanner:
+     def __init__(self):
+        # Initialize node and create publishers/subscribers
+        self.init_node = rospy.init_node(LANE_GUIDANCE_NODE_NAME, anonymous=False)
+        self.steering_publisher = rospy.Publisher(STEERING_TOPIC_NAME, Float32, queue_size=1)
+        self.throttle_publisher = rospy.Publisher(THROTTLE_TOPIC_NAME, Float32, queue_size=1)
+        self.steering_float = Float32()
+        self.throttle_float = Float32()
+        self.centroid_subscriber = rospy.Subscriber(CENTROID_TOPIC_NAME, Float32, self.controller)
+        # self.listener_subscriber = rospy.Subscriber(LISTENER_TOPIC_NAME, String,queue_size=10) #initialize listener sub
+
+        # Getting ROS parameters set from calibration Node
+        self.steering_sensitivity = rospy.get_param('steering_sensitivity')
+        self.no_error_throttle = rospy.get_param('no_error_throttle')
+        self.error_throttle = rospy.get_param('error_throttle')
+        self.error_threshold = rospy.get_param('error_threshold')
+        self.zero_throttle = rospy.get_param('zero_throttle')
+        # Display Parameters
+        rospy.loginfo(
+            f'\nsteering_sensitivity: {self.steering_sensitivity}'
+            f'\nno_error_throttle: {self.no_error_throttle}'
+            f'\nerror_throttle: {self.error_throttle}'
+            f'\nerror_threshold: {self.error_threshold}')
+    def controller(self,data):
+        try:
+            kp = self.steering_sensitivity
+            error_x = data.data
+            self.get_logger().info(f"{error_x}")
+            if error_x &lt;= self.error_threshold:
+                throttle_float = self.no_error_throttle
+            else:
+                throttle_float = self.error_throttle
+            steering_float = float(kp * error_x)
+            if steering_float &lt; -1.0:
+                steering_float = -1.0
+            elif steering_float &gt; 1.0:
+                steering_float = 1.0
+            else:
+                pass
+
+            if listener_node.stopSignal == 'stop':
+                self.throttle_publisher.data = self.zero_throttle
+                self.throttle_publisher.publish(self.throttle_float)
+            else:
+                self.steering_float.data = steering_float
+                self.throttle_float.data = throttle_float
+                self.steering_publisher.publish(self.steering_float)
+                self.throttle_publisher.publish(self.throttle_float)
+        except KeyboardInterrupt:
+            self.throttle_publisher.data = self.zero_throttle
+            self.throttle_publisher.publish(self.throttle_float)
+def main():
+    path_planner = PathPlanner()
+    rate = rospy.Rate(15)
+    while not rospy.is_shutdown():
+        rospy.spin()
+        rate.sleep()
+if __name__ == '__main__':
+   main()</code>
+</pre>
+<p><b>ros_racer_launch.launch (altered for different names on different cars, but if you implement then be sure to double check these names in all launch files and the scripts folder)</b>
+<b></b>
+</p><p>Lead Car:
+<code>
+</code></p><code></code><pre><code>&lt;launch&gt;
+  &lt;include file="$(find ucsd_robo_car_simple_ros)/launch/throttle_and_steering_launch.launch"&gt; &lt;/include&gt;
+  &lt;include file="$(find ucsd_robo_car_simple_ros)/launch/laneDetection_launch.launch"&gt; &lt;/include&gt;
+  &lt;include file="$(find ucsd_robo_car_simple_ros)/launch/talker_node_launch.launch"&gt; &lt;/include&gt;
+&lt;/launch&gt;</code>
+</pre>
+<p>Follower Car:
+<code>
+</code></p><code></code><pre><code>&lt;launch&gt;
+  &lt;include file="$(find ucsd_robo_car_simple_ros)/launch/throttle_and_steering_follow_launch.launch"&gt; &lt;/include&gt;
+  &lt;include file="$(find ucsd_robo_car_simple_ros)/launch/laneDetection_follow_launch.launch"&gt; &lt;/include&gt;
+  &lt;include file="$(find ucsd_robo_car_simple_ros)/launch/listener_node_launch.launch"&gt; &lt;/include&gt;
+&lt;/launch&gt;</code>
+</pre>
+<h2><span class="mw-headline" id="Weekly_Presentations">Weekly Presentations</span></h2>
+<p><a class="external text" href="https://docs.google.com/presentation/d/19CToT7KqsouLcJfHGSgl3TcZ3YYCm_UoCuQbjd27aLU/edit?usp=sharing" rel="nofollow">Final Proposal Slides</a>
+</p><p><a class="external text" href="https://docs.google.com/presentation/d/1WClsjAhE35f-PYtQlQG57CChbKwOipB-YkHFQ8AFIwA/edit?usp=sharing" rel="nofollow">11/23 Status Update</a>
+</p><p><a class="external text" href="https://docs.google.com/presentation/d/1SwCCdO4NkiolPMuB8-pVH_uPC9_CxAA5R6CNYcJOZMg/edit?usp=sharing" rel="nofollow">12/2 Status Update</a>
+</p>
+<h2><span class="mw-headline" id="Final_Presentation">Final Presentation</span></h2>
+<p><a class="external text" href="https://docs.google.com/presentation/d/16wEro_J0vaYImDCsVaD4rfYyjznF6-4YMreYJUAamq0/edit?usp=sharing" rel="nofollow">Final Presentation Slides</a>
+</p>
+<h2><span class="mw-headline" id="Accomplishments">Accomplishments</span></h2>
+<p>We have achieved to read our IMU, filter the output for the axis we want to read (frontal deceleration) and publish the values. Therefore we did set up the “talker_node.py“ and its corresponding launch file in ROS1 from scratch. We have also been able to connect our follower car to the network and read the published values from the lead car. We have programmed a “listener_node“ and its corresponding launch file for reading the values and calling a newly developed function in the lane_guidance_node for stopping the car. We are confident that this method is fully functioning. We have also implemented a security mechanism for the communication. In the listener node, we have specified that the “Stop“ method is only getting called if a specific String is attached to the published message. We are able to publish and receive this message. Unfortunately, we have not been able to test our system and get rid of the last bugs. We are confident that our mechanism of stopping the follower car after a crash of the lead car is in principle functioning, but in the end, even though we have worked all night, we haven't had enough time to finish our project. In the end, we have had an issue with messed up file names that stopped the follower car from working. We found out too late that the nodes are not allowed to have the same names on the lead and the follower car, which otherwise . If we had just a little more time, we could have better checked all of our nodes and topics and renamed them.  Because of that, we weren't able to test the system, but think that it was essentially working based on a brief test in which it appeared that the ESC switched from forward throttle (i.e. no_error_throttle) to zero throttle. At that point however, we had run out of battery and it was too late to fully verify whether that was truly because our system worked in its entirety.
+</p>
+<h2><span class="mw-headline" id="Further_Development">Further Development</span></h2>
+<p>Currently, the two cars are connected via ssh on the same Wifi network (UCSDRoboCar5GHz). Since this works only while on Wifi, a next step would be to implement an off-network communication system using ESP32s connected to each car's Jetson Nano SBC.
+</p><p>The system is also not particularly robust due to inconsistencies reading the serial data from the IMU and running the ROS packages. In the future, it would be helpful to make this system more reliable and easier to use.
+</p>
+<h2><span class="mw-headline" id="Acknowledgements">Acknowledgements</span></h2>
+<p>Instructor - Prof. Jack Silberman
+</p><p>TA - Dominic Nightingale
+</p><p>TA - Haoru Xue
+</p><p>ECE Makerspace
+</p>
+<h2><span class="mw-headline" id="Resources_Used_for_Final_Project">Resources Used for Final Project</span></h2>
+<p><a class="external text" href="https://learn.sparkfun.com/tutorials/openlog-artemis-hookup-guide?_ga=2.138529911.534599871.1638165181-1867547520.1638165181" rel="nofollow">IMU Hookup Guide</a>
+</p><p><a class="external text" href="http://wiki.ros.org/ROS/Tutorials/MultipleMachines" rel="nofollow">Connecting Multiple ROS Machines</a>
+</p><p><a class="external text" href="https://github.com/ros/ros_tutorials/tree/noetic-devel/rospy_tutorials/003_listener_with_user_data" rel="nofollow">Rospy Tutorial</a>
+</p><p><a class="external text" href="https://pyserial.readthedocs.io/en/latest/shortintro.html" rel="nofollow">Pyserial Library Documentation</a>
+</p><p><a class="external text" href="https://www.thingiverse.com/thing:3649612" rel="nofollow">Jetson Nano Case</a> (case used slightly modified from this one)
+</p><p>And countless Google queries for debugging...
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20220522073732
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.038 seconds
+Real time usage: 0.044 seconds
+Preprocessor visited node count: 56/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:1145-0!canonical and timestamp 20220522073732 and revision id 8429. Serialized with JSON.
+ -->
+</div>
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20220522073732/https://guitar.ucsd.edu/maeece148/index.php/2021FallTeam6">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

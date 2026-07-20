@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2021FallTeam2 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2021FallTeam2</h1>
+      <div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Project_Overview"><span class="tocnumber">2</span> <span class="toctext">Project Overview</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Design"><span class="tocnumber">3</span> <span class="toctext">Design</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Software"><span class="tocnumber">3.1</span> <span class="toctext">Software</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Hardware"><span class="tocnumber">3.2</span> <span class="toctext">Hardware</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Codebase"><span class="tocnumber">4</span> <span class="toctext">Codebase</span></a></li>
+</ul>
+</div>
+<h1><span class="mw-headline" id="Team_Members">Team Members</span></h1>
+<p><b>Jay Tapadiya</b> - Electrical Engineering (Senior)
+</p><p><b>Raini Wu</b> - Electrical Engineering (Senior)
+</p><p><b>Chen Yang</b> - Computer Science (Senior)
+</p>
+<h1><span class="mw-headline" id="Project_Overview">Project Overview</span></h1>
+<p>For our project, we set out to implement a system of object detection using only a LIDAR. We came up with a novel autonomous driving system written in ~2000 lines of C++/CUDA, which implements a supervised reinforcement learning (RL) algorithm to navigate around obstacles and follow targets. Our system implements real-time learning with no pre-training required for full-speed operation - and full-speed means full-speed, with a blazingly fast 100Hz control/learning loop that we found to perform even better at our robot's redline speeds. The end result is a very configurable RL framework which can be applied to many navigation problems through intelligent modification of our provided configuration files.
+</p><p>Our goal with this project was to use a LIDAR as the primary environment sensor for a robot and to enable intelligent decisions from the robot based on the input. Our project has real-world relevance because autonomous driving is a quickly growing field. A lot of newer vehicles are using LIDAR as one of their many sensors to determine how to drive.
+</p><p>Although there is an existing LIDAR library and steering/throttle functionality in ROS, we are choosing to implement our solution in C/C++. We believe ROS has too many unnecessary abstractions for our use and they will create overhead in the program’s performance. In addition to using C/C++, we will be using the CUDA library to fully utilize our Jetson Nano’s resources. The LIDAR will produce significant amounts of data, and the Jetson Nano will benefit from the performance in C/C++. This project is different from previous class works because this is a new LIDAR system and other groups have not developed a C/C++ implementation for driving the vehicle.
+</p><p><a class="image" href="File:ECE_148_Final_Project_Proposal.jpg.html"><img alt="ECE 148 Final Project Proposal.jpg" decoding="async" height="540" loading="lazy" src="https://web.archive.org/web/20220523090626im_/http://guitar.ucsd.edu/maeece148/images/8/88/ECE_148_Final_Project_Proposal.jpg" width="960"/></a>
+</p>
+<h1><span class="mw-headline" id="Design">Design</span></h1>
+<p>We built a real-time supervised reinforcement learning based system from scratch using C++ and CUDA. To do this, we decompose LIDAR object detection problem into a finite Markov decision process. Take a look at how it works!
+</p><p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/-xKzwIQtWhk" style="border: none" width="425"></iframe>
+</p><p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/qFmTwNeAO4k" style="border: none" width="425"></iframe>
+</p><p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/JCMqykA-Qkk" style="border: none" width="425"></iframe>
+</p><p><iframe allowfullscreen="" height="355" src="https://www.youtube.com/embed/vj2OmalmRq4" style="border: none" width="425"></iframe>
+</p><p>To transform our complicated LIDAR object detection problem into a neat problem which can be easily solved using off-the-shelf reinforcement learning algorithms, we simplify the continuous (floating point) data collected from the LIDAR into some integer number of regions, each with a possible integer state. The state which the reinforcement learning algorithm makes decisions on is then the array of states, with one state for each region.
+</p><p><a class="image" href="File:Lidar_plotted.jpg.html"><img alt="Lidar plotted.jpg" decoding="async" height="450" loading="lazy" src="https://web.archive.org/web/20220523090626im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/e4/Lidar_plotted.jpg/800px-Lidar_plotted.jpg" width="800"/></a>
+</p><p><a class="image" href="File:State_decomp.jpg.html"><img alt="State decomp.jpg" decoding="async" height="450" loading="lazy" src="https://web.archive.org/web/20220523090626im_/http://guitar.ucsd.edu/maeece148/images/thumb/a/a6/State_decomp.jpg/800px-State_decomp.jpg" width="800"/></a>
+</p><p><a class="image" href="File:Team2_state_region.jpg.html"><img alt="Team2 state region.jpg" decoding="async" height="450" loading="lazy" src="https://web.archive.org/web/20220523090626im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/88/Team2_state_region.jpg/800px-Team2_state_region.jpg" width="800"/></a>
+</p><p>With this state defined, we can explore our RL algorithm. We take advantage of an off-the-shelf RL algorithm known as Q-learning. Essentially, Q-learning performs actions, then evaluates the result of this action based on some reward policy. We define a reward policy based exclusively on the center region - the change from one state to a next after some action is evaluated only for the center region, and the reward for each action is determined from there. Although we do not utilize the additional regions for the reward decision process, the RL algorithm recognizes this as a separate state, and can therefore make decisions informed by the state of these adjacent regions. 
+</p><p><a class="image" href="File:Team2_actions.jpg.html"><img alt="Team2 actions.jpg" decoding="async" height="450" loading="lazy" src="https://web.archive.org/web/20220523090626im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/6b/Team2_actions.jpg/800px-Team2_actions.jpg" width="800"/></a>
+</p><p>The probability that each action results in a positive reward is stored in a massive table known as a Q-table. In this Q-table, there exists an entry for every single possible state - in our case, (number of states per region) ^ (number of regions). Each entry contains four floating point numbers, corresponding to the probability of maximizing reward for each of the four actions we implement (throttle up, throttle down, turn left, turn right). This table is updated with every action, and actions are determined based on this Q-table. We implement an action policy known as epsilon-greedy; The action with the highest probability of reward is taken, except with probability epsilon a completely random action may be taken. Higher levels of epsilon are recommended if the robot is found to be prone to being stuck in behavior loops. 
+</p><p><a class="image" href="File:Action_reward.jpg.html"><img alt="Action reward.jpg" decoding="async" height="450" loading="lazy" src="https://web.archive.org/web/20220523090626im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/69/Action_reward.jpg/800px-Action_reward.jpg" width="800"/></a>
+</p><p>Since our environment is not very well suited for unsupervised reinforcement learning (mistakes usually mean the robot is in pieces), we implement a pre-weighting to this Q-table to allow our robot to head down the appropriate path as soon as possible. Our currently implemented Q-table pre-weighting is not very heavy, and incorrect weightings could be erased by the robot RL behavior extremely quickly. If a prebiased entry (ranging from 0.9 to 1) is incorrect and constantly receives a negative reward, it would be eliminated in n = 1/(D*1/LR) iterations of the loop, where D is discount factor and LR is learning rate. With our default values, this corresponds to approximately 100 iterations, or 1 second of operation. However, this mild pre-biasing is enough to allow our robot to make correct decisions and progressively learn while not immediately failing on start. This pre-biasing also allows our robot to function immediately out of the gate.
+</p><p>Outside of our RL algorithm, other significant design decisions include the choice to interface directly with our robot's PWM controller and LIDAR using the respective C-based drivers. This further increases our robot's responsiveness as we do not need to worry about significant system hang from expensive abstractions like ROS. Note that the LIDAR does not refresh at the rate at which our RL algorithm refreshes (60Hz vs 100Hz). We found very early on that the LIDAR does not return values at a consistent rate - instead, every call to the LIDAR value getter would get some arbitrary number of values which have changed since the last call, which could result in major loss of data depending on the rate of call. As sensor synchronization is out of the scope of the project, we simply decide to have the control loop sample the LIDAR data at some frequency twice the frequency on paper (Nyquist rate). 
+</p>
+<h2><span class="mw-headline" id="Software">Software</span></h2>
+<p>Peruse our system diagram here:
+</p><p><a class="image" href="File:RobotDataFLow.png.html"><img alt="RobotDataFLow.png" decoding="async" height="540" loading="lazy" src="https://web.archive.org/web/20220523090626im_/http://guitar.ucsd.edu/maeece148/images/8/88/RobotDataFLow.png" width="960"/></a>
+</p><p>Our software is primarily designed to execute our RL design. To enable this, we require the ability to perform actions quickly, evaluate the result of those actions, as well as feed the appropriate data into the RL algorithm to make decisions quickly. As our software stack is rather substantial, this will only provide a high-level overview - for more detail, we encourage you to explore our Github repository. 
+</p><p>To abstract away the interfacing with the PWM driver and LIDAR driver, we implement two C++ classes - Drive and Lidar. These classes set PWM values and obtain LIDAR data respectively. In order to maintain responsiveness, we directly send the LIDAR data to CUDA and perform all cleaning operations (e.g. state extraction, region generation) on the CUDA device. However, we recognized that an additional Robot class was required to translate the output delta actions (throttle up, throttle down, turn left, turn right) to the PWM data. 
+</p><p>The most substantial class is Control and its CUDA processing stack. Control runs the control loop and manages all data used for the CUDA processing, including allocation, deallocation, and efficient transfer. In object-oriented terms, Control has-a Lidar, and Control also has-a Robot. Control interfaces with the environment exclusively through these two classes. To perform processing efficiently, Control reads directly from CUDA device memory locations to obtain the calculated action, as well as writes directly to CUDA device memory the requisite LIDAR data. Note that the current implementation removes extraneous LIDAR data during this memory copy process from host to CUDA device through pointer arithmetic - possibly a source of bugs when the target center exceeds the defined range. More detail can be found in the Control::control() function located in our source code (src/rc/Control.cpp).
+</p><p>All of these components are required to perform processing asynchronously from each other. Naturally, this would require threading to implement this CPU-level parallelism in addition to the CUDA device-level massive parallelism. Although one of our dependencies is pthread (required by the LIDAR software driver), we choose to use the C++17 &lt;threads&gt; standard template library for our CPU-level multithreading. The primary control threads include the Control thread and the LIDAR thread. Robot and Drive operations are run on the Control thread, as actions should only be taken when Control assigns the appropriately determined actions. 
+</p><p>Due to our use of threads for the Control loop, note that proper use assumes the Control user keeps the application alive while the Control loop is running. The parent thread is responsible for calling the Control::start() and Control::stop() functions to manage the Control thread. An example could be seen in our source code (src/main.cpp).
+</p><p>The Lidar class also implements a debug graph of found Lidar values. This can be called using Lidar::graph(std::ostream) (implemented in src/iface/Lidar.cpp). 
+</p><p>Finally, there is a massive list of configuration options - including RL parameters, state cleaning options, action availability, LIDAR maximum range, LIDAR target distance, LIDAR graph options, etc. All configuration options could be found in the `hdr/Common.h` folder of our source code. Appropriate modification can drastically change the behavior of the robot - definitely try changing these values to see if they move to your needs.
+</p><p>Note that all code was written under extreme time pressure - please excuse any instances of poor coding style and lack of in-line documentation. We spent time in our high level architecture to ensure components are understandable contextually even if some specific implementations are done in dirtier code. If there is any bug, feel free to open a Github issue, we'll try to fix it if there is demand.
+</p>
+<h2><span class="mw-headline" id="Hardware">Hardware</span></h2>
+<p>Here is our hardware wiring diagram:
+<a class="image" href="File:Schematic_design.png.html"><img alt="Schematic design.png" decoding="async" height="676" loading="lazy" src="https://web.archive.org/web/20220523090626im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/14/Schematic_design.png/800px-Schematic_design.png" width="800"/></a>
+</p><p>One limitation of our project is that, as three software focused engineers, we really did not focus on the hardware aspect. The only major modification made to our wiring diagram from the traditional setup found in the course is the removal of the camera unit and the addition of the LIDAR. All components were mounted mechanically using copious amounts of tape. As a result, our robot is not particularly aesthetically pleasing - unless you really like tape, in which case it is extremely aesthetically pleasing. Still, our robot performed exceptionally well despite the suspicious mechanical engineering involved - leaving us in the opinion that tape is king when rapid prototyping. The ability to move components at will was very helpful when working with the LIDAR. As the LIDAR sometimes has some blind spots - either due to the hacky software sampling or a real mechanical failure of the device - we can simply rotate the LIDAR as needed. Additional tape was used to secure the external LIDAR USB board, which we found had a tendency to rise up and block some directions of the LIDAR. 
+</p><p><a class="image" href="File:Team2fa21_robot.jpg.html"><img alt="Team2fa21 robot.jpg" decoding="async" height="600" loading="lazy" src="https://web.archive.org/web/20220523090626im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/d0/Team2fa21_robot.jpg/800px-Team2fa21_robot.jpg" width="800"/></a>
+</p><p>Due to the 360-degree nature of the LIDAR, we were required to mount it at the highest point on our robot. However, this exemplified an iceberg effect where tapered objects (such as cones) were seen as much smaller than they actually were. This is a result of the fact that the LIDAR data produced is only information about a single horizontal plane, greatly limiting the data collected. We found that the iceberg effect was acceptable given that the only tapered objects encountered were cones, which do not result in much consequence when hit. However, future modifications to LIDAR mounting may include simply sticking it in the front and removing the data that collides with the vehicle, or designing some robot that's so incredibly flat that the highest point is essentially the same plane as the rest of the vehicle.
+</p>
+<h1><span class="mw-headline" id="Codebase">Codebase</span></h1>
+<p>Our complete codebase can be found here. 
+</p><p><a class="external free" href="https://github.com/rainiwu/lidarDetective" rel="nofollow">https://github.com/rainiwu/lidarDetective</a>
+</p><p>The prerequisites and install instructions may be found in the README.md within the repository. Note that nvidia-cuda-toolkit is apparently not available on the Jetson Nano image which we tested on - however, the preinstalled CUDA libraries worked with some finicking with the CMake files. This finicking is included with the repository.
+</p><p>Our repository also takes advantage of Github Actions for some basic continuous integration. Every push was checked using Github's automated tools for whether or not it could be compiled. This was very helpful, especially in the early stages of our project where we were yet to begin rapid iteration on physical hardware. Dependencies could be truly verified, and any changes to CUDA code could be checked via compiler even on machines without nvcc (nvidia cuda compiler) installed. 
+</p><p>If you have any questions or bugs you really need to be solved, feel free to open a Github issue, or email me at rainiwu@ucsd.edu
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20220523090626
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.031 seconds
+Real time usage: 0.038 seconds
+Preprocessor visited node count: 43/1000000
+Post‐expand include size: 160/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:1113-0!canonical and timestamp 20220523090626 and revision id 8994. Serialized with JSON.
+ -->
+</div>
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20220523090626/https://guitar.ucsd.edu/maeece148/index.php/2021FallTeam2">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

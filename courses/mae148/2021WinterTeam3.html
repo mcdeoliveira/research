@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2021WinterTeam3 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2021WinterTeam3</h1>
+      <div class="mw-parser-output"><div class="thumb tright"><div class="thumbinner" style="width:467px;"><a class="image" href="File:Final_project.jpg.html"><img alt="" class="thumbimage" decoding="async" height="349" loading="lazy" src="https://web.archive.org/web/20220701111143im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/da/Final_project.jpg/465px-Final_project.jpg" width="465"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Final_project.jpg.html" title="Enlarge"></a></div>Team 3 Final Project</div></div></div>
+<p>The course began with the completion of 3 autonomous laps through the use of DonkeyCar AI. After completing this initial task, our team progressed to an autonomous dumping vehicle. This was achieved by scanning an <a class="external text" href="https://www.pyimagesearch.com/2020/11/02/apriltag-with-python/" rel="nofollow">AprilTag</a>, a very useful and simple fiducial marker that was used as a robotic action trigger, or more specifically, the movement of a servo motor. The idea was to encompass a crude model of <a class="external text" href="https://en.wikipedia.org/wiki/WALL-E" rel="nofollow">Wall-E</a> with a focus on the dumping of cargo or waste.
+</p><p><br/>
+</p>
+<div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Mechanical_Design"><span class="tocnumber">2</span> <span class="toctext">Mechanical Design</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Electrical_Schematic"><span class="tocnumber">3</span> <span class="toctext">Electrical Schematic</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Software"><span class="tocnumber">4</span> <span class="toctext">Software</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Results"><span class="tocnumber">5</span> <span class="toctext">Results</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Videos"><span class="tocnumber">5.1</span> <span class="toctext">Videos</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="#Autonomous_Laps"><span class="tocnumber">5.1.1</span> <span class="toctext">Autonomous Laps</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Final_Project"><span class="tocnumber">5.1.2</span> <span class="toctext">Final Project</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-9"><a href="#Stretch_Goals"><span class="tocnumber">5.2</span> <span class="toctext">Stretch Goals</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Recommendations"><span class="tocnumber">5.3</span> <span class="toctext">Recommendations</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Other_Documentation"><span class="tocnumber">6</span> <span class="toctext">Other Documentation</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:467px;"><a class="image" href="File:Team_members.jpg.html"><img alt="" class="thumbimage" decoding="async" height="290" loading="lazy" src="https://web.archive.org/web/20220701111143im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/b4/Team_members.jpg/465px-Team_members.jpg" width="465"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team_members.jpg.html" title="Enlarge"></a></div>From left to right: Albert Liao, Janette Juarez, Dallas Dominguez, Nathan Burdick</div></div></div>
+<p>Dallas Dominguez (ECE)
+</p><p>Albert Liao (ECE)
+</p><p>Janette Juarez (MAE)
+</p><p>Nathan Burdick (MAE)
+</p><p><br/>
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Mechanical_Design">Mechanical Design</span></h2>
+<div class="floatleft"><a class="image" href="File:CameraHolder.png.html"><img alt="CameraHolder.png" decoding="async" height="294" loading="lazy" src="https://web.archive.org/web/20220701111143im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/3d/CameraHolder.png/200px-CameraHolder.png" width="200"/></a></div>
+<p>The camera mounting assembly was designed with the ability to adjust the angle orientation of the camera so that we could find a proper position of the track.
+The height, on the other hand, was kept at one length to maintain simplicity. Since the base was mounted to a higher elevated car plate, the height was kept to a short length. The protection of the camera was instead prioritized in preparation for potential accidents (they did occur).
+</p><p>As for the car plate that the electrical components were mounted to, our team went through different stages. The original design of the plate was unable to be used due to a cutting error and time constraints. Team 2 supplied an extra plate they had on hand which proved to work well for both the autonomous laps and the dumping system. After moving forward with the dumping system, more space was needed on the plate to place the servo motor and cargo holder. Another plate was then made to sit much lower so that the electrical components could be mounted underneath the higher plate.
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+Shown below is the cargo holder. It consisted of 2 hinges that were fixed to the higher plate on one end whereas the other end was free.
+</p><p><a class="image" href="File:CargoHolder.png.html"><img alt="CargoHolder.png" decoding="async" height="326" loading="lazy" src="https://web.archive.org/web/20220701111143im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/6d/CargoHolder.png/600px-CargoHolder.png" width="600"/></a>
+</p><p><br/>
+An arm was attached to the servo motor to then lift the free end of the cargo holder.
+</p><p><a class="image" href="File:ServoArm.PNG.html"><img alt="ServoArm.PNG" decoding="async" height="338" loading="lazy" src="https://web.archive.org/web/20220701111143im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/83/ServoArm.PNG/500px-ServoArm.PNG" width="500"/></a>
+</p><p><br/>
+The full dumping system is shown below.
+</p><p><a class="image" href="File:DumpingSystem1.PNG.html"><img alt="DumpingSystem1.PNG" decoding="async" height="278" loading="lazy" src="https://web.archive.org/web/20220701111143im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/e6/DumpingSystem1.PNG/500px-DumpingSystem1.PNG" width="500"/></a>
+<a class="image" href="File:DumpingSystem2.PNG.html"><img alt="DumpingSystem2.PNG" decoding="async" height="334" loading="lazy" src="https://web.archive.org/web/20220701111143im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/ff/DumpingSystem2.PNG/500px-DumpingSystem2.PNG" width="500"/></a>
+</p>
+<h2><span class="mw-headline" id="Electrical_Schematic">Electrical Schematic</span></h2>
+<p>The image below displays the complete nervous system of the robot.
+</p><p><a class="image" href="File:CircuitDIAgram.jpg.html"><img alt="CircuitDIAgram.jpg" decoding="async" height="338" loading="lazy" src="https://web.archive.org/web/20220701111143im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/b1/CircuitDIAgram.jpg/600px-CircuitDIAgram.jpg" width="600"/></a>
+</p>
+<h2><span class="mw-headline" id="Software">Software</span></h2>
+<p>The following GitHub Repo Link will take you to a repository with all the scripts we used for our final project.
+</p><p><a class="external text" href="https://github.com/mr3albert/ECE148_TEAM3_CV.git" rel="nofollow">GitHub Repo AprilTag/OpenCV/Servo Movement</a>
+</p><p><br/>
+Specifically, navigate to the file directory called 'April_tag'.
+In this file, you should see a few scripts you can work with:
+</p><p><b>continuous_detect.py</b> (Responsible for the recognition of the AprilTag from a continuous video stream)
+</p><p><b>functions.py</b> (Some custom functions that work in conjunction with continous_detect.py for servo movement, distance calculation, and tag detection)
+</p><p><br/>
+Other useful scripts:
+</p><p><b>detect_apriltag.py</b> (Useful starter script for AprilTag detection from a local saved image)
+</p><p>Get in there and have a look around!
+</p><p><br/>
+Libraries you will need to run the code:
+</p><p><b>Adafruit Servokit Library</b>
+</p><p><a class="external text" href="https://learn.adafruit.com/adafruit-16-channel-servo-driver-with-raspberry-pi/using-the-adafruit-library" rel="nofollow">Installation instructions can be found here</a>
+</p><p><b>OpenCV</b>
+</p><p><a class="external text" href="https://pypi.org/project/opencv-python/" rel="nofollow">Installation Instructions can be found here</a>
+</p><p><b>AprilTag Library</b>
+</p><p><a class="external text" href="https://pypi.org/project/pupil-apriltags/" rel="nofollow">Installation instructions can be found here</a>
+</p>
+<h2><span class="mw-headline" id="Results">Results</span></h2>
+<h3><span class="mw-headline" id="Videos">Videos</span></h3>
+<h4><span class="mw-headline" id="Autonomous_Laps">Autonomous Laps</span></h4>
+<p><a class="external text" href="https://youtu.be/Ffd7a_Pc5xs" rel="nofollow">First 3 Tent Laps (Slow)</a>
+</p><p><a class="external text" href="https://youtu.be/6t2Z15KUnDM" rel="nofollow">Tent Laps High Speed Race Model</a>
+</p><p><a class="external text" href="https://youtu.be/dNzte9C3rvs" rel="nofollow">Outdoor Laps Failure </a>
+</p><p><a class="external text" href="https://youtu.be/peNzsbLvysY" rel="nofollow">Outdoor Laps Success</a>
+</p>
+<h4><span class="mw-headline" id="Final_Project">Final Project</span></h4>
+<p><a class="external text" href="https://youtu.be/Bb7Y3qCJ9bI" rel="nofollow">AprilTag Detection and Servo Movement</a>
+</p><p><a class="external text" href="https://youtu.be/ex6cPOKRX5I" rel="nofollow">Completed Final Project</a>
+</p>
+<h3><span class="mw-headline" id="Stretch_Goals">Stretch Goals</span></h3>
+<p>If there was more time to work on the final project, our next goal would have been to have the car perform the dumping mode while driving autonomously. The car would detect the AprilTag and come to a full stop. Any cargo in the holder would then be dumped and the car would proceed to drive once completing this action.
+</p><p>Our secondary goal would be the implementation of an arm that would pick up the cargo from the floor and place it into the cargo holder. This would also be done through the detection of an AprilTag. Ideally, the car would have been able to perform both the driving mode and picking up mode while driving autonomously.
+</p>
+<h3><span class="mw-headline" id="Recommendations">Recommendations</span></h3>
+<p>Start your project early and do not bite off more than you can chew. Three weeks is a lot shorter than you think! If you find yourself in the case where something is not working for you, take another course of action as soon as you realize it would be beneficial. As an example, we were having a difficult time implementing our ideas into a ROS environment. We decided to gear our focus towards writing python scripts from scratch, which worked out to be much simpler for us upon implementation.
+</p>
+<h2><span class="mw-headline" id="Other_Documentation">Other Documentation</span></h2>
+<p><a class="external text" href="https://docs.google.com/presentation/d/1L1D_I1JJ28NPDXMPVhhNH3rRtJd-PLVzzBYNsRBiELQ/edit?usp=sharing" rel="nofollow">Final Presentation Slides</a>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20220701111015
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.021 seconds
+Real time usage: 0.024 seconds
+Preprocessor visited node count: 40/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:896-0!canonical and timestamp 20220701111015 and revision id 6367. Serialized with JSON.
+ -->
+</div>
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20220701111143/https://guitar.ucsd.edu/maeece148/index.php/2021WinterTeam3">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

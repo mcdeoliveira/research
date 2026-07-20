@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2019WinterTeam2 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2019WinterTeam2</h1>
+      <p>Team 2 attempted to achieve object avoidance by incoorporating a 360° RPLIdar along with the camera, and controlling their operation using ROS (<a class="external text" href="https://en.wikipedia.org/wiki/Robot_Operating_System" rel="nofollow">Robot Operating System</a>).
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><a class="image" href="File:2019team2car.jpeg.html"><img alt="2019team2car.jpeg" class="thumbimage" height="400" loading="lazy" src="https://web.archive.org/web/20200814115324im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/67/2019team2car.jpeg/300px-2019team2car.jpeg" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:2019team2car.jpeg.html" title="Enlarge"></a></div></div></div></div>
+<div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Team_Members"><span class="tocnumber">2</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#RC_Car_details"><span class="tocnumber">3</span> <span class="toctext">RC Car details</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#ROS_Project"><span class="tocnumber">4</span> <span class="toctext">ROS Project</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Introduction">Introduction</span></h2>
+<p>Welcome to team2 ECE148 Wiki page. In this class, we build and utilized a remote-controlled car. In this page, we will cover the details behind the design of the RC car and demonstrate results. The goal in this class was to perform the following tasks:
+</p>
+<ul><li>Autonomously drive on an indoor track</li>
+<li>Autonomously drive on an outdoor track</li>
+<li>Obstacle avoidance using RPLidar and ROS</li></ul>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<ul><li> Chen Du (ECE grad)</li>
+<li> Jingying Chen (MAE undergrad)</li>
+<li> Marshall Garcia (MAE undergrad)</li>
+<li> Tina Kafel (ECE undergrad)</li></ul>
+<h2><span class="mw-headline" id="RC_Car_details">RC Car details</span></h2>
+<ul><li>RC Car hardware:</li></ul>
+<dl><dd><dl><dd>The RC car is designed with a few simple modules. The total cost of the RC car is about $336.97.Here is a detailed list of parts used in the RC car:</dd></dl></dd></dl>
+<table class="wikitable" style="margin-left: auto; margin-right: auto; border: none;">
+<caption> RC Car BOM(Bill of Material)
+</caption>
+<tr>
+<th scope="col" style="width: 60px;"> Part Name
+</th>
+<th scope="col" style="width: 60px;"> Part Number
+</th>
+<th scope="col" style="width: 60px;"> Datasheet
+</th>
+<th scope="col" style="width: 60px;"> Manufacturer
+</th>
+<th scope="col" style="width: 25px;"> Qty
+</th>
+<th scope="col" style="width: 80px;"> Unit Price
+</th>
+<th scope="col" style="width: 60px;"> Purchase Link
+</th>
+<th scope="col" style="width: 500px;"> Purpose in RC Car
+</th></tr>
+<tr>
+<td> ESC</td>
+<td>SBEC ESC 60a</td>
+<td><a class="external text" href="http://www.hobbywing.com/goods.php?id=358" rel="nofollow">Datasheet</a></td>
+<td>QuicRun</td>
+<td>1</td>
+<td>$19.99</td>
+<td><a class="external text" href="https://www.ebay.com/p/Hobbywing-30120201-QuicRun-1060-Waterproof-Brushed-SBEC-ESC-60a/1678055620?iid=272429528837&amp;chn=ps" rel="nofollow">Purchase Link</a></td>
+<td>Controls the DC motor using PWM controlled by Raspberry Pi
+</td></tr>
+<tr>
+<td> PWM Controller</td>
+<td>PCA9685</td>
+<td><a class="external text" href="https://cdn-shop.adafruit.com/datasheets/PCA9685.pdf" rel="nofollow">Datasheet</a></td>
+<td>Adafruit</td>
+<td>1</td>
+<td>$14.95</td>
+<td><a class="external text" href="https://www.adafruit.com/product/815?gclid=EAIaIQobChMIwPy46dWe4AIVlshkCh3tiQkxEAQYASABEgI6lPD_BwE" rel="nofollow">Purchase Link</a></td>
+<td>Raspberry Pi doens't have many PWM GPIOs, therefore we use this module to control multiple PWM devices. Connects to RP via I2C protocol
+</td></tr>
+<tr>
+<td> USB Module</td>
+<td>HW384</td>
+<td><a class="external text" href="https://www.amazon.com/HW384-Step-Down-Module-Portable-Supply/dp/B07KKF51TV" rel="nofollow">Datasheet</a></td>
+<td>SheoIseven</td>
+<td>1</td>
+<td>$6.99</td>
+<td><a class="external text" href="https://www.amazon.com/HW384-Step-Down-Module-Portable-Supply/dp/B07KKF51TV" rel="nofollow">Purchase Link</a></td>
+<td> Connects the LiPo battery to RPi. Includes a 5V regulator
+</td></tr>
+<tr>
+<td> Motor</td>
+<td>RS540</td>
+<td><a class="external text" href="http://www.alphalanding.com/rc-track/rs_540rhsh.pdf" rel="nofollow">Datasheet</a></td>
+<td>Tamiya</td>
+<td>1</td>
+<td>$17.30</td>
+<td><a class="external text" href="https://www.amazon.com/Tamiya-RS540-Sport-Tuned-Motor/dp/B00061HB0K" rel="nofollow">Purchase Link</a></td>
+<td>DC motor for the rear wheels
+</td></tr>
+<tr>
+<td> Blue/Red LED</td>
+<td>APM External</td>
+<td><a class="external text" href="https://hobbyking.com/en_us/kingduino-apm-external-led-module.html" rel="nofollow">Datasheet</a></td>
+<td>Kingduino</td>
+<td>1</td>
+<td>$4.04</td>
+<td><a class="external text" href="https://hobbyking.com/en_us/kingduino-apm-external-led-module.html" rel="nofollow">Purchase Link</a></td>
+<td>Indicates state of the relay
+</td></tr>
+<tr>
+<td> Main Switch</td>
+<td>T/XT60/EC3 Plug</td>
+<td><a class="external text" href="https://usa.banggood.com/High-Current-LiPo-Battery-Switch-With-Optional-T-PlugXT60EC3-Plug-p-1056050.html?gmcCountry=US&amp;currency=USD&amp;createTmp=1&amp;utm_source=googleshopping&amp;utm_medium=cpc_bgcs&amp;utm_content=zouzou&amp;utm_campaign=pla-usg-all-pc&amp;ID=521833&amp;cur_warehouse=CN" rel="nofollow">Datasheet</a></td>
+<td> Banggood</td>
+<td>1</td>
+<td>$5.60</td>
+<td><a class="external text" href="https://usa.banggood.com/High-Current-LiPo-Battery-Switch-With-Optional-T-PlugXT60EC3-Plug-p-1056050.html?gmcCountry=US&amp;currency=USD&amp;createTmp=1&amp;utm_source=googleshopping&amp;utm_medium=cpc_bgcs&amp;utm_content=zouzou&amp;utm_campaign=pla-usg-all-pc&amp;ID=521833&amp;cur_warehouse=CN" rel="nofollow">Purchase Link</a></td>
+<td>Turns on the ESC and relay
+</td></tr>
+<tr>
+<td> Chasis</td>
+<td>TT01 TT01E</td>
+<td><a class="external text" href="https://www.amazon.com/Aluminium-Carbon-Shaft-Drive-Touring/dp/B07496B5HQ/ref=sr_1_13?ie=UTF8&amp;qid=1546999189&amp;sr=8-13&amp;keywords=tamiya+tt01" rel="nofollow">Datasheet</a></td>
+<td>Radcat</td>
+<td>1</td>
+<td>$128.49</td>
+<td><a class="external text" href="https://www.amazon.com/Aluminium-Carbon-Shaft-Drive-Touring/dp/B07496B5HQ/ref=sr_1_13?ie=UTF8&amp;qid=1546999189&amp;sr=8-13&amp;keywords=tamiya+tt01" rel="nofollow">Purchase Link</a></td>
+<td>Car skeleton
+</td></tr>
+<tr>
+<td> RGB LED</td>
+<td>N/A</td>
+<td><a class="external text" href="https://www.makerlab-electronics.com/product/rgb-led-module/" rel="nofollow">Datasheet</a></td>
+<td>MakerLab</td>
+<td>1</td>
+<td>$34.75</td>
+<td><a class="external text" href="https://www.makerlab-electronics.com/product/rgb-led-module/" rel="nofollow">Purchase Link</a></td>
+<td>Indicates drive mode
+</td></tr>
+<tr>
+<td> Relay</td>
+<td>KR1201A-4</td>
+<td><a class="external text" href="https://www.aliexpress.com/item/433Mhz-Universal-Wireless-Remote-Control-Switch-DC12V-10A-1CH-relay-Receiver-Module-with-RF-Remote-433/32654946482.html" rel="nofollow">Datasheet</a></td>
+<td>QIACHIP</td>
+<td>1</td>
+<td>$7.69</td>
+<td><a class="external text" href="https://www.aliexpress.com/item/433Mhz-Universal-Wireless-Remote-Control-Switch-DC12V-10A-1CH-relay-Receiver-Module-with-RF-Remote-433/32654946482.html" rel="nofollow">Purchase Link</a></td>
+<td>Enables ESC. In the system for safty. Controlled by a remote controller
+</td></tr>
+<tr>
+<td>Raspberry Pi</td>
+<td>Model 3 b+</td>
+<td><a class="external text" href="https://www.terraelectronica.ru/pdf/show?pdf_file=%252Fds%252Fpdf%252FT%252FTechicRP3.pdf" rel="nofollow">Datasheet</a></td>
+<td>Raspberry Pi</td>
+<td>1</td>
+<td>$38.30</td>
+<td><a class="external text" href="https://www.amazon.com/ELEMENT-Element14-Raspberry-Pi-Motherboard/dp/B07BDR5PDW/ref=sr_1_3?s=pc&amp;ie=UTF8&amp;qid=1549172590&amp;sr=1-3&amp;keywords=raspberry+pi+3+b%2B" rel="nofollow">Purchase Link</a></td>
+<td>Computer controlling all components
+</td></tr>
+<tr>
+<td> RP Camera</td>
+<td>913-2664</td>
+<td><a class="external text" href="https://cdn.sparkfun.com/datasheets/Dev/RaspberryPi/RPiCamMod2.pdf" rel="nofollow">Datasheet</a></td>
+<td>Raspberry Pi</td>
+<td>1</td>
+<td>$23.90</td>
+<td><a class="external text" href="https://www.amazon.com/Raspberry-Pi-Camera-Module-Megapixel/dp/B01ER2SKFS" rel="nofollow">Purchase Link</a></td>
+<td>Camera compatible with RPi
+</td></tr>
+<tr>
+<td> "11.1 V 3 cell LiPo"</td>
+<td>XT-60</td>
+<td><a class="external text" href="https://hobbyking.com/en_us/turnigy-battery-3000mah-3s-20c-lipo-pack-xt-60.html" rel="nofollow">Datasheet</a></td>
+<td>Turnigy</td>
+<td>1</td>
+<td>$16.37</td>
+<td><a class="external text" href="https://hobbyking.com/en_us/turnigy-battery-3000mah-3s-20c-lipo-pack-xt-60.html" rel="nofollow">Purchase Link</a></td>
+<td>Battery powering the system
+</td></tr>
+<tr>
+<td> Voltage Reader</td>
+<td>EC</td>
+<td>NA</td>
+<td>BX100</td>
+<td>1</td>
+<td>$13.39</td>
+<td><a class="external text" href="https://www.amazon.com/Ec-voltage-Meter-Battery-Voltage/dp/B073ZKFMGQ" rel="nofollow">Purchase Link</a></td>
+<td> Reads LiPo voltages for each cell.
+</td></tr>
+<tr>
+<td> Servo Motor</td>
+<td>MG995</td>
+<td><a class="external text" href="https://usa.banggood.com/MG995-High-Torgue-Mental-Gear-Analog-Servo-p-73885.html?gmcCountry=US&amp;currency=USD&amp;createTmp=1&amp;utm_source=googleshopping&amp;utm_medium=cpc_bgcs&amp;utm_content=zouzou&amp;utm_campaign=pla-usg-all-pc&amp;cur_warehouse=CN" rel="nofollow">Datasheet</a></td>
+<td>N/A</td>
+<td>1</td>
+<td>$5.21</td>
+<td><a class="external text" href="https://usa.banggood.com/MG995-High-Torgue-Mental-Gear-Analog-Servo-p-73885.html?gmcCountry=US&amp;currency=USD&amp;createTmp=1&amp;utm_source=googleshopping&amp;utm_medium=cpc_bgcs&amp;utm_content=zouzou&amp;utm_campaign=pla-usg-all-pc&amp;cur_warehouse=CN" rel="nofollow">Purchase Link</a></td>
+<td>Used to control steering
+</td></tr></table>
+<ul><li>RC Car ELectrical Connections</li></ul>
+<ul><li>Base plate and Camera mount</li></ul>
+<dl><dd><dl><dd> In order to hold the components on chassis a build plate was designed in Inkscape and laser cut: <br/></dd>
+<dd>In addition to the base plate a camera mount was designed and 3D printed. Based on multiple trials, it was determined a taller camera mount would yield better results since it would capture a wider range of the track. The captured pictures can be cropped for before training in the config.py file in the d2t donkey car.</dd></dl></dd></dl>
+<ul class="gallery mw-gallery-traditional center">
+<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+<div class="thumb" style="width: 150px;"><div style="margin:64.5px auto;"><a class="image" href="File:Camera_mount_team2.PNG.html"><img alt="" height="251" loading="lazy" src="https://web.archive.org/web/20200814115324im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/88/Camera_mount_team2.PNG/120px-Camera_mount_team2.PNG" width="120"/></a></div></div>
+<div class="gallerytext">
+<p>Camera Mount
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+<div class="thumb" style="width: 150px;"><div style="margin:42.5px auto;"><a class="image" href="File:Buildplate.png.html"><img alt="" height="295" loading="lazy" src="https://web.archive.org/web/20200814115324im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/d3/Buildplate.png/120px-Buildplate.png" width="120"/></a></div></div>
+<div class="gallerytext">
+<p>Baseplate
+</p>
+</div>
+</div></li>
+</ul>
+<ul><li>RC Car Software</li></ul>
+<p>The software used in the project is open source.
+</p>
+<h2><span class="mw-headline" id="ROS_Project">ROS Project</span></h2>
+<ul><li>RPLidar</li></ul>
+<dl><dd><dl><dd><i><b>What is an RPLiDAR?</b></i> Lidar is a device that measures the distance to a target by sending pulsed laser beams and receiving the reflected beams with a sensor. The accuracy of lidar is higher than other sensors of similar nature, such as an IR sensor or an ultrasonic sensor. An RPLidar is a 360-degree 2D lidar. Here is a scheamtic of a RPLiDAR in action:<br/></dd></dl></dd></dl>
+<div class="center"><div class="floatnone"><div class="MediaTransformError" style="width: 552px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div></div></div>
+<dl><dd><dl><dd><i><b>What are the different types of RPLiDAR?</b></i>
+<ul><li>RPLiDAR A1: The RPLidar used in our project is the A1M8 12M range model. A1M8 is based on laser triangulation ranging principle and uses high-speed version acquisition and processing hardware. This system measures distance data more than 8000 times per second.This LiDAR is supported by ROS Melodic.</li>
+<li>RPLiDAR A2: The next generation of low cost RPLiDARs. Has higher sampling rates.It is compatible with ROS Melodic.</li>
+<li>RPLiDAR A3: Latest genertation of low cost RPLiDARs. It is compatible with ROS Melodic.</li></ul></dd></dl></dd></dl>
+<ul><li>RPLiDAR and Raspberry Pi</li></ul>
+<p><br/>
+</p><p><br/>
+</p>
+<ul><li>ROS and RPLidar</li></ul>
+<dl><dd><dl><dd>Upon every connection to a USB port, sudo permission to access the serial port for the lidar must be granted. In the Linux operating system, the command to list the responsible port and granting permission would be the following:
+<dl><dd><code>ls -l /dev |grep ttyUSB0</code><span style="color:blue">#lists the port connected to the LiDAR</span> </dd>
+<dd><code>sudo chmod 666 /dev/ttyUSB0</code><span style="color:blue">#grants permission to write to USB0</span> </dd></dl></dd></dl></dd></dl>
+<dl><dd><dl><dd>To test the RPLiDAR within ROS, we can run the rplidar node and view the realtime readings and mappings:
+<dl><dd><code>roslaunch rplidar_ros view_rplidar.launch</code><span style="color:blue">#running the RPLiDAR live feed</span></dd></dl></dd></dl></dd></dl>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:602px;"><a class="image" href="File:RPLidar_room.png.html"><img alt="Alt" class="thumbimage" height="343" loading="lazy" src="https://web.archive.org/web/20200814115324im_/http://guitar.ucsd.edu/maeece148/images/thumb/4/46/RPLidar_room.png/600px-RPLidar_room.png" width="600"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:RPLidar_room.png.html" title="Enlarge"></a></div>An example of an RPLiDAR scanning the room</div></div></div></div>
+<dl><dd><dl><dd><dl><dd><code>rosrun rplidar_ros rplidarNodeClient</code><span style="color:blue">#read values from LiDAR</span></dd></dl></dd></dl></dd></dl>
+<p>The lidar scan values can be read by subscribing to rplidar_node topic:<br/>
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:752px;"><a class="image" href="File:Rplidar_live_read.png.html"><img alt="Alt" class="thumbimage" height="430" loading="lazy" src="https://web.archive.org/web/20200814115324im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/8f/Rplidar_live_read.png/750px-Rplidar_live_read.png" width="750"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Rplidar_live_read.png.html" title="Enlarge"></a></div>A live read of the RPLiDAR Scans and relevent topics</div></div></div></div>
+<p>Viewing graphs of ongoing scans on the roscore primary node can be viewed using a ros rqt graph generator:<br/>
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Rqt_graph.png.html"><img alt="Alt" class="thumbimage" height="240" loading="lazy" src="https://web.archive.org/web/20200814115324im_/http://guitar.ucsd.edu/maeece148/images/thumb/4/45/Rqt_graph.png/300px-Rqt_graph.png" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Rqt_graph.png.html" title="Enlarge"></a></div>A rqt graph of RPLiDAR subscriber and publisher to the scan topic</div></div></div></div>
+<p>==Helpful resources==
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20200814115324
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.022 seconds
+Real time usage: 0.026 seconds
+Preprocessor visited node count: 31/1000000
+Preprocessor generated node count: 60/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:308-0!*!*!!en!5!* and timestamp 20200814115324 and revision id 2488
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200814115324/https://guitar.ucsd.edu/maeece148/index.php/2019WinterTeam2">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

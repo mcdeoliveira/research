@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2020FallTeam5 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2020FallTeam5</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Project_Team_Members"><span class="tocnumber">1</span> <span class="toctext">Project Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Project_Overview"><span class="tocnumber">2</span> <span class="toctext">Project Overview</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Hardware"><span class="tocnumber">3</span> <span class="toctext">Hardware</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Mechanical_Design"><span class="tocnumber">3.1</span> <span class="toctext">Mechanical Design</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#Camera_Mount:"><span class="tocnumber">3.1.1</span> <span class="toctext">Camera Mount:</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#Base_Plate:"><span class="tocnumber">3.1.2</span> <span class="toctext">Base Plate:</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-7"><a href="#Electronics"><span class="tocnumber">3.2</span> <span class="toctext">Electronics</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#Components"><span class="tocnumber">3.2.1</span> <span class="toctext">Components</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Schematic"><span class="tocnumber">3.2.2</span> <span class="toctext">Schematic</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Software"><span class="tocnumber">4</span> <span class="toctext">Software</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#OpenCV_Donkey_AI_script"><span class="tocnumber">4.1</span> <span class="toctext">OpenCV Donkey AI script</span></a>
+<ul>
+<li class="toclevel-3 tocsection-12"><a href="#Structure"><span class="tocnumber">4.1.1</span> <span class="toctext">Structure</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-13"><a href="#ROS_Package"><span class="tocnumber">4.2</span> <span class="toctext">ROS Package</span></a>
+<ul>
+<li class="toclevel-3 tocsection-14"><a href="#Overview"><span class="tocnumber">4.2.1</span> <span class="toctext">Overview</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#Schematic_2"><span class="tocnumber">4.2.2</span> <span class="toctext">Schematic</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Image_Processing"><span class="tocnumber">4.2.3</span> <span class="toctext">Image Processing</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#Major_Dependencies"><span class="tocnumber">4.2.4</span> <span class="toctext">Major Dependencies</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="#Nodes"><span class="tocnumber">4.2.5</span> <span class="toctext">Nodes</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#Topics"><span class="tocnumber">4.2.6</span> <span class="toctext">Topics</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-20"><a href="#Access_Over_Internet"><span class="tocnumber">5</span> <span class="toctext">Access Over Internet</span></a></li>
+<li class="toclevel-1 tocsection-21"><a href="#Milestones"><span class="tocnumber">6</span> <span class="toctext">Milestones</span></a>
+<ul>
+<li class="toclevel-2 tocsection-22"><a href="#OpenCV_Donkey_Laps"><span class="tocnumber">6.1</span> <span class="toctext">OpenCV Donkey Laps</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#Robodog.27s_First_Rodeo"><span class="tocnumber">6.2</span> <span class="toctext">Robodog's First Rodeo</span></a></li>
+<li class="toclevel-2 tocsection-24"><a href="#OpenCV_Donkey_AI_5_Autonomous_Laps"><span class="tocnumber">6.3</span> <span class="toctext">OpenCV Donkey AI 5 Autonomous Laps</span></a></li>
+<li class="toclevel-2 tocsection-25"><a href="#ROS_5_Autonomous_Laps"><span class="tocnumber">6.4</span> <span class="toctext">ROS 5 Autonomous Laps</span></a></li>
+<li class="toclevel-2 tocsection-26"><a href="#POV_Cam"><span class="tocnumber">6.5</span> <span class="toctext">POV Cam</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-27"><a href="#Future_Improvements"><span class="tocnumber">7</span> <span class="toctext">Future Improvements</span></a></li>
+<li class="toclevel-1 tocsection-28"><a href="#Advice_for_Future_Teams"><span class="tocnumber">8</span> <span class="toctext">Advice for Future Teams</span></a></li>
+<li class="toclevel-1 tocsection-29"><a href="#Acknowledgements"><span class="tocnumber">9</span> <span class="toctext">Acknowledgements</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Project_Team_Members">Project Team Members</span></h2>
+<p>Nicolas Cridlig - Electrical Engineering 
+</p><p>Theo Duffaut - Mechanical Engineering
+</p><p>Marine Sanosyan - Mathematics-Applied Science
+</p><p>Nathan Zager - Mechanical Engineering
+</p>
+<h2><span class="mw-headline" id="Project_Overview">Project Overview</span></h2>
+<p>Our project sought to deliver an autonomous driving vehicle using a number of methods. We utilized the DonkeyAI framework and open CV to achieve autonomous navigation around the outdoor track. Afterwards, we pivoted to building a ROS program from scratch using a number of nodes to import images, process them by creating a mask, and utilize a proportional-integral-derivative (PID) package to process the image signal. These signals could then be sent to the PWM board using a PWM driver ROS package. This course taught us how to build and troubleshoot ROS programs as well as work with openCV and image processing.
+</p><p><a class="image" href="File:Car1.jpeg.html"><img alt="Car1.jpeg" height="513" loading="lazy" src="https://web.archive.org/web/20210414221007im_/http://guitar.ucsd.edu/maeece148/images/c/c3/Car1.jpeg" width="684"/></a>
+</p>
+<h2><span class="mw-headline" id="Hardware">Hardware</span></h2>
+<h3><span class="mw-headline" id="Mechanical_Design">Mechanical Design</span></h3>
+<h4><span class="mw-headline" id="Camera_Mount:">Camera Mount:</span></h4>
+<p>The camera is held in place by the case and the mount, which it is placed between before the casing is screwed on.
+</p><p>Camera Casing
+</p><p><a class="image" href="File:Cam_case.JPG.html"><img alt="Cam case.JPG" height="696" loading="lazy" src="https://web.archive.org/web/20210414221007im_/http://guitar.ucsd.edu/maeece148/images/a/ac/Cam_case.JPG" width="1019"/></a>
+</p><p>Camera Mount Piece
+</p><p><a class="image" href="File:Cam_mount.JPG.html"><img alt="Cam mount.JPG" height="667" loading="lazy" src="https://web.archive.org/web/20210414221007im_/http://guitar.ucsd.edu/maeece148/images/8/8a/Cam_mount.JPG" width="666"/></a>
+</p>
+<h4><span class="mw-headline" id="Base_Plate:">Base Plate:</span></h4>
+<p>We designed the base plate to be able to firmly hold all of the electronic parts and allow efficient wire management. The plate was laser cut from a .25 inch piece of acrylic.
+</p><p><a class="image" href="File:Base_plate.PNG.html"><img alt="Base plate.PNG" height="136" loading="lazy" src="https://web.archive.org/web/20210414221007im_/http://guitar.ucsd.edu/maeece148/images/b/bc/Base_plate.PNG" width="240"/></a>
+</p><p><br/>
+</p>
+<h3><span class="mw-headline" id="Electronics">Electronics</span></h3>
+<h4><span class="mw-headline" id="Components">Components</span></h4>
+<ul><li>Jetson Nano and microSD - Computer</li>
+<li>PWM Board - Servo motor and ESC Control</li>
+<li>USB Webcam - Image view</li>
+<li>Red and Blue LED - </li>
+<li>Voltage Checker - Low voltage alert</li>
+<li>Emergency Relay Switch - Emergency stop</li>
+<li>Battery</li>
+<li>5V Regulator</li>
+<li>Electronic Speed Controller(ESC)</li></ul>
+<h4><span class="mw-headline" id="Schematic">Schematic</span></h4>
+<p><a class="image" href="File:Schematic.jpeg.html"><img alt="Schematic.jpeg" height="488" loading="lazy" src="https://web.archive.org/web/20210414221007im_/http://guitar.ucsd.edu/maeece148/images/3/31/Schematic.jpeg" width="684"/></a>
+</p>
+<h2><span class="mw-headline" id="Software">Software</span></h2>
+<h3><span class="mw-headline" id="OpenCV_Donkey_AI_script">OpenCV Donkey AI script</span></h3>
+<h4><span class="mw-headline" id="Structure">Structure</span></h4>
+<p>The OpenCV script provided by Tawn Kramer on GitHub can be found here: <a class="external free" href="https://gist.github.com/tawnkramer/bce35b848692501a77c94092d019f97e" rel="nofollow">https://gist.github.com/tawnkramer/bce35b848692501a77c94092d019f97e</a>
+</p><p>Programmed in python, it is able to follow lines of a specific color. To this this the program declares various functions, the most important being get_i_color and drive. These are executed sequentially in the run loop. To detect the lines in get_i_color, a target pixel with minimum and maximum HSV thresholds is defined and every other pixel color gets masked. Then the numpy library is used to create a histogram of the yellow pixels across the horizontal access of the screen. Whichever section of the histogram has the most values is set as target. The drive function uses target location and a PID controller to steer and throttle the robot so as to keep target in the center of its view.
+</p>
+<h3><span class="mw-headline" id="ROS_Package">ROS Package</span></h3>
+<h4><span class="mw-headline" id="Overview">Overview</span></h4>
+<p>Our ROS package uses OpenCV in a similar way to the Donkey script but with a dual script system to move our car autonomously. We found that for this application, this simple structure was the most fitting and easiest to implement. Our ROS package, named CVAI, is documented here: <a class="external free" href="https://github.com/nzager14/robocar" rel="nofollow">https://github.com/nzager14/robocar</a>. The package uses one script, line_tracker.py, that extract the images from the camera, filter them and run input position values to a PID that himself publishes steering and throttle values to two dedicated topics (/steering_value and /throttle_value). In the second script, pub_PWM.py, a subscriber continuously read the values being published in the steering ant throttle topics, remap them to output proper PWM pulses values and finally communicate these values to the motor/servo drivers using the <a class="external text" href="https://github.com/adafruit/Adafruit_Python_PCA9685" rel="nofollow">Adafruit_PCA9685</a> package (same drivers used by the donkey package)
+</p>
+<h4><span class="mw-headline" id="Schematic_2">Schematic</span></h4>
+<p>A schematic outlining the entire signal from the camera to the motors as it is processed by our ROS package.
+</p><p><a class="image" href="File:Poop.jpg.html"><img alt="Poop.jpg" height="1178" loading="lazy" src="https://web.archive.org/web/20210414221007im_/http://guitar.ucsd.edu/maeece148/images/a/a2/Poop.jpg" width="961"/></a>
+</p>
+<h4><span class="mw-headline" id="Image_Processing">Image Processing</span></h4>
+<p>Image processing was primarily conducted using OpenCV and the __________ tool on robotigniteacademy, which coincidentally already had a GUI we could use to fine tune our HSV color values. The mask produced by our HSV tuning values is converted to a centroid and the simple_pid package is utilized to make up the error between this measured centroid and the center of the screen.
+</p><p>Image showing our masking (i.e. what our robot sees) and the centroid (where it is steering to)
+</p><p><a class="image" href="File:Maskk.jpg.html"><img alt="Maskk.jpg" height="160" loading="lazy" src="https://web.archive.org/web/20210414221007im_/http://guitar.ucsd.edu/maeece148/images/1/17/Maskk.jpg" width="240"/></a>
+</p>
+<h4><span class="mw-headline" id="Major_Dependencies">Major Dependencies</span></h4>
+<ul><li>cv2</li>
+<li>simple_pid</li>
+<li>std_msgs</li>
+<li><a class="external text" href="https://github.com/adafruit/Adafruit_Python_PCA9685" rel="nofollow">Adafruit_Python_PCA9685</a></li></ul>
+<h4><span class="mw-headline" id="Nodes">Nodes</span></h4>
+<ul><li>Image_processor -&gt; PID_publisher</li>
+<li>PID_subscriber -&gt; PWM_publisher</li></ul>
+<hr/>
+<h4><span class="mw-headline" id="Topics">Topics</span></h4>
+<table class="wikitable">
+<tr>
+<th> Name
+</th>
+<th> MsgType
+</th>
+<th> Info
+</th></tr>
+<tr>
+<td> steering_value
+</td>
+<td> std_msgs.msg.Float64
+</td>
+<td> Steering value sent to PWM script for processing
+</td></tr>
+<tr>
+<td> throttle_value
+</td>
+<td> std_msgs.msg.Float64
+</td>
+<td> Throttle value sent to PWM script for processing
+</td></tr></table>
+<h2><span class="mw-headline" id="Access_Over_Internet">Access Over Internet</span></h2>
+<p>We set up the Jetson to be accessible by any member of our team from anywhere in the world. This required:
+</p><p>1) Set up RSA key and passphrase, turn off password login: <a class="external free" href="https://www.redhat.com/sysadmin/configure-ssh-keygen" rel="nofollow">https://www.redhat.com/sysadmin/configure-ssh-keygen</a>
+</p><p>2) Create a static IP for you router (paid) or Dynamic DNS (free for mynetgear)
+</p><p>3) Adjust router to port forward SSH port 22
+</p><p>4)Share private RSA key with teammates
+</p><p>Good luck, feel free to contact me on insta @nic.icee. At the end your command to remote ssh will similar to: ssh -p 22 jetson@NAME.mynetgear.com
+</p>
+<h2><span class="mw-headline" id="Milestones">Milestones</span></h2>
+<h3><span class="mw-headline" id="OpenCV_Donkey_Laps">OpenCV Donkey Laps</span></h3>
+<p>Pre-PID tuning laps on the DonkeyAI framework. We came a long way!
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/5uSt7wWCPuo?" width="640"></iframe></div></div>
+<h3><span class="mw-headline" id="Robodog.27s_First_Rodeo">Robodog's First Rodeo</span></h3>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/eBhDWkdyfBI?" width="640"></iframe></div></div>
+<p><br/>
+</p>
+<h3><span class="mw-headline" id="OpenCV_Donkey_AI_5_Autonomous_Laps">OpenCV Donkey AI 5 Autonomous Laps</span></h3>
+<p>Our car was able to perform 5 autonomous laps at the outdoor track at EBUII using OpenCV and Donkey AI.
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/SmXQiVQsLIs?" width="640"></iframe></div></div>
+<h3><span class="mw-headline" id="ROS_5_Autonomous_Laps">ROS 5 Autonomous Laps</span></h3>
+<p>Our car was able to perform 5 autonomous laps at the outdoor track in the Warren Mall tents using our ROS package.
+<a class="external free" href="https://www.youtube.com/watch?v=bSq0yf4cCXE&amp;feature=youtu.be" rel="nofollow">https://www.youtube.com/watch?v=bSq0yf4cCXE&amp;feature=youtu.be</a>
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/bSq0yf4cCXE?" width="640"></iframe></div></div>
+<h3><span class="mw-headline" id="POV_Cam">POV Cam</span></h3>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/NjFCIpBIeU8?" width="640"></iframe></div></div>
+<h2><span class="mw-headline" id="Future_Improvements">Future Improvements</span></h2>
+<p>Given more time to work on the project, there are a couple changes we would like to institute:
+</p>
+<ul><li>More scripts and nodes to handle a potentially higher workload and provide more structure should we decide to beef up our robot's AI capabilities</li>
+<li>Focus on reliability rather than speed around the track</li>
+<li>White line lane detection and avoidance</li></ul>
+<h2><span class="mw-headline" id="Advice_for_Future_Teams">Advice for Future Teams</span></h2>
+<p>Plan to give yourself extra time for everything! When actually implementing hardware or especially software, murphy's law applies.
+</p>
+<h2><span class="mw-headline" id="Acknowledgements">Acknowledgements</span></h2>
+<p>We would like to thank our professors Jack Silberman and Mauricio de Oliveira, as well as our teaching assistants Leeor Nehadea and Haoru Xue. We are very grateful for your hard work and dedication to our learning experience!
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20210414170358
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.013 seconds
+Real time usage: 0.025 seconds
+Preprocessor visited node count: 134/1000000
+Preprocessor generated node count: 220/1000000
+Post‐expand include size: 130/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:760-0!*!*!!en!5!* and timestamp 20210414170358 and revision id 5718
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20210414221007/https://guitar.ucsd.edu/maeece148/index.php/2020FallTeam5">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

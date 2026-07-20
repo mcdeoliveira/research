@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2021SpringTeam8 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2021SpringTeam8</h1>
+      <div class="floatright"><a class="image" href="File:2021SpringTeam8Team.jpg.html"><img alt="2021SpringTeam8Team.jpg" height="375" loading="lazy" src="https://web.archive.org/web/20210923015539im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/94/2021SpringTeam8Team.jpg/500px-2021SpringTeam8Team.jpg" width="500"/></a></div>
+<div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Project_Overview"><span class="tocnumber">2</span> <span class="toctext">Project Overview</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Functional_Requirements"><span class="tocnumber">2.1</span> <span class="toctext">Functional Requirements</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Hardware_Design"><span class="tocnumber">3</span> <span class="toctext">Hardware Design</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Baseplate"><span class="tocnumber">3.1</span> <span class="toctext">Baseplate</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#GarageNav_Camera_Mount_Assembly"><span class="tocnumber">3.2</span> <span class="toctext">GarageNav Camera Mount Assembly</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Donkey.2FROSRacer_Camera_Mount_Assembly"><span class="tocnumber">3.3</span> <span class="toctext">Donkey/ROSRacer Camera Mount Assembly</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Lidar_Mount"><span class="tocnumber">3.4</span> <span class="toctext">Lidar Mount</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Electrical_Design"><span class="tocnumber">4</span> <span class="toctext">Electrical Design</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Components"><span class="tocnumber">4.1</span> <span class="toctext">Components</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Software_Design"><span class="tocnumber">5</span> <span class="toctext">Software Design</span></a>
+<ul>
+<li class="toclevel-2 tocsection-12"><a href="#GitHub_Repo"><span class="tocnumber">5.1</span> <span class="toctext">GitHub Repo</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Dependencies"><span class="tocnumber">5.2</span> <span class="toctext">Dependencies</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Structure"><span class="tocnumber">5.3</span> <span class="toctext">Structure</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Directions"><span class="tocnumber">5.4</span> <span class="toctext">Directions</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-16"><a href="#Results"><span class="tocnumber">6</span> <span class="toctext">Results</span></a></li>
+<li class="toclevel-1 tocsection-17"><a href="#Future_Plans_.26_Improvements"><span class="tocnumber">7</span> <span class="toctext">Future Plans &amp; Improvements</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<p>(Left to right)
+</p><p>Kennan Gonzales (MAE)
+</p><p>Cade Wohltman (MAE)
+</p><p>McKinley Souder (ECE)
+</p>
+<h2><span class="mw-headline" id="Project_Overview">Project Overview</span></h2>
+<p>UCSD has access to plenty of robots with autonomous capabilities however, a lot of them are sitting in a lab waiting to be used. Our team aims to implement a ROS package that would allow all of those robots to be of use even when people aren't in the immediate vicinity. To alleviate this issue a room would be setup with a camera such that an individual could log into one of UCSD's robots, deploy their programming package, and when they were done using it our ROS package would launch. Our ROS packaged intends to autonomously navigate itself to a designated location marked with an AprilTag.    
+</p>
+<h4><span class="mw-headline" id="Functional_Requirements">Functional Requirements</span></h4>
+<ul><li> Make use of an Ackermann Steering RC car</li>
+<li> A camera with at least 30 FPS </li>
+<li> An RPLidar for collision prevention </li>
+<li> A SBC for data processing </li>
+<li> A PWM for both the servo and stepper motor</li></ul>
+<h2><span class="mw-headline" id="Hardware_Design">Hardware Design</span></h2>
+<h3><span class="mw-headline" id="Baseplate">Baseplate</span></h3>
+<div class="floatright"><a class="image" href="File:2021SpringTeam8FullAssembly.png.html"><img alt="2021SpringTeam8FullAssembly.png" height="193" loading="lazy" src="https://web.archive.org/web/20210923015539im_/http://guitar.ucsd.edu/maeece148/images/thumb/2/21/2021SpringTeam8FullAssembly.png/400px-2021SpringTeam8FullAssembly.png" width="400"/></a></div>
+<p>The baseplate was designed such that the Nvidia Jetson Nano could fit both vertically and horizontally on each edge of the baseplate. It also had a large cutout in the middle so that all cords and wires could fit through and hide underneath the frame. At the very end of either end are two slots where M4 screws are used to connect the baseplate to RC car. This design was supported by boosters that were printed with PLA plastic.
+</p>
+<h3><span class="mw-headline" id="GarageNav_Camera_Mount_Assembly">GarageNav Camera Mount Assembly</span></h3>
+<div class="floatright"><a class="image" href="File:2021SpringTeam8CameraMount.png.html"><img alt="2021SpringTeam8CameraMount.png" height="197" loading="lazy" src="https://web.archive.org/web/20210923015539im_/http://guitar.ucsd.edu/maeece148/images/thumb/2/20/2021SpringTeam8CameraMount.png/400px-2021SpringTeam8CameraMount.png" width="400"/></a></div>
+<p>The original design for the camera mount had to be altered to allow for the RPLidar to have 360 degree clearance to prevent any blind spots. The camera height was determined from the previous design and a hinge was designed in order to allow angle adjustment for the camera mount. The RPLidar was placed on top of a printed mount above the rest of the car and was completely unobstructed. The lidar mount also served to funnel the relay signal allowing the key fob to be used from a greater distance.
+</p>
+<h3><span class="mw-headline" id="Donkey.2FROSRacer_Camera_Mount_Assembly">Donkey/ROSRacer Camera Mount Assembly</span></h3>
+<p>The camera mounting assembly was designed with the ability to adjust the height and angle of the camera to get the best possible position of the track. This design not only allowed for different camera position configurations but also prioritized protection of the camera in the event of a collision. In fact, the mount was able to survive a full speed collision with a wall and the only part that suffered any damage was the acrylic base plate. The only disadvantage to this design was the time that it took to print the components (~ 10 hrs).
+</p>
+<h3><span class="mw-headline" id="Lidar_Mount">Lidar Mount</span></h3>
+<div class="floatright"><a class="image" href="File:2021SpringTeam8LidarAdapter.png.html"><img alt="2021SpringTeam8LidarAdapter.png" height="197" loading="lazy" src="https://web.archive.org/web/20210923015539im_/http://guitar.ucsd.edu/maeece148/images/thumb/8/81/2021SpringTeam8LidarAdapter.png/400px-2021SpringTeam8LidarAdapter.png" width="400"/></a></div>
+<p>The design of the Lidar Mount was influenced by the Lidar itself. In order to prevent any blind spots on the Lidar data given to the system the team made the lidar the highest point of the car. The height was just tall enough to fit the camera mount sitting back at an angle. The outside curvature was meant to follow the curvature of the baseplate so that there were no outward obtrusions.
+</p>
+<h2><span class="mw-headline" id="Electrical_Design">Electrical Design</span></h2>
+<h3><span class="mw-headline" id="Components">Components</span></h3>
+<ul><li> LiPo Battery           <div class="floatright"><a class="image" href="File:WiringDiagram.png.html"><img alt="WiringDiagram.png" height="287" loading="lazy" src="https://web.archive.org/web/20210923015539im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/6b/WiringDiagram.png/500px-WiringDiagram.png" width="500"/></a></div></li>
+<li> Battery Monitor </li>
+<li> Stepper Motor (Throttle)</li>
+<li> Servo Motor (Steering)</li>
+<li> Electronic Speed Controller </li>
+<li> USB Camera </li>
+<li> RPLidar </li>
+<li> 12V - 5V Buck Converter</li>
+<li> Jetson Nano </li>
+<li> Relay Module &amp; Key Fob</li>
+<li> LED </li>
+<li> PWM (16 Channels)</li></ul>
+<h2><span class="mw-headline" id="Software_Design">Software Design</span></h2>
+<h3><span class="mw-headline" id="GitHub_Repo">GitHub Repo</span></h3>
+<p>Our files are available in this GitHub repository: <a class="external text" href="https://github.com/mckinleysouder/garageNav" rel="nofollow">garageNav</a>
+</p>
+<h3><span class="mw-headline" id="Dependencies">Dependencies</span></h3>
+<ul><li> <a class="external text" href="https://gitlab.com/djnighti/ucsd_robo_car_simple_ros" rel="nofollow">ucsd_robo_car_simple_ros</a></li>
+<li> <a class="external text" href="http://wiki.ros.org/apriltag_ros" rel="nofollow">apriltag_ros</a></li>
+<li> <a class="external text" href="http://wiki.ros.org/rplidar" rel="nofollow">rplidar</a></li></ul>
+<p>We used our TA Dominic's package ucsd_robocar_simple_ros for his convenient launch file for throttle and steering,
+and to house our script and launch file.
+</p><p>Our project also depends on the package apriltag_ros as well as the rplidar package to support both identifying AprilTags through the webcam and getting the sensor data from the lidar.
+</p>
+<h3><span class="mw-headline" id="Structure">Structure</span></h3>
+<p>Our files integrate with ucsd_robo_car_simple_ros, and use the topics published by the ariltag_ros and rplidar packages to decide steering and throttle values for the car in order to autonomously return to the garage.
+</p>
+<dl><dt>apriltag_ros</dt>
+<dd>This package uses the topics published by the two scripts found in our repo to get the camera image and configuration matrix. It subscribes to them to continuously detect tags present in the video stream from our webcam, and publishes their position relative to the camera frame to the /tf topic.</dd></dl>
+<dl><dt>rplidar</dt>
+<dd>This package enables us to read in data from the RPLidar A1, and publishes the data to the /scan topic. This topic contains an array of distances spanning the 360° around the Lidar, which are used for collision prevention in the room that the car is present in.</dd></dl>
+<dl><dt>ucsd_robo_car_simple_ros</dt>
+<dd>Our files reside in this package, and it also enables us to publish data to the /throttle and /steering topics, telling our car where to turn and how fast to move.</dd></dl>
+<dl><dt>april_steering.py</dt>
+<dd>Our script subscribes to /tf, giving us the tags that are currently in frame, and their position relative to the camera. It also subscribes to /scan to stop it from crashing into walls, and to guide it in the proper direction to turn. When our car sees the garage tag, it centers it in frame and drives towards it until close enough to stop using a proportional control for the steering value. When the back wall tag is in frame, our car uses the lidar to check which wall it is closest to, and turns in the other direction until it sees another tag. The side walls each have a tag that directs the car left or right towards the garage tag. The corresponding values for each tag are published to /throttle and /steering.</dd></dl>
+<h3><span class="mw-headline" id="Directions">Directions</span></h3>
+Clone the apriltag, rplidar, and ucsd_robo_car_simple_ros packages as well as any dependencies listed on their repositories. <div class="floatright"><a class="image" href="File:2021SpringTeam8Car.jpg.html"><img alt="2021SpringTeam8Car.jpg" height="533" loading="lazy" src="https://web.archive.org/web/20210923015539im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/db/2021SpringTeam8Car.jpg/400px-2021SpringTeam8Car.jpg" width="400"/></a></div> Then add the file in this repo's scripts dir to ucsd_robo_car_simple_ros's scripts dir, and this repo's launch file to ucsd_robo_car_simple_ros's launch dir. Additionally, the cv_ros and camera_info python files must be added to the apriltag_ros scripts directory to publish the camera topics for apriltag_ros to use. Our launch file will find the packages we depend on and launch their respective launch files. Within apriltag_ros, it is necessary to add the tags intended to be used to tags.yaml so that their transforms will be published.
+<h2><span class="mw-headline" id="Results">Results</span></h2>
+<p>The team was able to accomplish our goal and autonomously navigate the RC car to a designated location. The RC car's camera takes in images through the AprilTag ROS package and gives the car steering commands. A combination of tags can give steering directions such as turn left, turn right, center, and turn around. The turn around function also uses Lidar data to determine the proper steering command. If the car had a wall that was closer on its left side and saw the turn around tag, the GarageNav package will instruct the car to turn right. An implementation of our autonomous robot can be found <a class="external text" href="https://youtu.be/fAZQIYblvEk" rel="nofollow">here</a>.
+</p>
+<h2><span class="mw-headline" id="Future_Plans_.26_Improvements">Future Plans &amp; Improvements</span></h2>
+<p>The team originally planned on using the hector_slam ROS package to map out the environment with the RPLidar. Then the car could instantly localize itself in the room using a combination of AprilTags and ScanMatcher packages. This would have allowed the navigation stack in rviz to be used for setting goal positions and path planning. However, there were some issues integrating the AprilTag and RPLidar transforms together in the rviz environment. Due to time constraints the team decided to use
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20210923015539
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.040 seconds
+Real time usage: 0.079 seconds
+Preprocessor visited node count: 67/1000000
+Preprocessor generated node count: 72/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:956-0!*!*!!en!5!* and timestamp 20210923015539 and revision id 7334
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20210923015539/https://guitar.ucsd.edu/maeece148/index.php/2021SpringTeam8">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

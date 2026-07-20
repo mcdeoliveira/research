@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2019WinterTeam6 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2019WinterTeam6</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Objectives"><span class="tocnumber">2</span> <span class="toctext">Objectives</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Preparation"><span class="tocnumber">3</span> <span class="toctext">Preparation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Initial_Design_and_Indoor_Track"><span class="tocnumber">3.1</span> <span class="toctext">Initial Design and Indoor Track</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Final_Design_and_Outdoor_Track"><span class="tocnumber">3.2</span> <span class="toctext">Final Design and Outdoor Track</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Project"><span class="tocnumber">4</span> <span class="toctext">Project</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Gap_Detection"><span class="tocnumber">4.1</span> <span class="toctext">Gap Detection</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Wall_Detection"><span class="tocnumber">4.2</span> <span class="toctext">Wall Detection</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Perpendicular_Parking"><span class="tocnumber">4.3</span> <span class="toctext">Perpendicular Parking</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Parallel_Parking"><span class="tocnumber">4.4</span> <span class="toctext">Parallel Parking</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Obstacles"><span class="tocnumber">5</span> <span class="toctext">Obstacles</span></a>
+<ul>
+<li class="toclevel-2 tocsection-12"><a href="#Error_with_smbus_library_and_TOF_Sensors"><span class="tocnumber">5.1</span> <span class="toctext">Error with smbus library and TOF Sensors</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Motor_Configuration"><span class="tocnumber">5.2</span> <span class="toctext">Motor Configuration</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="#Future_Improvement"><span class="tocnumber">6</span> <span class="toctext">Future Improvement</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<ul><li><b>Aron Laszik</b> (ECE)</li>
+<li><b>David Zhu</b> (MAE)</li>
+<li><b>Elizabeth</b>Park (ECE)</li>
+<li><b>Zhe Tang</b> (ECE)</li></ul>
+<h2><span class="mw-headline" id="Objectives">Objectives</span></h2>
+<p>The goal of our project is to use 4 TOF (Time-of-Flight) sensors to continuously sample data from the sensors to successfully parallel park our car. We drew inspiration from a previous team, 2018FallTeam2, who did a project on parallel parking with TOF sensors. Our idea is to further the work done by the previous team by utilizing more sensors and to sample data continuously to prevent any collision while parking.
+</p>
+<h2><span class="mw-headline" id="Preparation">Preparation</span></h2>
+<h3><span class="mw-headline" id="Initial_Design_and_Indoor_Track">Initial Design and Indoor Track</span></h3>
+<div class="thumb tright"><div class="thumbinner" style="width:282px;"><a class="image" href="File:Initial_design.jpg.html"><img alt="" class="thumbimage" height="373" loading="lazy" src="https://web.archive.org/web/20200814105309im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/67/Initial_design.jpg/280px-Initial_design.jpg" width="280"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Initial_design.jpg.html" title="Enlarge"></a></div>RoboCar06's initial design</div></div></div>
+<p>The chassis of the car was given to us fully assembled, so the team's first tasks are to a design a platform for the electronics and a camera stand. Both the acrylic plate and the camera mount was made using the tools in Envision.
+</p><p>Our first camera design was proven flawed as we are collecting data for the indoor autonomous model. We've concluded that its short height and small angle of Incline is the problem, as the pictures recorded included too many variances that could disturb the training process. The car's first attempt to drive itself was cut short when it's beginning to cut corners and drive off track. Upon further testing, we learn that the car needed much more data and consistent throttle in order to train a model. We kept that in mind for future training and gotten much better results.
+</p><p>The schematics for the electrical components of the final car are here. They include Time of Flight sensors, which are not needed for the autonomous laps, only the parallel parking. 
+<a class="image" href="File:Carsketch.jpg.html" title="Car Schematics"><img alt="Car Schematics" height="313" loading="lazy" src="https://web.archive.org/web/20200814105309im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/dc/Carsketch.jpg/500px-Carsketch.jpg" width="500"/></a>
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:402px;"><video class="thumbimage" controls="" height="225" src="http://guitar.ucsd.edu/maeece148/images/f/fd/Indoor_Lap.mp4" style="max-width: 100%; max-height: 100%; width: 400px; height: 225px;" width="400"><a href="File:Indoor_Lap.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Indoor_Lap.mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Indoor_Lap.mp4.html" title="Enlarge"></a></div>First autonomous attempt</div></div></div> <br/>
+<p><a class="external text" href="https://youtu.be/JxuBA3Y8F2M" rel="nofollow">Final indoor autonomous attempt</a> 
+Indoor lap video is shared through Youtube due to maximum file size limitation on the wiki
+</p>
+<h3><span class="mw-headline" id="Final_Design_and_Outdoor_Track">Final Design and Outdoor Track</span></h3>
+<p>Before we attempted the outdoor track, we changed the design of the camera mount. Learning from our previous mistake, the new mount is 30% taller than before, with a 65º inclination angle with respect to the ground. This decreases the chances of capturing unwanted factor that could negatively impact the model. 
+</p><p>In comparison to the indoor track, the outdoor track in EBU II has a few significant disadvantages: variance in lighting, uneven terrain, and generally more distractions like window reflections. We were fortunate in choosing a good time to do our training, as the cloudy day provided relatively consistent lighting throughout our training and testing process. 
+</p><p>However, the track is still challenging. Because of a problem with our motor configuration, which is detailed at the end of the page, we set our throttle to a lower value in order to prevent any accidents. This proves to be a disadvantage at this track, as the car struggles to go up a small bump in one of the turns. A second problem arose when the model began to recognize the residue lines from the older track and started to follow it. Both issues were resolved with more data. Our final model utilized 10,000 captured data, and successfully drove around the track more than 5 times.
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Final_Front_View.jpg.html"><img alt="" class="thumbimage" height="400" loading="lazy" src="https://web.archive.org/web/20200814105309im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/f7/Final_Front_View.jpg/300px-Final_Front_View.jpg" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Final_Front_View.jpg.html" title="Enlarge"></a></div>RoboCar06's final design</div></div></div>
+<table style='"margin:'>
+<tr>
+<td><div class="thumb tleft"><div class="thumbinner" style="width:502px;"><video class="thumbimage" controls="" height="281" src="http://guitar.ucsd.edu/maeece148/images/f/f3/Outdoor_Laps.mp4" style="max-width: 100%; max-height: 100%; width: 500px; height: 281px;" width="500"><a href="File:Outdoor_Laps.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Outdoor_Laps.mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Outdoor_Laps.mp4.html" title="Enlarge"></a></div>Driving laps in the EBU2 track</div></div></div>
+</td>
+<td>
+</td></tr></table>
+<h2><span class="mw-headline" id="Project">Project</span></h2>
+<p>For our project, we placed four TOF sensors around the car to detect the environment. Small L-Brackets were 3D printed for the sensors to be secured on using velcro. 
+Code for our project can be found through <a class="external text" href="https://github.com/lizpark-15/ece-148-2019winterteam6" rel="nofollow">Github</a>
+</p>
+<h3><span class="mw-headline" id="Gap_Detection">Gap Detection</span></h3>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><video class="thumbimage" controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/7/73/Gap_Detection.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Gap_Detection.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Gap_Detection.mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Gap_Detection.mp4.html" title="Enlarge"></a></div>RoboCar06 finding a suitable parking spot</div></div></div>
+<p>Two sensors are located to the right side of the car. We simulate a situation of a right-hand drive car seeking a large enough parking spot to park in. Depending on the mode it is in, the car will stop after it has detected a large enough gap. Perpendicular parking requires less space than parallel parking, and vice versa.
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p>
+<h3><span class="mw-headline" id="Wall_Detection">Wall Detection</span></h3>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><video class="thumbimage" controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/3/36/Crash_Prevention.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Crash_Prevention.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Crash_Prevention.mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Crash_Prevention.mp4.html" title="Enlarge"></a></div>RoboCar06 detecting the wall</div></div></div>
+<p>Improving upon the previous team, we added two additional sensors in the front and back of the car. This allows us to program the car to stop and revert its course when near a wall or other cars(which are boxes in this case)
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p>
+<h3><span class="mw-headline" id="Perpendicular_Parking">Perpendicular Parking</span></h3>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><video class="thumbimage" controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/7/70/Perpendicular_Park.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Perpendicular_Park.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Perpendicular_Park.mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Perpendicular_Park.mp4.html" title="Enlarge"></a></div>RoboCar06 performing a perpendicular parking maneuver</div></div></div>
+<p>Once the car detects a wide enough gap, it will stop and began to back into it. As demonstrates in the video, the back sensor will "warn" the car of its proximity to the wall and prevent it from hitting it. 
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p>
+<h3><span class="mw-headline" id="Parallel_Parking">Parallel Parking</span></h3>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><video class="thumbimage" controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/e/e0/Parallel_Park_2.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Parallel_Park_2.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Parallel_Park_2.mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Parallel_Park_2.mp4.html" title="Enlarge"></a></div>RoboCar06 first's successful parallel park</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><video class="thumbimage" controls="" height="169" src="http://guitar.ucsd.edu/maeece148/images/1/16/Parallel_Park_1.mp4" style="max-width: 100%; max-height: 100%; width: 300px; height: 169px;" width="300"><a href="File:Parallel_Park_1.mp4.html">http://guitar.ucsd.edu/maeece148/index.php/File:Parallel_Park_1.mp4</a></video> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Parallel_Park_1.mp4.html" title="Enlarge"></a></div>Final Execution</div></div></div>
+<p>Once the car detects a gap wide enough, it will stop. Then it turns it's wheels all the way in and reverses. Once the back facing sensor noticed that the wall behind it is within a threshold distance, as well as when the side facing sensor notices the wall is within a threshold distance, the car reverse the direction of its front wheels and continues reversing. The thresholds change at this point to be even closer, and once the sensors measure underneath that threshold, the car pushes a small forward-facing voltage to stop. The wheels now straighten and the car goes until the forward facing sensor's distance reading falls underneath a certain threshold. 
+</p><p>The overall idea of this strategy is similar to the one the parallel parking group utilized in the previous quarter, however, their program was based on time. So they would apply a reverse voltage for a measured amount of time, and they would change wheel directions after certain time thresholds. Their car would run into some of the parking spots though because this was not as accurate a measuring scenario as they thought it would be. That's why we decided to use tof sensors that can continuously update the car's location with respect to what is around it.
+<a class="image" href="File:Parallel-diagram-start.png.html"><img alt="Parallel-diagram-start.png" height="198" loading="lazy" src="https://web.archive.org/web/20200814105309im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/53/Parallel-diagram-start.png/350px-Parallel-diagram-start.png" width="350"/></a><a class="image" href="File:Parallel-diagram-finish.png.html"><img alt="Parallel-diagram-finish.png" height="197" loading="lazy" src="https://web.archive.org/web/20200814105309im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/7a/Parallel-diagram-finish.png/350px-Parallel-diagram-finish.png" width="350"/></a>
+Diagram showing our parallel parking procedure
+</p><p>The code specifically for parallel parking is here: <a class="external autonumber" href="https://github.com/lizpark-15/ece-148-2019winterteam6/blob/master/parallel_parking.py" rel="nofollow">[1]</a>
+</p>
+<h2><span class="mw-headline" id="Obstacles">Obstacles</span></h2>
+<h3><span class="mw-headline" id="Error_with_smbus_library_and_TOF_Sensors">Error with smbus library and TOF Sensors</span></h3>
+<p>We ran into issues with using the smbus library which helps us change the I2C addresses of the TOF sensors in Python. We were able to change the I2C address but could not access the data correctly when trying to establish communication through I2C. With this error we could not use all 4 TOF sensors simultaneously. <br/>
+We bought 2 multiplexer buses from Fry's so we can use all 4 TOF sensors at the same time. However, we still ran into issues with using the multiplexer buses as they were not two-way compatible. <br/>
+</p><p><b>Solution</b><br/>
+Finally, we had to order an older version of the Pimoroni sensors, the Gowoops VL53L0X Time-of-Flight (ToF) Laser Ranging Sensor, since it had better library support. With these we were able to change and utilize the addresses properly. The code to set up the sensors and to get them working is here: <a class="external autonumber" href="https://github.com/lizpark-15/ece-148-2019winterteam6/blob/master/tof.py" rel="nofollow">[2]</a>
+</p>
+<h3><span class="mw-headline" id="Motor_Configuration">Motor Configuration</span></h3>
+<p>We experienced some issues with our motor that caused it to re-configure our maximum, stop, and reverse speed values. We believe it might be an issue with a loose connection in our wiring or chassis, as there was a little wobbling when turning the wheels. We worked around it by checking the configuration values every time we started up our car. Our parallel parking worked perfectly but we restarted the car and the motor configuration changed again. So when we were doing the perpendicular parking, the car stops at a further distance away than expected which made it harder to control the correct angle. We tried to reset the motor several times and still weren’t able to find the same configure as before. The speed is harder to control in the perpendicular parking testing.
+</p>
+<h2><span class="mw-headline" id="Future_Improvement">Future Improvement</span></h2>
+<p>Because of the various issues we had with the car, we were unable to progress as far as we wanted with the project. We advise future teams to not use the Polulu sensors or to take a look at how <a class="external text" href="2019WinterTeam10.html" rel="nofollow">2019WinterTeam10</a> implemented the TOF sensors. Here are some ideas that future team can implement with the car.
+</p>
+<ul><li><b>Exiting the parking spot</b>: The car can ideally utilize a similar maneuver as parking in reversing the car out of theparking spot. The sensors will act as a warking system to prevent collisions.</li>
+<li><b>Parking in a tighter spot</b>: In order to park parallelly with real cars, the spot has to be at least 1.5 times the car length. Currently, our robocar06 needed more than that, but that can be improved upon based on the minimum turning radius of the chassis.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20200814105309
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.046 seconds
+Real time usage: 0.053 seconds
+Preprocessor visited node count: 54/1000000
+Preprocessor generated node count: 60/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:323-0!*!*!!en!5!* and timestamp 20200814105309 and revision id 2467
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200814105309/https://guitar.ucsd.edu/maeece148/index.php/2019WinterTeam6">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

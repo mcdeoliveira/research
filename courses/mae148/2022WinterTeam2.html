@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2022WinterTeam2 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2022WinterTeam2</h1>
+      <div class="mw-parser-output"><p><b>Bold text</b>
+</p>
+<div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#ECE"><span class="tocnumber">1.1</span> <span class="toctext">ECE</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#MAE"><span class="tocnumber">1.2</span> <span class="toctext">MAE</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Team_2_Car"><span class="tocnumber">2</span> <span class="toctext">Team 2 Car</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Project_Overview"><span class="tocnumber">3</span> <span class="toctext">Project Overview</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Mechanical_Design"><span class="tocnumber">4</span> <span class="toctext">Mechanical Design</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Electrical_Design"><span class="tocnumber">5</span> <span class="toctext">Electrical Design</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Programming_Design"><span class="tocnumber">6</span> <span class="toctext">Programming Design</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<h3><span class="mw-headline" id="ECE">ECE</span></h3>
+<ul><li>Roger Kim</li></ul>
+<p><a class="image" href="File:RogerKim.jpg.html"><img alt="RogerKim.jpg" decoding="async" height="200" loading="lazy" src="https://web.archive.org/web/20220809052419im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/cd/RogerKim.jpg/300px-RogerKim.jpg" width="300"/></a>
+</p>
+<ul><li>Bishwajit Roy</li></ul>
+<p><a class="image" href="File:2000_(2).jpg.html"><img alt="2000 (2).jpg" decoding="async" height="300" loading="lazy" src="https://web.archive.org/web/20220809052419im_/http://guitar.ucsd.edu/maeece148/images/a/a2/2000_%282%29.jpg" width="300"/></a>]
+</p>
+<h3><span class="mw-headline" id="MAE">MAE</span></h3>
+<ul><li>Tara Len</li></ul>
+<p><a class="image" href="File:Tara_Len.jpg.html"><img alt="Tara Len.jpg" decoding="async" height="300" loading="lazy" src="https://web.archive.org/web/20220809052419im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/63/Tara_Len.jpg/300px-Tara_Len.jpg" width="300"/></a>
+</p>
+<ul><li>Cameron Yenche</li></ul>
+<p><a class="image" href="File:CameronYenche.png.html"><img alt="CameronYenche.png" decoding="async" height="222" loading="lazy" src="https://web.archive.org/web/20220809052419im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/ec/CameronYenche.png/300px-CameronYenche.png" width="300"/></a>
+</p>
+<h2><span class="mw-headline" id="Team_2_Car">Team 2 Car</span></h2>
+<p><b>Isometric View</b>
+</p><p><a class="image" href="File:CarISO.jpg.html"><img alt="CarISO.jpg" decoding="async" height="317" loading="lazy" src="https://web.archive.org/web/20220809052419im_/http://guitar.ucsd.edu/maeece148/images/thumb/2/23/CarISO.jpg/400px-CarISO.jpg" width="400"/></a>
+</p><p><b>Side View</b>
+</p><p><a class="image" href="File:1000_(3).jpg.html"><img alt="1000 (3).jpg" decoding="async" height="168" loading="lazy" src="https://web.archive.org/web/20220809052419im_/http://guitar.ucsd.edu/maeece148/images/2/2a/1000_%283%29.jpg" width="385"/></a>
+</p>
+<h2><span class="mw-headline" id="Project_Overview">Project Overview</span></h2>
+<p>The purpose of this project is to replicate autonomous interaction with traffic signals using the an RC Race Car Chassis, webcam, NVIDIA Jetson Nano as hardware, and ROS2 (Robotic Operating System) and Docker containers for software development. Taking cues from industry leadership, this was done using camera-based computer vision navigation—below is a summary of the project.
+</p>
+<h2><span class="mw-headline" id="Mechanical_Design">Mechanical Design</span></h2>
+<p><b>Baseplate</b>
+</p>
+<pre><a class="image" href="File:Image.jpg.html"><img alt="Image.jpg" decoding="async" height="174" loading="lazy" src="https://web.archive.org/web/20220809052419im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/78/Image.jpg/300px-Image.jpg" width="300"/></a>
+</pre>
+<p>The baseplate had three slots running down its middle section that were 34.29 in long and three slots on one side that were 12.70 in long. All of these slots were 0.625 inches apart from each other and they all had a width of 0.32 in, which allowed M3 screws to be inserted inside those slots. The shorter slots were used to attach the Jetson Nano case to the baseplate and the longer slots were used to mount the baseplate onto the chassis and attach the camera mount to the baseplate. There was a wider slot located on the opposite side of the three short slots that allowed more space for wiring and hardware.
+</p><p><b>Camera Mount</b>
+</p><p><a class="image" href="File:CameraMountT2.png.html"><img alt="CameraMountT2.png" decoding="async" height="225" loading="lazy" src="https://web.archive.org/web/20220809052419im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/f6/CameraMountT2.png/300px-CameraMountT2.png" width="300"/></a>
+</p><p>The camera mount consisted of a simple joint with spacing for the camera wiring to run through the mount as well as spaced M3 holes for mounting to both the camera and the baseplate. The component was printed from PETG filament using a standard Fused Deposition Modeling (FDM) 3D printer.
+</p><p><b>Jetson Nano Protective Case</b>
+</p><p><a class="image" href="File:JetsonNanoCase.png.html"><img alt="JetsonNanoCase.png" decoding="async" height="225" loading="lazy" src="https://web.archive.org/web/20220809052419im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/10/JetsonNanoCase.png/300px-JetsonNanoCase.png" width="300"/></a>
+</p><p>The Jetson Nano case sourced from an open-source repository and serves the purpose of protecting and securing the Jetson Nano from damage, should a crash occur (which it did). The component was printed from PETG filament using a standard Fused Deposition Modeling (FDM) 3D printer.
+</p>
+<h2><span class="mw-headline" id="Electrical_Design">Electrical Design</span></h2>
+<p><b>Wiring Schematic</b>
+</p>
+<pre><a class="image" href="File:WI22_Team2_Schematic.png.html"><img alt="WI22 Team2 Schematic.png" decoding="async" height="411" loading="lazy" src="https://web.archive.org/web/20220809052419im_/http://guitar.ucsd.edu/maeece148/images/5/51/WI22_Team2_Schematic.png" width="921"/></a>
+</pre>
+<p><br/>
+</p>
+<h2><span class="mw-headline" id="Programming_Design">Programming Design</span></h2>
+<p><b>Color Filter Flowchart (OpenCV):</b>
+</p>
+<pre><a class="image" href="File:WI22_Team2_OpenCV_Flowchart.png.html"><img alt="WI22 Team2 OpenCV Flowchart.png" decoding="async" height="582" loading="lazy" src="https://web.archive.org/web/20220809052419im_/http://guitar.ucsd.edu/maeece148/images/a/a8/WI22_Team2_OpenCV_Flowchart.png" width="381"/></a>
+</pre>
+<p>The computer vision script works by converting each frame into HSV space,  forming a mask for each target color (red, yellow, and green), and applying the hough circle transform to each masked image. If a circle of the proper size and color range is detected, the script will output the corresponding traffic signal logic to be used by ROS2 for directing the car. 
+</p><p><a class="image" href="File:StopLightGif.gif.html"><img alt="StopLightGif.gif" decoding="async" height="358" loading="lazy" src="https://web.archive.org/web/20220809052419im_/http://guitar.ucsd.edu/maeece148/images/b/ba/StopLightGif.gif" width="463"/></a>
+</p><p>The GIF above is a visualization of the computer vision script detection.
+</p><p><br/>
+<b>ROS2 Flow Chart:</b>
+</p><p><a class="image" href="File:ROS2_Flow_Chart.png.html"><img alt="ROS2 Flow Chart.png" decoding="async" height="1120" loading="lazy" src="https://web.archive.org/web/20220809052419im_/http://guitar.ucsd.edu/maeece148/images/2/25/ROS2_Flow_Chart.png" width="651"/></a>
+</p><p>Above is a flow chart that depicts the structure of the ROS2 Nodes that guide the robot. Here we see that the Lane Detection Node subscribes to the camera feed topic (which contains raw camera frame data) and publishes the centroid locational data to the centroid topic. The Lane Guidance Node was modified by Team 2 to subscribe to both the centroid topic from the Lane Detection Node as well as the camera feed topic; the node will guide the car based on the centroid data relative to the center of the camera frame (allowing the car to follow the lane lines) and in the event that a traffic signal is detected, the commands to obey the traffic signal will override the lane guidance commands. The Lane Guidance node publishes actuator values to the cmd_vel topic, which is interpreted by Adafruit Twist Node that controls the PWM signal sent to the car's throttle and steering.
+</p><p><br/>
+<b>Project Demo:</b>
+</p><p><a class="image" href="File:CarInAction.gif.html"><img alt="CarInAction.gif" decoding="async" height="437" loading="lazy" src="https://web.archive.org/web/20220809052419im_/http://guitar.ucsd.edu/maeece148/images/0/07/CarInAction.gif" width="800"/></a>
+</p>
+<pre><b>Repositories</b>
+<a class="external text" href="https://github.com/CamYench/MAE148Group2.git" rel="nofollow">ECE/MAE 148 WI22 Team2 GitHub</a>
+<a class="external text" href="https://gitlab.com/ucsd_robocar2/ucsd_robocar_lane_detection2_pkg/-/blob/team-2-WI-22/ucsd_robocar_lane_detection2_pkg/lane_guidance_node.py#modal-confirm-fork-webide" rel="nofollow">ECE/MAE 148 WI22 Team2 GitLab (ROS2 Integration)</a>
+</pre>
+<!-- 
+NewPP limit report
+Cached time: 20220809045848
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.022 seconds
+Real time usage: 0.026 seconds
+Preprocessor visited node count: 34/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:1234-0!canonical and timestamp 20220809045848 and revision id 8965. Serialized with JSON.
+ -->
+</div>
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20220809052419/https://guitar.ucsd.edu/maeece148/index.php/2022WinterTeam2">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

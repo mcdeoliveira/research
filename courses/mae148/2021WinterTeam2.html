@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2021WinterTeam2 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2021WinterTeam2</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#About_Our_Team_Members"><span class="tocnumber">1</span> <span class="toctext">About Our Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Final_Project_Description:_Line_Following_and_Sign_Detection"><span class="tocnumber">2</span> <span class="toctext">Final Project Description: Line Following and Sign Detection</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#.22Must-Have.22_Project_Requirements"><span class="tocnumber">3</span> <span class="toctext">"Must-Have" Project Requirements</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Hardware"><span class="tocnumber">4</span> <span class="toctext">Hardware</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Provided_Components"><span class="tocnumber">4.1</span> <span class="toctext">Provided Components</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#Generic_Components"><span class="tocnumber">4.1.1</span> <span class="toctext">Generic Components</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-7"><a href="#Designed_Components"><span class="tocnumber">4.2</span> <span class="toctext">Designed Components</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#Base_Plate"><span class="tocnumber">4.2.1</span> <span class="toctext">Base Plate</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Jetson_Case"><span class="tocnumber">4.2.2</span> <span class="toctext">Jetson Case</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Intel_RealSense_L515_Camera_Mount"><span class="tocnumber">4.2.3</span> <span class="toctext">Intel RealSense L515 Camera Mount</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Adding_Some_Style:_Car_Spoiler"><span class="tocnumber">4.2.4</span> <span class="toctext">Adding Some Style: Car Spoiler</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="#Wiring_Schematic"><span class="tocnumber">4.3</span> <span class="toctext">Wiring Schematic</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Software"><span class="tocnumber">5</span> <span class="toctext">Software</span></a>
+<ul>
+<li class="toclevel-2 tocsection-14"><a href="#ROS_Melodic"><span class="tocnumber">5.1</span> <span class="toctext">ROS Melodic</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#OpenCV_2"><span class="tocnumber">5.2</span> <span class="toctext">OpenCV 2</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Starting_Point:_UCSD_robo_car_simple_ros"><span class="tocnumber">5.3</span> <span class="toctext">Starting Point: UCSD_robo_car_simple_ros</span></a>
+<ul>
+<li class="toclevel-3 tocsection-17"><a href="#Problems_With_Installation"><span class="tocnumber">5.3.1</span> <span class="toctext">Problems With Installation</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-18"><a href="#Understanding_Dominic.27s_ROS_package"><span class="tocnumber">5.4</span> <span class="toctext">Understanding Dominic's ROS package</span></a>
+<ul>
+<li class="toclevel-3 tocsection-19"><a href="#Camera_server_node"><span class="tocnumber">5.4.1</span> <span class="toctext">Camera_server node</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="#Lane_detection_node"><span class="tocnumber">5.4.2</span> <span class="toctext">Lane_detection node</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#Lane_guidance_node"><span class="tocnumber">5.4.3</span> <span class="toctext">Lane_guidance node</span></a></li>
+<li class="toclevel-3 tocsection-22"><a href="#Throttle_client_node"><span class="tocnumber">5.4.4</span> <span class="toctext">Throttle_client node</span></a></li>
+<li class="toclevel-3 tocsection-23"><a href="#Steering_client_node"><span class="tocnumber">5.4.5</span> <span class="toctext">Steering_client node</span></a></li>
+<li class="toclevel-3 tocsection-24"><a href="#Table_of_Topics_and_Package_Map"><span class="tocnumber">5.4.6</span> <span class="toctext">Table of Topics and Package Map</span></a></li>
+<li class="toclevel-3 tocsection-25"><a href="#Result_of_ROS_Package"><span class="tocnumber">5.4.7</span> <span class="toctext">Result of ROS Package</span></a></li>
+<li class="toclevel-3 tocsection-26"><a href="#Tuning_Throttle_and_Steering"><span class="tocnumber">5.4.8</span> <span class="toctext">Tuning Throttle and Steering</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-27"><a href="#Line_Detection_and_Sign_Detection_Package"><span class="tocnumber">5.5</span> <span class="toctext">Line Detection and Sign Detection Package</span></a>
+<ul>
+<li class="toclevel-3 tocsection-28"><a href="#Implementing_the_Intel_RealSense2_Node_and_Topics"><span class="tocnumber">5.5.1</span> <span class="toctext">Implementing the Intel RealSense2 Node and Topics</span></a></li>
+<li class="toclevel-3 tocsection-29"><a href="#Implementing_Intel_RealSense_L515_Camera"><span class="tocnumber">5.5.2</span> <span class="toctext">Implementing Intel RealSense L515 Camera</span></a></li>
+<li class="toclevel-3 tocsection-30"><a href="#Adjustments_to_.22lane_guidance.py.22"><span class="tocnumber">5.5.3</span> <span class="toctext">Adjustments to "lane_guidance.py"</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-31"><a href="#Basic_Line_following_With_L515_Camera"><span class="tocnumber">5.6</span> <span class="toctext">Basic Line following With L515 Camera</span></a></li>
+<li class="toclevel-2 tocsection-32"><a href="#Sign_Detection_Script"><span class="tocnumber">5.7</span> <span class="toctext">Sign Detection Script</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-33"><a href="#ROS_Package_and_Sign_Detection_Package_Github_Link"><span class="tocnumber">6</span> <span class="toctext">ROS Package and Sign Detection Package Github Link</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="About_Our_Team_Members">About Our Team Members</span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:502px;"><a class="image" href="File:Team2pic.jpg.html"><img alt="" class="thumbimage" height="375" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/0/02/Team2pic.jpg/500px-Team2pic.jpg" width="500"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Team2pic.jpg.html" title="Enlarge"></a></div>From left to right: Nathan Burdick, Blake Dixon, Jared Benge</div></div></div>
+<p>Team 2 is composed of UCSD undergraduate students.
+</p>
+<ul><li>Jared Benge - Mechanical Engineering Senior</li>
+<li>Nathan Burdick - Mechanical Engineering Senior</li>
+<li>Blake Dixon - Computer Engineering Senior</li></ul>
+<p>Our team comprises of members that are new to ROS development. Because of this, we decided to tackle a project that has entry level and challenging goals.
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p>
+<hr/>
+<h2><span class="mw-headline" id="Final_Project_Description:_Line_Following_and_Sign_Detection">Final Project Description: Line Following and Sign Detection</span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:502px;"><a class="image" href="File:RonarocketT2.JPG.html"><img alt="" class="thumbimage" height="430" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/2/2e/RonarocketT2.JPG/500px-RonarocketT2.JPG" width="500"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:RonarocketT2.JPG.html" title="Enlarge"></a></div>Rona Rocket Sporting the Intel RealSense L515 RGB/Sold State LIDAR camera</div></div></div>
+<p>Develop a line following autonomous RC car that can detect stop signs. The RC car will track the yellow dashed line in the center of the race track. Once the RC car detects a stop sign, the car will stop at the designated line. ROS and OpenCV will be used to achieve these tasks. Our project will be using a new method of tracking the stop signs. An Intel RealSense L515 camera that is able to collect RGB and depth images will be used. The line following node will use the RGB images and the sign detection will use the depth images. Depth perception is made possible by a solid state LIDAR on the Intel RealSense L515.
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p><p><br/>
+</p>
+<hr/>
+<h2><span class="mw-headline" id=".22Must-Have.22_Project_Requirements">"Must-Have" Project Requirements</span></h2>
+<p>- Develop a ROS/OpenCV package
+</p><p>- Line following capabilities
+</p><p>- Stop sign detection
+</p><p>- Stop the RC car on a line once the sign is detected
+</p>
+<h2><span class="mw-headline" id="Hardware">Hardware</span></h2>
+<h3><span class="mw-headline" id="Provided_Components">Provided Components</span></h3>
+<p><a class="external text" href="https://developer.nvidia.com/embedded/jetson-nano-developer-kit" rel="nofollow">Jetson Nano Developer Kit</a>
+</p><p><a class="external text" href="https://www.intelrealsense.com/lidar-camera-l515/" rel="nofollow">Intel RealSense L515 Camera</a>
+</p><p><a class="external text" href="https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all" rel="nofollow">Adafruit PCA9685 16Bit PWM controller</a>
+</p><p><a class="external text" href="http://hobbywing.com/products/enpdf/QuicRunWP1625-WP860-WP1060.pdf%7C" rel="nofollow">QuicRUN WP1625 Electronic Speed Controller</a>
+</p>
+<ul class="gallery mw-gallery-nolines">
+<li class="gallerybox" style="width: 305px"><div style="width: 305px">
+<div class="thumb" style="width: 300px;"><div style="margin:0px auto;"><a class="image" href="File:Jetsonteam2.JPG.html"><img alt="" height="215" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/62/Jetsonteam2.JPG/300px-Jetsonteam2.JPG" width="300"/></a></div></div>
+<div class="gallerytext">
+<p>Jetson Nano
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 305px"><div style="width: 305px">
+<div class="thumb" style="width: 300px;"><div style="margin:0px auto;"><a class="image" href="File:L515.jpg.html"><img alt="" height="243" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/cb/L515.jpg/300px-L515.jpg" width="300"/></a></div></div>
+<div class="gallerytext">
+<p>Intel RealSense L515 RGBD Camera
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 305px"><div style="width: 305px">
+<div class="thumb" style="width: 300px;"><div style="margin:0px auto;"><a class="image" href="File:ADAPWM.JPG.html"><img alt="" height="171" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/da/ADAPWM.JPG/300px-ADAPWM.JPG" width="300"/></a></div></div>
+<div class="gallerytext">
+<p>Adafruit PWM Controller
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 305px"><div style="width: 305px">
+<div class="thumb" style="width: 300px;"><div style="margin:0px auto;"><a class="image" href="File:ESCT2.JPG.html"><img alt="" height="229" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/34/ESCT2.JPG/300px-ESCT2.JPG" width="300"/></a></div></div>
+<div class="gallerytext">
+<p>Electronic Speed Controller
+</p>
+</div>
+</div></li>
+</ul>
+<h4><span class="mw-headline" id="Generic_Components">Generic Components</span></h4>
+<p>Steering Servo Motor
+</p><p>Throttle DC motor
+</p><p>1/10 scale RC car chassis with ackerman steering. 
+</p><p>12V-5V DC-DC voltage converter
+</p><p>433MHz remote relay
+</p><p>11.1V 3S LiPo Battery
+</p><p>LED lights
+</p><p>Battery Voltage Sensor
+</p>
+<h3><span class="mw-headline" id="Designed_Components">Designed Components</span></h3>
+<h4><span class="mw-headline" id="Base_Plate">Base Plate</span></h4>
+<p>We wanted our base plate to be lightweight with maximum support for the other electronic components. The square holes allow the plate to be attached to the chassis of the RC car. The slots on the sides allow for the base plate supports to be attached. The linear pattern of holes allows for flexible placement of equipment. In the end, we decided to place strips of Velcro along the base plate to make quick adjustments of equipment easily.
+</p>
+<ul class="gallery mw-gallery-nolines">
+<li class="gallerybox" style="width: 305px"><div style="width: 305px">
+<div class="thumb" style="width: 300px;"><div style="margin:0px auto;"><a class="image" href="File:BaseboardT2.JPG.html"><img alt="" height="199" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/b4/BaseboardT2.JPG/300px-BaseboardT2.JPG" width="300"/></a></div></div>
+<div class="gallerytext">
+<p>Base Plate
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 305px"><div style="width: 305px">
+<div class="thumb" style="width: 300px;"><div style="margin:0px auto;"><a class="image" href="File:SupportT2.JPG.html"><img alt="" height="300" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/5e/SupportT2.JPG/154px-SupportT2.JPG" width="154"/></a></div></div>
+<div class="gallerytext">
+<p>Base Plate Supports
+</p>
+</div>
+</div></li>
+</ul>
+<h4><span class="mw-headline" id="Jetson_Case">Jetson Case</span></h4>
+<p>Making detailed measurements of the Jetson would be time consuming. We decided to find a Jetson case on <a class="external text" href="https://www.thingiverse.com/" rel="nofollow">Thingiverse</a>. The case below was printed over a few days and fit perfectly. We had to cut holes in the side to feed wires through. This case looks great and protects the Jetson from collisions and the environment.
+</p>
+<ul class="gallery mw-gallery-nolines">
+<li class="gallerybox" style="width: 305px"><div style="width: 305px">
+<div class="thumb" style="width: 300px;"><div style="margin:0px auto;"><a class="image" href="File:JetsoncaseT2.JPG.html"><img alt="" height="300" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/64/JetsoncaseT2.JPG/241px-JetsoncaseT2.JPG" width="241"/></a></div></div>
+<div class="gallerytext">
+<p>Jetson Case
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 305px"><div style="width: 305px">
+<div class="thumb" style="width: 300px;"><div style="margin:0px auto;"><a class="image" href="File:Jetsoncasehole.JPG.html"><img alt="" height="200" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/3f/Jetsoncasehole.JPG/300px-Jetsoncasehole.JPG" width="300"/></a></div></div>
+<div class="gallerytext">
+<p>Cable Routing
+</p>
+</div>
+</div></li>
+</ul>
+<h4><span class="mw-headline" id="Intel_RealSense_L515_Camera_Mount">Intel RealSense L515 Camera Mount</span></h4>
+<p>The Intel RealSense L515 camera came with a tripod mount. We removed the tripod via a screw and used the ball mount. The design was focused on vibration reduction and rigidity. The camera ball mount fits snuggly and does not allow for any rotation unless the thumb screw is loosened. This design allows us to try different camera angles, then fix the mount once calibrated.
+</p>
+<ul class="gallery mw-gallery-nolines">
+<li class="gallerybox" style="width: 305px"><div style="width: 305px">
+<div class="thumb" style="width: 300px;"><div style="margin:0px auto;"><a class="image" href="File:CameramountT2.JPG.html"><img alt="" height="300" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/2/20/CameramountT2.JPG/298px-CameramountT2.JPG" width="298"/></a></div></div>
+<div class="gallerytext">
+<p>3D Model of Camera Mount
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 305px"><div style="width: 305px">
+<div class="thumb" style="width: 300px;"><div style="margin:0px auto;"><a class="image" href="File:CameramountsliceT2.JPG.html"><img alt="" height="300" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/bb/CameramountsliceT2.JPG/274px-CameramountsliceT2.JPG" width="274"/></a></div></div>
+<div class="gallerytext">
+<p>CURA Slicing
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 305px"><div style="width: 305px">
+<div class="thumb" style="width: 300px;"><div style="margin:0px auto;"><a class="image" href="File:CameramountL515.JPG.html"><img alt="" height="300" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/91/CameramountL515.JPG/228px-CameramountL515.JPG" width="228"/></a></div></div>
+<div class="gallerytext">
+<p>Front View
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 305px"><div style="width: 305px">
+<div class="thumb" style="width: 300px;"><div style="margin:0px auto;"><a class="image" href="File:CameramountL5152.JPG.html"><img alt="" height="300" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/60/CameramountL5152.JPG/178px-CameramountL5152.JPG" width="178"/></a></div></div>
+<div class="gallerytext">
+<p>Back View
+</p>
+</div>
+</div></li>
+</ul>
+<h4><span class="mw-headline" id="Adding_Some_Style:_Car_Spoiler">Adding Some Style: Car Spoiler</span></h4>
+<p>This was just to have some fun. We made sure to let everyone know our RC car was named "Rona Rocket"
+</p>
+<ul class="gallery mw-gallery-nolines">
+<li class="gallerybox" style="width: 305px"><div style="width: 305px">
+<div class="thumb" style="width: 300px;"><div style="margin:0px auto;"><a class="image" href="File:Spoiler.JPG.html"><img alt="" height="251" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/5b/Spoiler.JPG/300px-Spoiler.JPG" width="300"/></a></div></div>
+<div class="gallerytext">
+<p>Spoiler for RC Car
+</p>
+</div>
+</div></li>
+</ul>
+<h3><span class="mw-headline" id="Wiring_Schematic">Wiring Schematic</span></h3>
+<p>We followed along with team 4’s diagram from Fall 2020. This gave us a quick guide to get started. At first, we didn’t know much about each component. Over time, we became familiar with each electronic component and was able to troubleshoot PWM problems explained later in this project.
+</p>
+<div class="thumb tnone"><div class="thumbinner" style="width:502px;"><a class="image" href="File:WiringT2.JPG.html"><img alt="WiringT2.JPG" class="thumbimage" height="548" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/51/WiringT2.JPG/500px-WiringT2.JPG" width="500"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:WiringT2.JPG.html" title="Enlarge"></a></div></div></div></div>
+<h2><span class="mw-headline" id="Software">Software</span></h2>
+<h3><span class="mw-headline" id="ROS_Melodic">ROS Melodic</span></h3>
+<p>ROS (Robot Operating system) is a framework that allows user to utilize tools and libraries to write robot software.  Team 2 used ROS to manage programmatic operation of the robot.  Tasks that relied on ROS included fetching video feed from a RGB-D camera and making imagery available for computer vision processing, determining correct throttle and steering decisions and relaying digital instructions to the car's control surfaces (steering and throttle).
+</p>
+<h3><span class="mw-headline" id="OpenCV_2">OpenCV 2</span></h3>
+<p>OpenCV is a computer vision library that features many functions capable of managing object detection, edge finding, color filtering, and more.  We used OpenCV to detect the yellow center lines of the track and stop signs.
+</p>
+<h3><span class="mw-headline" id="Starting_Point:_UCSD_robo_car_simple_ros">Starting Point: UCSD_robo_car_simple_ros</span></h3>
+<p>Dominic Nightingale, one of the tutors, was generous enough to give the class access to a simple ROS package on his <a class="external text" href="https://gitlab.com/djnighti/ucsd_robo_car_simple_ros" rel="nofollow">gitlab</a>. This package guides the RC car along the yellow lines on the track using an RGB image from a camera. This package depends on ROS melodic, <a class="external text" href="https://opencv.org/" rel="nofollow">OpenCV2</a>, <a class="external text" href="https://circuitpython.readthedocs.io/projects/servokit/en/latest/" rel="nofollow">adafruit_servokit library</a>, and <a class="external text" href="http://wiki.ros.org/cv_bridge" rel="nofollow">cv_bridge</a>. ROS and OpenCV have already been explained, but what is the adafruit_servokit and cv_bridge? adafruit_servokit is a library that allows the operating system to communicate with the PWM board. cv_bridge converts between ROS image messages and OpenCV image as seen below
+</p>
+<div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a class="image" href="File:Cvbridge.JPG.html"><img alt="" class="thumbimage" height="170" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/31/Cvbridge.JPG/200px-Cvbridge.JPG" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Cvbridge.JPG.html" title="Enlarge"></a></div>How cv_bridge communicates</div></div></div>
+<h4><span class="mw-headline" id="Problems_With_Installation">Problems With Installation</span></h4>
+<p>We ran into a few errors with this package. There was a conflict with python3 and the ROS package. This caused some of the nodes to die instantly upon launch. Luckily, Dominic was able to update his package so we would continue with our project.
+</p>
+<h3><span class="mw-headline" id="Understanding_Dominic.27s_ROS_package">Understanding Dominic's ROS package</span></h3>
+<p>This ROS package uses a network of nodes that publish and subscribe to topics. Each node performs a certain task to achieve the goal of following a line. Descriptions of each node are shown below
+</p>
+<h4><span class="mw-headline" id="Camera_server_node">Camera_server node</span></h4>
+<p>This node reads from the camera with CV2's interface and publishes the image to the camera_rgb topic. Some reformatting is done from the cv image fromat so it can be understood by ROS
+</p>
+<h4><span class="mw-headline" id="Lane_detection_node">Lane_detection node</span></h4>
+<p>This node reads from the camera_rgb topic and uses openCV to identify the yellow centerline using filtering techniques. Once the centerline is identified, a dot is placed. The x coordinate of the centroid is then published to the centroid topic. 
+</p>
+<h4><span class="mw-headline" id="Lane_guidance_node">Lane_guidance node</span></h4>
+<p>This node reads from the centroid topic. It then calculates the throttle and steering based on the x coordinate position of the centroid. The throttle value is based on whether or not a centroid exist. The car goes faster when the centroid is present and slows down when there isn't one. The steering is based on a proportional gain that is tuned to the specific car. A throttle and steering topic is then published.
+</p>
+<h4><span class="mw-headline" id="Throttle_client_node">Throttle_client node</span></h4>
+<p>This node subscribes to the throttle topic. A subscriber callback function is then used to validate the normalized throttle value. Once this value is determined, the adafruit_servokit module on channel 2 is then given this value to control the ESC and the DC motor.
+</p>
+<h4><span class="mw-headline" id="Steering_client_node">Steering_client node</span></h4>
+<p>This node subscribes to the steering client. The same process as the throttle_client is used to control the steering servo motor on channel 1.
+</p>
+<h4><span class="mw-headline" id="Table_of_Topics_and_Package_Map">Table of Topics and Package Map</span></h4>
+<p>This table, provided on Dominic's <a class="external text" href="https://gitlab.com/djnighti/ucsd_robo_car_simple_ros#cv2" rel="nofollow">gitlab</a> page shows the topics mentioned previously. A package map is also available on the gitlab page.
+</p>
+<ul class="gallery mw-gallery-nolines">
+<li class="gallerybox" style="width: 505px"><div style="width: 505px">
+<div class="thumb" style="width: 500px;"><div style="margin:0px auto;"><a class="image" href="File:TopicsT2.JPG.html"><img alt="" height="150" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/b5/TopicsT2.JPG/500px-TopicsT2.JPG" width="500"/></a></div></div>
+<div class="gallerytext">
+<p>Table of Topics and Info
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 505px"><div style="width: 505px">
+<div class="thumb" style="width: 500px;"><div style="margin:0px auto;"><a class="image" href="File:MapT2.JPG.html"><img alt="" height="223" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/d0/MapT2.JPG/500px-MapT2.JPG" width="500"/></a></div></div>
+<div class="gallerytext">
+<p>Package Map of Original ROS package
+</p>
+</div>
+</div></li>
+</ul>
+<h4><span class="mw-headline" id="Result_of_ROS_Package">Result of ROS Package</span></h4>
+<p>Here you can see the original image, filtered image, and centroid plot.
+</p><p><a class="image" href="File:Cv_test_image.png.html" title="Output of Lane Detection Node"><img alt="Output of Lane Detection Node" height="453" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/f/fa/Cv_test_image.png" width="200"/></a>
+</p>
+<h4><span class="mw-headline" id="Tuning_Throttle_and_Steering">Tuning Throttle and Steering</span></h4>
+<p>We started by adjusting the PWM ports used in the ROS package for throttle and steering to match the ports used in DonkeyAI. This reduces the need to change physical ports. After setting this up, we attempted to run the line following ROS package. We did not have any response in steering and throttle. We determined that the values from the throttle and steering client were not calibrated. To fix this, we used ROS commands to find the lowest possible throttle value that gave us a motor response. The throttle values were then updated in "lane_guidance.py". Next the steering needed to be adjusted. We had an issue where the steering would only turn right and not left. We found out that the "lane_guidance.py" script was using a value of 0 for the centroid. This value should reflect the center of the image and not one of the sides. After calibrating the value to meet the midpoint of our image, the steering worked correctly.
+</p>
+<h3><span class="mw-headline" id="Line_Detection_and_Sign_Detection_Package">Line Detection and Sign Detection Package</span></h3>
+<p>Since we are using a Intel RealSense camera, we needed to install a ROS wrapper in order to publish topics for the RGB and depth images. The wrapper can be found <a class="external text" href="https://github.com/IntelRealSense/realsense-ros/blob/development/README.md#installation-instructions" rel="nofollow">here</a>, and some information about it can be found <a class="external text" href="https://dev.intelrealsense.com/docs/ros-wrapper" rel="nofollow">here</a>. A useful page to learn the ROS commands that can be used is <a class="external text" href="https://dev.intelrealsense.com/docs?_ga=2.262098445.1088635468.1615492340-1659405782.1613445072&amp;_gac=1.257307257.1613762266.Cj0KCQiA4L2BBhCvARIsAO0SBdYuJOwCygeT0L4bqZppJMyZF14hAqgcJm1PqB69AuLkw8tBO-LwxFcaAq2vEALw_wcB" rel="nofollow">Intel developer page</a>
+</p>
+<h4><span class="mw-headline" id="Implementing_the_Intel_RealSense2_Node_and_Topics">Implementing the Intel RealSense2 Node and Topics</span></h4>
+<p>With the ROS wrapper installed, we now have access to intelrealsense2_camera node. This node publishes a number of different topics that relay the data from the camera. These can be found using the "rostopic list". We are most interested in the "/camera/color/image_raw" and "/camera/depth/image_rect_raw" topics that publish the RGB camera feed and solid state LIDAR camera feed. 
+</p>
+<h4><span class="mw-headline" id="Implementing_Intel_RealSense_L515_Camera">Implementing Intel RealSense L515 Camera</span></h4>
+<p>To implement this new camera, we just needed to change the "lane_detection.py" script to subscribe to the "/camera/color/image_raw" topic. However, when we did this, the image was tinted blue!
+</p>
+<ul class="gallery mw-gallery-nolines">
+<li class="gallerybox" style="width: 405px"><div style="width: 405px">
+<div class="thumb" style="width: 400px;"><div style="margin:0px auto;"><a class="image" href="File:Bluewall.JPG.html"><img alt="" height="320" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/9d/Bluewall.JPG/400px-Bluewall.JPG" width="400"/></a></div></div>
+<div class="gallerytext">
+<p>Blue Tint Applied to Everything
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 405px"><div style="width: 405px">
+<div class="thumb" style="width: 400px;"><div style="margin:0px auto;"><a class="image" href="File:Bluecamera.JPG.html"><img alt="" height="400" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/91/Bluecamera.JPG/350px-Bluecamera.JPG" width="350"/></a></div></div>
+<div class="gallerytext">
+<p>Changes Were Needed When Filtering the Image
+</p>
+</div>
+</div></li>
+</ul>
+<p>After some troubleshooting, we found that "lane_detection.py" needed to be adjusted to "cv2.cvcolor" needed to convert from BGR --&gt; RGB --&gt; HSV using "COLOR_BGR2RGB" then "COLOR_RGB2HSV". This fixed the problem and the colors were back to normal.
+</p><p>The camera feed was not cropped correctly due to the change in camera resolution. The L515 has dimensions of 1280 x 720. We updated all values corresponding to camera width to get the cropping done correctly. When we tested on the track, we adjusted the height for the centroid image. This allows us to see multiple strips of yellow tape to reduce the chance of not finding a centroid. This should stabilize our model even further. 
+</p><p>With the new camera showing the correct colors and cropped correctly, we noticed that the centroid of the track was not found. We believed that this is due to mask filter not using the right RGB value to focus on. The camera we are using has a different color profile than the previous one. Following this <a class="external text" href="https://pysource.com/2018/12/29/real-time-shape-detection-opencv-with-python-3/" rel="nofollow">guide</a>, we were able to find the HSV values that would work best for tracking yellow for the centerline and red for stop signs.
+</p>
+<ul class="gallery mw-gallery-nolines">
+<li class="gallerybox" style="width: 405px"><div style="width: 405px">
+<div class="thumb" style="width: 400px;"><div style="margin:0px auto;"><a class="image" href="File:Yellowmask.JPG.html"><img alt="" height="400" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/a/a9/Yellowmask.JPG/218px-Yellowmask.JPG" width="218"/></a></div></div>
+<div class="gallerytext">
+<p>Adjusting HSV values to Only Detects Yellow
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 405px"><div style="width: 405px">
+<div class="thumb" style="width: 400px;"><div style="margin:0px auto;"><a class="image" href="File:RedmaskT2.JPG.html"><img alt="" height="400" loading="lazy" src="https://web.archive.org/web/20210517132548im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/3b/RedmaskT2.JPG/241px-RedmaskT2.JPG" width="241"/></a></div></div>
+<div class="gallerytext">
+<p>Adjusting HSV values to Only Detects Red
+</p>
+</div>
+</div></li>
+</ul>
+<h4><span class="mw-headline" id="Adjustments_to_.22lane_guidance.py.22">Adjustments to "lane_guidance.py"</span></h4>
+<p>We found while testing that the car will speed up when losing track of the centroid. We adjusted our code to use the last recorded centroid location when the centroid is not detected. This will allow us to continue on the straightaways if the the camera only sees the green between the lines and start a circle maneuver if it went off the track. We also gave a range of values for the straightaway condition instead of a integer. This will allow the car to speed up consistently since the centroid values hardly stay constant. We calibrated this range until we had a faster speed on the straightaways consistently. When the centroid is outside this range, the car has a slower speed to help guidance around corners. The steering has a proportional gain that we adjusted as needed to match the throttle values. This process of tuning was trial and error after the code was adjusted.
+</p>
+<h3><span class="mw-headline" id="Basic_Line_following_With_L515_Camera">Basic Line following With L515 Camera</span></h3>
+<h3><span class="mw-headline" id="Sign_Detection_Script">Sign Detection Script</span></h3>
+<p>Please reach out to us for the code if needed.
+</p>
+<h2><span class="mw-headline" id="ROS_Package_and_Sign_Detection_Package_Github_Link">ROS Package and Sign Detection Package Github Link</span></h2>
+<!-- 
+NewPP limit report
+Cached time: 20210517132548
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.053 seconds
+Real time usage: 0.118 seconds
+Preprocessor visited node count: 221/1000000
+Preprocessor generated node count: 372/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:824-0!*!*!!en!5!* and timestamp 20210517132548 and revision id 6414
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20210517132548/https://guitar.ucsd.edu/maeece148/index.php/2021WinterTeam2">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

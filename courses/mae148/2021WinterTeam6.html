@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2021WinterTeam6 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2021WinterTeam6</h1>
+      <div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Project_Introduction"><span class="tocnumber">1</span> <span class="toctext">Project Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Winter_2021_Team_6_Members"><span class="tocnumber">2</span> <span class="toctext">Winter 2021 Team 6 Members</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Description_and_Objective"><span class="tocnumber">3</span> <span class="toctext">Description and Objective</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Team_6_Sizzle_Reel"><span class="tocnumber">4</span> <span class="toctext">Team 6 Sizzle Reel</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Github"><span class="tocnumber">5</span> <span class="toctext">Github</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Hardware_Design"><span class="tocnumber">6</span> <span class="toctext">Hardware Design</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Makerspace_3d_Printing_/_Laser_Cutting"><span class="tocnumber">6.1</span> <span class="toctext">Makerspace 3d Printing / Laser Cutting</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#Jetson_Nano_Case"><span class="tocnumber">6.1.1</span> <span class="toctext">Jetson Nano Case</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Baseplate"><span class="tocnumber">6.1.2</span> <span class="toctext">Baseplate</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Camera_Mount"><span class="tocnumber">6.1.3</span> <span class="toctext">Camera Mount</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Operating_Car_with_ROS"><span class="tocnumber">7</span> <span class="toctext">Operating Car with ROS</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Battery_Monitor"><span class="tocnumber">8</span> <span class="toctext">Battery Monitor</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="#Battery_Monitor_Hardware"><span class="tocnumber">8.1</span> <span class="toctext">Battery Monitor Hardware</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Auto-Shut_Off"><span class="tocnumber">8.2</span> <span class="toctext">Auto-Shut Off</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-15"><a href="#Visualization_/_Battery_Monitoring"><span class="tocnumber">9</span> <span class="toctext">Visualization / Battery Monitoring</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="#Must_Have's_/_Stretch_Goals"><span class="tocnumber">10</span> <span class="toctext">Must Have's / Stretch Goals</span></a></li>
+<li class="toclevel-1 tocsection-17"><a href="#References"><span class="tocnumber">11</span> <span class="toctext">References</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Project_Introduction">Project Introduction</span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Battmonfronta.jpg.html"><img alt="" class="thumbimage" decoding="async" height="400" loading="lazy" src="https://web.archive.org/web/20220701113024im_/http://guitar.ucsd.edu/maeece148/images/thumb/2/27/Battmonfronta.jpg/300px-Battmonfronta.jpg" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Battmonfronta.jpg.html" title="Enlarge"></a></div>Team 6 Vehicle Winter 2021</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Battmonitself.jpg.html"><img alt="" class="thumbimage" decoding="async" height="400" loading="lazy" src="https://web.archive.org/web/20220701113024im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/f3/Battmonitself.jpg/300px-Battmonitself.jpg" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Battmonitself.jpg.html" title="Enlarge"></a></div>Close up of Battery Monitor</div></div></div>
+<p><br/>
+We decided to tackle a major issue with driving a physical donkeycar - keeping the batteries alive. We have developed a way to help users monitor battery levels while driving the car, so that we can prevent pre-mature dis-operation of the batteries provided in class. Actively knowing the voltage levels will help us avoid problems with battery storage, specifically issues like storing them while they have low voltage. Active battery monitoring will also give us an instinct for how a certain length of time driving will lead to a certain amount of battery drain.
+</p><p>Check out our code repository here: <a class="external free" href="https://github.com/JamesMcDougallJr/TritonVoltage.git" rel="nofollow">https://github.com/JamesMcDougallJr/TritonVoltage.git</a>
+</p>
+<h2><span class="mw-headline" id="Winter_2021_Team_6_Members">Winter 2021 Team 6 Members</span></h2>
+<p>James McDougall <br/>
+Philip Lin <br/>
+Pratik Yadav <br/>
+Steve Kim
+</p>
+<h2><span class="mw-headline" id="Description_and_Objective">Description and Objective</span></h2>
+<p>In order to create a monitoring system for the batteries, we decided to split the task in two major sections 1.  hardware monitoring via ADC, and 2. visualization via Terminal/localhost HTML.
+</p>
+<h2><span class="mw-headline" id="Team_6_Sizzle_Reel">Team 6 Sizzle Reel</span></h2>
+<p><a class="external free" href="https://drive.google.com/file/d/17O0d2S9ALS6rALG4RiW4qoYrnwq5F89t/view?usp=sharing" rel="nofollow">https://drive.google.com/file/d/17O0d2S9ALS6rALG4RiW4qoYrnwq5F89t/view?usp=sharing</a>
+</p>
+<h2><span class="mw-headline" id="Github">Github</span></h2>
+<p>Instructions and code found at this GitHub: <br/>
+<a class="external free" href="https://github.com/JamesMcDougallJr/TritonVoltage" rel="nofollow">https://github.com/JamesMcDougallJr/TritonVoltage</a> <br/>
+</p>
+<h2><span class="mw-headline" id="Hardware_Design">Hardware Design</span></h2>
+<h3><span id="Makerspace_3d_Printing_.2F_Laser_Cutting"></span><span class="mw-headline" id="Makerspace_3d_Printing_/_Laser_Cutting">Makerspace 3d Printing / Laser Cutting</span></h3>
+<h4><span class="mw-headline" id="Jetson_Nano_Case">Jetson Nano Case</span></h4>
+<p>We printed a Jetson Nano case with lots of ventilation in the case, which also gave us access to the Jetson pins. 
+<a class="image" href="File:Battmonjetson1.jpg.html" title="top half"><img alt="top half" decoding="async" height="472" loading="lazy" src="https://web.archive.org/web/20220701113024im_/http://guitar.ucsd.edu/maeece148/images/e/e0/Battmonjetson1.jpg" width="628"/></a>
+<a class="image" href="File:Battmonjetson2.jpg.html" title="bottom half"><img alt="bottom half" decoding="async" height="472" loading="lazy" src="https://web.archive.org/web/20220701113024im_/http://guitar.ucsd.edu/maeece148/images/c/cd/Battmonjetson2.jpg" width="628"/></a>
+</p>
+<h4><span class="mw-headline" id="Baseplate">Baseplate</span></h4>
+<p>We had several versions of our baseplate printed, we used this one in the end due to the multiple holes, as well as streamlined shape. 
+</p><p><a class="image" href="File:Battmonbaseplate.PNG.html"><img alt="Battmonbaseplate.PNG" decoding="async" height="590" loading="lazy" src="https://web.archive.org/web/20220701113024im_/http://guitar.ucsd.edu/maeece148/images/3/3e/Battmonbaseplate.PNG" width="943"/></a>
+</p>
+<h4><span class="mw-headline" id="Camera_Mount">Camera Mount</span></h4>
+<p>We faced particular issues in the beginning trying to figure out a good camera mount. This style of design, where we could point the camera downward, was the 1. easiest to install and 2. gave us the greatest flexibility. 
+</p><p><a class="image" href="File:Finalcammountbattmon.PNG.html"><img alt="Finalcammountbattmon.PNG" decoding="async" height="608" loading="lazy" src="https://web.archive.org/web/20220701113024im_/http://guitar.ucsd.edu/maeece148/images/0/00/Finalcammountbattmon.PNG" width="524"/></a>
+</p>
+<h2><span class="mw-headline" id="Operating_Car_with_ROS">Operating Car with ROS</span></h2>
+<p>We were able to adopt an ROS package from Dominic (our TA) from his gitlab here: <a class="external free" href="https://gitlab.com/djnighti/ucsd_robo_car_simple_ros" rel="nofollow">https://gitlab.com/djnighti/ucsd_robo_car_simple_ros</a> and adapted parts of it to work for our vehicle. We made a few changes to throttle_client.py, lane_guidance.py, and lane_detection.py. 
+</p><p>One thing to note when using ROS on the Jetson is to keep track of the environment. After following all of the instructions on the gitlab, for easy reference, here are the inputs to get the correct environments up.  <br/>
+</p>
+<pre>   source /opt/ros/melodic/setup.bash <br/>
+   source env/bin/activate <br/>
+   cd projects/catkin_ws <br/>
+   source devel/setup.bash <br/>
+</pre>
+<h2><span class="mw-headline" id="Battery_Monitor">Battery Monitor</span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Battmon.jpg.html"><img alt="" class="thumbimage" decoding="async" height="400" loading="lazy" src="https://web.archive.org/web/20220701113024im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/d0/Battmon.jpg/300px-Battmon.jpg" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Battmon.jpg.html" title="Enlarge"></a></div>Pratik Soldering the PCB</div></div></div>
+<h3><span class="mw-headline" id="Battery_Monitor_Hardware">Battery Monitor Hardware</span></h3>
+<p>We are using the Teensy-3.2 development board (<a class="external free" href="https://www.pjrc.com/store/teensy32.html" rel="nofollow">https://www.pjrc.com/store/teensy32.html</a>) for reading the battery voltages from the LIPO battery that is powering up the RC car. The Teensy board is powered up by the Jetson Nano's USB, which is also used for receiving the voltage data from the Teensy. 
+</p><p><b>Hardware specifications for the Teensy GPIOs are as follows:</b><br/>
+</p>
+<pre> 1) ADC channels: We are using ADC channels A9, A3, and A6 for reading LIPO battery voltages line 4V, 8V, and 12V, respectively.<br/>
+ 2) Interrupt wake-up pin: We are using pin-2 as the wake-up interrupt pin. This interrupt source is given by Jetson Nano. The interrupt is configured as a rising edge interrupt.<br/>
+ 3) Test mode: For test mode, we need a test pin to simulate the rising edge signal from the Jetson Nano. We use pin-6 for this purpose.<br/>
+</pre>
+<p><b>The Teensy functionality is as follows:</b><br/>
+</p>
+<pre> 1) The Jetson Nano sends out a wake-up signal(Rising edge pulse) to the Teensy's pin-2 every 15 seconds.<br/>
+ 2) Teensy's pin-2 interrupt service routine (ISR) sets a flag variable that is read in the main processing loop (MPL).<br/>
+ 3) In the MPL, Teensy reads the configured ADC channels. We take an average of 512 ADC readings on each channel. Each ADC read is spaced with a 2 MSec delay.<br/>
+ 4) When all the 3 ADC channels are read, we compute the corresponding voltages for 4V, 8V, 12V create a character string, and send the message over the USB to Jetson Nano.<br/>
+</pre>
+<p><b>Test mode:</b><br/>
+</p>
+<pre> 1) When test mode is toggled on, the Teensy Pin-6 generates a rising edge signal. Jumper a wire from pin-2 to pin-6 of the Teensy. This helps while firmware development and we do not need an active Jetson Nano integrated with Teensy.<br/>
+ 2) Test mode also comes with some logging messages.<br/>
+</pre>
+<p><b>Battery monitor block diagram:</b><br/>
+</p>
+<div class="center"><div class="floatnone"><a class="image" href="File:Battmonschem3.PNG.html"><img alt="Battmonschem3.PNG" decoding="async" height="720" loading="lazy" src="https://web.archive.org/web/20220701113024im_/http://guitar.ucsd.edu/maeece148/images/a/ac/Battmonschem3.PNG" width="960"/></a></div></div>
+<p><br/>
+<b>ADC calibration issues with Teensy:</b><br/>
+We faced a few issues while configuring Teensy's ADC channels to read the LIPO battery's voltages (4V, 8V, 12V). The configuration issues were mostly related to the resistor precision, finding clean common ground, and ADC channel noise. In order to find the correct calibration values and reduce channel noise, we decided to simulate the battery voltages using a DC power supply. As mentioned previously, we are doing software filtering OR averaging on the ADC samples to reduce the channel noise. For determining a single ADC channel voltage, Teensy is programmed to take an average of 512 ADC samples (Each sample at 2 Msec delay). With this averaging and reducing the calibration loss, Teensy's ADC voltage was able to closely match with the DC power supply. We compared Teensy's read ADC voltage with the simulated LIPO battery voltage. The error plot shows the difference between Teensy's read ADC voltage and the LIPO battery voltage. With these two graphs, we were successfully able to prove that Teensy could closely map the LIPO battery voltages and therefore, can be used as a reliable source of the voltage reading. For more information on selecting averaging factor to reduce the effect of additive noise, please refer the section 3.4 of the reference [ADC Averaging Factor].    
+</p><p><a class="image" href="File:Battmoncompare.png.html"><img alt="Battmoncompare.png" decoding="async" height="1017" loading="lazy" src="https://web.archive.org/web/20220701113024im_/http://guitar.ucsd.edu/maeece148/images/0/02/Battmoncompare.png" width="725"/></a>
+<a class="image" href="File:Battmonerrorbars.png.html"><img alt="Battmonerrorbars.png" decoding="async" height="345" loading="lazy" src="https://web.archive.org/web/20220701113024im_/http://guitar.ucsd.edu/maeece148/images/1/16/Battmonerrorbars.png" width="569"/></a>
+</p><p><br/>
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><a class="image" href="File:Voltagecheckbattmon.jpg.html"><img alt="" class="thumbimage" decoding="async" height="400" loading="lazy" src="https://web.archive.org/web/20220701113024im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/9c/Voltagecheckbattmon.jpg/300px-Voltagecheckbattmon.jpg" width="300"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Voltagecheckbattmon.jpg.html" title="Enlarge"></a></div>Checking readings against voltmeter</div></div></div>
+<h3><span class="mw-headline" id="Auto-Shut_Off">Auto-Shut Off</span></h3>
+<p>We also added in the ability to auto-shutoff the car once the battery reaches a certain voltage level. The current floor to trigger the auto-shut off is 3.0 volts.
+</p><p><a class="image" href="File:Battmoncmddisp.PNG.html"><img alt="Battmoncmddisp.PNG" decoding="async" height="218" loading="lazy" src="https://web.archive.org/web/20220701113024im_/http://guitar.ucsd.edu/maeece148/images/2/25/Battmoncmddisp.PNG" width="885"/></a>
+</p>
+<h2><span id="Visualization_.2F_Battery_Monitoring"></span><span class="mw-headline" id="Visualization_/_Battery_Monitoring">Visualization / Battery Monitoring</span></h2>
+<p>We can see below how we are visualizing the voltages of each LiPo cell from the batteries as the car runs. Here are the instructions to run the visualization, there are more thorough instructions on the GitHub page. 
+</p>
+<pre> 1) Execute run.sh <br/>
+ 2) Attempts to start the clock on GPIO 12 with a 2s sleep. <br/>
+ 3) Then it loads the teensy with the required .hex file -&gt; generated from the .ino file. <br/>
+ 4) Press the reset button on the Teensy when prompted. <br/>
+ 5) Then the flask server starts to serve the voltage. You can also visit it in the browser at port 5000 if you tunnel in. <br/>
+ 6) Start the visdom server. You must be tunneled in for this to work. `visdom -port 5001` or `python3 -m visdom.server -port 5001` <br/>
+ 7) Start the visdom publisher, which grabs data from the voltage server and publishes it to the visdom server in the right format. `python3 client/visdom_client.py` <br/>
+</pre>
+<p><br/>
+<a class="image" href="File:Battmonvoltage.png.html"><img alt="Battmonvoltage.png" decoding="async" height="501" loading="lazy" src="https://web.archive.org/web/20220701113024im_/http://guitar.ucsd.edu/maeece148/images/b/bd/Battmonvoltage.png" width="960"/></a>
+</p>
+<h2><span id="Must_Have.27s_.2F_Stretch_Goals"></span><span class="mw-headline" id="Must_Have's_/_Stretch_Goals">Must Have's / Stretch Goals</span></h2>
+<p><b>Must Have's:</b> <br/>
+Battery Monitor <br/>
+Visualization of Battery Monitor Output<br/>
+</p><p><b>Stretch Goals:</b> <br/>
+Other hardware diagnostics
+Searching for Tesla charging points on maps
+</p>
+<h2><span class="mw-headline" id="References">References</span></h2>
+<p>[ADC Averaging Factor] paper used as reference for ADC. <br/>
+[<a class="external free" href="https://link.springer.com/article/10.1007/s00034-019-01115-z" rel="nofollow">https://link.springer.com/article/10.1007/s00034-019-01115-z</a> <br/>
+GitHub Link <br/>
+<a class="external free" href="https://github.com/JamesMcDougallJr/TritonVoltage.git" rel="nofollow">https://github.com/JamesMcDougallJr/TritonVoltage.git</a>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20220701113024
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.035 seconds
+Real time usage: 0.041 seconds
+Preprocessor visited node count: 64/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:823-0!canonical and timestamp 20220701113024 and revision id 6408. Serialized with JSON.
+ -->
+</div>
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20220701113024/https://guitar.ucsd.edu/maeece148/index.php/2021WinterTeam6">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

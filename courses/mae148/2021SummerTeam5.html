@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2021SummerTeam5 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2021SummerTeam5</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Mechanical_Design"><span class="tocnumber">2</span> <span class="toctext">Mechanical Design</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Electronics"><span class="tocnumber">3</span> <span class="toctext">Electronics</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Donkey_Car_Autonomous_Laps"><span class="tocnumber">4</span> <span class="toctext">Donkey Car Autonomous Laps</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#OpenCV_autonomous_laps"><span class="tocnumber">5</span> <span class="toctext">OpenCV autonomous laps</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Final_project:_Pedestrian_detection_and_braking_using_OpenCV"><span class="tocnumber">6</span> <span class="toctext">Final project: Pedestrian detection and braking using OpenCV</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#YOLOv5_Algorithm:"><span class="tocnumber">7</span> <span class="toctext">YOLOv5 Algorithm:</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#The_code_to_catch_the_detected_object_and_stop_the_car."><span class="tocnumber">8</span> <span class="toctext">The code to catch the detected object and stop the car.</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Video_demonstration"><span class="tocnumber">9</span> <span class="toctext">Video demonstration</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_Members">Team Members</span></h2>
+<hr/>
+<p><a class="image" href="File:Team5KNA.jpeg.html"><img alt="Team5KNA.jpeg" height="667" loading="lazy" src="https://web.archive.org/web/20211207032150im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/fb/Team5KNA.jpeg/500px-Team5KNA.jpeg" width="500"/></a>
+</p><p><b>From left to right:</b>
+</p><p><b>- Kimberly Johnson</b> - Electrical Engineering
+</p><p><b>- Nayan Desale</b> - Computer Science
+</p><p><b>- Anton Baddour</b> - Aerospace Engineering (He was not feeling well when this photo was captured)
+</p>
+<h2><span class="mw-headline" id="Mechanical_Design">Mechanical Design</span></h2>
+<hr/>
+<h2><span class="mw-headline" id="Electronics">Electronics</span></h2>
+<hr/>
+<p><a class="image" href="File:Team_5_Electric_Circuits.jpg.html"><img alt="Team 5 Electric Circuits.jpg" height="714" loading="lazy" src="https://web.archive.org/web/20211207032150im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/6f/Team_5_Electric_Circuits.jpg/1000px-Team_5_Electric_Circuits.jpg" width="1000"/></a>
+</p>
+<h2><span class="mw-headline" id="Donkey_Car_Autonomous_Laps">Donkey Car Autonomous Laps</span></h2>
+<hr/>
+<p>3 Donkey car autonomous laps can be found <a class="external text" href="https://www.youtube.com/watch?v=RKEuRB_O6Pg&amp;t=24s&amp;ab_channel=AntonBaddour" rel="nofollow">here</a>. This model was trained with 32 laps. And it was able to complete 10 autonomous laps.
+</p>
+<h2><span class="mw-headline" id="OpenCV_autonomous_laps">OpenCV autonomous laps</span></h2>
+<hr/>
+<p>3 autonomous OpenCV laps can be found <a class="external text" href="https://www.youtube.com/watch?v=uSnyF-0eDpQ&amp;ab_channel=NayanDesale" rel="nofollow">here</a>. 
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Final_project:_Pedestrian_detection_and_braking_using_OpenCV">Final project: Pedestrian detection and braking using OpenCV</span></h2>
+<hr/>
+<p>In this project we have used a YoloV5 algorithm to detect the pedestrians and animals. This algorithm was ran on Nvidia Jetson nano.
+We have created a node for this algorithm which publishes '1' on the topic if there is a pedestrian or an animal on the track and '0' if there is no animal or pedestrian on the track. 
+Finally, we used this published information to set/reduce the throttle of the car so that it will stop as soon as it detects an animal.
+We used Dominic's code and we modified it such that it picks the message from Object detection topic and throttles the car if necessary or stops it.
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="YOLOv5_Algorithm:">YOLOv5 Algorithm:</span></h2>
+<pre>
+
+import cv2 
+import numpy as np 
+from elements.yolo import OBJ_DETECTION 
+
+import rospy
+from std_msgs.msg import Int32, Int32MultiArray, String, Int16
+from sensor_msgs.msg import Image
+#from decoder import decodeImage
+import time
+from cv_bridge import CvBridge
+
+
+OBJECT_DETECTION_NODE = 'object_detection_node'
+CAMERA_TOPIC_NAME = 'camera_rgb'
+OBJECT_DETECTION_TOPIC = '/object_detection'
+CAMERA_TOPIC_NAME = 'camera_rgb'
+
+
+Object_classes = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',                'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',                'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',                'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard',                'tennis racket', 'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple',                'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',                'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',                'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 'teddy bear',                'hair drier', 'toothbrush' ] 
+
+# List of objects to be detected
+custom_list = ['person', 'dog', 'cat', 'horse']
+
+Object_colors = list(np.random.rand(80,3)*255) 
+Object_detector = OBJ_DETECTION('weights/yolov5s.pt', Object_classes) 
+
+window_handle = cv2.namedWindow("USB Camera", cv2.WINDOW_AUTOSIZE)
+
+class ObjectDetection:
+
+    def __init__(self):
+        self.init_node = rospy.init_node(OBJECT_DETECTION_NODE, anonymous=False)
+        self.object_detection_publisher = rospy.Publisher(OBJECT_DETECTION_TOPIC, Int16, queue_size=1)
+        self.camera_subscriber = rospy.Subscriber(CAMERA_TOPIC_NAME, Image, self.DetectObjects)
+        self.bridge = CvBridge()
+
+    def DetectObjects(self, data):
+        frame = self.bridge.imgmsg_to_cv2(data)
+        
+        if True:
+            #window_handle = cv2.namedWindow("USB Camera", cv2.WINDOW_AUTOSIZE) 
+            # Window
+            if True:    # cv2.getWindowProperty("USB Camera", 0) &gt;= 0: 
+                ret = True
+                if ret and frame is not None:
+                        # detection process 
+                        objs = Object_detector.detect(frame) 
+
+                        # plotting 
+                        for obj in objs: 
+                                # print(obj) 
+                                label = obj['label'] 
+                                score = obj['score'] 
+                                [(xmin,ymin),(xmax,ymax)] = obj['bbox'] 
+                                color = Object_colors[Object_classes.index(label)] 
+                                frame = cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), color, 2) 
+                                frame = cv2.putText(frame, f'{label} ({str(score)})', (xmin,ymin),
+                                        cv2.FONT_HERSHEY_SIMPLEX , 0.75, color, 1, cv2.LINE_AA) 
+
+                                if label in custom_list:
+                                    self.object_detection_publisher.publish(1)
+                                    print(label)
+                                else:
+                                    self.object_detection_publisher.publish(0)
+
+                #cv2.imshow("USB Camera", frame) 
+                #keyCode = cv2.waitKey(30) 
+                #if keyCode == ord('q'): 
+                #    exit() 
+                    
+            #cv2.destroyAllWindows()
+
+def main():
+    object_detector = ObjectDetection()
+    rate = rospy.Rate(15)
+    while not rospy.is_shutdown():
+        rospy.spin()
+        rate.sleep()
+
+if __name__ == '__main__':
+    main()
+
+
+
+</pre>
+<p><br/>
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="The_code_to_catch_the_detected_object_and_stop_the_car.">The code to catch the detected object and stop the car.</span></h2>
+<pre>
+#!/usr/bin/python3
+import rospy
+from std_msgs.msg import Float32, Int32, Int32MultiArray, Int16
+import time
+
+LANE_GUIDANCE_NODE_NAME = 'lane_guidance_node'
+STEERING_TOPIC_NAME = '/steering'
+THROTTLE_TOPIC_NAME = '/throttle'
+CENTROID_TOPIC_NAME = '/centroid'
+OBJECT_DETECTION_TOPIC = '/object_detection'
+
+
+class PathPlanner:
+    def __init__(self):
+        # Initialize node and create publishers/subscribers
+        self.init_node = rospy.init_node(LANE_GUIDANCE_NODE_NAME, anonymous=False)
+        self.steering_publisher = rospy.Publisher(STEERING_TOPIC_NAME, Float32, queue_size=1)
+        self.throttle_publisher = rospy.Publisher(THROTTLE_TOPIC_NAME, Float32, queue_size=1)
+        self.object_detection_subscriber = rospy.Subscriber(OBJECT_DETECTION_TOPIC, Int16, self.object_detection_callback)
+        self.steering_float = Float32()
+        self.throttle_float = Float32()
+        self.centroid_subscriber = rospy.Subscriber(CENTROID_TOPIC_NAME, Float32, self.controller)
+
+        # Getting ROS parameters set from calibration Node
+        self.steering_sensitivity = rospy.get_param('steering_sensitivity')
+        self.no_error_throttle = rospy.get_param('no_error_throttle')
+        self.error_throttle = rospy.get_param('error_throttle')
+        self.error_threshold = rospy.get_param('error_threshold')
+        self.zero_throttle = rospy.get_param('zero_throttle')
+        self.stop = 0
+
+        # # Display Parameters
+        rospy.loginfo(
+            f'\nsteering_sensitivity: {self.steering_sensitivity}'
+            f'\nno_error_throttle: {self.no_error_throttle}'
+            f'\nerror_throttle: {self.error_throttle}'
+            f'\nerror_threshold: {self.error_threshold}'
+            f'\nCatched_stop_value: {self.stop}')
+
+    def controller(self, data):
+        # try:
+        kp = self.steering_sensitivity
+        error_x = data.data
+        rospy.loginfo(f"{error_x}")
+        
+        if self.stop == 1:  # if stop is 1 then the object (person or animal) has been detected on the track so stop the car
+            throttle_float = self.zero_throttle
+            time.sleep(0.003)
+        elif error_x &lt;= self.error_threshold:
+            throttle_float = self.no_error_throttle
+        else:
+            throttle_float = self.error_throttle
+        steering_float = float(kp * error_x)
+        if steering_float &lt; -1.0:
+            steering_float = -1.0
+        elif steering_float &gt; 1.0:
+            steering_float = 1.0
+        else:
+            pass
+        self.steering_float.data = steering_float
+        self.throttle_float.data = throttle_float
+        self.steering_publisher.publish(self.steering_float)
+        self.throttle_publisher.publish(self.throttle_float)
+        rospy.on_shutdown(self.clean_shutdown)
+
+    def clean_shutdown(self):
+        print("Shutting Down...")
+        self.throttle_float.data = self.zero_throttle
+        self.throttle_publisher.publish(self.throttle_float)
+        print("Shut down complete")
+
+    def object_detection_callback(self, data):
+        self.stop = int(data.data)
+        # print("Catched Value: "+str(self.stop))
+
+
+def main():
+    path_planner = PathPlanner()
+    rate = rospy.Rate(15)
+    while not rospy.is_shutdown():
+        rospy.spin()
+        rate.sleep()
+
+
+if __name__ == '__main__':
+    main()
+
+</pre>
+<p><br/>
+</p>
+<h2><span class="mw-headline" id="Video_demonstration">Video demonstration</span></h2>
+<p>The practical video for this project can be found <a class="external text" href="https://youtu.be/YkqBjc5cna8" rel="nofollow">here</a>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20211207032150
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.011 seconds
+Real time usage: 0.020 seconds
+Preprocessor visited node count: 53/1000000
+Preprocessor generated node count: 80/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:1062-0!*!*!!en!5!* and timestamp 20211207032150 and revision id 7656
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20211207032150/https://guitar.ucsd.edu/maeece148/index.php/2021SummerTeam5">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

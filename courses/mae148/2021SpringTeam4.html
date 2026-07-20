@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2021SpringTeam4 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2021SpringTeam4</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Spring_2021_Team_4"><span class="tocnumber">1</span> <span class="toctext">Spring 2021 Team 4</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Team.27s_4_Car"><span class="tocnumber">1.1</span> <span class="toctext">Team's 4 Car</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Team_Members"><span class="tocnumber">2</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Instructors"><span class="tocnumber">3</span> <span class="toctext">Instructors</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Teacher.27s_Assistants"><span class="tocnumber">3.1</span> <span class="toctext">Teacher's Assistants</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Objective"><span class="tocnumber">4</span> <span class="toctext">Objective</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Hardware"><span class="tocnumber">5</span> <span class="toctext">Hardware</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Chassis"><span class="tocnumber">5.1</span> <span class="toctext">Chassis</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Wiring_Schematic"><span class="tocnumber">5.2</span> <span class="toctext">Wiring Schematic</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Base_Plate"><span class="tocnumber">5.3</span> <span class="toctext">Base Plate</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#CAD_of_the_base_plate_design"><span class="tocnumber">5.3.1</span> <span class="toctext">CAD of the base plate design</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Final_product_of_the_base_plate"><span class="tocnumber">5.3.2</span> <span class="toctext">Final product of the base plate</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-13"><a href="#Camera"><span class="tocnumber">5.4</span> <span class="toctext">Camera</span></a>
+<ul>
+<li class="toclevel-3 tocsection-14"><a href="#Camera_mount_CAD"><span class="tocnumber">5.4.1</span> <span class="toctext">Camera mount CAD</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#Camera_mount"><span class="tocnumber">5.4.2</span> <span class="toctext">Camera mount</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Camera_stand_CAD"><span class="tocnumber">5.4.3</span> <span class="toctext">Camera stand CAD</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#Camera_stand"><span class="tocnumber">5.4.4</span> <span class="toctext">Camera stand</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-18"><a href="#Software"><span class="tocnumber">6</span> <span class="toctext">Software</span></a>
+<ul>
+<li class="toclevel-2 tocsection-19"><a href="#AprilTags"><span class="tocnumber">6.1</span> <span class="toctext">AprilTags</span></a>
+<ul>
+<li class="toclevel-3 tocsection-20"><a href="#ROS_Wrapper"><span class="tocnumber">6.1.1</span> <span class="toctext">ROS Wrapper</span></a>
+<ul>
+<li class="toclevel-4 tocsection-21"><a href="#apriltag_ros"><span class="tocnumber">6.1.1.1</span> <span class="toctext">apriltag_ros</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-22"><a href="#ROS_Package"><span class="tocnumber">6.2</span> <span class="toctext">ROS Package</span></a>
+<ul>
+<li class="toclevel-3 tocsection-23"><a href="#Github"><span class="tocnumber">6.2.1</span> <span class="toctext">Github</span></a></li>
+<li class="toclevel-3 tocsection-24"><a href="#Dependencies"><span class="tocnumber">6.2.2</span> <span class="toctext">Dependencies</span></a>
+<ul>
+<li class="toclevel-4 tocsection-25"><a href="#cv2"><span class="tocnumber">6.2.2.1</span> <span class="toctext">cv2</span></a></li>
+<li class="toclevel-4 tocsection-26"><a href="#adafruit_servokit"><span class="tocnumber">6.2.2.2</span> <span class="toctext">adafruit_servokit</span></a></li>
+<li class="toclevel-4 tocsection-27"><a href="#cv_bridge"><span class="tocnumber">6.2.2.3</span> <span class="toctext">cv_bridge</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-28"><a href="#Calibration"><span class="tocnumber">6.2.3</span> <span class="toctext">Calibration</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-29"><a href="#Results"><span class="tocnumber">7</span> <span class="toctext">Results</span></a>
+<ul>
+<li class="toclevel-2 tocsection-30"><a href="#Final_Testing"><span class="tocnumber">7.1</span> <span class="toctext">Final Testing</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-31"><a href="#Suggestions_for_Further_Development"><span class="tocnumber">8</span> <span class="toctext">Suggestions for Further Development</span></a></li>
+</ul>
+</div>
+<h1><span class="mw-headline" id="Spring_2021_Team_4">Spring 2021 Team 4</span></h1>
+<p>Team 4 achieved driving multiple laps on autonomous outdoor track using both Donkey Car and ROS. 
+</p><p>For the final project we developed a car-following system. 
+</p>
+<h3><span class="mw-headline" id="Team.27s_4_Car">Team's 4 Car</span></h3>
+<p><a class="image" href="File:Library_car.jpg.html"><img alt="Library car.jpg" height="614" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/76/Library_car.jpg/500px-Library_car.jpg" width="500"/></a>
+</p>
+<h1><span class="mw-headline" id="Team_Members">Team Members</span></h1>
+<ul><li> Karen Hernandez - Electrical Engineering</li>
+<li> Jan Schüürmann  - Aerospace Engineering</li>
+<li> Bryant Liu      - Computer Engineering</li>
+<li> Joe Wayne       - Mechanical Engineering</li></ul>
+<p>The members in the picture are standing in the order mentioned above (from left to right on the image)
+</p><p><a class="image" href="File:Team4_members_spring2021.jpg.html"><img alt="Team4 members spring2021.jpg" height="624" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/4/4a/Team4_members_spring2021.jpg/500px-Team4_members_spring2021.jpg" width="500"/></a>
+</p>
+<h1><span class="mw-headline" id="Instructors">Instructors</span></h1>
+<ul><li> Mauricio de Oliveira</li>
+<li> Jack Silberman</li></ul>
+<h2><span class="mw-headline" id="Teacher.27s_Assistants">Teacher's Assistants</span></h2>
+<ul><li> Dominic Nightingale - Mechanical Engineering</li>
+<li> Haoru Xue - Electrical Engineering</li></ul>
+<h1><span class="mw-headline" id="Objective">Objective</span></h1>
+<p>Develop a tracking system for our car to follow a targeted moving car. An April Tag is placed behind the leading car for detection purposes, which will serve as a reference point for the distance and position of the leading car with respect to our car. With the measurements obtained from the April tag and by implementing ROS, we can control the throttle and steering of our car to follow the identified car. 
+</p><p>Note: The tag size could be smaller, but given the quality of the camera we use a larger tag.
+</p><p><a class="image" href="File:Team4s21_aprilTag_setup_car.jpg.html"><img alt="Team4s21 aprilTag setup car.jpg" height="280" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/57/Team4s21_aprilTag_setup_car.jpg/300px-Team4s21_aprilTag_setup_car.jpg" width="300"/></a>
+</p>
+<h1><span class="mw-headline" id="Hardware">Hardware</span></h1>
+<h2><span class="mw-headline" id="Chassis">Chassis</span></h2>
+<p>The chassis given by the instructor at the beginning of the quarter is the following:
+</p><p><a class="image" href="File:Team4s1_empty_chasis.jpg.html"><img alt="Team4s1 empty chasis.jpg" height="349" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/2/22/Team4s1_empty_chasis.jpg/550px-Team4s1_empty_chasis.jpg" width="550"/></a>
+</p>
+<h2><span class="mw-headline" id="Wiring_Schematic">Wiring Schematic</span></h2>
+<p>In order to make the components work as desired, we connected them according to the wire schematic shown below. This includes all the hardware required: 
+</p><p><a class="image" href="File:Wire_schematic_HernandezKaren.JPG.html"><img alt="Wire schematic HernandezKaren.JPG" height="695" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/9f/Wire_schematic_HernandezKaren.JPG/900px-Wire_schematic_HernandezKaren.JPG" width="900"/></a>
+</p>
+<h2><span class="mw-headline" id="Base_Plate">Base Plate</span></h2>
+<p>For us to have flexibility when it comes to mounting hardware onto the base plate, we decided to design a plate that had mounting holes all throughout. This plate is mounted on four 2-inch stand-offs from the bottom of the chassis, such that the battery, speed controller and steering servo motor are located underneath the base plate. All other components are located on the top part of the base plate. 
+</p>
+<h3><span class="mw-headline" id="CAD_of_the_base_plate_design">CAD of the base plate design</span></h3>
+<p><a class="image" href="File:Team4s21_plate_cad.png.html"><img alt="Team4s21 plate cad.png" height="324" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/de/Team4s21_plate_cad.png/500px-Team4s21_plate_cad.png" width="500"/></a>
+</p>
+<h3><span class="mw-headline" id="Final_product_of_the_base_plate">Final product of the base plate</span></h3>
+<p>We used a Lasercamm for cutting a 1/4" acryllic
+</p><p>Note: This also shows the Jetson Nano bottom part of the 3D printed shell mounted onto the base plate. The design for the Jetson Nano shell was not design by the team, link to online free CAD is 
+[<a class="external autonumber" href="https://www.thingiverse.com/thing:3603594/files" rel="nofollow">[1]</a>] . The only change was that we added the side mounts.
+</p><p><a class="image" href="File:Team4s21_plate_finished.jpg.html"><img alt="Team4s21 plate finished.jpg" height="375" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/be/Team4s21_plate_finished.jpg/500px-Team4s21_plate_finished.jpg" width="500"/></a>
+</p>
+<h2><span class="mw-headline" id="Camera">Camera</span></h2>
+<p>The camera shell for the camera was designed so that it would protect the camera, with extended covering from the top part so that the lighting would not affect the image. The camera shell is connected by velcro to an elevated plate that is connected to the base plate by stand-offs. Four screw holes are added to provide the possibility of a stiffer connection if necessary. It is important to mention that the angle used for the camera shell design was different for each project of the class. The images below are for the camera mount and shell used on the final project.
+</p>
+<h3><span class="mw-headline" id="Camera_mount_CAD">Camera mount CAD</span></h3>
+<ul class="gallery mw-gallery-traditional">
+<li class="gallerybox" style="width: 315px"><div style="width: 315px">
+<div class="thumb" style="width: 310px;"><div style="margin:15px auto;"><a class="image" href="File:Team4s21_front_camera_mount.png.html"><img alt="" height="180" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/fb/Team4s21_front_camera_mount.png/247px-Team4s21_front_camera_mount.png" width="247"/></a></div></div>
+<div class="gallerytext">
+<p>Front view
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 315px"><div style="width: 315px">
+<div class="thumb" style="width: 310px;"><div style="margin:15px auto;"><a class="image" href="File:Team4s21_side_camera_mount.png.html"><img alt="" height="180" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/71/Team4s21_side_camera_mount.png/167px-Team4s21_side_camera_mount.png" width="167"/></a></div></div>
+<div class="gallerytext">
+<p>Side view
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 315px"><div style="width: 315px">
+<div class="thumb" style="width: 310px;"><div style="margin:15px auto;"><a class="image" href="File:Team4s21_bottom_camera_mount.png.html"><img alt="" height="180" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/11/Team4s21_bottom_camera_mount.png/232px-Team4s21_bottom_camera_mount.png" width="232"/></a></div></div>
+<div class="gallerytext">
+<p>Top view
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 315px"><div style="width: 315px">
+<div class="thumb" style="width: 310px;"><div style="margin:15px auto;"><a class="image" href="File:Team4s21_back_camera_mount.png.html"><img alt="" height="180" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/7f/Team4s21_back_camera_mount.png/251px-Team4s21_back_camera_mount.png" width="251"/></a></div></div>
+<div class="gallerytext">
+<p>Back view
+</p>
+</div>
+</div></li>
+</ul>
+<h3><span class="mw-headline" id="Camera_mount">Camera mount</span></h3>
+<p>Used a MakerBot Method for PLA printing &amp; rapid prototyping
+</p>
+<ul class="gallery mw-gallery-traditional">
+<li class="gallerybox" style="width: 435px"><div style="width: 435px">
+<div class="thumb" style="width: 430px;"><div style="margin:15px auto;"><a class="image" href="File:Team4s21_camera_mount_front.jpg.html"><img alt="" height="300" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/9d/Team4s21_camera_mount_front.jpg/378px-Team4s21_camera_mount_front.jpg" width="378"/></a></div></div>
+<div class="gallerytext">
+<p>Front view
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 435px"><div style="width: 435px">
+<div class="thumb" style="width: 430px;"><div style="margin:15px auto;"><a class="image" href="File:Team4s21_camera_mount_side.jpg.html"><img alt="" height="300" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/37/Team4s21_camera_mount_side.jpg/337px-Team4s21_camera_mount_side.jpg" width="337"/></a></div></div>
+<div class="gallerytext">
+<p>Side view
+</p>
+</div>
+</div></li>
+</ul>
+<h3><span class="mw-headline" id="Camera_stand_CAD">Camera stand CAD</span></h3>
+<p>The ideal position of the camera mount changed depending on the task we were working on. Thus, we designed a stand with adjustable height where the camera mount was attached to. The elongated holes are for the optional screw conncetion of the camera casing and helps with centering the mount. 
+</p><p><a class="image" href="File:Team4s21_stand_camera_mount.png.html"><img alt="Team4s21 stand camera mount.png" height="384" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/90/Team4s21_stand_camera_mount.png/500px-Team4s21_stand_camera_mount.png" width="500"/></a>
+</p>
+<h3><span class="mw-headline" id="Camera_stand">Camera stand</span></h3>
+<ul class="gallery mw-gallery-traditional">
+<li class="gallerybox" style="width: 435px"><div style="width: 435px">
+<div class="thumb" style="width: 430px;"><div style="margin:22.5px auto;"><a class="image" href="File:Team4s21_camera_stand_alone.jpg.html"><img alt="" height="285" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/1/13/Team4s21_camera_stand_alone.jpg/400px-Team4s21_camera_stand_alone.jpg" width="400"/></a></div></div>
+<div class="gallerytext">
+<p>Camera Stand
+</p>
+</div>
+</div></li>
+<li class="gallerybox" style="width: 435px"><div style="width: 435px">
+<div class="thumb" style="width: 430px;"><div style="margin:31.5px auto;"><a class="image" href="File:Team4s21_camera_standOff_finished.jpg.html"><img alt="" height="267" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/b6/Team4s21_camera_standOff_finished.jpg/400px-Team4s21_camera_standOff_finished.jpg" width="400"/></a></div></div>
+<div class="gallerytext">
+<p>Mounted Stand
+</p>
+</div>
+</div></li>
+</ul>
+<h1><span class="mw-headline" id="Software">Software</span></h1>
+<h2><span class="mw-headline" id="AprilTags">AprilTags</span></h2>
+<p><a class="external text" href="https://pypi.org/project/apriltag/" rel="nofollow">apriltag</a> provide means of identification and 3D positioning, these are similar to QR codes but April Tags are designed to encode a significantly smaller amount of data. 
+</p>
+<h3><span class="mw-headline" id="ROS_Wrapper">ROS Wrapper</span></h3>
+<p>The apiltag_ros package provides access to the AprilTag core and makes the information of detected images and tag poses available over ROS topics. 
+</p>
+<h4><span class="mw-headline" id="apriltag_ros"><a class="external text" href="http://wiki.ros.org/apriltag_ros" rel="nofollow">apriltag_ros</a></span></h4>
+<p><a class="image" href="File:Team4s21_april_tag_diagram.png.html"><img alt="Team4s21 april tag diagram.png" height="55" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/fa/Team4s21_april_tag_diagram.png/500px-Team4s21_april_tag_diagram.png" width="500"/></a>
+</p>
+<h2><span class="mw-headline" id="ROS_Package">ROS Package</span></h2>
+<p>Robot Operating system (ROS) is a collection of software frameworks which facilitate robot software development. For our final project we created a simple ROS package using OpenCV and April Tags in order to de able to detect a specified tag on another 1/10 RC car and control the throttle and steering such that our car can follow the other car based off the april tag position and distance. 
+We will be using the Noetic distribution.
+</p>
+<h3><span class="mw-headline" id="Github">Github</span></h3>
+<p>All files we used can be found in our Github repository.
+</p><p><a class="external free" href="https://github.com/makeitwayne17/ECE148_CarFollow_Team4" rel="nofollow">https://github.com/makeitwayne17/ECE148_CarFollow_Team4</a>
+</p><p>To run:
+1. Install all dependencies in next section.
+</p><p>2. Make sure your current environment has ROS
+</p><p>3. In the first terminal: <code>roscore</code>
+</p><p>4. In the second terminal: <code>roslaunch apriltag_ros continuous_detection.launch</code>
+</p><p>5. In the third terminal: <code>roslaunch apriltag_ros throttle_and_steering_launch.launch</code>
+</p><p>6. In the fourth terminal: <code>rosrun apriltag_ros steering.py</code>
+</p><p>7. In the fifth terminal: <code>rosrun apriltag_ros controller2.py</code>
+</p><p><br/>
+</p>
+<h3><span class="mw-headline" id="Dependencies">Dependencies</span></h3>
+<h4><span class="mw-headline" id="cv2"><a class="external text" href="https://opencv.org/" rel="nofollow">cv2</a></span></h4>
+<p>OpenCV is library that provides real-time optimized computer vision and image processing tools. It was created such that most of its functions integrate well with other libraries, such as Matplotlib, Numpy and Scipy, with the purpose of visualizing and processing data. We will be using the cv2 Python interface. 
+OpenCV will be used to detect the April Tags.
+</p>
+<h4><span class="mw-headline" id="adafruit_servokit"><a class="external text" href="https://circuitpython.readthedocs.io/projects/servokit/en/latest/" rel="nofollow">adafruit_servokit</a></span></h4>
+<p>Adafruit is a library that facilitates the implementation of python code to control servos with the Adafruit 16-channel servo driver. This library provides a high-level interface with low-level PWM controls. For this project, the library is used to control the PWD which manages the steering servo and the electronic speed controller (ESC). 
+</p>
+<h4><span class="mw-headline" id="cv_bridge"><a class="external text" href="http://wiki.ros.org/cv_bridge" rel="nofollow">cv_bridge</a></span></h4>
+<p>In order to be able to transfer data between ROS and OpenCV, we will use the cv_bridge which converts data such that is workable between ROS Image messages and OpenCV images. 
+</p>
+<h3><span class="mw-headline" id="Calibration">Calibration</span></h3>
+<p>In terms of the software, our calibration for Apriltags required us to take 50+ images of a printed-out checkerboard pattern in an effort to have an accurate camera to reference.  We did further calibration using size of the Apriltags that feeds into the program to generate accurate distance measurements.
+We followed the same steps listed in the video below.
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/UGArg1kQwFc?" width="640"></iframe></div></div>
+<p>While we believe we performed the software calibration of our camera correctly, it appears our camera lens is internally shifted left. This shift isn't due to a direct linear offset, so we couldn't solve it easily with a software solution. Thus in order to center the camera down the middle of the car, we were forced to rotate the camera mount to the right.  This was made significantly easier due to us switching to a velcro mounting system.
+</p><p><a class="image" href="File:Team_4_Camera_Offset_Spring_2021.png.html"><img alt="Team 4 Camera Offset Spring 2021.png" height="435" loading="lazy" src="https://web.archive.org/web/20210923021411im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/b4/Team_4_Camera_Offset_Spring_2021.png/400px-Team_4_Camera_Offset_Spring_2021.png" width="400"/></a>
+Hardware Offset Fix
+</p>
+<h1><span class="mw-headline" id="Results">Results</span></h1>
+<p>Ultimately the team was extremely happy with the results from our final testing.  We successfully completed our original goal of an autonomous lap around the Warren Tents track, following another human-controlled car with an Apriltag on the back.  The trailing car successfully finished a lap without ever crashing into a cone or going out of the designated lanes.  The distance was set to be around half a meter with our throttle and steering controllers.
+</p>
+<h2><span class="mw-headline" id="Final_Testing">Final Testing</span></h2>
+<p>Observe our car detecting the Apriltag on the leading car, then adjusting the throttle and steering angle in order to minimize the distance and alignment offset between the cars.
+</p>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/ejD80HDI3j8?" width="640"></iframe></div></div>
+<h1><span class="mw-headline" id="Suggestions_for_Further_Development">Suggestions for Further Development</span></h1>
+<p>With another 1-2 weeks, the team would have liked to potentially test this system with 2+ following cars, with the potential to go up to the maximum 7 following cars that we have access to in the class.  While other team's systems require extra camera/sensor systems, our Apriltag system works with the existing camera system that every team has from the previous weeks.  So it should not be too difficult to implement our software onto their devices, albeit with every camera needing to be calibrated. We would also liked if we were able to fix the camera offset issue as well.
+</p><p>In addition, we would have liked to have spent more time tuning the controllers for maximum performance.  This would have been significantly easier with us with more testing time with our final overall design.  Furthermore, if the team could figure out how to properly send negative throttles (for emergency braking), we would have been able to try significantly more aggressive proportional gains.  On top of that, we would have liked to have implemented the ability for our code to recognize different tag numbers and thus assign predetermined (yet individual) parameters to our controllers, such as following distance and PID values.
+</p><p>We would have also liked to have added a system that would be able to combine our Apriltag following system with a more general use case of lane detection.
+</p><p>Of course, it would have been significantly more ideal if we could have gotten our original plans of using the Intel L515 LiDAR system for more accurate depth detection, but future teams can try to get around this by first doing a fresh install of the Jetson OS (hopefully).
+</p><p>Finally, we would suggest for future teams to check to see if the GPU on the Jetson is being properly utilized, as the biggest bottleneck for us was the publishing on the camera image topic.  While the camera itself is capable of significantly higher FPS, we were able to get around 15 FPS after converting the image to grayscale and cropping the image to reduce the overall file size.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20210923021411
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.106 seconds
+Real time usage: 0.335 seconds
+Preprocessor visited node count: 165/1000000
+Preprocessor generated node count: 260/1000000
+Post‐expand include size: 52/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:939-0!*!*!!en!5!* and timestamp 20210923021410 and revision id 7318
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20210923021411/https://guitar.ucsd.edu/maeece148/index.php/2021SpringTeam4">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2018SpringTeam2 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2018SpringTeam2</h1>
+      <div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_2:_Follow_Me"><span class="tocnumber">1</span> <span class="toctext">Team 2: Follow Me</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Hardware"><span class="tocnumber">2</span> <span class="toctext">Hardware</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Initial_Research"><span class="tocnumber">3</span> <span class="toctext">Initial Research</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Issues_Encountered"><span class="tocnumber">4</span> <span class="toctext">Issues Encountered</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Process"><span class="tocnumber">5</span> <span class="toctext">Process</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Future_Improvements"><span class="tocnumber">6</span> <span class="toctext">Future Improvements</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Team_2:_Follow_Me">Team 2: Follow Me</span></h2>
+<p>Project Objective: Identify and follow a person, given two people in the field of view. Tiny YOLO was fed into OpenCV to identify targets in a live feed.
+</p><p>Some applications of this project include medical robotics (e.g. medical assistance) and military applications (e.g. target location). This project be applied to crowds, collecting data on people through human computer interactions.
+</p><p>Members: Amber Chau, Anita Zhao, Thomas Ibbetson, Paul Epperson
+</p>
+<h2><span class="mw-headline" id="Hardware">Hardware</span></h2>
+<p>We used the Raspberry Pi Camera V2.
+</p>
+<h2><span class="mw-headline" id="Initial_Research">Initial Research</span></h2>
+<p>The first objective was to be able to identify a person in a live feed. Our project takes Tiny YOLO's person identification information and puts it into OpenCV, which we use to follow the person. 
+</p><p><br/>
+<b>Tiny YOLO</b>: real time object detection. Tiny YOLO (45 MB) is a reduced version of YOLO (248 MB). Tiny YOLO is capable of classification and segmentation, and can recognize objects with accuracy. 
+</p><p>Several identifiable objects, such as people, dogs and cars, are already built in to the program. There are many resources available online, including source code and video tutorials. Online forums suggested that timing would run at &lt;1 Hz with Tiny YOLO. 
+</p><p>Pros: Capable of recognizing objects with accuracy confidence levels, and can distinguish between dogs and people. 
+</p><p>Cons: Runs at a slower frequency and requires further retraining.
+</p><p><br/>
+<b>OpenCV</b>: a library of functions specified for real-time computer vision. OpenCV is capable of identifying color blocks and boundaries, and has functions to determine centroids. The centroids would be used to identify the location of the person/object, and subsequently to follow the person.
+</p><p>Pros: Simple code/logic, easy to follow.
+</p><p>Cons: Not as intricate as YOLO.
+</p>
+<h2><span class="mw-headline" id="Issues_Encountered">Issues Encountered</span></h2>
+<p>- Source code had fatal errors.
+</p><p>- Running took so long the Raspberry Pi killed the process.
+</p><p>- Image reader choked when opening certain images. 
+</p><p>- Source code did not provide an easy interface for Python.
+</p><p>- Certain versions had several configurations, of which exactly one would work. 
+</p><p>- Several respositories only worked with exactly one version of YOLO.
+</p><p>- Certain configuration files were mislinked on the website/README.
+</p><p>- Several required file dependencies were not described in documentation and had to be found elsewhere.
+</p><p>- The actual code had a bug that took 2 days to find. We went to pull request, but another UCSD student had ran into the same problem and posted it, but the code was unchanged.
+</p><p>- The only Tiny YOLO configuration file that works with the yolov2-tiny weights (which is required for YAD2K) is not listed in the list of valid yolov2-tiny weights. 
+</p>
+<h2><span class="mw-headline" id="Process">Process</span></h2>
+<p>We ended up using YAD2K (Yet Another Darknet 2 Keras) as our Tiny YOLO library. YAD2K is fast and easy to interface (exposes functionality through Python). 
+</p><p>The original YOLO repository takes about 34 seconds to load the neural network and add weights on the RPi3, while YAD2K loads in about 6 seconds. YAD2K is much faster, but likely needs to delay driving until the weights are loaded. 
+</p><p><br/>
+</p>
+<div class="MediaTransformError" style="width: 702px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<p><i>Load times using different YOLO libraries</i>
+</p><p>We started off our project by examining Project Fetch's (a previous MAE 148/198 project) GitHub and webpage. Project Fetch used OpenCV. We used a laptop camera to get live video feed, and changed RGB limits to fit our target object's color profile accordingly. The steering and throttle is limited to lighting conditions. Other problems encountered within Project Fetch include erosion function modification, distance parameters, low pass filters, and changes to the lower/upper HSV limits.  
+</p><p><br/>
+</p>
+<div class="MediaTransformError" style="width: 607px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<p><i>Used Project Fetch's code to explore contour recognition and RGB limits</i>
+</p><p><br/>
+</p>
+<div class="MediaTransformError" style="width: 589px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<p><i>Project Fetch and OpenCV has various problems, including erosion function modifications and other parameters.</i>
+</p><p>OpenCV has issues with live feed connection. cv2.imshow.() crashes the Raspberry Pi and the VNC Viewer. cv2.imwrite() is able to save image to the Raspberry Pi, but does not give access to the live feed. There is no graphical output: the Pi can be connected to the monitor, but there is still only feedback to the command prompt. 
+</p><p>We wanted to use the centroid coordinates (X,Y) to understand the distance between the person and the Robocar. We modified the code to print output X,Y pixel coordinates, as well as having changed the throttling and steering limits to increase speed if the object is further away (similar to Project Fetch), otherwise to keep a constant speed.
+</p><p>We wanted to reduce noise from the contour, so we modified Project Fetch's code to introduce kernels (matrix that expands and reduces pixel size). We also used low pass filters to reduce noise and improve the contour.
+</p><p><br/>
+</p>
+<div class="MediaTransformError" style="width: 1527px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<p><i>Project Fetch (OpenCV) erosion improvements</i>
+</p><p><br/>
+</p>
+<div class="MediaTransformError" style="width: 1088px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<p><i>Used low pass filters on a green target and red target. The graphs depict the difference between the (X,Y) centroid coordinates with and without the low pass filter. The filter reduces noise by removing outlying points.</i>
+</p><p><br/>
+</p>
+<h2><span class="mw-headline" id="Future_Improvements">Future Improvements</span></h2>
+<p>YOLO can be used to follow thousands of different objects, by training YOLO to recognize new objects to follow. Contextual awareness can be added based on recognized objects, such as commonly indoor items like chairs, doors, etc. 
+</p><p>The controller can be improved by integrating OpenCV and YOLO more closely, such as specifying the target's details (e.g. size, color) and combining specifications to keep track of the desired target.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20200807182911
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.015 seconds
+Real time usage: 0.019 seconds
+Preprocessor visited node count: 23/1000000
+Preprocessor generated node count: 28/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:80-0!*!*!!en!5!* and timestamp 20200807182911 and revision id 566
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200807182911/https://guitar.ucsd.edu/maeece148/index.php/2018SpringTeam2">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

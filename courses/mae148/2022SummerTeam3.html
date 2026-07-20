@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2022SummerTeam3 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2022SummerTeam3</h1>
+      <div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Team_Members"><span class="tocnumber">1</span> <span class="toctext"><b>Team Members</b></span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Physical_Setup"><span class="tocnumber">2</span> <span class="toctext"><b>Physical Setup</b></span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Original_Car"><span class="tocnumber">2.1</span> <span class="toctext">Original Car</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Damaged_Car"><span class="tocnumber">2.2</span> <span class="toctext">Damaged Car</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#New_Car"><span class="tocnumber">2.3</span> <span class="toctext">New Car</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Original_Car_Mechanical_Design"><span class="tocnumber">2.4</span> <span class="toctext">Original Car Mechanical Design</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="#Considerations/Goals"><span class="tocnumber">2.4.1</span> <span class="toctext">Considerations/Goals</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Design_Features"><span class="tocnumber">2.4.2</span> <span class="toctext">Design Features</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Part_Drawings"><span class="tocnumber">2.4.3</span> <span class="toctext">Part Drawings</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="#New_Car_Mechanical_Design"><span class="tocnumber">2.5</span> <span class="toctext">New Car Mechanical Design</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Electrical_Design"><span class="tocnumber">3</span> <span class="toctext"><b>Electrical Design</b></span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Autonomous_Laps"><span class="tocnumber">4</span> <span class="toctext"><b>Autonomous Laps</b></span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="#Donkey_Car_autonomous_laps"><span class="tocnumber">4.1</span> <span class="toctext">Donkey Car autonomous laps</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#OpenCV_and_ROS2_autonomous_laps"><span class="tocnumber">4.2</span> <span class="toctext">OpenCV and ROS2 autonomous laps</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-15"><a href="#Final_Project:_Waypoint_Finder"><span class="tocnumber">5</span> <span class="toctext"><b>Final Project: Waypoint Finder</b></span></a>
+<ul>
+<li class="toclevel-2 tocsection-16"><a href="#Project_Description"><span class="tocnumber">5.1</span> <span class="toctext">Project Description</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Working_With_Ros2"><span class="tocnumber">5.2</span> <span class="toctext">Working With Ros2</span></a>
+<ul>
+<li class="toclevel-3 tocsection-18"><a href="#Code"><span class="tocnumber">5.2.1</span> <span class="toctext">Code</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-19"><a href="#Challenges"><span class="tocnumber">5.3</span> <span class="toctext">Challenges</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Potential_Improvements"><span class="tocnumber">5.4</span> <span class="toctext">Potential Improvements</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#Weekly_Presentations"><span class="tocnumber">5.5</span> <span class="toctext">Weekly Presentations</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-22"><a href="#References"><span class="tocnumber">6</span> <span class="toctext">References</span></a></li>
+</ul>
+</div>
+<h1><span class="mw-headline" id="Team_Members"><b>Team Members</b></span></h1>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:602px;"><a class="image" href="File:SS2022team3.png.html"><img alt="" class="thumbimage" decoding="async" height="545" loading="lazy" src="https://web.archive.org/web/20221205114206im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/39/SS2022team3.png/600px-SS2022team3.png" width="600"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:SS2022team3.png.html" title="Enlarge"></a></div>2022 Summer Team 3</div></div></div></div>
+<ul><li><b>Nachelle Matute</b>  - Computer Engineering (Left)</li>
+<li><b>Shixuan Wu</b>      - Electrical Engineering (Middle)</li>
+<li><b>Jack Hecker</b>  - Mechanical Engineering (Right)</li></ul>
+<h1><span class="mw-headline" id="Physical_Setup"><b>Physical Setup</b></span></h1>
+<p>Three days before our final project was due, we were having issues with our VESC. Whilst trying to re-calibrate our VESC, it ignited, resulting in extensive damage to the car and necessitating a replacement.
+</p>
+<h3><span class="mw-headline" id="Original_Car">Original Car</span></h3>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:602px;"><a class="image" href="File:OriginalCar.png.html"><img alt="" class="thumbimage" decoding="async" height="429" loading="lazy" src="https://web.archive.org/web/20221205114206im_/http://guitar.ucsd.edu/maeece148/images/thumb/7/73/OriginalCar.png/600px-OriginalCar.png" width="600"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:OriginalCar.png.html" title="Enlarge"></a></div>2022 Summer Team 3: Original Car</div></div></div></div>
+<h3><span class="mw-headline" id="Damaged_Car">Damaged Car</span></h3>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:602px;"><a class="image" href="File:Fire.jpg.html"><img alt="" class="thumbimage" decoding="async" height="397" loading="lazy" src="https://web.archive.org/web/20221205114206im_/http://guitar.ucsd.edu/maeece148/images/thumb/9/95/Fire.jpg/600px-Fire.jpg" width="600"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Fire.jpg.html" title="Enlarge"></a></div>2022 Summer Team 3: Damaged Car</div></div></div></div>
+<h3><span class="mw-headline" id="New_Car">New Car</span></h3>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:602px;"><a class="image" href="File:NewCar.png.html"><img alt="" class="thumbimage" decoding="async" height="564" loading="lazy" src="https://web.archive.org/web/20221205114206im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/58/NewCar.png/600px-NewCar.png" width="600"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:NewCar.png.html" title="Enlarge"></a></div>2022 Summer Team 3: New Car</div></div></div></div>
+<h2><span class="mw-headline" id="Original_Car_Mechanical_Design">Original Car Mechanical Design</span></h2>
+<h3><span id="Considerations.2FGoals"></span><span class="mw-headline" id="Considerations/Goals">Considerations/Goals</span></h3>
+<ul><li>Maximize component envelope</li>
+<li>Standardize mounting system for modular packaging</li>
+<li>Accessibility/Serviceability</li>
+<li>Integration into provided chassis</li>
+<li>Aesthetics</li></ul>
+<h3><span class="mw-headline" id="Design_Features">Design Features</span></h3>
+<ul><li>Acrylic component bed with  forward hinge for serviceability
+<ul><li>Locating points spaced at 15mm in x and y directions</li>
+<li>Buckle-type fastening at rear corners for ease of use</li></ul></li>
+<li>3D printed PLA structural members mounted to vehicle chassis
+<ul><li>Trapped-nut features on clearance holes for serviceability</li></ul></li>
+<li>OAKD Camera, Jetson Nano, and LIDAR bolted to upper surface, other components cable-tied to underside</li></ul>
+<h3><span class="mw-headline" id="Part_Drawings">Part Drawings</span></h3>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:602px;"><a class="image" href="File:Full_assy.png.html"><img alt="" class="thumbimage" decoding="async" height="424" loading="lazy" src="https://web.archive.org/web/20221205114206im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/ef/Full_assy.png/600px-Full_assy.png" width="600"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Full_assy.png.html" title="Enlarge"></a></div>Full Component Chassis</div></div></div></div>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:602px;"><a class="image" href="File:Plate.png.html"><img alt="" class="thumbimage" decoding="async" height="424" loading="lazy" src="https://web.archive.org/web/20221205114206im_/http://guitar.ucsd.edu/maeece148/images/thumb/e/e7/Plate.png/600px-Plate.png" width="600"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Plate.png.html" title="Enlarge"></a></div>Component Mounting Plate</div></div></div></div>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:602px;"><a class="image" href="File:Hinge.png.html"><img alt="" class="thumbimage" decoding="async" height="424" loading="lazy" src="https://web.archive.org/web/20221205114206im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/db/Hinge.png/600px-Hinge.png" width="600"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Hinge.png.html" title="Enlarge"></a></div>Front Plate Bracket/Hinge</div></div></div></div>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:602px;"><a class="image" href="File:Front_arm.png.html"><img alt="" class="thumbimage" decoding="async" height="424" loading="lazy" src="https://web.archive.org/web/20221205114206im_/http://guitar.ucsd.edu/maeece148/images/thumb/4/44/Front_arm.png/600px-Front_arm.png" width="600"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Front_arm.png.html" title="Enlarge"></a></div>Front Lateral Structural Member</div></div></div></div>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:602px;"><a class="image" href="File:Rear_arm.png.html"><img alt="" class="thumbimage" decoding="async" height="424" loading="lazy" src="https://web.archive.org/web/20221205114206im_/http://guitar.ucsd.edu/maeece148/images/thumb/5/5d/Rear_arm.png/600px-Rear_arm.png" width="600"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Rear_arm.png.html" title="Enlarge"></a></div>Rear Lateral Structural Member</div></div></div></div>
+<ul><li>All other installed 3D printed components were sourced from <a class="external text" href="https://thingiverse.com" rel="nofollow">MakerBot Thingiverse</a> and all credit goes to their original designers</li></ul>
+<h2><span class="mw-headline" id="New_Car_Mechanical_Design">New Car Mechanical Design</span></h2>
+<ul><li>Replacement car needed after fire damage destroyed the majority of components on the original car
+<ul><li>Replacement car provided by instructors</li></ul></li>
+<li>Features similar component chassis design elements including hinge and modular locating points</li></ul>
+<h1><span class="mw-headline" id="Electrical_Design"><b>Electrical Design</b></span></h1>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:602px;"><a class="image" href="File:Electrical.png.html"><img alt="" class="thumbimage" decoding="async" height="342" loading="lazy" src="https://web.archive.org/web/20221205114206im_/http://guitar.ucsd.edu/maeece148/images/thumb/0/06/Electrical.png/600px-Electrical.png" width="600"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Electrical.png.html" title="Enlarge"></a></div>Electrical Design</div></div></div></div>
+<h1><span class="mw-headline" id="Autonomous_Laps"><b>Autonomous Laps</b></span></h1>
+<h2><span class="mw-headline" id="Donkey_Car_autonomous_laps">Donkey Car autonomous laps</span></h2>
+<p>Data was collected using image inputs and controller outputs. For faster training, the model was trained on UCSD's GPU cluster.
+Link to our Donkey Car autonomous laps: <a class="external free" href="https://drive.google.com/file/d/1RTPX5qU0wFP6MDB3UhvJxW1KVM96Jin2/view?usp=drivesdk" rel="nofollow">https://drive.google.com/file/d/1RTPX5qU0wFP6MDB3UhvJxW1KVM96Jin2/view?usp=drivesdk</a>
+</p>
+<h2><span class="mw-headline" id="OpenCV_and_ROS2_autonomous_laps">OpenCV and ROS2 autonomous laps</span></h2>
+<p>In order for our robot to only detect the yellow road lines, color calibration was done using the HSV model. The actuator was also calibrated to determine the different speeds and steering directions the car should go, given different situations.
+Link to our ROS2 autonomous laps: <a class="external free" href="https://drive.google.com/file/d/1S99YGRlGTcsSg6vsi2YAWSbK7gCeC3Qe/view?usp=drivesdk" rel="nofollow">https://drive.google.com/file/d/1S99YGRlGTcsSg6vsi2YAWSbK7gCeC3Qe/view?usp=drivesdk</a>
+</p>
+<h1><span class="mw-headline" id="Final_Project:_Waypoint_Finder"><b>Final Project: Waypoint Finder</b></span></h1>
+<h2><span class="mw-headline" id="Project_Description">Project Description</span></h2>
+<p>Our project used GPS to find the current location of our robocar. Then, we created a python script to extract the longitude and latitude values provided by the GPS. Our goal was to move the robocar from one point to another and stop at specific longitude and latitude values, which we achieved.
+</p>
+<h2><span class="mw-headline" id="Working_With_Ros2">Working With Ros2</span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:552px;"><a class="image" href="File:LongLatTerminalOutput.png.html"><img alt="" class="thumbimage" decoding="async" height="179" loading="lazy" src="https://web.archive.org/web/20221205114206im_/http://guitar.ucsd.edu/maeece148/images/thumb/6/6a/LongLatTerminalOutput.png/550px-LongLatTerminalOutput.png" width="550"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:LongLatTerminalOutput.png.html" title="Enlarge"></a></div>counter_publisher.py terminal output. Node publishes the mentioned three elements</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:GPSpublisher.jpeg.html"><img alt="" class="thumbimage" decoding="async" height="268" loading="lazy" src="https://web.archive.org/web/20221205114206im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/fe/GPSpublisher.jpeg/200px-GPSpublisher.jpeg" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:GPSpublisher.jpeg.html" title="Enlarge"></a></div>published values</div></div></div>
+<p>To determine where the car should go, we created a ROS driver to make the GPS accessible from ROS. We created a python script to output three elements: 
+the difference in latitude and longitude from the desired coordinates and the angle the car must turn in order to face the desired coordinates (refer to the image on right). The gps_class_script.py file extracts the direction of latitude, time, latitude, and longitude from the GPGGA string which is stored into the NMEA_buff array. Given the current coordinates of the robot and the desired coordinates it is closest to, the difference in longitude and latitude is calculated and published along with the angle it must turn.   
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:ROSflowChart.jpeg.html"><img alt="" class="thumbimage" decoding="async" height="111" loading="lazy" src="https://web.archive.org/web/20221205114206im_/http://guitar.ucsd.edu/maeece148/images/thumb/c/cf/ROSflowChart.jpeg/200px-ROSflowChart.jpeg" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:ROSflowChart.jpeg.html" title="Enlarge"></a></div>ROS Flow Chart</div></div></div>
+<p>We created a publisher named counter_publisher.py (Disclaimer: We followed the counter_publisher.py file provided in the ROS2 guidebook and modified it to publish GPS values). This node publishes the values returned by the GPS python script. 
+</p><p>The ~/ros2_ws_src_ucsd_robocar_hub2/ ucsd_robocar_control2_pkg/ ucsd_robocar_control2_pkg/ pid_llh_node.py node subscribes to counter_publisher. Here, we modified the speed constant.
+</p><p>Our main issue with the GPS was how often the given coordinates at the same position fluctuated. In the following video, despite starting the robot at different positions, the robot moves when it is not within the error threshold of the desired coordinates. The robot stops at approximately the same position with an error of ~2 meters. 
+<a class="external free" href="https://drive.google.com/file/d/1IcqUVptr2uf8PpWL5C5wHO-m0p86X5DY/view?usp=sharing" rel="nofollow">https://drive.google.com/file/d/1IcqUVptr2uf8PpWL5C5wHO-m0p86X5DY/view?usp=sharing</a>
+</p><p>The following video is the most accurate the GPS was able to get. The blue box was our desired endpoint and the robot was able to stop within ~two feet.
+<a class="external free" href="https://drive.google.com/file/d/1AxC33I-SJOpMyFPDWvYF5AZBztgAbCHY/view?usp=sharing" rel="nofollow">https://drive.google.com/file/d/1AxC33I-SJOpMyFPDWvYF5AZBztgAbCHY/view?usp=sharing</a>
+</p>
+<h3><span class="mw-headline" id="Code">Code</span></h3>
+<p>Here is a link to our Docker image that mainly contains changes in the counter_package and ucsd_robocar_control2_pkg. Given more time, we would clean up our file directories. The script we used to obtain coordinates from the GPS can be found in ~ros2_ws/src/counter_package/counter_package/gps_submodule/gps_class_script.py.
+</p><p><a class="external free" href="https://hub.docker.com/r/wusx2021/ucsd_robocar" rel="nofollow">https://hub.docker.com/r/wusx2021/ucsd_robocar</a>
+</p><p>Disclaimer: We hope you can understand our code and that it works for you.
+</p>
+<h2><span class="mw-headline" id="Challenges">Challenges</span></h2>
+<table class="wikitable">
+<tbody><tr>
+<th>Challenge
+</th>
+<th>Solution
+</th></tr>
+<tr>
+<td>Hardware uncertainties: car caught on fire
+</td>
+<td>Replace nearly every component of our car.
+</td></tr>
+<tr>
+<td>Weak GPS signal inside the building.
+</td>
+<td>Move our project outside.
+</td></tr>
+<tr>
+<td>GPS has a long response time.
+</td>
+<td>Possible Solution: Obtain a better GPS (not feasible)
+</td></tr>
+<tr>
+<td>Jetson USB connection issues.
+</td>
+<td>Constantly changing wires and ways of connection.
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="Potential_Improvements">Potential Improvements</span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:502px;"><a class="image" href="File:Kalman_Eqs.PNG.html"><img alt="" class="thumbimage" decoding="async" height="115" loading="lazy" src="https://web.archive.org/web/20221205114206im_/http://guitar.ucsd.edu/maeece148/images/thumb/f/f7/Kalman_Eqs.PNG/500px-Kalman_Eqs.PNG" width="500"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Kalman_Eqs.PNG.html" title="Enlarge"></a></div>Equations for determining the characteristics of a <a class="external text" href="https://en.wikipedia.org/wiki/Kalman_filter" rel="nofollow">Kalman filter</a>. A simple dynamic model (middle left) is used to predict 1D motion of the car. Given estimated variances in GPS measurement and model predicion of 3m and 1m respectively, a theoretical Kalman gain (Kx) of 0.25 is established.</div></div></div>
+<ul><li>Develop a Kalman filtering algorithm in the GPS node. This way, we would be able to estimate a more accurate location as an input to the motion controller.</li>
+<li>Use the IMU to obtain heading error and define the control regime relative to the car’s chassis.</li></ul>
+<h2><span class="mw-headline" id="Weekly_Presentations">Weekly Presentations</span></h2>
+<ul><li>Final project proposal: <a class="external free" href="https://docs.google.com/presentation/d/1ly_FbgZF87KXT5ibsbR3lcxW28QueUECAe_OjDNcUDM/edit?usp=sharing" rel="nofollow">https://docs.google.com/presentation/d/1ly_FbgZF87KXT5ibsbR3lcxW28QueUECAe_OjDNcUDM/edit?usp=sharing</a></li>
+<li>Weekly progress: <a class="external free" href="https://docs.google.com/presentation/d/1pJRHhM-LsijEPLNDkVAO9ESU2csp5Q1oWNYLZ9igETI/edit?usp=sharing" rel="nofollow">https://docs.google.com/presentation/d/1pJRHhM-LsijEPLNDkVAO9ESU2csp5Q1oWNYLZ9igETI/edit?usp=sharing</a></li>
+<li>Final presentation: <a class="external free" href="https://docs.google.com/presentation/d/11hCKK3g83xjRlJJYe7qpxix_294h0_b73IaRavSreUo/edit?usp=sharing" rel="nofollow">https://docs.google.com/presentation/d/11hCKK3g83xjRlJJYe7qpxix_294h0_b73IaRavSreUo/edit?usp=sharing</a></li></ul>
+<h1><span class="mw-headline" id="References">References</span></h1>
+<p>We would like to express our gratitude to:
+</p>
+<ul><li>Professor Jack Silberman</li>
+<li>TA Dominic Nightingale</li>
+<li>TA Ivan Ferrier</li>
+<li>ECE Makerspace</li>
+<li>Our Fantastic Classmates</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20221205114206
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.035 seconds
+Real time usage: 0.040 seconds
+Preprocessor visited node count: 79/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:1402-0!canonical and timestamp 20221205114206 and revision id 9793. Serialized with JSON.
+ -->
+</div>
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20221205114206/https://guitar.ucsd.edu/maeece148/index.php/2022SummerTeam3">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

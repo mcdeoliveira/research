@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2019WinterTeam1 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2019WinterTeam1</h1>
+      <p>Inspired by <a class="external text" href="2018SpringTeam6.html" rel="nofollow">Spring 2018 Team 6's SoPaRe project</a>, Winter 2019 Team 1 decided to also build a semi-autonomous vehicle that could receive commands via voice recognition, but with the added functionality of Amazon's <a class="external text" href="https://en.wikipedia.org/wiki/Amazon_Alexa#Alexa_Voice_Service" rel="nofollow">Alexa</a> Voice Service.
+</p><p>Our GitHub repository can be found <a class="external text" href="https://github.com/mae148-teamone/WI19-AlexaCar" rel="nofollow">here</a>
+</p>
+<div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#The_Team"><span class="tocnumber">1</span> <span class="toctext">The Team</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Team_Members"><span class="tocnumber">1.1</span> <span class="toctext">Team Members</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Objectives"><span class="tocnumber">1.2</span> <span class="toctext">Objectives</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#The_Project:_Voice_Recognition_Using_Alexa_Developer_Console"><span class="tocnumber">2</span> <span class="toctext">The Project: Voice Recognition Using Alexa Developer Console</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Structure"><span class="tocnumber">2.1</span> <span class="toctext">Structure</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Donkey_in_Action"><span class="tocnumber">2.2</span> <span class="toctext">Donkey in Action</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Problems_encountered_and_lessons_learned"><span class="tocnumber">2.3</span> <span class="toctext">Problems encountered and lessons learned</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="The_Team">The Team</span></h2>
+<h3><span class="mw-headline" id="Team_Members">Team Members</span></h3>
+<ul><li> Michael Cornejo, 5th year Physics student</li>
+<li> Steven Cotton, 4th year Electrical Engineering student</li>
+<li> Jared Pham, Graduate student in Computer Engineering</li>
+<li> Laura Morejón Ramírez, 3rd year Aerospace Engineering student</li></ul>
+<h3><span class="mw-headline" id="Objectives">Objectives</span></h3>
+<p>Team 1 set two main goals:
+</p>
+<ol><li>Train a 1/10 scale vehicle that could reliably drive itself around two different pre-designed tracks:
+<ol><li> Indoor Track at SME</li>
+<li> Outdoor Track at EBU-II</li></ol></li>
+<li>Create a process by which the vehicle could receive practical commands through a voice recognition service with a complex and comprehensive library, such as Alexa Voice Service. Our main objective was to have the car listen for and follow commands such as stop/go, toggle between autonomous and manual modes, and turn a small LED light on and off. As this page shows, we were able to not only meet, but also exceed these goals significantly. </li></ol>
+<h2><span class="mw-headline" id="The_Project:_Voice_Recognition_Using_Alexa_Developer_Console">The Project: Voice Recognition Using Alexa Developer Console</span></h2>
+<p>Although our project idea was inspired by the <a class="external text" href="2018SpringTeam6.html" rel="nofollow">Spring 2018 Team 6</a>, we did some research and found an easier way to make our <a class="external text" href="http://www.donkeycar.com/" rel="nofollow">Donkey Car</a> successfully recognize commands: using Amazon's existing voice recognition software, we were able to organize our commands into categories, called <i>intents</i>, and give the program different potential commands, or <i>utterances</i> that a user may call. Additionally, we had to modify the vehicle's code to make it both receive and respond to said commands  in a timely manner. We explored and learned about "Flask-ASK", Alexa Skills Development library for python, to program files that would convert voice commands into actions the raspberry pi could identify.  
+</p>
+<h3><span class="mw-headline" id="Structure">Structure</span></h3>
+<p>Our skill was divided into several intents, each of which had then at least one slot with two possible values:
+</p>
+<ul><li> GPIO (General Purpose Input/Output) Intent: Turns lights on car on or off
+<ul><li> Status slot: on/off</li></ul></li>
+<li> Drive Intent: Starts and stops the car
+<ul><li> Drive status slot: go/stop</li>
+<li> Time slot: Length of action</li></ul></li>
+<li> Throttle Intent: Controls vehicle velocity while it drives autonomously 
+<ul><li> Modifier slot: Set the throttle to higher/lower</li>
+<li> Number slot: Sets the throttle to a specific number</li></ul></li>
+<li> Orientation Intent: Turns the car around
+<ul><li>  Orientation slot: left/right</li></ul></li>
+<li> Mode Intent: Switches between driving modes
+<ul><li> Mode slot: Switches modes between local (completely autonomous), local angle (user-controlled throttle, autonomous steering), and user (completely user-controlled)</li></ul></li>
+<li> Erase records Intent: Erases a number of records directly from the open tub in the Raspberry Pi
+<ul><li> Number slot: Any integer chosen by user</li>
+<li> "All" records could also be chosen, resulting in the deletion of all records in the current tub</li></ul></li>
+<li> Recording Intent: Starts and stops taking records
+<ul><li> Status slot: Turns recording on/off</li></ul></li>
+<li> Model Intent: Switches between trained models
+<ul><li> Model slot: Right now, we only have the indoor and outdoor models that the car has been trained for, but ideally one could upload many more models and be able to drive the vehicle in any track</li></ul></li></ul>
+<h3><span class="mw-headline" id="Donkey_in_Action">Donkey in Action</span></h3>
+<p>The following video shows our vehicle responding to a series of commands uttered by a user using their voice. The terminal window on the left shows the return messages from the program, while the window in the middle is the Alexa Interface in action. Finally, the car is on the right, and the LED light that turns on shows when each command is received. 
+</p><p><a class="external text" href="https://youtu.be/MYV9T8UpKjA" rel="nofollow">Please click here to watch video</a>
+</p>
+<h3><span class="mw-headline" id="Problems_encountered_and_lessons_learned">Problems encountered and lessons learned</span></h3>
+<ul><li> "Out of resources" issue when attempting to run the server from within Donkey itself. This might have been due to extra processing time since we added another threaded part to the code. </li>
+<li>Lag
+<ul><li>Mainly due to slow connection between Alexa Skills web interface and Raspberry Pi server. Might be solved by using a better wifi adapter on the RPi</li>
+<li>Also a small amount from writing to and reading from a text file</li>
+<li>To observe the time of command reception to command execution, we installed an LED light on our vehicle that would light up for a second after the command was read. We observed that usually (when commands were observable, such as turning around, or stopping) the action would start a short amount of time after the light had been turned on. From this, we learned that the main cause of lag was indeed the connection between the two</li></ul></li>
+<li> For future teams attempting to use the Alexa Skill Set, we would really recommend becoming familiar with their service, and taking as much advantage of it as possible! In retrospect, we wish we would have thought of more commands to give our DonkeyCar, because implementing them with Alexa is incredibly easy once one understands the interface. The good news is, it is very simple to add synonyms and new utterances, so broadening this project is definitely doable!</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20200814115132
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.006 seconds
+Real time usage: 0.008 seconds
+Preprocessor visited node count: 27/1000000
+Preprocessor generated node count: 32/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:316-0!*!*!!en!*!* and timestamp 20200814115132 and revision id 2270
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200814115132/https://guitar.ucsd.edu/maeece148/index.php/2019WinterTeam1">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>

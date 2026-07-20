@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2019SpringTeam5 — MAE 148 — Introduction to Autonomous Vehicles</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ MAE 148 — Introduction to Autonomous Vehicles</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>2019SpringTeam5</h1>
+      <div class="thumb tright"><div class="thumbinner" style="width:502px;"><a class="image" href="File:FinalCar.jpg.html"><img alt="" class="thumbimage" height="413" loading="lazy" src="https://web.archive.org/web/20200814114602im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/36/FinalCar.jpg/500px-FinalCar.jpg" width="500"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:FinalCar.jpg.html" title="Enlarge"></a></div>Final Car Design</div></div></div>
+<div class="toc" id="toc"><div class="toctitle" id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#The_Team"><span class="tocnumber">2</span> <span class="toctext">The Team</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Team_Members"><span class="tocnumber">2.1</span> <span class="toctext">Team Members</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#The_Project"><span class="tocnumber">3</span> <span class="toctext">The Project</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Car_Design"><span class="tocnumber">3.1</span> <span class="toctext">Car Design</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#Mounting_Plate"><span class="tocnumber">3.1.1</span> <span class="toctext">Mounting Plate</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="#Camera_Mount_1st_Iteration"><span class="tocnumber">3.1.2</span> <span class="toctext">Camera Mount 1st Iteration</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Camera_Mount_2nd_Iteration"><span class="tocnumber">3.1.3</span> <span class="toctext">Camera Mount 2nd Iteration</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Circuit_Schematic"><span class="tocnumber">3.1.4</span> <span class="toctext">Circuit Schematic</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="#Autonomous_Driving"><span class="tocnumber">3.2</span> <span class="toctext">Autonomous Driving</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#Indoor"><span class="tocnumber">3.2.1</span> <span class="toctext">Indoor</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Outdoor"><span class="tocnumber">3.2.2</span> <span class="toctext">Outdoor</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-13"><a href="#Object_Detection"><span class="tocnumber">3.3</span> <span class="toctext">Object Detection</span></a>
+<ul>
+<li class="toclevel-3 tocsection-14"><a href="#Time_of_Flight_Sensor"><span class="tocnumber">3.3.1</span> <span class="toctext">Time of Flight Sensor</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-15"><a href="#Problems_encountered_and_lessons_learned"><span class="tocnumber">3.4</span> <span class="toctext">Problems encountered and lessons learned</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Introduction">Introduction</span></h2>
+<p>We in team 5 worked on three main aspects of the autonomous car project:
+</p>
+<ul><li> Indoor autonomous driving</li>
+<li> Outdoor autonomous driving</li>
+<li> Object detection using Time of Flight sensors</li></ul>
+<h2><span class="mw-headline" id="The_Team">The Team</span></h2>
+<h3><span class="mw-headline" id="Team_Members">Team Members</span></h3>
+<ul><li> Marco Colón, 4th year Mechanical Engineer<br/></li>
+<li> Tommy Dang, 4th year Computer Engineer<br/></li>
+<li> Matthew Rice, 4th year Electrical Engineer<br/></li>
+<li> David White, 4th year Mechanical Engineer<br/></li></ul>
+<h2><span class="mw-headline" id="The_Project">The Project</span></h2>
+<h3><span class="mw-headline" id="Car_Design">Car Design</span></h3>
+<h4><span class="mw-headline" id="Mounting_Plate">Mounting Plate</span></h4>
+<div class="thumb tright"><div class="thumbinner" style="width:352px;"><a class="image" href="File:Car_frame.PNG.html"><img alt="" class="thumbimage" height="165" loading="lazy" src="https://web.archive.org/web/20200814114602im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/dd/Car_frame.PNG/350px-Car_frame.PNG" width="350"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Car_frame.PNG.html" title="Enlarge"></a></div>Mounting Plate</div></div></div>
+<p>When designing the mounting plate, the focus was on wire accessibility and attachment points for planned and unplanned accessories, such as the camera mount.
+<br/>
+The large cut in the center was to allow for power cables and other accessory cables to run through the center and avoid excessive overcrowding.
+</p>
+<h4><span class="mw-headline" id="Camera_Mount_1st_Iteration">Camera Mount 1st Iteration</span></h4>
+<p>This first camera mount was made to be able to adjust the camera angle at two different joints. The implementation of multiple moving joints allows for different angles and distances from the track. Having the ability the change the angles easily allowed for optimizing the best angle for developing our self-driving models.
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:Camera_mount_1.PNG.html"><img alt="" class="thumbimage" height="264" loading="lazy" src="https://web.archive.org/web/20200814114602im_/http://guitar.ucsd.edu/maeece148/images/thumb/0/08/Camera_mount_1.PNG/200px-Camera_mount_1.PNG" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Camera_mount_1.PNG.html" title="Enlarge"></a></div>Camera Mount 1st Iteration</div></div></div>
+<h4><span class="mw-headline" id="Camera_Mount_2nd_Iteration">Camera Mount 2nd Iteration</span></h4>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a class="image" href="File:Front_mount.PNG.html"><img alt="" class="thumbimage" height="211" loading="lazy" src="https://web.archive.org/web/20200814114602im_/http://guitar.ucsd.edu/maeece148/images/thumb/3/36/Front_mount.PNG/200px-Front_mount.PNG" width="200"/></a> <div class="thumbcaption"><div class="magnify"><a class="internal" href="File:Front_mount.PNG.html" title="Enlarge"></a></div>Camera Mount 2nd Iteration</div></div></div>
+<p>For the second iteration of the camera mount, the angle of the camera was fixed to give a better view of the track lines and mounts for three time of flight sensors were added.<br/>
+<br/>A 30 degree angle was determined to be the best position for the camera to have the best view of the track lines while retaining enough visual data ahead of the car for possible future visual object detection. 
+<br/>A 15 degree deviation for each time of flight sensor was used to give a field of view which encompassed the edges of the track in front of the car, while not being too wide as to cause non-obstructive objects to interfere with the data gathered by the sensors.
+</p>
+<h4><span class="mw-headline" id="Circuit_Schematic">Circuit Schematic</span></h4>
+<div class="MediaTransformError" style="width: 828px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<h3><span class="mw-headline" id="Autonomous_Driving">Autonomous Driving</span></h3>
+<h4><span class="mw-headline" id="Indoor">Indoor</span></h4>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/05jGogTK0Q0?" width="640"></iframe></div></div>
+<h4><span class="mw-headline" id="Outdoor">Outdoor</span></h4>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/38ozZw2t-t0?" width="640"></iframe></div></div>
+<h3><span class="mw-headline" id="Object_Detection">Object Detection</span></h3>
+<p>The goal of our extension project was to implement object detection in a cost-effective way using TOF sensors. We planned to add multiple TOF sensors to the front of our car and to use that data to cut the car's throttle if an object is close.
+</p><p>The TOF sensor we used was the VL53L1X by Pololu<a class="external autonumber" href="https://www.pololu.com/product/2490/specs" rel="nofollow">[1]</a>. In order to make use of the sensor on our raspberry pi, we used an open-source Python library on GitHub<a class="external autonumber" href="https://github.com/pimoroni/vl53l1x-python" rel="nofollow">[2]</a>.
+</p><p>One issue we encountered when trying to use this library was installing the packages necessary while working within the environment we created as instructed in the donkeycar document. We resolved this issue by adding code to /home/pi/env/lib/python3.5/site-packages/VL53L1X.py. Added at line 54:
+</p>
+<pre>
+try:
+    # workaround for virtualenv
+    from distutils.sysconfig import get_python_lib
+    _POSSIBLE_LIBRARY_LOCATIONS += [get_python_lib()] 
+except AttributeError:
+    pass
+</pre>
+<p>Once the library was installed, we created a part for the TOF sensor in a file called tofsensor.py, which we added to the donkeycar/parts folder with the other parts.
+</p><p><a class="image" href="File:Sp19Team5Code1.PNG.html" title="TOF Sensor Code 1"><img alt="TOF Sensor Code 1" height="325" loading="lazy" src="https://web.archive.org/web/20200814114602im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/d9/Sp19Team5Code1.PNG/400px-Sp19Team5Code1.PNG" width="400"/></a>
+<a class="image" href="File:Sp19Team5Code2.PNG.html" title="TOF Sensor Code 2"><img alt="TOF Sensor Code 2" height="221" loading="lazy" src="https://web.archive.org/web/20200814114602im_/http://guitar.ucsd.edu/maeece148/images/thumb/d/d6/Sp19Team5Code2.PNG/400px-Sp19Team5Code2.PNG" width="400"/></a>
+</p><p>We then added code to the manage.py file to create TOF sensor parts and use that data to make informed decisions about whether or not to stop the car. A problem we encountered was that the VL53L1X's I2C address always reset to 0x29 on startup. This is an issue since we intend to use multiple TOF sensors. Thankfully, the library we provided functions to change the address. For one of the sensors, we connect its shutdown pin to ground. We make a part for other TOF sensor and change its address. Then, when we remove the ground connection from the shutdown pin of the first sensor, it will be the only sensor using the I2C address 0x29. Since the TOF sensors now send their data to different addresses, we were able to use both of the sensors to make informed decisions.
+</p><p><a class="image" href="File:Sp19Team5Code3.PNG.html" title="Initializing TOF Sensors"><img alt="Initializing TOF Sensors" height="111" loading="lazy" src="https://web.archive.org/web/20200814114602im_/http://guitar.ucsd.edu/maeece148/images/thumb/a/a4/Sp19Team5Code3.PNG/400px-Sp19Team5Code3.PNG" width="400"/></a>
+</p><p>The library we used allowed us to collect data in millimeters. We played around with different stopping values until we found one that worked reasonably well.
+</p><p><a class="image" href="File:Sp19Team5Code4.PNG.html" title="Using data to control car"><img alt="Using data to control car" height="342" loading="lazy" src="https://web.archive.org/web/20200814114602im_/http://guitar.ucsd.edu/maeece148/images/thumb/b/b1/Sp19Team5Code4.PNG/400px-Sp19Team5Code4.PNG" width="400"/></a>
+</p>
+<h4><span class="mw-headline" id="Time_of_Flight_Sensor">Time of Flight Sensor</span></h4>
+<div class="embedvideo ev_center autoResize" style=" width: 646px;"><div class="embedvideowrap" style="width: 640px;"><iframe allowfullscreen="true" frameborder="0" height="360" src="//www.youtube.com/embed/6VTGuGRDYBY?" width="640"></iframe></div></div>
+<h3><span class="mw-headline" id="Problems_encountered_and_lessons_learned">Problems encountered and lessons learned</span></h3>
+<p>During setup and development of our car, there were major failings in most of our electronic components which hindered our progress significantly. 
+<br/>
+We found that our data collection rate for the time of flight sensors was too low, so we had to increase it from 20 Hz to 40 Hz. The low collection rate caused our car to not sense objects until right before or when it ran into them. The change helped to make our obstacle avoidance system work more consistently and more preemptively. Afterward, our car was able to detect the incoming object and stop well before it, however, this was only true for driving slow. 
+<br/>
+Additionally, when attempting to use 3 time of flight sensors, we ran into an I2C addressing problem in our Python library that caused the first and last time of flight sensors to be connected to work but would deaddress the second sensor, and make it unusable by the Raspberry Pi. We think this may be an issue with the library itself, as multiple people have had issues with changing the address using this library according to the issues tab on the project github. Finally, in the future, instead of removing shutdown pins on startup, we could programmatically change the voltage to them by connecting them to a pin on the raspberry pi.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20200814114602
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.013 seconds
+Real time usage: 0.015 seconds
+Preprocessor visited node count: 80/1000000
+Preprocessor generated node count: 144/1000000
+Post‐expand include size: 78/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_maeece148:pcache:idhash:464-0!*!*!!en!5!* and timestamp 20200814114602 and revision id 3266
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20200814114602/https://guitar.ucsd.edu/maeece148/index.php/2019SpringTeam5">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>
