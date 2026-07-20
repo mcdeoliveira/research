@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Digital Control Systems — COSMOS Cluster 7</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ COSMOS Cluster 7</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>Digital Control Systems</h1>
+      <div class="toc" id="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Understanding_the_DC_Motor"><span class="tocnumber">1</span> <span class="toctext">Understanding the DC Motor</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Test_1:_How_does_a_DC_motor_respond_to_a_voltage.3F"><span class="tocnumber">1.1</span> <span class="toctext">Test 1: How does a DC motor respond to a voltage?</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Discussion"><span class="tocnumber">1.2</span> <span class="toctext">Discussion</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Test_2:_The_static_characteristic_of_the_DC_motor"><span class="tocnumber">1.3</span> <span class="toctext">Test 2: The static characteristic of the DC motor</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Discussion_2"><span class="tocnumber">1.4</span> <span class="toctext">Discussion</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#A_first_encounter_with_feedback"><span class="tocnumber">2</span> <span class="toctext">A first encounter with feedback</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Test_3:_Can_you_regulate_velocity.3F"><span class="tocnumber">2.1</span> <span class="toctext">Test 3: Can you regulate velocity?</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Discussion_3"><span class="tocnumber">2.2</span> <span class="toctext">Discussion</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Test_4:_Closing_the_loop"><span class="tocnumber">2.3</span> <span class="toctext">Test 4: Closing the loop</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Discussion_4"><span class="tocnumber">2.4</span> <span class="toctext">Discussion</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Motor_Dynamics_and_Gains"><span class="tocnumber">2.5</span> <span class="toctext">Motor Dynamics and Gains</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Test_5:_The_dynamic_characteristic_of_the_DC_motor"><span class="tocnumber">2.6</span> <span class="toctext">Test 5: The dynamic characteristic of the DC motor</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Discussion_5"><span class="tocnumber">2.7</span> <span class="toctext">Discussion</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Test_6:_The_dynamic_characteristic_of_the_DC_motor_in_closed_loop"><span class="tocnumber">2.8</span> <span class="toctext">Test 6: The dynamic characteristic of the DC motor in closed loop</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Discussion_6"><span class="tocnumber">2.9</span> <span class="toctext">Discussion</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Test_7.2A:_Can_you_beat_the_motor_time-constant.3F"><span class="tocnumber">2.10</span> <span class="toctext">Test 7*: Can you beat the motor time-constant?</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Test_8.2A:_Setting_a_zero_target"><span class="tocnumber">2.11</span> <span class="toctext">Test 8*: Setting a zero target</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-18"><a href="#Tracking_a_Constant_Target"><span class="tocnumber">3</span> <span class="toctext">Tracking a Constant Target</span></a>
+<ul>
+<li class="toclevel-2 tocsection-19"><a href="#Test_9:_Integral_control"><span class="tocnumber">3.1</span> <span class="toctext">Test 9: Integral control</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Discussion_7"><span class="tocnumber">3.2</span> <span class="toctext">Discussion</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#Test_10:_Your_very_own_cruise_control"><span class="tocnumber">3.3</span> <span class="toctext">Test 10: Your very own cruise control</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#Discussion_8"><span class="tocnumber">3.4</span> <span class="toctext">Discussion</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-23"><a href="#Position_Control"><span class="tocnumber">4</span> <span class="toctext">Position Control</span></a>
+<ul>
+<li class="toclevel-2 tocsection-24"><a href="#Test_11:_Can_you_regulate_position.3F"><span class="tocnumber">4.1</span> <span class="toctext">Test 11: Can you regulate position?</span></a></li>
+<li class="toclevel-2 tocsection-25"><a href="#Discussion_9"><span class="tocnumber">4.2</span> <span class="toctext">Discussion</span></a></li>
+<li class="toclevel-2 tocsection-26"><a href="#Test_12:_Closing_the_loop"><span class="tocnumber">4.3</span> <span class="toctext">Test 12: Closing the loop</span></a></li>
+<li class="toclevel-2 tocsection-27"><a href="#Discussion_10"><span class="tocnumber">4.4</span> <span class="toctext">Discussion</span></a></li>
+<li class="toclevel-2 tocsection-28"><a href="#Test_13.2A:_Instability"><span class="tocnumber">4.5</span> <span class="toctext">Test 13*: Instability</span></a></li>
+<li class="toclevel-2 tocsection-29"><a href="#Discussion_11"><span class="tocnumber">4.6</span> <span class="toctext">Discussion</span></a></li>
+<li class="toclevel-2 tocsection-30"><a href="#Test_14:_Servo_Control"><span class="tocnumber">4.7</span> <span class="toctext">Test 14: Servo Control</span></a></li>
+<li class="toclevel-2 tocsection-31"><a href="#Discussion_12"><span class="tocnumber">4.8</span> <span class="toctext">Discussion</span></a></li>
+<li class="toclevel-2 tocsection-32"><a href="#Test_15:_Moving_a_load"><span class="tocnumber">4.9</span> <span class="toctext">Test 15: Moving a load</span></a></li>
+<li class="toclevel-2 tocsection-33"><a href="#Discussion_13"><span class="tocnumber">4.10</span> <span class="toctext">Discussion</span></a></li>
+<li class="toclevel-2 tocsection-34"><a href="#Test_16.2A:_Integral_control.3F"><span class="tocnumber">4.11</span> <span class="toctext">Test 16*: Integral control?</span></a></li>
+<li class="toclevel-2 tocsection-35"><a href="#Discussion_14"><span class="tocnumber">4.12</span> <span class="toctext">Discussion</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>In order to perform the tests in this note you should first connect the processor board to your computer using the USB cable and run the ARDUINO program. Tests marked with an asterisk (&lt;math&gt;*&lt;/math&gt;) are optional.
+</p>
+<h1><span class="mw-headline" id="Understanding_the_DC_Motor">Understanding the DC Motor</span></h1>
+<h2><span class="mw-headline" id="Test_1:_How_does_a_DC_motor_respond_to_a_voltage.3F">Test 1: How does a DC motor respond to a voltage?</span></h2>
+<p>In this test you will learn how a DC motor works. We will first let the motor run freely. Make sure the cables on the pulley are taped to the pulley so that the pulley can freely rotate.
+</p>
+<ol style="list-style-type: lower-alpha;">
+<li><p>On the ARDUINO program, select <i>Control</i> to be on the on the <i>Open Loop</i> position. Click the <i>Start Loop</i> button.</p></li>
+<li><p>Slowly move the slider labelled <i>Target</i> and observe the results on the motor. Click the <i>STOP</i> button when you’re finished.</p></li>
+<li><p>Position the potentiometer on your device pointing up and clear the check box on <i>Target</i>. Click the <i>Start Loop</i> button.</p></li>
+<li><p>Slowly move the potentiometer on your device and observe the results on the motor. Click the <i>STOP</i> button when you’re finished.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion">Discussion</span></h2>
+<ol><li> Which quantity in the measurement box is directly controlled by the target slider and potentiometer?</li>
+<li> The <i>Control</i> measurement indicates what percentage of a maximum available voltage is applied on the motor. Based on your experience with the device so far, how does the motor respond to changes in the applied voltage?</li>
+<li> How does the motor respond to small control voltages? Can you explain it?</li>
+<li> How does the motor respond to large control voltages? Can you explain it?</li></ol>
+<h2><span class="mw-headline" id="Test_2:_The_static_characteristic_of_the_DC_motor">Test 2: The static characteristic of the DC motor</span></h2>
+<p>You will now perform some experiments to characterize the static behavior of the DC motor. Instead of performing the experiment by hand, you will use a <i>program</i> that will vary the voltage on the motor and then collect and analyze the results.
+</p>
+<ol style="list-style-type: lower-alpha;">
+<li><p>Click the button <i>Run...</i> and load the program <code>IncrementalStepsOpenLoop.cmd</code>. Wait until the program finishes running.</p></li>
+<li><p>Click the button <i>Plot...</i> and visualize the measurements collected by the program.</p></li>
+<li><p>Click the button <i>Spreadsheet...</i>. Clear the check box on <i>only measurements</i> to reveal the data you just collected. Import the data into <code>Excel</code>.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_2">Discussion</span></h2>
+<ol><li> Use Excel to generate a scatter plot of <i>Control</i> versus <i>Velocity</i>.</li>
+<li> Discuss the results with the other groups. Is the response of the motor linear? How does the motor responds to small voltages? How does the motor responds to large voltages?</li></ol>
+<h1><span class="mw-headline" id="A_first_encounter_with_feedback">A first encounter with feedback</span></h1>
+<h2><span class="mw-headline" id="Test_3:_Can_you_regulate_velocity.3F">Test 3: Can you regulate velocity?</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>On the ARDUINO program, select <i>Control</i> to be on the on the <i>Open Loop</i> position.</p></li>
+<li><p>Position the potentiometer on your device pointing up and clear the check box on <i>Target</i>. Make sure the box <i>Filter velocity</i> is checked. Click the <i>Start Loop</i> button.</p></li>
+<li><p>Position the potentiometer so that the motor reaches a velocity of &lt;math&gt;4000&lt;/math&gt; counts/s. Click the <i>Reset</i> button.</p></li>
+<li><p>Have a friend touch the top of the big pulley with his or her finger and apply a <b>gentle</b> force trying to stop the motor. <b>Make sure the force does not slow down too much or completely stop the motor, as this may damage the motor</b>. Have your friend remove the finger. Note what happens with the velocity.</p></li>
+<li><p>Click the <i>STOP</i> button and export the data to Excel using the <i>Spreadsheet</i>. Click the button <i>Plot...</i> to better visualize the experiment.</p></li>
+<li><p>Repeat steps (a-e) but this time adjust the potentiometer as your friend apply the force so as to try to keep the velocity constant at &lt;math&gt;4000&lt;/math&gt; counts/s.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_3">Discussion</span></h2>
+<ol><li> What happened to the velocity as your friend touched the pulley?</li>
+<li> Use the data you exported to Excel to compute the average and standard deviation of the velocity. Compute the average and standard deviation of the control voltage.</li>
+<li> Is the average close to &lt;math&gt;4000&lt;/math&gt; counts/s? Compare the variance of the velocity and the control control voltage for a run in which you were adjusting the potentiometer and a run in which you were not adjusting the potentiometer.</li>
+<li> Explain in words what you did in order to regulate the voltage at &lt;math&gt;4000&lt;/math&gt; counts/s.</li>
+<li> Can you formulate your strategy as an algorithm?</li></ol>
+<h2><span class="mw-headline" id="Test_4:_Closing_the_loop">Test 4: Closing the loop</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>On the ARDUINO program, select <i>Control</i> to be on the on the <i>Velocity</i> position. Press the <i>Reset</i> button, select a <b>proportional gain of &lt;math&gt;K = 0.25&lt;/math&gt;</b> and <b>zero the integral and the derivative gains</b>.</p></li>
+<li><p>Position the potentiometer on your device pointing up and clear the check box on <i>Target</i>. Click the <i>Start Loop</i> button.</p></li>
+<li><p>Position the potentiometer so that the motor reaches a velocity of &lt;math&gt;4000&lt;/math&gt; counts/s. Click the <i>Reset</i> button.</p></li>
+<li><p>Have a friend touch the top of the big pulley with his or her finger and apply a <b>gentle</b> force trying to stop the motor. <b>Make sure the force does not slow down too much or completely stop the motor, as this may damage the motor</b>. Have your friend remove the finger. Note what happens with the velocity <b>and the control voltage</b>.</p></li>
+<li><p>Click the <i>STOP</i> button export the data to Excel using the <i>Spreadsheet</i>.</p></li>
+<li><p>Repeat steps (a-e) for &lt;math&gt;K = 0.5&lt;/math&gt; and &lt;math&gt;K = 1&lt;/math&gt;.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_4">Discussion</span></h2>
+<ol><li> What happened to the velocity as your friend touched the pulley?</li>
+<li> What happened to the control voltage as your friend touched the pulley?</li>
+<li> Use the data you exported to Excel to compute the average and standard deviation of the velocity. Compute the average and standard deviation of the control voltage.</li>
+<li> Is the average close to &lt;math&gt;4000&lt;/math&gt; counts/s? Compare the variance of the velocity and the control control voltage for a run in which you were adjusting the potentiometer and a run in which you were not adjusting the potentiometer.</li></ol>
+<h2><span class="mw-headline" id="Motor_Dynamics_and_Gains">Motor Dynamics and Gains</span></h2>
+<h2><span class="mw-headline" id="Test_5:_The_dynamic_characteristic_of_the_DC_motor">Test 5: The dynamic characteristic of the DC motor</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>On the ARDUINO program, select <i>Control</i> to be on the on the <i>Open Loop</i> position.</p></li>
+<li><p>Click the button <i>Run...</i> and load the program <code>SingleStep7680.cmd</code>. Wait until the program finishes running.</p></li>
+<li><p>Click the button <i>Plot...</i> to visualize the measurements collected by the program.</p></li>
+<li><p>Click the button <i>Spreadsheet...</i>. Clear the check box on <i>only measurements</i> to visualize the data you just collected. Import the data into <code>Excel</code>.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_5">Discussion</span></h2>
+<ol><li> Use Excel to generate a scatter plot of <i>Velocity</i> versus <i>Time</i>.</li>
+<li> Compute the average steady-state value of the velocity. Use the average steady-state value of the velocity to compute the approximate motor <i>open loop gain</i> (&lt;math&gt;G&lt;/math&gt;).</li>
+<li> Compute how many seconds are needed for the motor to reach &lt;math&gt;63&lt;/math&gt; % of the steady state value. This is the motor’s <i>open-loop time-constant</i> (&lt;math&gt;\tau&lt;/math&gt;).</li>
+<li> Can you think of other phenomena that have a similar dynamic characteristic? What about different time-constants? Name a dynamic phenomenon that has a smaller time-constant. Name a dynamic phenomenon that has a much larger time-constant.</li></ol>
+<h2><span class="mw-headline" id="Test_6:_The_dynamic_characteristic_of_the_DC_motor_in_closed_loop">Test 6: The dynamic characteristic of the DC motor in closed loop</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>On the ARDUINO program, select <i>Control</i> to be on the on the <i>Velocity</i> position. Press the <i>Reset</i> button, select a <b>proportional gain of &lt;math&gt;K = 0.25&lt;/math&gt;</b> and <b>zero the integral and the derivative gains</b>.</p></li>
+<li><p>Click the button <i>Run...</i> and load the program <code>SingleStep10240.cmd</code>. Wait until the program finishes running.</p></li>
+<li><p>Click the button <i>Plot...</i> to visualize the measurements collected by the program.</p></li>
+<li><p>Click the button <i>Spreadsheet...</i>. Clear the check box on <i>only measurements</i> to visualize the data you just collected. Import the data into <code>Excel</code>.</p></li>
+<li><p>Repeat steps (a-d) for &lt;math&gt;K = 0.5&lt;/math&gt; and &lt;math&gt;K = 1&lt;/math&gt;.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_6">Discussion</span></h2>
+<ol><li> Use Excel to generate a scatter plot of <i>Velocity</i> versus <i>Time</i>.</li>
+<li> Compute the average steady-state value of the velocity. Divide the target velocity by the average steady-state value of the velocity to compute the approximate motor <i>closed-loop gain</i> (&lt;math&gt;H&lt;/math&gt;).</li>
+<li> Compute how many seconds are needed for the motor to reach &lt;math&gt;63&lt;/math&gt; % of the steady state value. This is the motor’s <i>closed-loop time-constant</i> (&lt;math&gt;\rho&lt;/math&gt;).</li>
+<li> Compare those constants with the open-loop motor constants. Is it faster? Is it slower? Can you explain how the controller did it by looking at the control plot?</li>
+<li> After you run the program, locate on your ARDUINO program the values of the controller proportional gain (&lt;math&gt;K&lt;/math&gt;) and the motor gain (&lt;math&gt;M&lt;/math&gt;).</li>
+<li> Compute the quantities &lt;math&gt;\begin{aligned}</li></ol>
+<pre>   &amp;\frac{K G}{M + K G} &amp;
+   &amp;\frac{M \tau}{M + K G}
+ \end{aligned}&lt;/math&gt; where &lt;math&gt;G&lt;/math&gt; is the open loop gain and &lt;math&gt;\tau&lt;/math&gt; is the open loop time-constant. Compare these quantities with the closed loop gain &lt;math&gt;H&lt;/math&gt; and the closed loop time constant &lt;math&gt;\rho&lt;/math&gt;.
+</pre>
+<ol><li> How did the choice of gain affected the closed loop gain and time-constant? What value of &lt;math&gt;K&lt;/math&gt; would make the closed loop gain &lt;math&gt;\rightarrow 1&lt;/math&gt;? What the corresponding value of the closed loop time-constant &lt;math&gt;\rho&lt;/math&gt; be? Do you think it is possible to implement such a gain?</li>
+<li> Do you think that the other phenomena you thought have a similar dynamic characteristic can be modified through feedback as you did with the motor? What would you need to be able to implement a feedback loop?</li></ol>
+<h2><span class="mw-headline" id="Test_7.2A:_Can_you_beat_the_motor_time-constant.3F">Test 7*: Can you beat the motor time-constant?</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>On the ARDUINO program, select <i>Control</i> to be on the on the <i>Open Loop</i> position.</p></li>
+<li><p>Position the potentiometer on your device pointing up and clear the check box on <i>Target</i>. Click the <i>Start Loop</i> button.</p></li>
+<li><p>Experiment with the potentiometer and “learn” where the potentiometer has to be positioned for the motor to experience 50 % of the control voltage.</p></li>
+<li><p>Move the potentiometer back to the up position (0 % control voltage) and press the <i>Reset</i> button.</p></li>
+<li><p>Move the potentiometer so as to make the control voltage reach and stay at &lt;math&gt;50&lt;/math&gt; %.</p></li>
+<li><p>Look at the plot and the spreadsheet to calculate <i>your</i> time-constant. Can you make it faster than the time-constant you computed in the previous tests?</p></li></ol>
+<h2><span class="mw-headline" id="Test_8.2A:_Setting_a_zero_target">Test 8*: Setting a zero target</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>On the ARDUINO program, select <i>Control</i> to be on the on the <i>Velocity</i> position. Press the <i>Reset</i> button, select a <b>proportional gain of &lt;math&gt;K = 0.25&lt;/math&gt;</b> and <b>zero the integral and the derivative gains</b>.</p></li>
+<li><p>Set the <i>Target</i> to be equal to &lt;math&gt;0&lt;/math&gt;. Click the <i>Start Loop</i> button.</p></li>
+<li><p>Try to move the big pulley by applying a <b>gentle</b> force. <b>Make sure the force is enough to move the motor</b>. Look at the plots to see what happened to the velocity and the control voltage.</p></li>
+<li><p>Repeat steps (a-c) for &lt;math&gt;K = 0.5&lt;/math&gt; and &lt;math&gt;K = 1&lt;/math&gt;.</p></li></ol>
+<h1><span class="mw-headline" id="Tracking_a_Constant_Target">Tracking a Constant Target</span></h1>
+<h2><span class="mw-headline" id="Test_9:_Integral_control">Test 9: Integral control</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>On the ARDUINO program, select <i>Control</i> to be on the on the <i>Velocity</i> position. Press the <i>Reset</i> button, select a <b>proportional gain of &lt;math&gt;K = 0.5&lt;/math&gt;</b> a <b>integral gain of &lt;math&gt;I = 0.1&lt;/math&gt;</b> and <b>a zero derivative gain</b>.</p></li>
+<li><p>Click the button <i>Run...</i> and load the program <code>SingleStep7680.cmd</code>. Wait until the program finishes running.</p></li>
+<li><p>Click the button <i>Plot...</i> to visualize the measurements collected by the program.</p></li>
+<li><p>Click the button <i>Spreadsheet...</i>. Clear the check box on <i>only measurements</i> to visualize the data you just collected. Import the data into <code>Excel</code>.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_7">Discussion</span></h2>
+<ol><li> Use Excel to generate a scatter plot of <i>Velocity</i> versus <i>Time</i>.</li>
+<li> Compute the average steady-state value of the velocity. Divide the target velocity by the average steady-state value of the velocity to compute the approximate motor <i>closed-loop gain</i> (&lt;math&gt;H&lt;/math&gt;).</li>
+<li> Compute how many seconds are needed for the motor to reach &lt;math&gt;63&lt;/math&gt; % of the steady state value. This is the motor’s <i>closed-loop time-constant</i> (&lt;math&gt;\rho&lt;/math&gt;).</li>
+<li> Can you explain how integral control works?</li></ol>
+<h2><span class="mw-headline" id="Test_10:_Your_very_own_cruise_control">Test 10: Your very own cruise control</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>On the ARDUINO program, select <i>Control</i> to be on the on the <i>Velocity</i> position. Press the <i>Reset</i> button, select a <b>proportional gain of &lt;math&gt;K = 0.5&lt;/math&gt;</b> a <b>integral gain of &lt;math&gt;I = 0.1&lt;/math&gt;</b> and <b>a zero derivative gain</b>.</p></li>
+<li><p>Position the potentiometer on your device pointing up and clear the check box on <i>Target</i>. Click the <i>Start Loop</i> button.</p></li>
+<li><p>Position the potentiometer so that the target velocity is about &lt;math&gt;4000&lt;/math&gt; counts/s. Click the <i>Reset</i> button.</p></li>
+<li><p>Have a friend touch the top of the big pulley with his or her finger and apply a <b>gentle</b> force trying to stop the motor. <b>Make sure the force does not slow down too much or completely stop the motor, as this may damage the motor</b>. Have your friend remove the finger. You may also want to try to accelerate the pulley. Note what happens with the velocity <b>and the control voltage</b>.</p></li>
+<li><p>Click the <i>STOP</i> button export the data to Excel using the <i>Spreadsheet</i>.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_8">Discussion</span></h2>
+<ol><li> What happened to the velocity as your friend touched the pulley?</li>
+<li> What happened to the control voltage as your friend touched the pulley?</li>
+<li> Can you name processes in your body that are regulated just like that?</li></ol>
+<h1><span class="mw-headline" id="Position_Control">Position Control</span></h1>
+<h2><span class="mw-headline" id="Test_11:_Can_you_regulate_position.3F">Test 11: Can you regulate position?</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>On the ARDUINO program, select <i>Control</i> to be on the on the <i>Open Loop</i> position.</p></li>
+<li><p>Position the potentiometer on your device pointing up and clear the check box on <i>Target</i>. Click the <i>Reset</i> button then the <i>Start Loop</i> button.</p></li>
+<li><p>Work with the potentiometer so that the motor position reaches &lt;math&gt;4000&lt;/math&gt; counts.</p></li>
+<li><p>Click the <i>STOP</i> button and export the data to Excel using the <i>Spreadsheet</i>.</p></li>
+<li><p>Click the button <i>Plot...</i> to better visualize the experiment.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_9">Discussion</span></h2>
+<ol><li> Explain in words what you did in order to make the position reach &lt;math&gt;4000&lt;/math&gt; counts.</li>
+<li> Can you formulate your strategy as an algorithm?</li></ol>
+<h2><span class="mw-headline" id="Test_12:_Closing_the_loop">Test 12: Closing the loop</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>On the ARDUINO program, select <i>Control</i> to be on the on the <i>Position</i> position. Press the <i>Reset</i> button, select a <b>proportional gain of &lt;math&gt;K = 0.1&lt;/math&gt;</b> and <b>zero the integral and the derivative gains</b>.</p></li>
+<li><p>Set the check box on <i>Target</i> and move the slider to &lt;math&gt;3000&lt;/math&gt; counts. Click the <i>Reset</i> button then the <i>Start Loop</i> button.</p></li>
+<li><p>Wait until the pulley is no longer moving then click the <i>STOP</i> button and export the data to Excel using the <i>Spreadsheet</i>.</p></li>
+<li><p>Repeat steps (a-c) for &lt;math&gt;K = 0.2&lt;/math&gt;, &lt;math&gt;K = 0.5&lt;/math&gt;.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_10">Discussion</span></h2>
+<ol><li> Use Excel to generate a scatter plot of <i>Velocity</i> versus <i>Time</i>.</li>
+<li> How different is this type of response to the one you observed when controlling velocity?</li>
+<li> Compute the average steady-state value of the position. Divide the target position by the average steady-state value of the position to compute the approximate motor <i>closed-loop gain</i> (&lt;math&gt;H&lt;/math&gt;).</li>
+<li> Compute how many seconds are needed for the motor to go from &lt;math&gt;10</li></ol>
+<pre> \%&lt;/math&gt; of the target position to &lt;math&gt;90 \%&lt;/math&gt;. This is the motor’s <i>closed-loop rise-time</i> (&lt;math&gt;\sigma&lt;/math&gt;).
+</pre>
+<ol><li> Can you explain how we obtained a unitary gain without integral control?</li></ol>
+<h2><span class="mw-headline" id="Test_13.2A:_Instability">Test 13*: Instability</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>Repeat the experiment in Test 11 for a value of &lt;math&gt;K = 1&lt;/math&gt;. Be prepared to interrupt the test in case the motor never stops.</p></li>
+<li><p>Repeat the experiment in Test 11 for a value of &lt;math&gt;K = 0.5&lt;/math&gt; but with a period of &lt;math&gt;100&lt;/math&gt; ms. Be prepared to interrupt the test in case the motor never stops.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_11">Discussion</span></h2>
+<ol><li> How do you explain the observed behaviors?</li>
+<li> Can you think of other systems that can have such behavior?</li></ol>
+<h2><span class="mw-headline" id="Test_14:_Servo_Control">Test 14: Servo Control</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>On the ARDUINO program, select <i>Control</i> to be on the on the <i>Position</i> position. Press the <i>Reset</i> button, select a <b>proportional gain of &lt;math&gt;K = 0.1&lt;/math&gt;</b> and <b>zero the integral and the derivative gains</b>.</p></li>
+<li><p>Clear the check box on <i>Target</i> and move the slider all the way to the left (&lt;math&gt;0&lt;/math&gt; counts). Click the <i>Reset</i> button then the <i>Start Loop</i> button.</p></li>
+<li><p>Now freely move the potentiometer and observe the changes in position.</p></li>
+<li><p>Click <i>Plot...</i> to visualize the experiment.</p></li>
+<li><p>Repeat steps (a-d) for &lt;math&gt;K = 0.2&lt;/math&gt;, &lt;math&gt;K = 0.5&lt;/math&gt;.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_12">Discussion</span></h2>
+<ol><li> How does the gain affect the response of the system to changes in the potentiometer? Which setup is the most “comfortable”? Which setup is the “faster”?</li>
+<li> Can you think of machines/vehicles that operate in a similar way?</li></ol>
+<h2><span class="mw-headline" id="Test_15:_Moving_a_load">Test 15: Moving a load</span></h2>
+<p>Make sure this is the last experiment you do. For this experiment you will need to release the fishing line and its hook from the large pulley.
+</p>
+<ol style="list-style-type: lower-alpha;">
+<li><p>On the ARDUINO program, select <i>Control</i> to be on the on the <i>Position</i> position. Press the <i>Reset</i> button, select a <b>proportional gain of &lt;math&gt;K = 0.2&lt;/math&gt;</b> and <b>zero the integral and the derivative gains</b>.</p></li>
+<li><p>Attach a bag of marbles with approximately &lt;math&gt;0.5&lt;/math&gt; Kg (the load) to the string hook. Make sure the hook is position as close as possible to the pulley and click the <i>Reset</i> button. If needed, manually wind up the fishing line.</p></li>
+<li><p>Set the check box on <i>Target</i> and move the slider to &lt;math&gt;3000&lt;/math&gt; counts then click the <i>Start Loop</i> button.</p></li>
+<li><p>Wait until the pulley is no longer moving then click the <i>STOP</i> button and export the data to Excel using the <i>Spreadsheet</i>.</p></li>
+<li><p>Repeat steps (a-d) for &lt;math&gt;K = 0.5&lt;/math&gt;, &lt;math&gt;K = 1&lt;/math&gt;.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_13">Discussion</span></h2>
+<ol><li> How does the load affect the behavior of the system?</li>
+<li> For the system to perform as well as in the unloaded case, how do you have to modify the control gain?</li></ol>
+<h2><span class="mw-headline" id="Test_16.2A:_Integral_control.3F">Test 16*: Integral control?</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>Repeat the experiment in Test 13 but this time make sure that you put enough marbles in the bag so that the motor starts moving when the controller is off. Be careful before you turn off the controller as the bag of marbles will simply drop.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_14">Discussion</span></h2>
+<ol><li> How do you explain the observed behavior?</li>
+<li> Can integral control fix the problem once again?</li></ol>
+<!-- 
+NewPP limit report
+Cached time: 20160731012222
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.036 seconds
+Real time usage: 0.036 seconds
+Preprocessor visited node count: 155/1000000
+Preprocessor generated node count: 176/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+<!-- Saved in parser cache with key wiki:pcache:idhash:8-0!*!*!!en!*!* and timestamp 20160731012222 and revision id 21
+ -->
+
+      <hr/>
+      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20160731012358/http://guitar.ucsd.edu:80/cosmos7/index.php/Digital_Control_Systems">Internet Archive</a>.</p>
+    </main>
+  </body>
+</html>
