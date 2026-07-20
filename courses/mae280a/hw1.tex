@@ -1,0 +1,76 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsfonts}
+\usepackage{enumerate}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\begin{center}
+  {\Large MAE 280A -- Homework \#1} \\[1em]
+  {\large Maur\'icio de Oliveira} \\[1ex]
+  Fall 2014
+\end{center}
+
+\begin{enumerate}[1.]
+
+\item Is the system
+  \begin{align}
+    \label{eq:ss}
+    \begin{aligned}
+      \dot{x}(t) &= A(t) x(t) + B(t) u(t), && \qquad x(t_0) = x_0 \\
+      y(t) &= C(t) x(t) + D(t) u(t), && \qquad t \geq t_0
+    \end{aligned}
+  \end{align}
+  linear? Do you need any assumptions on the model, i.e. the $A(t)$,
+  $B(t)$, $C(t)$, $D(t)$ matrices, or otherwise to reach your
+  conclusion?
+
+\item Can you solve the linear differential equation
+  \begin{align*}
+    \dot{x}(t) &= \frac{x(t)}{1 - t}, \qquad x(t_0) = x_0, \qquad
+    t \geq t_0
+  \end{align*}
+  What happens around $t = 1$?
+
+\item Can you solve the non-linear differential equation
+  \begin{align*}
+    \dot{y}(t) &= \frac{\sin(2 y(t))}{2(1 - t)}, \qquad y(t_0) = y_0, \qquad 
+    t \geq t_0
+  \end{align*}
+  What happens around $t = 1$?
+
+\item Show that if $x(t)$ and $y(t)$ are such that
+  \begin{align*}
+    \begin{aligned}
+      \dot{x}(t) &= \frac{x(t)}{1 - t}, && \qquad x(t_0) = x_0, \\
+      y(t) &= \arctan(x(t)), && \qquad t \geq t_0
+    \end{aligned}
+  \end{align*}
+  then $x(t)$ and $y(t)$ solve the differential equations in problems
+  2. and 3. Is this system linear? Is it time-invariant?
+
+\item Consider systems that process the input as follows:
+  \begin{align*}
+    L_1(u(t)) &= \int_{t_0}^t u(\tau) \, d\tau \\
+    L_2(u(t)) &= \frac{1}{t - t_0} \int_{t_0}^t u(\tau) \, d\tau \\
+    L_3(u(t)) &= \frac{1}{\delta} \int_{t - \delta}^t u(\tau) \, d\tau,
+    \qquad \delta > 0
+  \end{align*}
+  where $t \geq t_0$. For each system $L_i$, $i = 1, 2, 3$, answer
+  the following questions:
+  \begin{enumerate}[(a)]
+    \item Is the system linear?
+    \item Is the system time-invariant?
+    \item What does the system do to the input $u(t)$?
+    \item Find a representation in state-space form~\eqref{eq:ss}. 
+    \item What is the dimension of the state?
+    \item What is the impact of the initial state in the solution? 
+  \end{enumerate}
+  
+
+\end{enumerate}
+
+\end{document}
+

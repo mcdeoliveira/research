@@ -1,0 +1,414 @@
+<html>
+
+  <head>
+    <title>
+      MAE 9 - Accessing your account
+    </title>
+  </head>
+
+  <style TYPE="text/css">
+    td#dia {
+      padding-right: 10px;
+      text-align: right;
+      font-weight: bold;
+     }
+    td#evento {
+      text-align: left;
+     }
+    h1 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    h2 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    h3 {
+      color: #0080f0;
+      font-family: sans-serif;
+    }
+    h4 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    p {margin-left: 1cm}
+    code {margin-left: 1cm}
+    ul {
+      list-style: circle;
+    }
+  </style>
+
+  <body>
+
+    <div class="content">
+
+      <h1>MAE 9 - Accessing your account</h1>
+
+      <a href="./index.html">Back to MAE 9 webpage</a>
+
+      <h2>Account Lookup Tool</h2>
+
+      <p>
+	You will find information on your MAE 9 student account by
+	using the
+	<a href="http://acms.ucsd.edu">Account Lookup</a> tool.
+      </p>
+
+      <h2>Secure Shell (SSH)</h2>
+      
+      <p>
+	Your account is hosted on a computer running a unix (solaris)
+	operating system which you will need to become familiar with.
+      </p>
+
+      <p>
+	In order to gain access to your account you will have to use a
+	program
+	called <a href="http://en.wikipedia.org/wiki/Secure_Shell">Secure
+	Shell</a> (SSH for short). If you are on a Mac or on a Linux
+	computer you most likely already have ssh installed. If you
+	are on a Windows PC you will need to download an ssh client.
+      </p>
+
+      <h3>SSH client on a Mac or Linux computer</h3>
+      
+      <p>
+	You already have SSH on your Mac or Linux computer. In order
+	to access it you have to run a program
+	called <tt>terminal</tt>. If you have a Linux computer you
+	probably know where the terminal is. If you are on a Mac and
+	never heard of it use spotlight to find it if you do not
+	already know where it is (upper right magnifying glass on the
+	desktop).
+      </p>
+      
+      <p> 
+	Open terminal and type the following to login to your
+	account:
+      </p>
+      
+      <code>
+	ssh me9faa@iacs5.ucsd.edu
+      </code>
+      
+      <p>
+	where <tt>me9faa</tt> should be replaced with your account
+	login name.
+      </p>
+
+      <p>
+	You can also use the more verbose syntax:
+      </p>
+      
+      <code>
+	ssh -l me9faa iacs5.ucsd.edu
+      </code>
+      
+      <p>
+	where the switch <tt>-l</tt> before the account name is
+	the symbol </em>minus</em> followed by the </em>letter el</em>.
+      </p>
+      
+      <p>
+	If this is the first time you login to iacs5 it will ask you
+	confirm that this is really what you want to do. Type yes and
+	you should be logged in your account.
+      </p>
+
+      <h3>Setting the terminal type</h3>
+      
+      <p>
+	The default terminal type on your iacs5 account is
+	<tt>vt100</tt>. Before you use any editors in your remote
+	account you need to set the terminal type to vt100. After
+	login type:
+      </p>
+
+      <code>
+	set term=vt100
+      </code>
+      
+      <p> 
+	to set the terminal type to <tt>vt100</tt>. There are ways
+	to automate this you Jedi masters out there!
+      </p>
+      
+      <p>
+	Alternatively, if you are on a Mac, you can permanently change
+	the terminal type in your mac's terminal and this will be
+	propagated to the remote account. I do not recommend doing
+	that as you will loose the nice colors, bells and whistles of
+	the more modern terminal type used by the Mac's terminal
+	(xterm-color). But if you think this is the only time you will
+	ever use the terminal... You can always set it back later if
+	you so wish.
+      </p>
+
+      <p>
+	In order to change the terminal type for your Mac terminal go
+	to the menu Terminal -> Preferences then look for the Advanced
+	pane and switch from <em>xterm-color</em>
+	to <em>vt100</em>. For the changes to take effect you need to
+	close and reopen a terminal window.
+      </p>
+
+      <h3>SSH client on a Windows PC computer</h3>
+      
+      <p>
+	You will need to download SSH by clicking
+	<a href="http://acs.ucsd.edu/info/ssh_clients.shtml">on this link</a>.
+	Just follow the instructions.
+      </p>
+
+      <h2>Turning in course work</h2>
+      
+      <p>
+	Always use the <tt>turnin</tt> script to turn in your course
+	work. Your work will not be graded if you use any other method.
+      </p>
+      
+      <p>
+	For example, in order to turn in the file <tt>hw1.c</tt> which
+	is your solution to homework 1 to the <tt>me9f</tt> account
+	(i.e. the instructor's account), log in to your iacs5 account
+	and type:
+      </p>
+
+      <code>
+      turnin -c me9f hw1.c
+      </code>
+      
+      <p>
+	To turn in the file <tt>quiz2.c</tt> which is your solution to
+	quiz 2 to the <tt>me9f</tt> account type from your account:
+      </p>
+
+      <code>
+	turnin -c me9f quiz2.c
+      </code>
+
+      <p>
+	<b>
+	  <font color="red">IMPORTANT:</font>
+	  Do not use <tt>me9x</tt> as written in Murakami's textbook.
+	  For our class, you need to use <tt>me9f</tt> as the
+	  instructor's account!
+	</b>
+      </p>
+      
+      <h2>Locating and copying course material</h2>
+      
+      <p>
+	Course material can be found at iacs5 one directory level up
+	from your account home directory, which we refer by the symbol
+	tilde <tt>~</tt>, in the directory <tt>public</tt>.
+      </p>
+      
+      <p>
+	Homework assignments and solutions are in the directory:
+      </p>
+      
+      <code>
+	~/../public/homework
+      </code>
+      
+      <p>
+       Quiz assignments and solutions are
+      </p>
+
+      <code>
+      ~/../public/quiz
+      </code>
+      
+      <p>
+	Lecture notes are in the directory
+      </p>
+
+      <code>
+        ~/../public/lecture
+      </code>
+      
+      <p>
+	Examples for each week are in the directory
+      </p>
+      
+      <code>
+        ~/../public/lecture/week#.c
+      </code>
+      
+      <p>
+	where <tt>#</tt> stands for the week number 1, 2, 3, 4, 5, 6,
+	7, 8, 9, 10.
+      </p>
+      
+      <p>
+	To copy the problems into your current directory use
+	the <tt>cp</tt> command. For example:
+      </p>
+      
+      <code>
+        cp ~/../public/homework/hw1.txt hw1.c
+      </code>
+      <br/>
+
+      <code>
+        cp ~/../public/quiz/quiz1.txt quiz1.c
+      </code>
+
+      <p>
+	will do what you expect.
+      </p>
+
+      <p>
+	Use the command <tt>cd</tt> to make sure you are on your home
+	directory.
+      </p>
+      
+      <code>
+        cd ~
+      </code>
+      
+      <p> or simply </p>
+
+      <code>
+        cd
+      </code>
+
+      <p>
+	will bring you back to your home directory. The command
+      </p>
+
+      <code>
+        pwd
+      </code>
+
+      <p>
+	will tell you the directory you are currently in.
+      </p>
+
+      <h2>Which text editor should I use?</h2>
+
+      <p>
+	We are glad to offer you a choice of <tt>vi</tt>
+	or <tt>emacs</tt>. To most of you none of these should even be
+	called text editors. But the truth is that they are both
+	excellent <em>unformatted text editors</em>. Plus, they can be
+	run remotely from your account which makes them convenient
+	tools to fix last minute errors in your code, etc. You can
+	find extensive information and help on how to use <tt>vi</tt>
+	or <tt>emacs</tt> on the web. There is also some instructions
+	on <tt>vi</tt> on our textbook.
+      </p>
+
+      <p>
+	I personally use <tt>emacs</tt> all the time. I mean every
+	day, even when I am not teaching this class :). All my
+	documents, including papers, reports, letters, etc, are
+	generated from unformatted text using emacs
+	and <a href="http://www.latex-project.org">LaTeX</a>. I am
+	using emacs right now to edit this web page! Which one should
+	you use? Whichever you fell more comfortable with.
+      </p>
+
+      <p>
+	You can also get graphical frontends for both <tt>vi</tt>
+	and <tt>emacs</tt> that will run on you Mac or PC. These will
+	give you extra goodies such as syntax highlighting and
+	auto-formatting which will make your code look gorgeous :)
+	They will also save you a lot of time by allowing you to spot
+	programming mistakes earlier.
+      </p>
+
+      <h2>Can I install gcc on my computer?</h2>
+      
+      <p>
+	The answer is <b>yes</b> and it is not as hard as you might
+	think. However...
+      </p>
+
+      <p>
+	<b>
+	  <font color="red">READ THIS BEFORE YOUR PROCEED:</font>
+	  Installing a compiler locally on your computer is not
+	  required or necessary in order for you to successfully
+	  complete this course! You can and should be able to do all
+	  tasks in this class by logging in to your iacs5 account as
+	  described above. Furthermore, even if you install tools
+	  locally on your computer, you will still need to copy your
+	  files and login to your account in order to turn in your
+	  assignments.
+	</b>
+      </p>
+      
+      <p>
+	<b>
+	  <font color="red">THIS IS VERY IMPORTANT:</font> If you
+	  decide to go ahead an install development tools on your
+	  computer, please do it at your own risk. Myself and the
+	  tutors are not prepared or have the time to help you with
+	  installation or setup questions. We will hold that true even
+	  if after you install something on your computer it suddenly
+	  becomes an expensive paper weight. Even if everything goes
+	  smooth you will also need to spend some time familiarizing
+	  yourself with the environment tools with possibly some
+	  configuration issues, specially on a Windows PC.
+	</b>
+      </p>
+      
+      <p>
+	<b>
+	  <font color="red">SO AFTER ALL THE WARNINGS, WHY SHOULD I DO
+	    IT?</font> First because your geek score will improve
+	    significantly. Second because it might be a more
+	    convenient way of developing and specially debugging code
+	    throughout the course!
+	</b>
+      </p>
+      
+ 
+      <h3>Can I install gcc on my Mac?</h3>
+
+      <p>
+	If you are a Mac users then you are already running a version
+	of unix and all you need to do is install the development kit
+	that came with your computer DVD but you did not know about it
+	until now. It is pretty safe, as it is a standard Mac OS X
+	component coming directly from Apple. That means the chances
+	of turning your computer into a brick are fairly low here.
+	Check
+	out <a href="http://www.askdavetaylor.com/how_to_install_apple_developer_tools_cc_gcc_mac_os_x.html">this
+	link</a> for more details.
+      </p>
+
+
+      <h3>Can I install gcc on my Linux PC?</h3>
+
+      <p>
+	Should be simple to install using your particular distribution
+	installation tool. Look for Development Tools and GCC.
+      </p>
+
+
+      <h3>Can I install gcc on my Windows PC?</h3>
+
+      <p>
+	If you are a Windows PC user you will need to download some
+	development tools and there are a couple of choices here. I
+	think that the most straightforward way is to download
+	<a href="http://www.cygwin.com">cygwin</a> which will install
+	all compiler tools plus a version of the terminal running a
+	unix shell (bash) so you will feel home after all. Things are
+	fairly automated and cygwin has a nice installation program,
+	but there is a higher chance of things going wrong here or
+	simply not working as you would expect.
+      </p>
+
+      <hr/>
+
+      <a href="./index.html">Back to MAE 9 webpage</a>
+      
+    </div>
+
+  </body>
+
+</html>

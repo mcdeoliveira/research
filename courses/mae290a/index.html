@@ -1,0 +1,300 @@
+<html>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38520193-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  <head>
+    <title>
+      MAE 290A - Fall 2013
+    </title>
+  </head>
+
+  <style TYPE="text/css">
+    td#dia {
+      padding-right: 10px;
+      text-align: right;
+      font-weight: bold;
+     }
+    td#evento {
+      text-align: left;
+     }
+    h1 {
+      color: #0000a0;
+      font-family: sans-serif;
+      margin-bottom: 0ex;
+    }
+    h2 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    h3 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    h4 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    p {margin-left: 1cm}
+    p.title {
+      color: #0000a0;
+      font-family: sans-serif;
+      margin: 0px 0px 0px 0px;
+    }
+    ul {
+      list-style: circle;
+    }
+  </style>
+
+  <body>
+
+    <div class="content">
+
+      <h1>Numerical Methods for Simulation, Optimization, and Control</h1>
+      
+      <p class="title" style="font-size:x-large">MAE 290A</p> 
+      <p class="title" style="font-size:large">Fall 2013</p>
+
+      <h2>Lectures</h2>
+
+      <p>
+	09:00-09:50AM, MWF at 
+	<span style="text-decoration:line-through">CSB 002</span>
+	<span style="color:red">PETER 104</span>
+      </p>
+      
+
+      <h2>Instructor</h2>
+
+      <p>
+	Mauricio de Oliveira, <em>first name at ucsd dot edu</em>
+      </p>
+      
+      <h3>Office hours</h3>
+      
+      <p>
+	10:00-11:00AM Wed at EBU I 1602.
+      </p>
+
+      <h2>TA</h2>
+
+      <p>
+	Ed Pogue, <em>e last name at ucsd dot edu</em>
+      </p>
+
+      <h3>Office hours</h3>
+      
+      <p>
+	02:00-03:00PM Th at EBU I 1603.
+      </p>
+
+      <h2>Textbook</h2>
+
+      <p>
+	The main reference material for this course is the electronic
+	book <em>Numerical Renaissance: simulation, optimization, &
+	control</em> by Thomas Bewley.
+      </p>
+
+      <p>
+	The book can be read or
+	downloaded <a href="https://courseassistant.com/NR.pdf">here</a>.
+      </p>
+      
+      <p>
+	We will cover the first 4 Chapters then some select sections,
+	time permitting. I will shuffle much of the material as we go
+	through the text.
+      </p>
+
+      <h3>Other Useful References</h3>
+
+      <ul>
+	<li>
+	  <em>Matrix Analysis</em>, Roger Horn & Charles Johnson,
+	  Cambridge University Press, 1985
+	</li>
+	<li>
+	  <em>Matrix Analysis for Scientists & Engineers</em>, Alan
+	  Laub, SIAM, 2005
+	</li>
+	<li>
+	  <em>Matrix Computations</em>, Gene Golub & Charles Van Loan,
+	  The John Hopkins University Press, Third Edition, 1996
+	</li>
+      </ul>
+
+      <h2>Matlab</h2>
+
+      <p>
+	We will make extensive use of Matlab for computations, so it
+	is important that you have access to a computer with
+	Matlab.
+      </p>
+      
+      <p>
+	You will need Matlab to complete some of the assignments.
+      </p>
+
+      <p>
+	In this class, almost everything you need can be done with the
+	<a href="http://ucsandiegobookstore.com/p-44591-matlab-simulink-2013a-student.aspx">Student
+	Version of Matlab</a> (100$ at the bookstore) as well as with
+	the free Matlab
+	clone <a href="http://www.gnu.org/software/octave/">Octave</a>.
+      </p>
+      
+      <h2>Matlab Files</h2>
+
+      <ul>
+        <li>
+	  <a href="ex1.m">Matrix/Vector Multiplication</a>
+        </li>
+        <li>
+	  <a href="ex2_1.m">LU Decomposition</a>
+        </li>
+        <li>
+	  <a href="ex2_2.m">LU Decomposition - in place</a>
+        </li>
+        <li>
+	  <a href="ex3.m">Loss of Precision in LU Decomposition</a>
+        </li>
+        <li>
+	  <a href="ex4_1.m">LU Decomposition with Partial Pivoting</a>
+        </li>
+        <li>
+	  <a href="ex4_2.m">LU Decomposition - Near zero pivot</a>
+        </li>
+        <li>
+	  <a href="ex4_3.m">LU Decomposition - Singular matrix</a>
+        </li>
+        <li>
+	  <a href="ex4_4.m">LU Decomposition - Worst case growth</a>
+        </li>
+        <li>
+	  <a href="ex5_1.m">LU Decomposition with Complete Pivoting</a>
+        </li>
+        <li>
+	  <a href="ex5_2.m">LU Decomposition - Singular matrix</a>
+        </li>
+        <li>
+	  <a href="ex5_3.m">LU Decomposition - Growth</a>
+        </li>
+        <li>
+	  <a href="ex6_1.m">LDL Decomposition</a>
+        </li>
+        <li>
+	  <a href="ex6_2.m">Cholesky Decomposition</a>
+        </li>
+        <li>
+	  <a href="ex6_3.m">Matlab Slash</a>
+        </li>
+        <li>
+	  <a href="ex7_1.m">Gram-Schmidt</a>
+        </li>
+        <li>
+	  <a href="ex7_2.m">Modified Gram-Schmidt</a>
+        </li>
+      </ul>
+      
+      <h2>Exams and Assignments</h2>
+      
+      <h3>Homework</h3>
+      <ol>
+        <li>
+	  <a href="hw1.pdf">Homework #1</a>
+	  <br/>
+	  Due on: 10/18/2013
+	  <br/>
+	  <a href="hw1sol.pdf">solution</a>
+        </li>
+        <li>
+	  <a href="hw2.pdf">Homework #2</a>
+	  <br/>
+	  Due on: WILL NOT BE GRADED
+	  <br/>
+	  <a href="hw2sol.pdf">solution</a>
+	  <br>
+	  <font color="red">
+	    Beware that Ed uses A = P L U and A = P L U Q<sup>T</sup>
+	    for his LU with partial and complete pivoting! <br/> 
+	    In class I used P A Q = L U and P A Q = L U which is more
+	    standard.
+	  </font>
+        </li>
+        <li>
+	  <a href="hw3.pdf">Homework #3</a>
+	  <br/>
+	  Due on:
+ 	  <span style="text-decoration:line-through">11/15/2013</span>
+	  <span style="color:red">11/18/2013</span>
+	  <br/>
+	  <a href="hw3sol.pdf">solution</a>
+        </li>
+        <li>
+	  <a href="hw4.pdf">Homework #4</a>
+	  <br/>
+	  Due on:
+ 	  <span style="text-decoration:line-through">11/29/2013</span>
+	  <span style="color:red">12/03/2013</span>
+	  <br/>
+	  <a href="hw4sol.pdf">solution</a>
+        </li>
+      </ol>
+
+      <h3>Midterm</h3>
+      <ul>
+        <li>
+	  11/01/2013, in class
+	  <br/>
+	  <font color="red">Exam starts at 8:30 AM</font>
+	  <br/>
+	  <a href="midterm.sol.pdf">solution</a>
+        </li>
+      </ul>
+      
+      <h4>Final</h4>
+      <ul>
+        <li> 
+	  12/11/2013, 08:00-10:59AM, PETER 104
+	  <br/>
+	  <a href="final.sol.pdf">solution</a>
+        </li>
+      </ul>
+
+      <h3>Grade</h3>
+      
+      <p>GRADE = 0.3 * HOMEWORK + 0.3 * MIDTERM + 0.4 * FINAL</p>
+
+      <h3>Past Exams</h3>
+
+      <p>
+	Here is a link to
+	some <a href="http://renaissance.ucsd.edu/courses/mae290a/">past
+	exams</a> with solutions.
+      </p>
+      
+    </div>
+    
+    <hr/>
+    
+    <div style="text-align:right">
+
+      <a href="/mauricio">Mauricio de Oliveira</a>
+
+    </div>
+
+  </body>
+
+</html>

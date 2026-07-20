@@ -1,0 +1,303 @@
+<html>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38520193-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  <head>
+    <title>
+      MAE 280B
+    </title>
+  </head>
+
+  <style TYPE="text/css">
+    td#dia {
+      padding-right: 10px;
+      text-align: right;
+      font-weight: bold;
+     }
+    td#evento {
+      text-align: left;
+     }
+    h1 {
+      color: #0000a0;
+      font-family: sans-serif;
+      margin-bottom: 0ex;
+    }
+    h2 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    h3 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    h4 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    p {margin-left: 1cm}
+    p.title {
+      color: #0000a0;
+      font-family: sans-serif;
+      margin: 0px 0px 0px 0px;
+    }
+    ul {
+      list-style: circle;
+    }
+  </style>
+
+  <body>
+
+    <div class="content">
+
+      <h1>Linear Control Design</h1>
+      
+      <p class="title" style="font-size:x-large">MAE 280B</p> 
+      <!--p class="title" style="font-size:large">Winter 2019</p-->
+
+      <h2>Instructor</h2>
+      
+      <ul>
+        <li>Mauricio de Oliveira, <em>first-name at ucsd dot edu</em></li>
+      </ul>
+
+      <p>
+	You are welcome to stop by anytime I am in my office.
+      <br/>
+	Contact me by email if you would like to make an appointment.
+      </p>
+
+      <p>
+	More details about this quarter class can be found on <a href="https://canvas.ucsd.edu">Canvas</a>.
+      </p>
+
+	<!--
+	    <h2>Teaching Assistant</h2>
+	    
+	    <ul>
+	      <li>Yilong (Dylan) Chen, <em> yic 013 at ucsd dot edu</em></li>
+	    </ul>
+	    
+	    <h3>Office Hours</h3>
+	    
+      <p>EBU II 105:</p>
+      <ul>
+	<li>Friday from 10:00-11:00</li>
+      </ul>
+      -->
+
+      <h2>Homework</h2>
+
+      <p>
+	
+	Homework will be posted weekly on <a href="https://canvas.ucsd.edu">Canvas</a>.
+	
+	<br/>
+	
+	Solutions should be submitted electronically in PDF by the due
+	date posted.
+	
+	<br/>
+      
+	Shortly after the submission deadline, the solution key will
+	be posted on Triton Ed with a point breakdown for each
+	question.
+
+	<br/>
+
+	Grade your submission against the solutions and upload an
+	annotated PDF by the posted due date.
+
+	<br/>
+	
+	A random sample of the submissions will be audited to ensure
+	your grading is fair and accurate.
+
+	<br/>
+
+	Following the grade audit, your grade will be available to
+	view on Triton Ed.
+
+	<br/>
+
+	If you have any questions, attend the weekly office hour or email Amit.
+
+      </p>
+      
+
+      <h3>Midterm</h3>
+      <ul>
+        <li>
+	  No midterms
+        </li>
+      </ul>
+
+      <h4>Final</h4>
+      <ul>
+        <li> 
+	  Take home
+	  <br/>
+	  Due on: TBA
+	  <!--br/>
+	  Use these matlab files for simulating your closed loop system.
+	  <br/>
+	  <a href="lpv/gssimulation.m">gssimulation.m</a> is the master
+	  file. Just plug in your own data;
+	  <br/>
+	  You will also need: 
+	  <a href="lpv/lpv.m">lpv.m</a>,
+	  <a href="lpv/box2conv.m">box2conv.m</a>
+	  -->
+        </li>
+      </ul>
+
+      <h2>Lecture Notes</h2>
+
+      <p>
+	The pdf lecture notes are accompanied by Matlab and
+	Mathematica demos.
+      </p>
+      
+      <p>
+	You will need to
+	download <a href="https://github.com/NCAlgebra/NC">NCAlgebra</a>
+	to run some of the Mathematica demos. This is a package that
+	will allow you to manipulate non-commutative expressions
+	(e.g. block-matrix products) in Mathematica. It will also come
+	with a Semidefinite Program Solver that you can use to compute
+	the solution to the optimization problems in this class.
+      </p>
+
+      <p>
+	If you're using Matlab, you will need to download a
+	Semidefinite Program Solver. See links below.
+      </p>
+
+      <ol>
+        <li> 
+          <a href="lecture/lecture1.pdf">Controllability & Observability</a>
+	  <br/>
+	  mathematica files 
+	  <a href="lecture/satelite.nb">satelite.nb</a> 
+        </li>
+        <li> 
+          <a href="lecture/lecture2.pdf">Linear Quadratic Control</a>
+        </li>
+        <li> 
+          <a href="lecture/lecture3.pdf">LQR with Noisy Input</a> 
+	  <br/>
+	  matlab files 
+	  <a href="lecture/sat1.m">sat1.m</a> 
+	  <a href="lecture/sat2.m">sat2.m</a> 
+	  <br/>
+	  mathematica files 
+	  <a href="lecture/sat12.nb">sat12.nb</a> 
+        </li>
+        <li> 
+          <a href="lecture/lecture4.pdf">Optimal State Estimation</a>
+	  <br/>
+	  matlab files 
+	  <a href="lecture/sat3.m">sat3.m</a> 
+	  <a href="lecture/inertia1.m">inertia1.m</a> 
+	  <a href="lecture/inertia2.m">inertia2.m</a> 
+	  <br/>
+	  mathematica files 
+	  <a href="lecture/sat3.nb">sat3.nb</a> 
+	  <a href="lecture/inertia.nb">inertia.nb</a> 
+        </li>
+        <li> 
+          <a href="lecture/lecture5.pdf">Linear Quadratic Gaussian Control</a>
+	  <br/>
+	  matlab files 
+	  <a href="lecture/sat4.m">sat4.m</a> 
+	  <br/>
+	  mathematica files 
+	  <a href="lecture/sat4.nb">sat4.nb</a> 
+        </li>
+        <li> 
+          <a href="lecture/lecture6.pdf">Linear Matrix Inequalities</a>
+        </li>
+        <li> 
+          <a href="lecture/lecture7.pdf">Stability</a>
+        </li>
+        <li> 
+          <a href="lecture/lecture8.pdf">A First Glimpse on Design with LMIs</a>
+	  <br/>
+	  matlab files 
+	  <a href="lecture/sat5.m">sat5.m</a> 
+	  <a href="lecture/badlmi.m">badlmi.m</a> 
+	  <br/>
+	  mathematica files 
+	  <a href="lecture/sat5.nb">sat5.nb</a> 
+        </li>
+        <li> 
+          <a href="lecture/lecture9.pdf">The LQR Problem Revisited</a>
+	  <br/>
+	  matlab files 
+	  <a href="lecture/sat6.m">sat6.m</a> 
+	  <a href="lecture/sat7.m">sat7.m</a> 
+	  <br/>
+	  mathematica files 
+	  <a href="lecture/sat6.nb">sat6.nb</a> 
+	  <a href="lecture/sat7.nb">sat7.nb</a> 
+        </li>
+        <li> 
+          <a href="lecture/lecture10.pdf">Non-Classic State Feedback Control Design</a>
+	  <br/>
+	  matlab files 
+	  <a href="lecture/sat8.m">sat8.m</a> 
+	  <a href="lecture/sat9.m">sat9.m</a> 
+	  <br/>
+	  mathematica files 
+	  <a href="lecture/sat8.nb">sat8.nb</a> 
+	  <a href="lecture/sat9.nb">sat9.nb</a> 
+        </li>
+        <li> 
+          <a href="lecture/lecture11.pdf">Output Feedback Control</a>
+        </li>
+        <li> 
+          <a href="lecture/lecture12.pdf">LQG with Multiple Objectives</a>
+	  <br/>
+	  matlab files 
+	  <a href="lecture/sat10.m">sat10.m</a> 
+        </li>
+        <li> 
+          <a href="lecture/bibliography.pdf">Bibliography</a>
+        </li>
+      </ol>
+
+      <h4>Software</h4>
+      <ul>
+	<li>
+	  <a href="https://github.com/NCAlgebra/NC">NCAlgebra</a>
+	</li>
+	<li>
+	  <a href="https://yalmip.github.io">Yalmip</a>	
+	</li>
+	<li>
+	  <a href="http://sedumi.ie.lehigh.edu">SeDuMi</a>
+	</li>
+      </ul>
+
+      <hr/>
+
+      <p>
+      For my MAE 280 A notes <a href="../mae280a">click here</a>.
+      </p>
+      
+    </div>
+
+  </body>
+
+</html>

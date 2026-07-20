@@ -1,0 +1,363 @@
+<html>
+
+  <head>
+    <title>
+      MAE 8 - Winter 2013
+    </title>
+  </head>
+
+  <style TYPE="text/css">
+    td#dia {
+      padding-right: 10px;
+      text-align: right;
+      font-weight: bold;
+     }
+    td#evento {
+      text-align: left;
+     }
+    h1 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    h2 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    h3 {
+      // color: #0080f0;
+      color: #000000;
+      text-indent: 1em;
+      font-family: sans-serif;
+    }
+    h4 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    p {margin-left: 1cm}
+    code {margin-left: 1cm}
+    ul {
+      list-style: circle;
+    }
+  </style>
+
+  <body>
+
+    <div class="content">
+
+      <h1>
+	MATLAB Programming for Engineering Analysis &dash; MAE 8</br>
+	Winter 2013
+      </h1>
+
+      <h2>News</h2>
+      
+      <ul>
+	<li>
+	  01/24/2013: Problem session start on
+	  01/28/2013. See <a href="#problemsession">below</a> for
+	  details.
+	</li>
+	<li>
+	  01/20/2013: <font color="red">Homework #2 postponed to Thursday</font></a>.
+	</li>
+	<li>
+	  01/08/2013: Check out <a href="#matlab">notes on MATLAB access</a>.
+	</li>
+      </ul>
+      
+      <h2>Lectures</h2>
+      <ul>
+	<li> 
+	  Tuesday, Thursday, 9:30AM-10:50AM
+	  <br/>
+	  Pepper Canyon 109
+	</li>
+      </ul>
+
+      <h2>Instructor</h2>
+      
+      <ul>
+        <li>Mauricio de Oliveira, <em>first name at ucsd dot edu</em></li>
+      </ul>
+
+      <h3>Office Hours</h3>
+
+      <ul>
+	<li>Wednesday: 2:00-3:00 PM, EBU I Room 1602</li>
+      </ul>
+
+      <p>You can also make an appointment with me by email.</p>
+
+      <h2>TA and Tutors</h2>
+
+      <h3>TA</h3>
+      <ul>
+	<li>Edward Pogue, <em>e last name at ucsd dot edu</em></li>
+      </ul>
+      <p>Ed is your first point of contact.</p>
+
+      <h3>Tutors</h3>
+      <ul>
+	<li>Lingjie Kong, <em> l2 last name at ucsd dot edu</em></li>
+	<li>Yue Teng, <em> yu last name at ucsd dot edu</em></li>
+	<li>Karcher Morris, <em> k6 last name at ucsd dot edu</em></li>
+	<li>Sean Sanchez, <em> sr last name without z at ucsd dot edu</em></li>
+      </ul>
+      <p>Tutors can help in the lab and with general programming
+      questions you might have.</p>
+
+      <h3>Lab Hours</h3>
+
+      <p>
+	We have reserved ERC 117 Computer Lab Reserved, Monday through
+	Thursday, from 5:00PM to 8:00PM.
+      </p>
+      <p>
+	Tutors are available as scheduled:
+      </p>
+      <ul>
+	<li>Monday: Lingjie (5:00-7:00) Teng (6:00-8:00) </li>
+	<li>Tuesday: Karcher (5:00-8:00) </li>
+	<li>Wednesday: Lingjie (5:00-7:00) Teng (6:00-8:00)</li>
+	<li>Thursday: reserved but no tutors available</li>
+      </ul>
+      
+      <a id="problemsession">
+      <h3>Problem Session</h3>
+      <ul>
+	<li> 
+	  Monday, 4:00PM-4:50PM
+	  <br/>
+	  Center Hall 109
+	</li>
+      </ul>
+
+      <h2>Text Book</h2>
+        <p>
+	  Stormy Attaway, 
+	  <em>MATLAB: a practical introduction to programming and
+	  problem solving</em>, Second Edition, Butterworth-Heinemann,
+	  2012.
+	</p>
+
+      <h2>Course Work</h2>
+      
+      <h3>Homework</h3>
+
+      <p>
+	Homework is due every Wednesday at 9:00PM.
+	<br/>
+	First assignment is due on January 16th.
+      </p>
+      
+      <h3>Final Project</h3>
+      
+      <p>
+	A final project will be assigned instead of homework in the
+	last week of class.
+	<br/>
+	Get your <a href="project.pdf">copy of the final project</a>
+	and the file <a href="upcs.txt">upcs.txt</a>.
+	<br/>
+	Due on March 14th at 09:00PM.
+      </p>
+      
+      <h3>Midterm</h3>
+      
+      <p>
+	Thursday, February 7th
+	<br/>
+	In class.
+	<br/>
+	Get the <a href="midterm.pdf">solution</a>. Correct answers
+	are highlighted in yellow.
+      </p>
+      
+      <h3>Final Exam</h3>
+      
+      <p>
+	Tuesday, March 19th, 08:00-10:59 
+	<br/>
+	Get the <a href="final.pdf">solution</a>. Correct answers
+	are highlighted in yellow.
+      </p>
+      
+      <h3>Grade</h3>
+      
+      <ul>
+	<li>Homework (30 %)</li>
+	<li>Midterm (20 %)</li>
+	<li>Final Project (20 %)</li>
+	<li>Final Exam (30 %)</li>
+      </ul>
+      
+      <h2>Course Policy</h2>
+      
+      <p>
+	Turn-in all your work electronically on <b>TED</b>. No other
+	form of homework submission will be accepted. Homework has to
+	be turned in on time. Late homework will not be
+	accepted. Email me <b>before the deadline</b> in case an
+	emergency prevents you from submitting your homework on time.
+      </p>
+      
+      <p>
+	No collaboration (exchange of <b>information or files</b>) is
+	permitted on the midterm, final exam and final project. Any
+	observed collaboration on these exams will be reported to the
+	university authorities, which may result in severe
+	consequences on your student status.
+      </p>
+
+      <p>
+	Collaboration during homework is permitted and encouraged,
+	with full participation of all students in the study group.
+      </p>
+      
+      <p> 
+	Working with others on homework assignments is a good way to
+	learn the material and is encouraged. Working together to find
+	a good approach for solving a programming problem is healthy
+	cooperation. However, any work that you submit must be your
+	own work. Copying someone else's work is cheating. Keep in
+	mind that we shall not distinguish between someone who copies
+	somebody else's work and someone who allows their work to be
+	copied.
+      </p>
+
+      <p>
+	Violators of the above rule will be given zero points for the
+	assignment involved.
+      </p>
+
+      <p> 
+	If you have any questions about what constitutes cheating,
+	please ask.
+      </p>
+
+      <h2>Additional Material</h2>
+      
+      <p>
+	You might want to take a look at an old website
+	for <a href="../mae9">MAE
+	9</a> for my notes on the C Programing Language. We will
+	revisit some problems discussed there using MATLAB.
+
+      </p> 
+	
+      <p> 
+	There are many resources available on the web. Here is an old
+	yet useful
+	<a href="http://math.ucsd.edu/~driver/21d-s99/matlab-primer.html">tutorial</a>
+	on the basics of MATLAB.
+      </p> 
+
+      <p>
+	Documentation and demos in MATLAB are also very useful. Get
+	used to the MATLAB commands <tt>help</tt>, <tt>doc</tt>
+	and <tt>demo</tt>.
+      </p>
+	
+      <p> 
+	If you find online material that you think might be useful as
+	a reference for this class please let me know and I will add a
+	link for it here.
+      </p>
+
+      <a id="matlab">
+      <h2>MATLAB Access</h2>
+      </a>
+
+      <p>
+	MATLAB is available on the machines in our reserved lab and in
+	most other student computer lab throughout campus or remotely
+	via
+	<a href="http://acms.ucsd.edu/students/VirtualLabsMain.html">Virtual
+	Labs</a>, which you can install on your computer or
+	iPad. There is no need to purchase a MATLAB license or a
+	student version of MATLAB for this class.
+	</p>
+      
+
+      <h2>Homework Assignments</h2>
+
+      <p>
+	Homework is due every Wednesday at 9:00PM
+      </p>
+      
+      <p>
+	Turn-in all your work electronically on <b>TED</b>. No other
+	form of homework submission will be accepted. Homework has to
+	be turned in on time. Late homework will not be
+	accepted. Email me <b>before the deadline</b> in case an
+	emergency prevents you from submitting your homework on time.
+      </p>
+      
+      <h3>Homework #1</h3>
+
+      <p>
+        Attaway: 1.6, 1.7, 1.30, 1.32, 1.35
+        <br/>
+	Due: 01/16/2013
+      </p>
+      
+      <h3>Homework #2</h3>
+
+      <p>
+        Attaway: 1.42, 2.1, 2.4, 2.16, 2.20
+        <br/>
+	Due: <font color="red">01/24/2013</font>
+      </p>
+
+      <h3>Homework #3</h3>
+
+      <p>
+        Attaway: 2.22, 2.25, 2.32, 3.21, 3.28 
+        <br/>
+	Due: 01/30/2013
+      </p>
+
+      <h3>Homework #4</h3>
+
+      <p>
+        Attaway: 3.36, 4.13, 4.16, 4.21, 4.23
+        <br/>
+	Due: 02/06/2013
+      </p>
+
+      <h3>Homework #5</h3>
+
+      <p>
+        Attaway: 4.33, 5.4, 5.6, 5.7
+        <br/>
+	Due: 02/13/2013
+      </p>
+
+      <h3>Homework #6</h3>
+
+      <p>
+        Attaway: 5.14, 5.16, 5.18, 6.28, 6.36
+        <br/>
+	Due: <font color="red">02/21/2013</font>
+      </p>
+
+      <h3>Homework #7</h3>
+
+      <p>
+        Attaway: 7.9, 7.12, 8.4, 8.16
+        <br/>
+	Due: 02/27/2013
+      </p>
+
+      <h3>Homework #8</h3>
+
+      <p>
+        Attaway: 9.3, 9.5, 9.7, 10.26, 10.30 
+        <br/>
+	Due: 03/06/2013
+      </p>
+    </div>
+
+  </body>
+
+</html>
