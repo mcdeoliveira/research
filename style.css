@@ -1,0 +1,160 @@
+/* ============================================================
+   Shared stylesheet — mcdeoliveira.linearcontrol.info
+   Landing page uses the semantic classes (.masthead, .sec, …);
+   course pages use plain markup inside .content.
+   ============================================================ */
+
+:root {
+  --ground: #FBF9F5;
+  --surface: #FFFFFF;
+  --ink: #23201C;
+  --muted: #6B6459;
+  --maroon: #6E1230;
+  --maroon-bright: #9A2A4A;
+  --rule: #E7E0D5;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #17140F; --surface: #1F1B15; --ink: #E9E3D8; --muted: #A79E90;
+    --maroon: #E7A9BC; --maroon-bright: #F0B9C9; --rule: #2E2820;
+  }
+}
+:root[data-theme="light"] {
+  --ground: #FBF9F5; --surface: #FFFFFF; --ink: #23201C; --muted: #6B6459;
+  --maroon: #6E1230; --maroon-bright: #9A2A4A; --rule: #E7E0D5;
+}
+:root[data-theme="dark"] {
+  --ground: #17140F; --surface: #1F1B15; --ink: #E9E3D8; --muted: #A79E90;
+  --maroon: #E7A9BC; --maroon-bright: #F0B9C9; --rule: #2E2820;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* shared page container: landing uses <main>, course pages use .content */
+main, .content {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+a {
+  color: var(--maroon-bright);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--maroon-bright) 35%, transparent);
+}
+a:hover { border-bottom-color: var(--maroon-bright); }
+a:focus-visible { outline: 2px solid var(--maroon-bright); outline-offset: 2px; border-radius: 2px; }
+
+/* ---------- Landing: masthead ---------- */
+.masthead { display: grid; grid-template-columns: auto 1fr; gap: 1.75rem; align-items: center; }
+.portrait {
+  width: 132px; height: auto; flex: none;
+  border: 1px solid var(--rule); border-radius: 4px; display: block;
+}
+.masthead h1 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(1.9rem, 5vw, 2.7rem); line-height: 1.1;
+  margin: 0; color: var(--maroon); text-wrap: balance;
+}
+.masthead .affil { margin: .5rem 0 0; color: var(--muted); font-size: .98rem; }
+.contact {
+  margin: 1.75rem 0 0; padding-top: 1.25rem; border-top: 1px solid var(--rule);
+  display: grid; grid-template-columns: 1fr 1fr; gap: .6rem 2rem;
+  font-size: .9rem; color: var(--muted);
+}
+.contact b { color: var(--ink); font-weight: 600; }
+.contact a { border: 0; }
+.contact a:hover { border-bottom: 1px solid var(--maroon-bright); }
+
+/* ---------- Landing: sections ---------- */
+section { margin-top: 3rem; }
+h2.sec {
+  font-family: var(--serif); font-weight: 500; font-size: 1.45rem; color: var(--ink);
+  margin: 0 0 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--rule);
+  display: flex; align-items: baseline; gap: .6rem;
+}
+h2.sec::before { content: ""; width: .55rem; height: .55rem; background: var(--maroon); flex: none; transform: translateY(-.05rem); }
+h3.sub {
+  font-family: var(--sans); font-weight: 700; font-size: .78rem; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--muted); margin: 1.75rem 0 .6rem;
+}
+.disclaimer {
+  margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--rule);
+  color: var(--muted); font-size: .85rem; font-style: italic;
+}
+
+/* course listing rows (landing Teaching) */
+.courses { display: flex; flex-direction: column; }
+.course-row {
+  display: grid; grid-template-columns: 6.5rem 1fr; gap: 1rem; align-items: baseline;
+  padding: .55rem 0; border-bottom: 1px solid var(--rule);
+}
+.course-row:last-child { border-bottom: 0; }
+.code { font-family: var(--mono); font-size: .82rem; color: var(--maroon); letter-spacing: .02em; }
+.course-row .name { margin: 0; }
+.course-row .name a { border: 0; }
+.course-row .name a:hover { border-bottom: 1px solid var(--maroon-bright); }
+
+.booklist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.25rem; }
+.booklist li { padding-left: 1rem; border-left: 2px solid var(--rule); }
+.booklist .title { font-family: var(--serif); font-size: 1.1rem; color: var(--ink); }
+.meta { color: var(--muted); font-size: .88rem; }
+.topics { columns: 2; column-gap: 2rem; margin: 0; padding: 0 0 0 1.1rem; }
+.topics li { margin-bottom: .3rem; }
+
+/* ============================================================
+   Course pages — plain markup styled inside .content
+   ============================================================ */
+.content h1 {
+  font-family: var(--serif); font-weight: 500; line-height: 1.12;
+  font-size: clamp(1.7rem, 4.5vw, 2.4rem); color: var(--maroon);
+  margin: 0 0 2rem; padding-bottom: .6rem; border-bottom: 2px solid var(--rule);
+  text-wrap: balance;
+}
+.content h2 {
+  font-family: var(--serif); font-weight: 500; font-size: 1.4rem; color: var(--ink);
+  margin: 2.75rem 0 1rem; padding-bottom: .45rem; border-bottom: 1px solid var(--rule);
+  display: flex; align-items: baseline; gap: .55rem;
+}
+.content h2::before { content: ""; width: .5rem; height: .5rem; background: var(--maroon); flex: none; transform: translateY(-.05rem); }
+.content h3 {
+  font-family: var(--sans); font-weight: 700; font-size: 1rem; color: var(--maroon);
+  margin: 1.75rem 0 .5rem;
+}
+.content h4 { font-family: var(--sans); font-weight: 700; font-size: .95rem; color: var(--muted); margin: 1.25rem 0 .5rem; }
+.content p { margin: 0 0 1rem; }
+.content ul, .content ol { margin: 0 0 1rem; padding-left: 1.4rem; }
+.content ul { list-style: disc; }
+.content li { margin-bottom: .4rem; }
+.content li > ul, .content li > ol { margin-top: .4rem; margin-bottom: .4rem; }
+.content p.title { color: var(--maroon); font-family: var(--serif); margin: 0 0 1rem; }
+.content hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0 0; }
+.content tt, .content code {
+  font-family: var(--mono); font-size: .88em;
+  background: color-mix(in srgb, var(--muted) 14%, transparent);
+  padding: .1em .35em; border-radius: 3px;
+}
+.content table { border-collapse: collapse; margin: 0 0 1rem; }
+.content td { padding: .2rem 1.5rem .2rem 0; vertical-align: top; }
+.content font[color="red"] { color: var(--maroon-bright) !important; }
+
+@media (max-width: 560px) {
+  .masthead { grid-template-columns: 1fr; }
+  .contact { grid-template-columns: 1fr; }
+  .topics { columns: 1; }
+  .course-row { grid-template-columns: 5rem 1fr; gap: .75rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

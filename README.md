@@ -14,14 +14,22 @@ Static academic site for Maurício de Oliveira, hosted on **GitHub Pages**.
 Edit the files, then:
 
 ```sh
-make deploy      # git add + commit + push
+git add -A && git commit -m "Update site" && git push
 ```
 
 GitHub Pages rebuilds automatically on push — the site is usually live within a
 minute.
 
+## Layout
+
+- `index.html` — landing page.
+- `style.css` — single shared stylesheet for every page (landing + courses).
+- `courses/<course>/` — one folder per course; `courses/index.html` is the
+  Teaching index.
+- Google Analytics (GA4 `G-NM6DQXZ3LE`) is included in the `<head>` of each page.
+
 ## Notes
 
 - No server to maintain: GitHub serves everything over HTTPS on their CDN.
-- Pages is configured to serve the repo root of the `main` branch.
+- Pages serves the repo root of the `main` branch.
 - Replaces the old rsync-to-UCSD workflow (`renaissance.ucsd.edu` / `guitar.ucsd.edu`).
