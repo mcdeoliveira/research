@@ -3,7 +3,7 @@
 Static academic site for Maurício de Oliveira, hosted on **GitHub Pages**.
 
 - **Live URL:** https://mcdeoliveira.linearcontrol.info/
-  (old `vicbee.net/research/` and `mcdeoliveira.github.io/research/` redirect here)
+  (`mcdeoliveira.github.io/research/` redirects here)
 - **Source of truth:** this repo (`github.com/mcdeoliveira/research`).
 - **Custom domain:** set via the `CNAME` file. DNS is a `CNAME` record
   `mcdeoliveira` → `mcdeoliveira.github.io` in the DigitalOcean zone for
