@@ -1,0 +1,25 @@
+#N canvas 311 127 450 300 10;
+#X obj 39 63 osc~ 440;
+#X obj 52 125 *~;
+#X obj 53 174 dac~;
+#X obj 207 14 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 163 44 5 0 0 0 - - -;
+#X obj 96 106 line~;
+#X msg 138 74 \$1 20;
+#X obj 35 -12 hsl 128 15 20 20000 1 0 empty empty empty -2 -8 0 10
+-262144 -1 -1 0 1;
+#X floatatom 36 24 5 0 0 0 - - -;
+#X msg 190 118 \; pd dsp 1;
+#X msg 191 162 \; pd dsp 0;
+#X text 210 32 Use this slider to control the amplitude;
+#X text 33 -44 Use this slider to control the frequency;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 2 1;
+#X connect 3 0 4 0;
+#X connect 4 0 6 0;
+#X connect 5 0 1 1;
+#X connect 6 0 5 0;
+#X connect 7 0 8 0;
+#X connect 8 0 0 0;

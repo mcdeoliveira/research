@@ -1,0 +1,125 @@
+#N canvas 200 43 942 376 10;
+#X obj 29 149 delwrite~ del-copy 1000;
+#X obj 29 114 r~ source;
+#X obj 269 130 +~;
+#X obj 242 215 output~;
+#X obj 269 151 *~ 0.5;
+#X obj 396 167 s~ display;
+#X obj 596 262 displayer-cf;
+#N canvas 451 157 712 406 sound-source 0;
+#X obj 267 300 osc~;
+#X obj 267 369 s~ source;
+#X obj 267 337 *~;
+#X obj 323 319 line~;
+#X msg 331 280 \$1 40;
+#X obj 334 221 loadbang;
+#X msg 334 242 1;
+#X obj 111 124 vradio 25 1 0 5 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 142 181 220Hz;
+#X text 142 209 440Hz;
+#X text 143 154 110Hz;
+#X text 145 128 55Hz;
+#X text 143 233 noise;
+#X floatatom 458 324 5 0 0 0 - - -;
+#X obj 458 342 sel 0;
+#X msg 414 359 55;
+#X obj 514 341 sel 1;
+#X obj 202 247 *~;
+#X obj 258 229 line~;
+#X msg 266 190 \$1 40;
+#X obj 202 210 noise~;
+#X msg 241 147 0;
+#X msg 285 149 0.5;
+#X msg 372 245 0;
+#X msg 514 362 110;
+#X obj 568 344 sel 2;
+#X msg 565 362 220;
+#X obj 621 340 sel 3;
+#X msg 621 361 440;
+#X obj 678 347 sel 4;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 1;
+#X connect 4 0 3 0;
+#X connect 5 0 6 0;
+#X connect 5 0 15 0;
+#X connect 6 0 4 0;
+#X connect 7 0 13 0;
+#X connect 7 0 16 0;
+#X connect 7 0 25 0;
+#X connect 7 0 27 0;
+#X connect 7 0 29 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 14 0 6 0;
+#X connect 14 0 21 0;
+#X connect 15 0 0 0;
+#X connect 16 0 24 0;
+#X connect 16 0 6 0;
+#X connect 16 0 21 0;
+#X connect 17 0 1 0;
+#X connect 18 0 17 1;
+#X connect 19 0 18 0;
+#X connect 20 0 17 0;
+#X connect 21 0 19 0;
+#X connect 22 0 19 0;
+#X connect 23 0 4 0;
+#X connect 24 0 0 0;
+#X connect 25 0 26 0;
+#X connect 25 0 21 0;
+#X connect 25 0 6 0;
+#X connect 26 0 0 0;
+#X connect 27 0 28 0;
+#X connect 27 0 21 0;
+#X connect 27 0 6 0;
+#X connect 28 0 0 0;
+#X connect 29 0 22 0;
+#X connect 29 0 23 0;
+#X coords 0 -1 1 1 100 180 1 100 100;
+#X restore 586 77 pd sound-source;
+#X obj 287 83 line;
+#X msg 287 62 \$1 100;
+#X obj 287 -35 nbx 5 25 0 2000 0 0 empty empty empty 0 -8 0 15 -262130
+-1 -1 313 256;
+#X obj 287 101 vd~ del-copy 1000;
+#X obj 342 32 nbx 5 25 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 15
+-204786 -1 -1 9.09884 256;
+#X text 419 103 <-microphone 2;
+#X text 101 114 <-microphone 1;
+#N canvas 0 22 450 300 info 1;
+#X text 25 9 this patch shows the problem of microphone placement and
+the distortion that can occur of mics are two close together. microphone
+1 is simulated simply by picking up a source sound directly. microphone
+2 is simulated with a delayed copy of the source sound.;
+#X text 28 84 you can adjust the distance in millimeters (yelow numebr
+box) between microphones. the green box reports the time delay at these
+distances. with sine tones \, phase cancellation is clearly audible
+\, and is reflected in the magnitude spectrum. with a noise source
+\, comb filterring can be heard.;
+#X text 30 167 NOTE: changing the delay will result in a discontinuity
+in the output waveform. in the case of noise \, this will be inaudible
+(noise is just a series of discontinuities \, so one more doesn't matter)
+but it will sound like a click in the sine tones.;
+#X restore 35 -33 pd info;
+#X text 373 -32 <-centimeters between 'microphones';
+#X obj 287 16 / 344;
+#X obj 287 -5 * 10;
+#X text 423 37 <-time delay (milliseconds)between 'mics';
+#X msg 35 10 \; pd dsp 1;
+#X obj 35 -11 loadbang;
+#X text 697 105 choose between sin tones or noise;
+#X connect 1 0 0 0;
+#X connect 1 0 2 0;
+#X connect 2 0 4 0;
+#X connect 4 0 3 0;
+#X connect 4 0 3 1;
+#X connect 4 0 5 0;
+#X connect 8 0 11 0;
+#X connect 9 0 8 0;
+#X connect 10 0 18 0;
+#X connect 11 0 2 1;
+#X connect 17 0 9 0;
+#X connect 17 0 12 0;
+#X connect 18 0 17 0;
+#X connect 21 0 20 0;

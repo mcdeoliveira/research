@@ -1,0 +1,42 @@
+#N canvas 226 215 604 489 10;
+#X obj 47 33 adc~;
+#X obj 98 50 mtof;
+#X obj 62 147 osc~;
+#X obj 47 249 *~;
+#X obj 47 294 dac~;
+#X obj 101 15 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 135 118 phasor~;
+#X obj 211 87 phasor~;
+#X obj 211 112 expr~ $v1>0.5;
+#X obj 211 183 *~;
+#X obj 163 148 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 135 183 *~;
+#X obj 103 147 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 62 184 *~;
+#X obj 251 150 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 128 315 soundfiler;
+#X obj 128 339 tabplay~;
+#X text 126 258 1) Add oscilloscopes to examine the signals out of
+the five(which five?) signals. 2) Use objects below to read in sound
+files instead of mic-in;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X connect 1 0 6 0;
+#X connect 1 0 7 0;
+#X connect 2 0 13 0;
+#X connect 3 0 4 0;
+#X connect 3 0 4 1;
+#X connect 5 0 1 0;
+#X connect 6 0 11 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 3 1;
+#X connect 10 0 11 1;
+#X connect 11 0 3 1;
+#X connect 12 0 13 1;
+#X connect 13 0 3 1;
+#X connect 14 0 9 1;

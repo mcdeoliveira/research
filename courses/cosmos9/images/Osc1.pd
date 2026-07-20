@@ -1,0 +1,18 @@
+#N canvas 551 250 546 329 10;
+#X text -4 5 OSCILATOR;
+#X obj -46 99 dac~;
+#X text -5 39 The object OSC is an oscilator. The symbol ~ indicates
+that it process a signal.;
+#X msg 77 206 \; pd dsp 0;
+#X msg -32 207 \; pd dsp 1;
+#X text -3 85 The object DAC~ is your computer's digital-to-analog
+converter (dac) \, which is a fancy name for a key part of your sound
+card responsible for producing actual sounds.;
+#X text 73 186 or off:;
+#X text -36 187 on:;
+#X obj -46 48 osc~;
+#X msg -46 6 440;
+#X text -43 138 Send a message to pd to turn on its Digital Signal
+Processor (dsp) than click the MESSAGE BOX to hear a 440 Hz tone.;
+#X connect 8 0 1 0;
+#X connect 9 0 8 0;
