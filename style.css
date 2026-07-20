@@ -5,6 +5,7 @@
    ============================================================ */
 
 :root {
+  color-scheme: light;   /* render the same light palette on every device */
   --ground: #FBF9F5;
   --surface: #FFFFFF;
   --ink: #23201C;
@@ -15,20 +16,6 @@
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --ground: #17140F; --surface: #1F1B15; --ink: #E9E3D8; --muted: #A79E90;
-    --maroon: #E7A9BC; --maroon-bright: #F0B9C9; --rule: #2E2820;
-  }
-}
-:root[data-theme="light"] {
-  --ground: #FBF9F5; --surface: #FFFFFF; --ink: #23201C; --muted: #6B6459;
-  --maroon: #6E1230; --maroon-bright: #9A2A4A; --rule: #E7E0D5;
-}
-:root[data-theme="dark"] {
-  --ground: #17140F; --surface: #1F1B15; --ink: #E9E3D8; --muted: #A79E90;
-  --maroon: #E7A9BC; --maroon-bright: #F0B9C9; --rule: #2E2820;
 }
 
 * { box-sizing: border-box; }
