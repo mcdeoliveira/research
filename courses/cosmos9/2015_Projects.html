@@ -17,82 +17,89 @@
     <main class="content wiki">
       <p class="meta"><a href="index.html">‹ COSMOS Cluster 9</a> · <a href="/">Maurício de Oliveira</a></p>
       <h1>2015 Projects</h1>
-      <div class="toc" id="toc"><div id="toctitle"><h2>Contents</h2></div>
+      <html><body><div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2></div>
 <ul>
-<li class="toclevel-1 tocsection-1"><a href="#Ideas_for_projects"><span class="tocnumber">1</span> <span class="toctext">Ideas for projects</span></a>
+<li class="toclevel-1 tocsection-1"><a href="#Projects"><span class="tocnumber">1</span> <span class="toctext">Projects</span></a>
 <ul>
-<li class="toclevel-2 tocsection-2"><a href="#Music_Technology"><span class="tocnumber">1.1</span> <span class="toctext">Music Technology</span></a></li>
-<li class="toclevel-2 tocsection-3"><a href="#Hardware"><span class="tocnumber">1.2</span> <span class="toctext">Hardware</span></a></li>
-<li class="toclevel-2 tocsection-4"><a href="#Creative"><span class="tocnumber">1.3</span> <span class="toctext">Creative</span></a></li>
-</ul>
-</li>
-<li class="toclevel-1 tocsection-5"><a href="#Material_to_Cover"><span class="tocnumber">2</span> <span class="toctext">Material to Cover</span></a>
-<ul>
-<li class="toclevel-2 tocsection-6"><a href="#Tools"><span class="tocnumber">2.1</span> <span class="toctext">Tools</span></a></li>
-<li class="toclevel-2 tocsection-7"><a href="#Topics"><span class="tocnumber">2.2</span> <span class="toctext">Topics</span></a></li>
+<li class="toclevel-2 tocsection-2"><a href="#Sound_Detectinator3000"><span class="tocnumber">1.1</span> <span class="toctext">Sound Detectinator3000</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#LifeTune"><span class="tocnumber">1.2</span> <span class="toctext">LifeTune</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#CocoBongo"><span class="tocnumber">1.3</span> <span class="toctext">CocoBongo</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Audio_Filters"><span class="tocnumber">1.4</span> <span class="toctext">Audio Filters</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Music_Plus_One_(Music_+1)"><span class="tocnumber">1.5</span> <span class="toctext">Music Plus One (Music +1)</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Transtimbre"><span class="tocnumber">1.6</span> <span class="toctext">Transtimbre</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Synthestrummer"><span class="tocnumber">1.7</span> <span class="toctext">Synthestrummer</span></a></li>
 </ul>
 </li>
 </ul>
 </div>
-<h1><span class="mw-headline" id="Ideas_for_projects">Ideas for projects</span></h1>
-<p>Page to gather ideas for projects and topics to cover.
+<h1><span class="mw-headline" id="Projects">Projects</span></h1>
+<p>These were the projects developed in the Summer of 2015:
 </p>
-<h2><span class="mw-headline" id="Music_Technology">Music Technology</span></h2>
-<ul>
-<li> Shazam
-</li>
-<li> Time streching, phase vocoder
-</li>
-<li> Beat detection
-</li>
-</ul>
-<h2><span class="mw-headline" id="Hardware">Hardware</span></h2>
-<ul>
-<li> Guitar pedals: distortion, phaser, ring mod, etc
-</li>
-<li> Rock Band Drums: using hid in pd or rb2midi or JoyToKey in pd
-</li>
-<li> Spatial localization: construct a device that can locate the source of a sound
-</li>
-</ul>
-<h2><span class="mw-headline" id="Creative">Creative</span></h2>
-<h1><span class="mw-headline" id="Material_to_Cover">Material to Cover</span></h1>
-<p>This is motivated by the projects above.
+<h3><span class="mw-headline" id="Sound_Detectinator3000">Sound Detectinator3000</span></h3>
+<p>By Kevin, Jerry, Sameer 
+</p><p>Use PD and raspberry pi 
+</p><p>Description: Set a robot at the center of a circle with given radius. Arrange sound-emitting objects every 18 degrees around the circumference of the circle. The robot will have three functionalities:
 </p>
-<h2><span class="mw-headline" id="Tools">Tools</span></h2>
-<ul>
-<li> Python
-</li>
-<li> Abelton Live
-</li>
-<li> MAX for Live
-</li>
-<li> Audacity
-</li>
-</ul>
-<h2><span class="mw-headline" id="Topics">Topics</span></h2>
-<ul>
-<li> Fourier Series
-</li>
-<li> Sampling, aliasing, etc
-</li>
-</ul>
+<ol><li>One device will play and the robot will determine the position of the sound-emitting object based on angle.</li>
+<li>Multiple devices will play and the robot will determine the position of each sound-emitting object.</li>
+<li>All but one object will play and the robot will determine the position of the object that</li></ol>
+<ul><li><a class="external text" href="http://guitar.ucsd.edu/cosmos9/2015/projects/1SoundDetectinator3000Full.pdf" rel="nofollow">slides</a></li></ul>
+<h3><span class="mw-headline" id="LifeTune">LifeTune</span></h3>
+<p>By Avneesh, Darius, Sophie 
+</p><p>Team S.A.D. presents:
+</p><p>LifeTune is built around the concept that one can share their life through music no matter their musical ability. A set of sensors worn on the body will collect data and translate it into MIDI signals that can be used in DAWs like Ableton. Then any sound can be applied and triggered by these signals to create a LifeTune.
+</p>
+<ul><li><a class="external text" href="http://guitar.ucsd.edu/cosmos9/2015/projects/2LifeTuneFull.pdf" rel="nofollow">slides</a></li></ul>
+<h3><span class="mw-headline" id="CocoBongo">CocoBongo</span></h3>
+<p>By Coco, Valerie, Amelia W
+</p><p>The RoboJAM robot will have both an autonomous mode and a manual mode. It will mainly utilize a proximity sensor to play different pitches (and percussion instruments) based on the input from the sensor.
+</p>
+<ul><li><a class="external text" href="http://guitar.ucsd.edu/cosmos9/2015/projects/3CocoBongoFull.pdf" rel="nofollow">slides</a></li></ul>
+<h3><span class="mw-headline" id="Audio_Filters">Audio Filters</span></h3>
+<p>By Amelia Huang, Audrea Huang, Charmhel Bascos
+</p><p>Use the Raspberry Pi as a music player, and attach PD pressure/proximity sensors to add effects to music imported into Raspberry Pi.
+</p>
+<ul><li><a class="external text" href="http://guitar.ucsd.edu/cosmos9/2015/projects/4AudioFiltersBackboardSingleSlide.pdf" rel="nofollow">poster</a></li></ul>
+<h3><span id="Music_Plus_One_.28Music_.2B1.29"></span><span class="mw-headline" id="Music_Plus_One_(Music_+1)">Music Plus One (Music +1)</span></h3>
+<p>By Aditya, Alex, Bryan, Kalen 
+</p><p>Use Python to take in a melody (as MIDI/audio) and generate a backing accompaniment to go with it (as MIDI/audio)
+</p>
+<ul><li><a class="external text" href="http://guitar.ucsd.edu/cosmos9/2015/projects/5MusicPlusOneFull.pdf" rel="nofollow">slides</a></li></ul>
+<h3><span class="mw-headline" id="Transtimbre">Transtimbre</span></h3>
+<p>By Rebecca, Melissa, Michelle 
+</p><p>Use Python/Matlab to write a program that takes audio, converts it to MIDI, and converts back to audio.  Specifically, a program that changes a piano recording to sound like other instruments.
+</p>
+<ul><li><a class="external text" href="http://guitar.ucsd.edu/cosmos9/2015/projects/6TranstimbreSingleSlide.pdf" rel="nofollow">poster</a></li></ul>
+<h3><span class="mw-headline" id="Synthestrummer">Synthestrummer</span></h3>
+<p>By Ian, Rich
+</p><p>Use embedded electronics and PD to create and control guitar effects and implement them in a song produced in Ableton.
+</p>
+<ul><li><a class="external text" href="http://guitar.ucsd.edu/cosmos9/2015/projects/7BackboardSythestrummerSingleSlide.pdf" rel="nofollow">poster</a></li></ul>
 <!-- 
 NewPP limit report
-CPU time usage: 0.005 seconds
-Real time usage: 0.005 seconds
-Preprocessor visited node count: 26/1000000
-Preprocessor generated node count: 32/1000000
+Cached time: 20260721054446
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.015 seconds
+Real time usage: 0.017 seconds
+Preprocessor visited node count: 23/1000000
 Post‐expand include size: 0/2097152 bytes
 Template argument size: 0/2097152 bytes
 Highest expansion depth: 2/40
 Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
 -->
-<!-- Saved in parser cache with key wiki-cosmos9:pcache:idhash:154-0!*!*!!en!*!* and timestamp 20150718234932
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_cosmos9-cosmos9:pcache:idhash:154-0!canonical and timestamp 20260721054446 and revision id 1367. Serialized with JSON.
  -->
-
+</div></body></html>
       <hr/>
-      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20150718234935/http://guitar.ucsd.edu:80/cosmos9/index.php/2015_Projects">Internet Archive</a>.</p>
+      <p class="meta">Recovered from the original course wiki (server backup, August 2024).</p>
     </main>
   </body>
 </html>

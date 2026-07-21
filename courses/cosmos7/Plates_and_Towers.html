@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Plates and Towers — COSMOS Cluster 7</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ COSMOS Cluster 7</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>Plates and Towers</h1>
+      <html><body><div class="mw-parser-output"><p>In this lab, we will first further explore the properties of the snelson prism. Then, we will look at possible methods of connecting individual prisms together to form tensegrity plates and towers.
+</p>
+<div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Twist_angle"><span class="tocnumber">1</span> <span class="toctext">Twist angle</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Discussion"><span class="tocnumber">1.1</span> <span class="toctext">Discussion</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Tensegrity_Plates"><span class="tocnumber">2</span> <span class="toctext">Tensegrity Plates</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#3-Bar_Unit_Plates"><span class="tocnumber">2.1</span> <span class="toctext">3-Bar Unit Plates</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#n-Bar_Unit_Plates"><span class="tocnumber">2.2</span> <span class="toctext">n-Bar Unit Plates</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Discussion_2"><span class="tocnumber">2.3</span> <span class="toctext">Discussion</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#The_Topology_of_a_Tensegrity_Unit"><span class="tocnumber">3</span> <span class="toctext">The Topology of a Tensegrity Unit</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Discussion_3"><span class="tocnumber">3.1</span> <span class="toctext">Discussion</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#The_Topology_of_a_Two_Stage_Tensegrity_Tower"><span class="tocnumber">4</span> <span class="toctext">The Topology of a Two Stage Tensegrity Tower</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Discussion_4"><span class="tocnumber">4.1</span> <span class="toctext">Discussion</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#To_Infinity_and_Beyond"><span class="tocnumber">5</span> <span class="toctext">To Infinity and Beyond</span></a>
+<ul>
+<li class="toclevel-2 tocsection-12"><a href="#Discussion_5"><span class="tocnumber">5.1</span> <span class="toctext">Discussion</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1><span class="mw-headline" id="Twist_angle">Twist angle</span></h1>
+<ol style="list-style-type: lower-alpha;">
+<li><p>Build a 3-bar snelson prism. Pay special attention to make the prism as regular as possible. That, is, make sure all the top and bottom strings are the same length, and that the prism is flat.</p></li>
+<li><p>Place the snelson prism on a large sheet of paper and mark the location of the three bottom nodes. Remove the snelson prism and connect the dots to form a triangle on the paper.</p></li>
+<li><p>Find the center of the triangle. Measure each edge drawn on your sheet and mark the center of these segments. Draw a line from this center point to the opposite vertex. Do this for all three sides. The three lines should all intersect. This point of intersection is the center of the polygon.</p></li>
+<li><p>Place the snelson prism back onto the piece of paper, properly aligned. Use a stick to mark a dot on the paper directly below one of the top nodes. Remove the prism. Draw a line connecting this new point to the center of the triangle.</p></li>
+<li><p>Measure the angle of rotation between the top and bottom polygons using the lines you just drew. To compute the angle, use either basic trigonometric principles or a protractor. Record this angle in the first row of the table</p></li>
+<li><p>Repeat steps (a)-(e) for snelson prisms with 4,5, and 6 bars. Record the results in the table.</p>
+<table class="wikitable">
+<caption>Snelson Prism Properties
+</caption>
+<tbody><tr>
+<td align="center">n
+</td>
+<td align="center">Twist Angle
+</td></tr>
+<tr>
+<td align="center">3
+</td>
+<td align="center">
+</td></tr>
+<tr>
+<td align="center">4
+</td>
+<td align="center">
+</td></tr>
+<tr>
+<td align="center">5
+</td>
+<td align="center">
+</td></tr>
+<tr>
+<td align="center">6
+</td>
+<td align="center">
+</td></tr></tbody></table>
+</li></ol>
+<h2><span class="mw-headline" id="Discussion">Discussion</span></h2>
+<ol><li>Which prism had the largest twist angle? the smallest?</li>
+<li>How would you expect the twist angle of a 20-bar snelson prism to compare with the four you tested?</li>
+<li>It is known from theory that the twist angle (&lt;math&gt;\alpha&lt;/math&gt;) of an &lt;math&gt;n&lt;/math&gt;-bar snelson prism can be given (in radians) by the following formula: &lt;math&gt;\alpha = \frac{\pi}{2} - \frac{\pi}{n}&lt;/math&gt; Compute the theoretical twist angle for the four prisms you tested and compare with your experimental results.</li>
+<li>What would the twist angle be for a snelson prism with infinitely many number of bars?</li></ol>
+<h1><span class="mw-headline" id="Tensegrity_Plates">Tensegrity Plates</span></h1>
+<h2><span class="mw-headline" id="3-Bar_Unit_Plates">3-Bar Unit Plates</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>Build two 3-bar snelson prisms of the same dimensions. Be sure to make the prisms as regular as possible.</p></li>
+<li><p>While keeping the bottoms of both prisms flat on the ground, find a way to connect the prisms together so that they are connected at two points (one on the top and one on the bottom).</p></li>
+<li><p>Using a similar attachment strategy, build and connect a third 3-bar snelson prism to the first two. This new prism should have two attachment points to the first prism and two attachment points to the second prism. The resulting plate should be quasi-triangular in shape.</p></li>
+<li><p>Using the connection method you discovered, expand upon your plate by building a circular plate. This plate should contain one unit in the middle, surrounded by a ring of six units, all connected in the same manner as before.</p></li>
+<li><p>Test the stiffness of this plate.</p></li>
+<li><p>Repeat this test, but this time see if you can discover a different way to connect the prisms to form the same basic plate shape.</p></li></ol>
+<h2><span class="mw-headline" id="n-Bar_Unit_Plates">n-Bar Unit Plates</span></h2>
+<ol style="list-style-type: lower-alpha;">
+<li><p>Build four 4-bar snelson prisms. Try to discover a method of connecting these four prisms together similar to the method used in Test 3 to make a square plate.</p></li>
+<li><p>Repeat this experiment for the 5-bar snelson prism.</p></li>
+<li><p>Repeat this experiment for the 6-bar snelson prism. You will only need three units this time to discover a plate topology.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_2">Discussion</span></h2>
+<ol><li>For the two types of 3-Bar unit plates, which was the stiffest? Which was the most mass efficient?</li>
+<li>Were you able to discover ways to build flat plates with all the units (3, 4, 5, and 6 bar plates)?</li>
+<li>If you were able to build circular plate out of 6-bar units (similar to the one you built with 3-bar units) how would you expect the stiffness of this plate to compare to the stiffness of the 3-bar plate? the mass efficiency?</li></ol>
+<h1><span class="mw-headline" id="The_Topology_of_a_Tensegrity_Unit">The Topology of a Tensegrity Unit</span></h1>
+<ol style="list-style-type: lower-alpha;">
+<li><p>Assemble one tensegrity unit with 3 bars and one with 4 bars. Follow the next steps for the prism with 3 bars.</p></li>
+<li><p>Label the bars and strings. Make sure the bars are labeled sequentially.</p></li>
+<li><p>On your lab notebook, draw three parallel bars. Identify the bars with the numbering you have on the actual prism.</p></li>
+<li><p>Looking at the prism, draw straight lines representing the strings. If a string goes over a bar or another string just indicate the right connection. You have just produced a <i>connectivity diagram</i> for a tensegrity unit.</p></li>
+<li><p>Answer the discussion question and then return to item (b) for the 4-bar prism.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_3">Discussion</span></h2>
+<ol><li>Can you produce a similar diagram for the 4-bar unit (without looking at the unit itself).</li></ol>
+<h1><span class="mw-headline" id="The_Topology_of_a_Two_Stage_Tensegrity_Tower">The Topology of a Two Stage Tensegrity Tower</span></h1>
+<ol style="list-style-type: lower-alpha;">
+<li><p>Request an alredy built two-stage tensegrity tower and draw its connectivity diagram.</p></li>
+<li><p>Use the connectivity diagram you obtained in the previous item to build a two-stage tensegrity tower with three bars on each stage.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_4">Discussion</span></h2>
+<ol><li>Can you draw the connectivity diagram of a two-stage tower with four bars on each stage.</li>
+<li>Can you draw the connectivity diagram of a three-stage tower with three bars on each stage.</li></ol>
+<h1><span class="mw-headline" id="To_Infinity_and_Beyond">To Infinity and Beyond</span></h1>
+<ol style="list-style-type: lower-alpha;">
+<li><p>Use the connectivity diagram you obtained in the previous discussion to build a two-stage tensegrity tower with fours bars on each stage.</p></li>
+<li><p>Use the connectivity diagram you obtained in the previous discussion to build a three-stage tensegrity tower with three bars on each stage.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_5">Discussion</span></h2>
+<ol><li>How far can you take this process?</li>
+<li>What happens if you close the top and bottom as well as the sides of the planar topology?</li></ol>
+<!-- 
+NewPP limit report
+Cached time: 20260721054044
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.013 seconds
+Real time usage: 0.015 seconds
+Preprocessor visited node count: 42/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_cosmos7:pcache:idhash:11-0!canonical and timestamp 20260721054044 and revision id 148. Serialized with JSON.
+ -->
+</div></body></html>
+      <hr/>
+      <p class="meta">Recovered from the original course wiki (server backup, August 2024).</p>
+    </main>
+  </body>
+</html>

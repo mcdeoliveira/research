@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stiffness Lab — COSMOS Cluster 7</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ COSMOS Cluster 7</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>Stiffness Lab</h1>
+      <html><body><div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Background"><span class="tocnumber">1</span> <span class="toctext">Background</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Comparing_Axial_Linear_Stiffness"><span class="tocnumber">2</span> <span class="toctext">Comparing Axial Linear Stiffness</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Discussion"><span class="tocnumber">2.1</span> <span class="toctext">Discussion</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Load_Displacement_Curve"><span class="tocnumber">3</span> <span class="toctext">Load Displacement Curve</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Discussion_2"><span class="tocnumber">3.1</span> <span class="toctext">Discussion</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Using_Stiffness_to_Calculate_Pretension"><span class="tocnumber">4</span> <span class="toctext">Using Stiffness to Calculate Pretension</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Discussion_3"><span class="tocnumber">4.1</span> <span class="toctext">Discussion</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Prism_Stiffness"><span class="tocnumber">5</span> <span class="toctext">Prism Stiffness</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#Discussion_4"><span class="tocnumber">5.1</span> <span class="toctext">Discussion</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Background">Background</span></h2>
+<p>The stiffness of an object can be described as its resistance to deformation due to an applied force. In other words, the stiffness quantifies how much the object stretch when a load is applied. For linear axially loaded members (such as a simple bar or string) the stiffness (&lt;math&gt;k&lt;/math&gt;) is related to the change in length (&lt;math&gt;\delta&lt;/math&gt;) and the applied force (&lt;math&gt;F&lt;/math&gt;) as follows: 
+</p><p>&lt;math&gt;F = k \, \delta \quad \Longrightarrow \quad k = \frac{F}{\delta}&lt;/math&gt;
+</p><p>This equation is known as <i>Hooke’s Law</i>. You will use Hooke’s Law to experimentally find the stiffness of various configurations of elastic members.
+</p><p><a class="image" href="images/4/45/Hooke.png"><img alt="Hooke.png" data-file-height="464" data-file-width="883" decoding="async" height="210" loading="lazy" src="images/thumb/4/45/Hooke.png/400px-Hooke.png" width="400"/></a>
+</p>
+<h1><span class="mw-headline" id="Comparing_Axial_Linear_Stiffness">Comparing Axial Linear Stiffness</span></h1>
+<p>In this test you will use a test rig to stretch various objects. Using this information you will calculate the stiffness of these objects.
+</p>
+<ol style="list-style-type: lower-alpha;">
+<li><p>Construct a table like the one below in your lab notebook:</p>
+<table class="wikitable">
+<caption>Measurement table
+</caption>
+<tbody><tr>
+<td align="center" style="width: 20%;">
+</td>
+<td align="center" style="width: 20%;">&lt;math&gt;\delta&lt;/math&gt;
+</td>
+<td align="center" style="width: 20%;">&lt;math&gt;M&lt;/math&gt;
+</td>
+<td align="center" style="width: 20%;">&lt;math&gt;F&lt;/math&gt;
+</td>
+<td align="center" style="width: 20%;">&lt;math&gt;k&lt;/math&gt;
+</td></tr>
+<tr>
+<td align="center">Tensegritoy String
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr>
+<td align="center">Bungee Cord
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr>
+<td align="center">Short White Elastic Band
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr>
+<td align="center">Long White Elastic Band
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr></tbody></table>
+</li>
+<li><p>Attach one end of a tensegritoy string to the top of your frame.</p></li>
+<li><p>Each one of the stones has a mass of 3.84 grams. Fill the weight bag with about &lt;math&gt;M = 0.4 kg&lt;/math&gt; of stones. Record the mass in the table. Compute the force excerted by the weight using &lt;math&gt;F = M G&lt;/math&gt;, where &lt;math&gt;G \approx 10 m/s^2&lt;/math&gt; is the gravitational acceleration.</p></li>
+<li><p>Clamp the weight bag to the other end of the tensegritoy string using a green finger clamp.</p></li>
+<li><p>Measure the distance between the clamped ends of the string before it is stretched. This is the rest length of the string. Record it in the table.</p></li>
+<li><p>Allow the weight bag to hang, loading the string. Measure the distance between the clamped ends of the string. This is the stretched length of the string. Record it in the table.</p></li>
+<li><p>Subtract the rest length from the stretched length to find the change in length of the string due to the load. Record this in the table as well.</p></li>
+<li><p>Use Hooke’s Law to find the stiffness (&lt;math&gt;k&lt;/math&gt;) of the string and record it in the table.</p></li>
+<li><p>Repeat steps (b)-(h) for the bungee cord, black plastic cord, white elastic string, and the white elastic band. Each time adjust the weight accordingly so as to stretch the member enough to get a reading, but not so much that the member is fully stretched or breaks. Complete the following table.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion">Discussion</span></h2>
+<ol><li>Which object was the stiffest?</li>
+<li>For the white elastic band, how did rest length affect stiffness?</li>
+<li>Can you think of an object you did not test that would be more stiff than any of these objects?</li>
+<li>What real-life material applications would require high stiffness? low stiffness?</li></ol>
+<h1><span class="mw-headline" id="Load_Displacement_Curve">Load Displacement Curve</span></h1>
+<p>In this test, you will look at how the displacement of a single string changes as the load applied to it is increased. You will explore how this relationship is similar to the stiffness found in <a href="#Comparing_Axial_Linear_Stiffness">Comparing Axial Linear Stiffness</a>.
+</p>
+<ol style="list-style-type: lower-alpha;">
+<li><p>Construct the following table in your lab notebook:</p>
+<table class="wikitable">
+<caption>Measurement table
+</caption>
+<tbody><tr>
+<td align="center" style="width: 30%;">&lt;math&gt;\delta&lt;/math&gt;
+</td>
+<td align="center" style="width: 30%;">&lt;math&gt;M&lt;/math&gt;
+</td>
+<td align="center" style="width: 30%;">&lt;math&gt;F&lt;/math&gt;
+</td></tr>
+<tr style="height: 30px;">
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr style="height: 30px;">
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr style="height: 30px;">
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr style="height: 30px;">
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr style="height: 30px;">
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr></tbody></table>
+</li>
+<li><p>Attach one end of a tensegritoy string to the top of your frame.</p></li>
+<li><p>Place 10 stones in the weight bag and record the mass and the force in the table.</p></li>
+<li><p>Clamp the weight bag to the other end of the tensegritoy string using a green finger clamp.</p></li>
+<li><p>Measure the distance between the clamped ends of the string before it is stretched. This is the rest length of the string. Record it in the table.</p></li>
+<li><p>Allow the weight bag to hang, loading the string. Again measure the distance between the clamped ends of the string. This is the stretched length of the string. Record it in the table.</p></li>
+<li><p>Subtract the rest length from the stretched length to find the change in length of the string due to the load. Record this in the table as well.</p></li>
+<li><p>Repeat steps (b)-(g) each time adding another 5-10 stones to the weight bag and recording the mass, the force and the change in length in the table. Do this until the mass of the stones is about &lt;math&gt;0.7 kg&lt;/math&gt;.</p></li>
+<li><p>In your lab notebook, make a plot similar to the one in the figure below, with change in length (&lt;math&gt;\delta&lt;/math&gt;) on the x-axis and force (&lt;math&gt;F&lt;/math&gt;) on the y-axis. Plot all the points in your table.</p></li>
+<li><p>Using a ruler, draw a straight line through your points that seems to best-fit the data as is shown in the figure.</p>
+</li></ol>
+<p><a class="image" href="images/c/c4/Graph.png"><img alt="Graph.png" data-file-height="810" data-file-width="904" decoding="async" height="240" loading="lazy" src="images/thumb/c/c4/Graph.png/268px-Graph.png" width="268"/></a>
+</p>
+<h2><span class="mw-headline" id="Discussion_2">Discussion</span></h2>
+<ol><li>What is the approximate slope of your line? Recall that for any two points on the line with coordinates &lt;math&gt;(x_1,y_1)&lt;/math&gt; and &lt;math&gt;(x_2,y_2)&lt;/math&gt; the slope, &lt;math&gt;m&lt;/math&gt;, is given by: &lt;math&gt;m = \frac{y_2-y_1}{x_2-x_1}&lt;/math&gt;</li>
+<li>What does this slope represent, and how does it compare to your results from Test 1?</li>
+<li>Does your best-fit line pass through the origin of the graph (0,0)? Should it? Physically, what does this point represent?</li>
+<li>If you continued the experiment by adding more and more stones to the weight bag, what would you expect the plot to look like? Would it stay linear?</li></ol>
+<h1><span class="mw-headline" id="Using_Stiffness_to_Calculate_Pretension">Using Stiffness to Calculate Pretension</span></h1>
+<p>Tensegrity structures, by design, are built with pretension. As you have seen in the previous three tests, this helps to increase the overall stiffness of the structure. In this experiment, we are going to use our knowledge of Hooke’s Law, along with our previously created force-displacement plot ([#Load Displacement Curve|Load Displacement Curve]] to determine the pretension in the strings of a snelson prism.
+</p><p>For this test, construct the following table in your lab notebook.
+</p>
+<table class="wikitable">
+<caption>Measurement table
+</caption>
+<tbody><tr>
+<td align="center">
+</td>
+<td align="center" style="width: 30%">&lt;math&gt;\delta&lt;/math&gt;
+</td>
+<td align="center" style="width: 30%">&lt;math&gt;F&lt;/math&gt;
+</td></tr>
+<tr>
+<td align="center">Top 1
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr>
+<td align="center">Top 2
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr>
+<td align="center">Top 3
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr>
+<td align="center">Bottom 1
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr>
+<td align="center">Bottom 2
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr>
+<td align="center">Bottom 3
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr>
+<td align="center">Vertical 1
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr>
+<td align="center">Vertical 2
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr>
+<tr>
+<td align="center">Vertical 3
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td></tr></tbody></table>
+<ol style="list-style-type: lower-alpha;">
+<li><p>You will need a tensegritoy snelson prism. You may use a previously built one, or, if not available, use the lab notes on the snelson prism to construct one using 3 bars and 6 strings.</p>
+</li>
+<li><p>Using a pen or marker, place a dot at the terminal ends of each string segment, at the point where they enter the bar for the first time.</p></li>
+<li><p>Measure the distance between each dot for the 3 top strings, 3 bottom strings, and 3 composite vertical strings. This is the stretched length of each string. Record these values in the table.</p></li>
+<li><p>Carefully and systematically disassemble the snelson prism, keeping track of each string segment. As each one of the 9 strings becomes slack, again measure the distance between the marks you made earlier. This is the rest length for the segment. Record all 9 rest lengths in the table.</p>
+<p>NOTE: A vertical string is made up of two strings connected in parallel. While the stretched length of this composite string is easy to measure, it is possible that the rest lengths of each of the individual parallel strings could be different. Record teach of the two rest lengths separately in the appropriate location in the table.</p></li>
+<li><p>Subtract the rest length of each string from the stretched length to determine the change in length (&lt;math&gt;\delta&lt;/math&gt;) of each segment. Record these values in the table.</p></li>
+<li><p>Now, using your force-displacement plot from <a href="#Load_Displacement_Curve">Load Displacement Curve</a>, determine the force in each string from the calculated change in length. Remember that the vertical strings were composed of two strings connected in parallel, so you need to add the force of each string to find the total force in the vertical string.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_3">Discussion</span></h2>
+<ol><li>What is the average pretension in the 6 horizontal strings (3 top and 3 bottom)? This is the average horizontal force, &lt;math&gt;F_h&lt;/math&gt;. What is the average stretched length of these 6 strings (&lt;math&gt;L_h&lt;/math&gt;)?</li>
+<li>What is the average pretension in the 3 vertical strings? This is the average vertical force, &lt;math&gt;F_v&lt;/math&gt;. What is the average stretched length of these 3 strings (&lt;math&gt;L_v&lt;/math&gt;)?</li>
+<li>It is known from theory that the following equation is true for <i>any</i> regular snelson prism: &lt;math&gt;\frac{F_v ~L_h}{F_h~L_v}= \sqrt{3}&lt;/math&gt; Compute this value using the experimental averages you found in questions 1 and 2. How does it compare with the theoretical value?</li>
+<li>If the your ratio does not match the theoretical value, what are some likely sources for error in your experiment?</li>
+<li>For the snelson prism you started with, which set of strings (top, bottom, or vertical) are the stiffest? Why?</li>
+<li>Suppose you could somehow build a snelson prism such that all segments were comprised of only a single string (that is, the vertical strings were not made up of two parallel strings), and all the strings were the same material. For this case, which set of strings (top, bottom, or vertical) would have the highest force? highest stiffness?</li>
+<li>Do your answers from the previous questions depend on the shape of the snelson prism (i.e. is it tall and skinny or short and fat)?</li></ol>
+<h1><span class="mw-headline" id="Prism_Stiffness">Prism Stiffness</span></h1>
+<ol style="list-style-type: lower-alpha;">
+<li><p>Fill the tensegritoy box with one bag of marbles. This corresponds to a force of about 13.35 N. Record this force in the table.</p></li>
+<li><p>Set the 3-bar prism on the table. Place a sheet of paper under each node of the prism to allow for sliding. Measure the height of the prism. This is the rest height, record it in the table.</p></li>
+<li><p>Load the prism by placing the box on top. Measure the loaded height of the prism and record it in the table.</p></li>
+<li><p>Compute the displacement and use Hooke’s Law to compute the stiffness of the prism.</p></li>
+<li><p>If a bar has a mass of 5 g and a string has a mass of 0.5 g, compute the total mass of the prism and record it in the table.</p></li>
+<li><p>Repeat steps (a)-(e) for the 4, 5, and 6 bar prisms.</p></li></ol>
+<h2><span class="mw-headline" id="Discussion_4">Discussion</span></h2>
+<ol><li>Which prism was the stiffest? the softest?</li>
+<li>One way to quantify the mass efficiency of the prism is to divide the stiffness of the prism by its mass. Using this measure, which prism is the most mass efficient? the least mass efficient?</li>
+<li>How do you think the stiffness of these prisms would compare to a solid block of wood of similar size? What about the mass efficiency?</li></ol>
+<!-- 
+NewPP limit report
+Cached time: 20260721054045
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.025 seconds
+Real time usage: 0.029 seconds
+Preprocessor visited node count: 34/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_cosmos7:pcache:idhash:9-0!canonical and timestamp 20260721054044 and revision id 142. Serialized with JSON.
+ -->
+</div></body></html>
+      <hr/>
+      <p class="meta">Recovered from the original course wiki (server backup, August 2024).</p>
+    </main>
+  </body>
+</html>

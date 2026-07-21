@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Logic Circuits — COSMOS Cluster 7</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ COSMOS Cluster 7</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>Logic Circuits</h1>
+      <html><body><div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Circuits_Basics"><span class="tocnumber">1</span> <span class="toctext">Circuits Basics</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Voltage_and_Current"><span class="tocnumber">1.1</span> <span class="toctext">Voltage and Current</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Voltage_Sources"><span class="tocnumber">1.2</span> <span class="toctext">Voltage Sources</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Ground_node"><span class="tocnumber">1.3</span> <span class="toctext">Ground node</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Resistors"><span class="tocnumber">1.4</span> <span class="toctext">Resistors</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Ohm's_Law"><span class="tocnumber">1.5</span> <span class="toctext">Ohm's Law</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Association_of_Resistors"><span class="tocnumber">1.6</span> <span class="toctext">Association of Resistors</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#Series"><span class="tocnumber">1.6.1</span> <span class="toctext">Series</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#In_Parallel"><span class="tocnumber">1.6.2</span> <span class="toctext">In Parallel</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="#Voltage_Division"><span class="tocnumber">1.7</span> <span class="toctext">Voltage Division</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Potentiometers"><span class="tocnumber">1.8</span> <span class="toctext">Potentiometers</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Circuits_with_Capacitors"><span class="tocnumber">2</span> <span class="toctext">Circuits with Capacitors</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="#Capacitors"><span class="tocnumber">2.1</span> <span class="toctext">Capacitors</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Filters"><span class="tocnumber">2.2</span> <span class="toctext">Filters</span></a>
+<ul>
+<li class="toclevel-3 tocsection-15"><a href="#High-Pass_Filter"><span class="tocnumber">2.2.1</span> <span class="toctext">High-Pass Filter</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Low-Pass_Filter"><span class="tocnumber">2.2.2</span> <span class="toctext">Low-Pass Filter</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="#Circuits_with_OpAmps"><span class="tocnumber">3</span> <span class="toctext">Circuits with OpAmps</span></a>
+<ul>
+<li class="toclevel-2 tocsection-18"><a href="#OpAmps"><span class="tocnumber">3.1</span> <span class="toctext">OpAmps</span></a>
+<ul>
+<li class="toclevel-3 tocsection-19"><a href="#MCP6271"><span class="tocnumber">3.1.1</span> <span class="toctext">MCP6271</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-20"><a href="#Basic_Amplifier_Circuits_with_OpAmps"><span class="tocnumber">3.2</span> <span class="toctext">Basic Amplifier Circuits with OpAmps</span></a>
+<ul>
+<li class="toclevel-3 tocsection-21"><a href="#Non-Inverting_OpAmp_Circuit"><span class="tocnumber">3.2.1</span> <span class="toctext">Non-Inverting OpAmp Circuit</span></a></li>
+<li class="toclevel-3 tocsection-22"><a href="#Inverting_OpAmp_Circuit"><span class="tocnumber">3.2.2</span> <span class="toctext">Inverting OpAmp Circuit</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-23"><a href="#Non-Linear_Circuits"><span class="tocnumber">4</span> <span class="toctext">Non-Linear Circuits</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Circuits_Basics">Circuits Basics</span></h2>
+<h3><span class="mw-headline" id="Voltage_and_Current">Voltage and Current</span></h3>
+<p><b>Voltage</b> is a measure of the (electric) <i>potential energy</i> across two points
+</p><p>Voltage is measured in Volts (V)
+</p><p><b>Current</b> is a measure of the <i>flow of</i> (electric) <i>charges</i> (through a wire, device, surface, etc)
+</p><p>Current is measured in Amperes (A), Amps for short
+</p><p>Both voltage and current are signed quantities
+</p><p>We measure voltage across, <i>v</i>, and current through, <i>i</i>, a <b>circuit element</b> as indicated in the following diagram:
+</p>
+<dl><dd>Dipole</dd></dl>
+<p>If both <i>v</i> and <i>i</i> have the same sign (both positive or both negative) then the element is <i>dissipating</i> energy (e.g. a toaster, a refrigerator, a computer)
+</p><p>If <i>v</i> and <i>i</i> have opposite signs then the element is <i>generating</i> energy (e.g. a battery, a power outlet)
+</p><p>A point in a circuit is called a <b>node</b>
+</p>
+<h3><span class="mw-headline" id="Voltage_Sources">Voltage Sources</span></h3>
+<p>You <i>can buy voltage</i> at the supermarket
+</p><p>You <i>cannot buy current</i> at the supermarket
+</p><p>The symbol for a 10V voltage source is:
+</p>
+<dl><dd>Voltage Source</dd></dl>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Use a hand-help multimeter to measure the voltage across a 9V battery and the voltages on the breadboard pins</li>
+<li>Invert the polarity and explain your measurements</li></ol>
+<h3><span class="mw-headline" id="Ground_node">Ground node</span></h3>
+<p>If a circuit has a node from which all voltages are measured against this node is called the <b>ground node</b> or simply <b>ground</b>
+</p><p>Ground has its own special symbol:
+</p>
+<dl><dd>Ground</dd></dl>
+<h3><span class="mw-headline" id="Resistors">Resistors</span></h3>
+<p>If two points that have different voltages are connect by an element that can carry electric charges then current will flow through the element connecting the two points (e.g. a wire, a circuit element, a toaster)
+</p><p>A resistor will limit the current that can flow through a circuit by offering <i>resistance</i> to the flow
+</p><p>Resistance is measured in Ohms (Ω)
+</p><p>A useful analogy is with the hydraulic circuit:
+</p>
+<dl><dd>Hidraulic</dd></dl>
+<p>See <a class="external text" href="http://faculty.wwu.edu/vawter/PhysicsNet/Topics/DC-Current/WaterFlowAnalog.html" rel="nofollow">this webpage</a> for some great animations
+</p><p>The symbol for a 100KΩ resistor is:
+</p>
+<dl><dd>Resistor</dd></dl>
+<p>Since typing Greek is cumbersome we often omit the Omega symbol
+</p><p>Resistance values in resistor are encoded in color bars
+</p><p>The values of each color can be found in the table:
+</p>
+<table style="text-align: center;">
+<tbody><tr>
+<th>Color</th>
+<th>Value</th>
+<th>Multiplier</th>
+<th>Tolerance
+</th></tr>
+<tr style="background-color: black; color: white">
+<td>Black</td>
+<td>0</td>
+<td>&lt;math&gt;\times 10^0&lt;/math&gt;</td>
+<td>&lt;math&gt;-&lt;/math&gt;
+</td></tr>
+<tr style="background-color: brown; color: white">
+<td>Brown</td>
+<td>1</td>
+<td>&lt;math&gt;\times 10^1&lt;/math&gt;</td>
+<td>&lt;math&gt;\pm 1\%&lt;/math&gt;
+</td></tr>
+<tr style="background-color: red; color: white">
+<td>Red</td>
+<td>2</td>
+<td>&lt;math&gt;\times 10^2&lt;/math&gt;</td>
+<td>&lt;math&gt;\pm 2\%&lt;/math&gt;
+</td></tr>
+<tr style="background-color: orange; color: white">
+<td>Orange</td>
+<td>3</td>
+<td>&lt;math&gt;\times 10^3&lt;/math&gt;</td>
+<td>&lt;math&gt;-&lt;/math&gt;
+</td></tr>
+<tr style="background-color: yellow; color: black">
+<td>Yellow</td>
+<td>4</td>
+<td>&lt;math&gt;\times 10^4&lt;/math&gt;</td>
+<td>&lt;math&gt;-&lt;/math&gt;
+</td></tr>
+<tr style="background-color: green; color: black">
+<td>Green</td>
+<td>5</td>
+<td>&lt;math&gt;\times 10^5&lt;/math&gt;</td>
+<td>&lt;math&gt;\pm 0.5\%&lt;/math&gt;
+</td></tr>
+<tr style="background-color: blue; color: yellow">
+<td>Blue</td>
+<td>6</td>
+<td>&lt;math&gt;\times 10^6&lt;/math&gt;</td>
+<td>&lt;math&gt;\pm 0.25\%&lt;/math&gt;
+</td></tr>
+<tr style="background-color: violet; color: black">
+<td>Violet</td>
+<td>7</td>
+<td>&lt;math&gt;\times 10^7&lt;/math&gt;</td>
+<td>&lt;math&gt;\pm 0.1\%&lt;/math&gt;
+</td></tr>
+<tr style="background-color: gray; color: black">
+<td>Gray</td>
+<td>8</td>
+<td>&lt;math&gt;\times 10^8&lt;/math&gt;</td>
+<td>&lt;math&gt;\pm 0.05\%&lt;/math&gt;
+</td></tr>
+<tr style="background-color: white; color: black">
+<td>White</td>
+<td>9</td>
+<td>&lt;math&gt;\times 10^9&lt;/math&gt;</td>
+<td>&lt;math&gt;-&lt;/math&gt;
+</td></tr>
+<tr style="background-color: gold; color: black">
+<td>Gold</td>
+<td>&lt;math&gt;-&lt;/math&gt;</td>
+<td>&lt;math&gt;\times 10^{-1}&lt;/math&gt;</td>
+<td>&lt;math&gt;\pm 5\%&lt;/math&gt;
+</td></tr>
+<tr style="background-color: silver; color: black">
+<td>Silver</td>
+<td>&lt;math&gt;-&lt;/math&gt;</td>
+<td>&lt;math&gt;\times 10^{-2}&lt;/math&gt;</td>
+<td>&lt;math&gt;\pm 10\%&lt;/math&gt;
+</td></tr>
+<tr>
+<td>None</td>
+<td>&lt;math&gt;-&lt;/math&gt;</td>
+<td>&lt;math&gt;-&lt;/math&gt;</td>
+<td>&lt;math&gt;\pm 20\%&lt;/math&gt;
+</td></tr></tbody></table>
+<p>There are variations, but the most common is to have a resistor with four colored bars as in:
+</p>
+<dl><dd>Resistor</dd></dl>
+<p>The above resistor has:
+</p>
+<dl><dd>1st Band = Red = 2</dd>
+<dd>2nd Band = Violet = 7</dd>
+<dd>Multiplier Band = Green = &lt;math&gt;\times 10^5&lt;/math&gt;</dd>
+<dd>Tolerance Band = Gold = &lt;math&gt;\pm 5\%&lt;/math&gt;</dd></dl>
+<p>That is a 27 &lt;math&gt;\times 10^5&lt;/math&gt;Ω resistor, i.e. 2.7MΩ resistor, with &lt;math&gt;\pm 5\%&lt;/math&gt; tolerance
+</p><p>The &lt;math&gt;\pm 5\%&lt;/math&gt; tolerance means that the resistance of the actual resistance might fall between 2.57M and 2.84M
+</p><p>If the fourth band is not present then the tolerance is &lt;math&gt;\pm 20\%&lt;/math&gt;
+</p><p>Check out <a class="external text" href="http://en.wikipedia.org/wiki/Electronic_color_code#Resistor_color-coding" rel="nofollow">this link</a> for more details
+</p><p>You can find many <i>resistor calculators</i> on the web, like this one from <a class="external text" href="http://www.digikey.com/us/en/mkt/calculators/4-band-resistors.html" rel="nofollow">digikey</a>
+</p>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Identity a 10K and a 100K resistors</li>
+<li>Use a hand-help multimeter to measure the resistance across a 10K and a 100K resistors</li>
+<li>Invert the polarity and measure again</li></ol>
+<h3><span id="Ohm.27s_Law"></span><span class="mw-headline" id="Ohm's_Law">Ohm's Law</span></h3>
+<p>A resistor imposes a linear relationship between voltage and current:
+</p>
+<dl><dd>Ohm's Law</dd></dl>
+<p>In the above circuit:
+</p>
+<div class="center" style="width: auto; margin-left: auto; margin-right: auto;">
+<p>&lt;math&gt;v = R i \quad \text{or} \quad i = \frac{v}{R} &lt;/math&gt;
+</p>
+</div>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Build this circuit on the breadboard:
+<dl><dd>Ohm's Law</dd></dl></li>
+<li>Use a hand-help multimeter to measure the voltage across and the current through the 10K and 100K resistors</li>
+<li>Measure the current through the voltage source</li>
+<li>What is the relationship between the currents?</li></ol>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Build this circuit on the breadboard:
+<dl><dd>LED</dd>
+<dd>The new elements are: a switch (push button) and an LED (Light Emitting Diode)</dd></dl></li>
+<li>Use a hand-help multimeter to measure the voltage across and the LED</li>
+<li>Use Ohm's Law to calculate the current on the circuit</li>
+<li>Flip the LED and see what happens</li></ol>
+<h3><span class="mw-headline" id="Association_of_Resistors">Association of Resistors</span></h3>
+<p>Resistors can be combined to produce different resistances
+</p>
+<h4><span class="mw-headline" id="Series">Series</span></h4>
+<dl><dd>Series</dd></dl>
+<h4><span class="mw-headline" id="In_Parallel">In Parallel</span></h4>
+<dl><dd>Parallel</dd></dl>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Measure the resistance of two 10K resistors in series and in parallel</li>
+<li>Measure the resistance of a 10K and a 100K resistors in series and in parallel</li>
+<li>Explain the value of the current through the voltage source you measured in the previous circuit</li></ol>
+<h3><span class="mw-headline" id="Voltage_Division">Voltage Division</span></h3>
+<p>Follows from Ohm's law:
+</p>
+<dl><dd>Voltage Divider</dd></dl>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Build this circuit on the breadboard:
+<dl><dd>Voltage Divider</dd></dl></li>
+<li>Use a hand-help multimeter to measure the voltage across and the current through the resistors and the voltage source</li>
+<li>Explain the value of the current using association of resistors</li>
+<li>What is the relationship between the voltages?</li></ol>
+<h3><span class="mw-headline" id="Potentiometers">Potentiometers</span></h3>
+<p>A potentiometer is a <i>variable</i> voltage divider
+</p><p>The symbol for a 10K potentiometer is:
+</p>
+<dl><dd>Potentiometer</dd></dl>
+<p>If you leave &lt;math&gt;C&lt;/math&gt; unconnected the potentiometer is a constant resistor
+</p><p>If you leave &lt;math&gt;A&lt;/math&gt; <i>or</i> &lt;math&gt;B&lt;/math&gt; unconnected the potentiometer is a variable resistor
+</p><p>The relationship between the resistances in the above potentiometer is:
+</p>
+<div class="center" style="width: auto; margin-left: auto; margin-right: auto;">
+<p>&lt;math&gt; R_{AB} = R_{AC} + R_{CB} = 10\mathrm{K}\Omega&lt;/math&gt;
+</p>
+</div>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Use a hand-help multimeter to measure the resistance between the terminals of a 10K potentiometer while you move the <i>wiper</i></li>
+<li>Which terminal is &lt;math&gt;C&lt;/math&gt;?</li>
+<li>Explain how the following circuit can be used as a <i>volume control</i> circuit:
+<dl><dd>Volume control</dd></dl></li>
+<li>Connect the output of a <b>LB</b> oscillator to a potentiometer working as a volume control</li>
+<li>Inspect the output using the oscilloscope as you move the wiper</li>
+<li>Connect the output to a <b>LB</b> speaker</li></ol>
+<dl><dt>Advanced Tasks</dt></dl>
+<ol><li>Build the following <i>cross-fader</i> circuit on the breadboard:
+<dl><dd>Cross fader</dd></dl></li>
+<li>Borrow a cable from another group and connect two different <b>LB</b> oscillators to the inputs &lt;math&gt;v_1&lt;/math&gt; and &lt;math&gt;v_2&lt;/math&gt;</li>
+<li>Inspect the output using the oscilloscope as you move the wiper</li>
+<li>Connect the output to a <b>LB</b> speaker</li></ol>
+<h2><span class="mw-headline" id="Circuits_with_Capacitors">Circuits with Capacitors</span></h2>
+<h3><span class="mw-headline" id="Capacitors">Capacitors</span></h3>
+<p>Capacitors are devices that can store electric charge
+</p><p><i>Capacitance</i> is measured in Farads (F)
+</p><p>The symbol for a 100pF capacitor is:
+</p>
+<dl><dd>Capacitor</dd></dl>
+<p>Capacitors may also be <a class="external text" href="http://en.wikipedia.org/wiki/Electronic_color_code#Capacitor_color-coding" rel="nofollow">color coded</a> but more commonly they value is printed on the capacitor.
+</p><p>Most ceramic and other popular types of capacitors come marked with three numbers, which are read as done with resistors: value value multiplier
+</p><p>The units in this case however are pF (pico Farads)
+</p><p>For example, a capacitor marked 472 is a 47 &lt;math&gt;\times 10^2&lt;/math&gt;pF capacitor, or a 4700pF = 4.7μF capacitor
+</p><p>There are variations though, so be careful. See <a class="external text" href="http://www.wikihow.com/Read-a-Capacitor" rel="nofollow">this page</a> for other marking methods
+</p><p>Some types of capacitors are <i>polarized</i>, most notably electrolytic capacitors
+</p><p><b>BE CAREFUL</b>: a polarized capacitor is often destroyed if connected inverted!
+</p>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Add a capacitor to the LED circuit:
+<dl><dd>LED with capacitor</dd>
+<dd><b>ATTENTION</b>: The type of capacitor you will have to use here is polarized and can only be connected as shown!</dd></dl></li>
+<li>Replace the capacitor by a 470μF capacitor</li>
+<li>What happens if you momentarily close the switch periodically for a short period of time?</li>
+<li>Try keeping the time the switch is closed constant and varying the period</li></ol>
+<h3><span class="mw-headline" id="Filters">Filters</span></h3>
+<p>Circuits with capacitors can be used to <i>filter</i> signals
+</p>
+<h4><span class="mw-headline" id="High-Pass_Filter">High-Pass Filter</span></h4>
+<p>The following circuit is essentially a voltage divider:
+</p>
+<dl><dd>High Pass</dd></dl>
+<p>However, it is not obvious how to calculate the output voltage as a function of the input voltage
+</p><p>The main difficulty is that the response will now depend on the input voltage
+</p><p>Even when the input voltage is constant, the output voltage may still vary: the circuit has become <i>dynamic</i>
+</p><p>It is relatively easy to characterize the response to simple sinusoidal inputs
+</p><p>If the input voltage is
+</p>
+<div class="center" style="width: auto; margin-left: auto; margin-right: auto;">
+<p>&lt;math&gt;v_\mathrm{in} = A \cos(2 \pi f \, t) &lt;/math&gt;
+</p>
+</div>
+<p>then, after the circuit has been operating for some time (we say in <b>steady-state</b>), the output voltage will become closer and closer to
+</p>
+<div class="center" style="width: auto; margin-left: auto; margin-right: auto;">
+<p>&lt;math&gt;v_\mathrm{out} = A G \cos(2 \pi f\, t + \phi)&lt;/math&gt;
+</p>
+</div>
+<p>In other words, the steady-state output will also be a sinusoidal function of same frequency but with a different amplitude and phase
+</p><p>The exact steady state amplitude and phase depends on the circuit
+</p><p>For the above circuit the frequency-dependent <b>gain</b> &lt;math&gt;G&lt;/math&gt; is equal to
+</p>
+<div class="center" style="width: auto; margin-left: auto; margin-right: auto;">
+<p>&lt;math&gt;
+G = \frac{|f/f_c|}{\sqrt{1 + (f/f_c)^2}}, \qquad f_c = \frac{1}{2 \pi R C}
+&lt;/math&gt;
+</p>
+</div>
+<p>The value of the gain &lt;math&gt;G&lt;/math&gt; can be plotted (in logarithmic scale) as a function of the input voltage frequency &lt;math&gt;f&lt;/math&gt;:
+</p>
+<dl><dd>High Pass</dd></dl>
+<p>A summary of the behaviour is as follows:
+</p>
+<dl><dd>When &lt;math&gt;f&lt;/math&gt; is small then &lt;math&gt;G&lt;/math&gt; is small.</dd>
+<dd>When &lt;math&gt;f \approx f_c&lt;/math&gt; then  &lt;math&gt;G&lt;/math&gt; is close to 0.7.</dd>
+<dd>When &lt;math&gt;f&lt;/math&gt; is large then &lt;math&gt;G&lt;/math&gt; is close to 1.</dd></dl>
+<p>The circuit is a <b>high-pass filter</b>, because high frequencies are allowed to <b>pass</b> (&lt;math&gt;G \rightarrow 1&lt;/math&gt;) while low frequencies are <b>attenuated</b> (&lt;math&gt;G \rightarrow 0&lt;/math&gt;)
+</p><p>The frequency &lt;math&gt;f_c&lt;/math&gt; is known as the filter's <b>cutoff frequency</b>, as it roughly marks the boundary between the region where frequencies are attenuated from the region where frequencies are allowed to <b>pass</b>
+</p>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Build the high-pass filter on the breadboard:
+<dl><dd>hi-pass</dd></dl></li>
+<li>Calculate the cutoff frequency as a function of the variable resistor</li>
+<li>Connect the input to a <b>LB</b> oscillator</li>
+<li>Inspect the output using the oscilloscope as you move the wiper</li>
+<li>Vary the frequency of the oscillator and your circuit potentiometer wiper</li></ol>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Insert a capacitor in series with a potentiometer as in:
+<dl><dd>Volume control with hi-pass</dd></dl></li>
+<li>Calculate the cutoff frequency for this hi-pass filter</li>
+<li>Connect the input to a <b>LB</b> oscillator</li>
+<li>Inspect the output using the oscilloscope as you move the wiper</li></ol>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Insert a capacitor in series with a potentiometer as in:
+<dl><dd>DC offset with hi-pass</dd></dl></li>
+<li>Calculate the minimum cutoff frequency for this hi-pass filter</li>
+<li>Connect the input to a <b>LB</b> oscillator</li>
+<li>Inspect the output using the oscilloscope as you move the wiper</li></ol>
+<h4><span class="mw-headline" id="Low-Pass_Filter">Low-Pass Filter</span></h4>
+<p>If we invert the position of the resistor and capacitor:
+</p>
+<dl><dd>Low Pass</dd></dl>
+<p>the resulting circuit has a frequency-dependent <b>gain</b> &lt;math&gt;G&lt;/math&gt;:
+</p>
+<div class="center" style="width: auto; margin-left: auto; margin-right: auto;">
+<p>&lt;math&gt;
+G = \frac{1}{\sqrt{1 + (f/f_c)^2}}, \qquad f_c = \frac{1}{2 \pi R C}
+&lt;/math&gt;
+</p>
+</div>
+<p>The value of the gain &lt;math&gt;G&lt;/math&gt; can be plotted (in logarithmic scale) as a function of the input voltage frequency &lt;math&gt;f&lt;/math&gt;:
+</p>
+<dl><dd>Low Pass</dd></dl>
+<p>A summary of the behaviour is as follows:
+</p>
+<dl><dd>When &lt;math&gt;f&lt;/math&gt; is small then &lt;math&gt;G&lt;/math&gt; is close to 1.</dd>
+<dd>When &lt;math&gt;f \approx f_c&lt;/math&gt; then  &lt;math&gt;G&lt;/math&gt; is close to 0.7.</dd>
+<dd>When &lt;math&gt;f&lt;/math&gt; is large then &lt;math&gt;G&lt;/math&gt; is small.</dd></dl>
+<p>The circuit is a <b>low-pass filter</b>, because low frequencies are allowed to <b>pass</b> (&lt;math&gt;G \rightarrow 1&lt;/math&gt;) while high frequencies are <b>attenuated</b> (&lt;math&gt;G \rightarrow 0&lt;/math&gt;) 
+</p><p>The frequency &lt;math&gt;f_c&lt;/math&gt; is known as the filter's <b>cutoff frequency</b>, as it roughly marks the boundary between the region where frequencies are attenuated from the region where frequencies are allowed to <b>pass</b>
+</p>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Build the low-pass filter on the breadboard:
+<dl><dd>low-pass</dd></dl></li>
+<li>Calculate the cutoff frequency as a function of the variable resistor</li>
+<li>Connect the input to a <b>LB</b> oscillator</li>
+<li>Inspect the output using the oscilloscope as you move the wiper</li>
+<li>Vary the frequency of the oscillator and your circuit potentiometer wiper</li></ol>
+<h2><span class="mw-headline" id="Circuits_with_OpAmps">Circuits with OpAmps</span></h2>
+<h3><span class="mw-headline" id="OpAmps">OpAmps</span></h3>
+<p>An OpAmp is an easy to use <i>diferential amplifier</i> with a very high gain 
+</p><p>The symbol for an OpAmp is:
+</p>
+<dl><dd>OpAmp</dd>
+<dd>The inputs labelled &lt;math&gt;v_\mathrm{dd}&lt;/math&gt; and &lt;math&gt;v_\mathrm{ss}&lt;/math&gt; are connected to constant supply voltages, with <b>LB</b> &lt;math&gt;v_\mathrm{dd} = 5\mathrm{V}&lt;/math&gt; and &lt;math&gt;v_\mathrm{ss}&lt;/math&gt; is ground
+<dl><dd><b>IMPORTANT</b>: The supply voltages are usually omitted in diagrams but have to be connected for the circuit to work!</dd></dl></dd>
+<dd>The inputs labelled &lt;math&gt;v_{+}&lt;/math&gt; and &lt;math&gt;v_{-}&lt;/math&gt; are connected to signal voltages</dd>
+<dd>The output labelled &lt;math&gt;v_\mathrm{out}&lt;/math&gt; is the signal output</dd></dl>
+<p>Mathematically:
+</p>
+<div class="center" style="width: auto; margin-left: auto; margin-right: auto;">
+<p>&lt;math&gt;v_o = K (v_+ - v_-)&lt;/math&gt;
+</p>
+</div>
+<p>where the <i>gain</i> K is very large
+</p><p>OpAmps have very high input impedances (think resistance) and very low output impedance
+</p><p>We will use the OpAmp <a class="external text" href="http://www.mouser.com/ds/2/268/21810d-65767.pdf" rel="nofollow">MCP6271</a>
+</p>
+<h4><span class="mw-headline" id="MCP6271">MCP6271</span></h4>
+<p>Each IC contains one OpAmp and the pins correspond to:
+</p>
+<dl><dd>MCP6271</dd></dl>
+<p>Use the notch on top of the package to locate the pins
+</p><p>Pins marked with NC need not be connected
+</p><p>Some of its characteristics are:
+</p>
+<dl><dd>Gain (K): 3.2 x 10<sup>5</sup></dd>
+<dd>Input impedance: 10GΩ</dd>
+<dd>Bandwidth: 2MHz</dd>
+<dd>Slew-rate: 0.9V/μs</dd></dl>
+<h3><span class="mw-headline" id="Basic_Amplifier_Circuits_with_OpAmps">Basic Amplifier Circuits with OpAmps</span></h3>
+<p>When operated in feedback:
+</p>
+<div class="center" style="width: auto; margin-left: auto; margin-right: auto;">
+<p>&lt;math&gt;v_+ \approx v_-&lt;/math&gt;
+</p>
+</div>
+<p>That's all you need to know to start playing with OpAmps!
+</p><p>Here are some useful circuits:
+</p>
+<h4><span class="mw-headline" id="Non-Inverting_OpAmp_Circuit">Non-Inverting OpAmp Circuit</span></h4>
+<dl><dd>Non-Inverting OpAmp</dd></dl>
+<p>Works like a voltage divider:
+</p>
+<div class="center" style="width: auto; margin-left: auto; margin-right: auto;">
+<p>&lt;math&gt;
+\begin{align} 
+v_- &amp;= \frac{R_1}{R_1+R_2} v_\mathrm{out}, &amp;
+&amp;\qquad &amp;
+v_+ = v_- &amp;= v_\mathrm{in}
+\end{align}
+&lt;/math&gt;
+</p>
+</div>
+<p>A special case of the Non-Inverting OpAmp circuit is when &lt;math&gt;R_1&lt;/math&gt; is &lt;math&gt;\infty&lt;/math&gt;, which is the following very useful circuit:
+</p>
+<dl><dd>Buffer</dd></dl>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Assemble the above circuit on the breadboard and connect the output of a <b>LB</b> oscillator to its input</li>
+<li>Look at the input and output signals using the oscilloscope</li>
+<li>Can you tell why this circuit is called a buffer?</li></ol>
+<p>Because the OpAmp has very high input impedance the following circuit works as an <i>impedance matcher</i>:
+</p>
+<dl><dd>Buffer with Impedance</dd></dl>
+<p>The input <i>sees</i> as load the 300Ω resistance rather than the high impedance of the amplifier or the impedance of the circuit the amplifier is connected to
+</p><p>We will demonstrate the virtues of impedance matching using contact microphones
+</p><p>Now let's combine a buffer with a voltage divider:
+</p>
+<dl><dd>DC Shift</dd></dl>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Assemble the above circuit on the breadboard and connect the output of a <b>LB</b> oscillator to its input</li>
+<li>Look at the input and output signals using the oscilloscope</li>
+<li>How is this circuit different than a buffer?</li></ol>
+<p>Our last circuit is a practical AC Non-Inverting OpAmp:
+</p>
+<dl><dd>AC NonInverting OpAmp</dd></dl>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Assemble the above circuit on the breadboard and connect the output of a <b>LB</b> oscillator to its input</li>
+<li>Look at the input and output signals using the oscilloscope</li>
+<li>Explain what this circuit does.</li></ol>
+<h4><span class="mw-headline" id="Inverting_OpAmp_Circuit">Inverting OpAmp Circuit</span></h4>
+<dl><dd>Inverting OpAmp</dd></dl>
+<p>Another voltage divider:
+</p>
+<div class="center" style="width: auto; margin-left: auto; margin-right: auto;">
+<p>&lt;math&gt;
+\begin{align} 
+(v_- - v_\mathrm{in}) &amp;= \frac{R_1}{R_1+R_2} (v_\mathrm{out} - v_\mathrm{in}), &amp;
+&amp; \qquad &amp;
+v_+ = v_- &amp;= 0
+\end{align}
+&lt;/math&gt;
+</p>
+</div>
+<p>An Inverting OpAmp Circuit can be modified to work as a mixer:
+</p>
+<dl><dd>Inverting OpAmp</dd></dl>
+<p>The following is a practical AC-coupled mixer circuit:
+</p>
+<dl><dd>Inverting OpAmp</dd></dl>
+<dl><dt>Tasks</dt></dl>
+<ol><li>Assemble the above circuit on the breadboard</li>
+<li>Team up with another group and connect the output of two <b>LB</b> oscillators to its 2 inputs</li>
+<li>Look at the input and output signals using the oscilloscope</li>
+<li>Explain how the circuit works</li>
+<li>Why did we not make the 100K resistors variable?</li></ol>
+<h2><span class="mw-headline" id="Non-Linear_Circuits">Non-Linear Circuits</span></h2>
+<ul><li>Saturation and Distortion</li>
+<li>Diodes</li>
+<li>Clipper</li>
+<li>Compressor</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260721054044
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.075 seconds
+Real time usage: 0.104 seconds
+Preprocessor visited node count: 114/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_cosmos7:pcache:idhash:49-0!canonical and timestamp 20260721054044 and revision id 169. Serialized with JSON.
+ -->
+</div></body></html>
+      <hr/>
+      <p class="meta">Recovered from the original course wiki (server backup, August 2024).</p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Robot Locomotion — COSMOS Cluster 7</title>
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM6DQXZ3LE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NM6DQXZ3LE');
+    </script>
+  </head>
+  <body>
+    <main class="content wiki">
+      <p class="meta"><a href="index.html">‹ COSMOS Cluster 7</a> · <a href="/">Maurício de Oliveira</a></p>
+      <h1>Robot Locomotion</h1>
+      <html><body><div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Experimenting_with_the_MIP"><span class="tocnumber">1</span> <span class="toctext">Experimenting with the MIP</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Questions"><span class="tocnumber">1.1</span> <span class="toctext">Questions</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#How_does_a_two-wheeled_robot_move?"><span class="tocnumber">2</span> <span class="toctext">How does a two-wheeled robot move?</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Questions_2"><span class="tocnumber">2.1</span> <span class="toctext">Questions</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#How_does_the_speed_of_the_wheels_affect_the_robot_trajectory?"><span class="tocnumber">3</span> <span class="toctext">How does the speed of the wheels affect the robot trajectory?</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Questions_3"><span class="tocnumber">3.1</span> <span class="toctext">Questions</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#What_wheel_speed_is_needed_for_a_robot_to_follow_a_given_trajectory?"><span class="tocnumber">4</span> <span class="toctext">What wheel speed is needed for a robot to follow a given trajectory?</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Questions_4"><span class="tocnumber">4.1</span> <span class="toctext">Questions</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Experimenting_with_the_MIP">Experimenting with the MIP</span></h2>
+<p>Write python code to perform the following tasks with your wheeled MIP:
+</p>
+<ol><li>Set the signal <code>pwm1</code> = 50% and <code>pmw2</code> = 50% during 3 seconds. Plot the response of both <code>encoder1</code> and <code>encoder2</code>. Plot also the encoder velocities.</li>
+<li>Repeat the experiment with <code>pwm1</code> = 25% and <code>pmw2</code> = 25%</li>
+<li>Repeat the experiment with <code>pwm1</code> = 50% and <code>pmw2</code> = 25%</li>
+<li>Repeat the experiment with <code>pwm1</code> = 50% and <code>pmw2</code> = 0%</li>
+<li>Repeat the experiment with <code>pwm1</code> = 50% and <code>pmw2</code> = -25%</li>
+<li>Repeat the experiment with <code>pwm1</code> = 50% and <code>pmw2</code> = -50%</li></ol>
+<h3><span class="mw-headline" id="Questions">Questions</span></h3>
+<ol><li>What is the relationship between the value of the <code>pwm</code> signals and the values of <code>encoder</code>s in the first two experiments?</li>
+<li>What is the relationship between the value of the <code>pwm</code> signals and the values of the <code>encoder</code> velocities in the first two experiments?</li>
+<li>What is the geometry of the trajectory of the robot in each case?</li>
+<li>Is there any direction in which the robot cannot move toward?</li>
+<li>What is the relation between the value and the sign of the <code>pwm</code> signals on the movement of the robot?</li></ol>
+<h2><span id="How_does_a_two-wheeled_robot_move.3F"></span><span class="mw-headline" id="How_does_a_two-wheeled_robot_move?">How does a two-wheeled robot move?</span></h2>
+<p>If a two-wheeled robot is moving in a circle of radius &lt;math&gt;R&lt;/math&gt; and &lt;math&gt;r&lt;/math&gt; is the distance between the center of the robot axle and each wheel then 
+</p>
+<dl><dd>&lt;math&gt;</dd></dl>
+<pre> v_r = \omega \, (R + \ell/2), \quad 
+ v_l = \omega \, (R - \ell/2)
+</pre>
+<p>&lt;/math&gt;
+</p><p>where &lt;math&gt;v_l&lt;/math&gt; is the velocity of the <i>left</i> wheel, and &lt;math&gt;v_r&lt;/math&gt; is the velocity of the <i>right</i> wheel.
+</p>
+<h3><span class="mw-headline" id="Questions_2">Questions</span></h3>
+<ol><li>Can you show that:
+<dl><dd>&lt;math&gt;R = \frac{\ell}{2} \frac{v_r + v_l}{v_r - v_l}, \quad \omega = \frac{v_r - v_l}{\ell} &lt;/math&gt;</dd></dl></li>
+<li>What does the quantity:
+<dl><dd>&lt;math&gt;v = \frac{v_r + v_l}{2}&lt;/math&gt;</dd>
+<dd>correspond to?</dd></dl></li>
+<li>What happens when:
+<ul><li>&lt;math&gt;v_r &gt; v_l &gt; 0&lt;/math&gt;</li>
+<li>&lt;math&gt;0 &lt; v_r &lt; v_l&lt;/math&gt;</li>
+<li>&lt;math&gt;v_r &lt; 0 &lt; v_l&lt;/math&gt;</li>
+<li>&lt;math&gt;v_r = v_l&lt;/math&gt;</li>
+<li>&lt;math&gt;v_r = - v_l&lt;/math&gt;</li>
+<li>&lt;math&gt;v_r = 0&lt;/math&gt; or &lt;math&gt;v_l = 0&lt;/math&gt;</li></ul></li>
+<li>What is the effect of &lt;math&gt;\ell&lt;/math&gt; on the movement of the robot?</li>
+<li>Why would you choose a robot with a little &lt;math&gt;\ell&lt;/math&gt;?</li>
+<li>Why would you choose a robot with a big &lt;math&gt;\ell&lt;/math&gt;?</li>
+<li>How different is the movement of your robot from that of a regular car?</li></ol>
+<h2><span id="How_does_the_speed_of_the_wheels_affect_the_robot_trajectory.3F"></span><span class="mw-headline" id="How_does_the_speed_of_the_wheels_affect_the_robot_trajectory?">How does the speed of the wheels affect the robot trajectory?</span></h2>
+<p>Let &lt;math&gt;r&lt;/math&gt; be the radius of both left and right wheels and &lt;math&gt;\omega_l&lt;/math&gt; and &lt;math&gt;\omega_r&lt;/math&gt; be the wheels' angular speed.
+</p>
+<h3><span class="mw-headline" id="Questions_3">Questions</span></h3>
+<ol><li>Can you show that:
+<dl><dd>&lt;math&gt;R = \frac{\ell}{2} \frac{\omega_r + \omega_l}{\omega_r - \omega_l}, \quad \omega = \frac{r}{\ell} (\omega_r - \omega_l) &lt;/math&gt;</dd></dl></li>
+<li>Can you show that:
+<dl><dd>&lt;math&gt;v = \frac{r}{2} (\omega_r + \omega_l) &lt;/math&gt;</dd></dl></li>
+<li>What happens when:
+<ul><li>&lt;math&gt;\omega_r = \omega_l&lt;/math&gt;</li>
+<li>&lt;math&gt;\omega_r = - \omega_l&lt;/math&gt;</li>
+<li>&lt;math&gt;\omega_r = 0&lt;/math&gt; or &lt;math&gt;\omega_l = 0&lt;/math&gt;</li></ul></li></ol>
+<p>Repeat the experiments with the MIP you performed <a href="#Experimenting_with_the_MIP">above</a>, this time calculating and plotting the radius &lt;math&gt;R&lt;/math&gt; and the angular velocity &lt;math&gt;\omega&lt;/math&gt;. Calculate also the <i>curvature</i> &lt;math&gt;\kappa = R^{-1}&lt;/math&gt;.
+</p>
+<h2><span id="What_wheel_speed_is_needed_for_a_robot_to_follow_a_given_trajectory.3F"></span><span class="mw-headline" id="What_wheel_speed_is_needed_for_a_robot_to_follow_a_given_trajectory?">What wheel speed is needed for a robot to follow a given trajectory?</span></h2>
+<p>In this section you will consider the inverse problem of finding the wheel speeds that lead to a given robot trajectory.
+</p>
+<h3><span class="mw-headline" id="Questions_4">Questions</span></h3>
+<ol><li>Start by showing that:
+<dl><dd>&lt;math&gt;\omega_l = \frac{\omega}{r} (R-\ell/2), \quad \omega_r = \frac{\omega}{r} (R+\ell/2)&lt;/math&gt;</dd></dl></li></ol>
+<!-- 
+NewPP limit report
+Cached time: 20260721054044
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.014 seconds
+Real time usage: 0.017 seconds
+Preprocessor visited node count: 24/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_cosmos7:pcache:idhash:13-0!canonical and timestamp 20260721054044 and revision id 63. Serialized with JSON.
+ -->
+</div></body></html>
+      <hr/>
+      <p class="meta">Recovered from the original course wiki (server backup, August 2024).</p>
+    </main>
+  </body>
+</html>

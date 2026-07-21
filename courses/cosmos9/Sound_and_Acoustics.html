@@ -17,11 +17,11 @@
     <main class="content wiki">
       <p class="meta"><a href="index.html">‹ COSMOS Cluster 9</a> · <a href="/">Maurício de Oliveira</a></p>
       <h1>Sound and Acoustics</h1>
-      <div class="toc" id="toc"><div id="toctitle"><h2>Contents</h2></div>
+      <html><body><div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Waves"><span class="tocnumber">1</span> <span class="toctext">Waves</span></a>
 <ul>
-<li class="toclevel-2 tocsection-2"><a href="#Frequency.2C_Amplitude_and_Phase"><span class="tocnumber">1.1</span> <span class="toctext">Frequency, Amplitude and Phase</span></a></li>
+<li class="toclevel-2 tocsection-2"><a href="#Frequency,_Amplitude_and_Phase"><span class="tocnumber">1.1</span> <span class="toctext">Frequency, Amplitude and Phase</span></a></li>
 <li class="toclevel-2 tocsection-3"><a href="#Rhythm_versus_Pitch"><span class="tocnumber">1.2</span> <span class="toctext">Rhythm versus Pitch</span></a></li>
 <li class="toclevel-2 tocsection-4"><a href="#Summing_Waves"><span class="tocnumber">1.3</span> <span class="toctext">Summing Waves</span></a></li>
 </ul>
@@ -32,269 +32,118 @@
 </ul>
 </div>
 <h2><span class="mw-headline" id="Waves">Waves</span></h2>
-<ul>
-<li> What is a wave?
-<ul>
-<li> Translation of <i>energy</i> without translation of <i>matter</i>.
-</li>
-<li> Waves travel through many types of media, even a vaccum!
-</li>
-<li> <i>Sound waves</i> or <i>acoustic waves</i> are waves of mechanical &amp; potential energy through a material.
-</li>
-</ul>
-</li>
-<li> Acoustic waves exhibit <i>polarization</i>
-<ul>
-<li> The orientation of local movements versus propagation of the overal energy
-</li>
-<li> <i>Transverse</i>
-<ul>
-<li> The local movements are perpendicular to the propagation (AKA <i>shear</i> waves)
-</li>
-</ul>
-</li>
-<li> <i>Longitudinal</i>
-<ul>
-<li> The local movements are parallel to the propagation (AKA <i>compression</i> waves)
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<dl>
-<dd><b>Question: Are sound waves in air <i>transverse</i> or <i>longitudinal</i>?</b>
-</dd>
-</dl>
-<ul>
-<li> Reflections
-<ul>
-<li> When a wave hits a boundary, it reflects.
-</li>
-<li> The reflection could either be the <i>same</i> as the incoming wave, or it could be <i>inverted</i>, depending on the change in <i>impedance</i> represented by the boundary.
-<ul>
-<li> <i>Impedance</i> is the resistance to change within the medium.
-</li>
-</ul>
-</li>
-<li> If the boundary is a change from <i>low</i> impedance to <i>high</i> impedance (like hitting a wall), the reflection is positive (not inverted).
-</li>
-<li> If the boundary is a change from <i>high</i> impedance to <i>low</i> impedance (like the open end of a pipe), the reflection is negative.
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li> Standing Waves
-<ul>
-<li> Objects, like rooms, trumpets, and springs, do not typically vibrate with simple <i>traveling</i> waves, as described above.
-<ul>
-<li> Usually objects are finite
-</li>
-</ul>
-</li>
-<li> <i>Standing Waves</i> occur in finite objects
-<ul>
-<li> comprised of two waves- one traveling forward and one traveling backward.
-</li>
-<li> depending on the boundary conditions, this changes the overall behavior of the vibrating object.
-</li>
-</ul>
-</li>
-<li> Check out this <a class="external text" href="http://www.youtube.com/watch?v=wYoxOJDrZzw" rel="nofollow">cool video</a>.
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>Demo: waves on 50' springs
-<ul>
-<li> Translation of energy w/o translation of matter - does the spring itself go somewhere?
-</li>
-<li> Constant velocity - does a pulse travel the same speed across the whole spring?
-</li>
-<li> Polarization - how do these look / do these move at the same speed across the spring?
-</li>
-<li> Boundary conditions - does a wave along a spring with a fixed end reflect the same way as one with a free end?
-</li>
-</ul>
-</li>
-</ul>
-<h3><span class="mw-headline" id="Frequency.2C_Amplitude_and_Phase">Frequency, Amplitude and Phase</span></h3>
-<ul>
-<li> A very simple type of wave motion is called <i>sinusoidal</i>.
-<ul>
-<li> This motion comes from the geometry of a circle.
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li> Every sinusoidal wave or <i>sine wave</i> can be characterized by three parameters:
-<ul>
-<li> Frequency
-</li>
-<li> Phase 
-</li>
-<li> Amplitude
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li> iPython Notebook
-</li>
-</ul>
-<ol>
-<li>Explore the properties of sine waves by running and interacting with the <a class="external text" href="http://nbviewer.ipython.org/url/guitar.ucsd.edu/cosmos9/images/9/9a/Waves.ipynb" rel="nofollow">iPython notebook</a>
-</li>
-</ol>
-<ul>
-<li> PD
-</li>
-</ul>
-<ol>
-<li>Open pd and run your <a class="internal" href="images/First.pd" title="First.pd">first patch</a>
-</li>
-<li>Create a patch that multiplies two numbers and display the result in a Number Box
-</li>
-<li>Run this <a class="internal" href="images/Osc1.pd" title="Osc1.pd">patch</a> to build an oscillator
-</li>
-<li>Modify the patch so that you can choose between two frequencies of oscillation, say 400 Hz and 1000 Hz
-</li>
-<li>Modify the patch so that you can control the amplitude and frequency of the oscillation; compare your answer with <a class="internal" href="images/Osc2.pd" title="Osc2.pd">patch</a>
-</li>
-</ol>
-<ul>
-<li> LB
-</li>
-</ul>
-<ol>
-<li> Connect power + oscillator + speaker
-</li>
-<li> Vary the volume of the speaker module
-</li>
-<li> Change from square to saw-tooth wave shape
-</li>
-<li> How did you vary the amplitude? Can you vary the phase?
-</li>
-<li> Use your ears to tune your oscillator to 440Hz (A)
-</li>
-<li> Connect your circuit to the breadboard and use the oscilloscope to measure the frequency and amplitude of your signal
-</li>
-<li> Change from square to saw-tooth wave shape
-</li>
-</ol>
+<ul><li>What is a wave?
+<ul><li>Translation of <i>energy</i> without translation of <i>matter</i>.</li>
+<li>Waves travel through many types of media, even a vaccum!</li>
+<li><i>Sound waves</i> or <i>acoustic waves</i> are waves of mechanical &amp; potential energy through a material.</li></ul></li>
+<li>Acoustic waves exhibit <i>polarization</i>
+<ul><li>The orientation of local movements versus propagation of the overal energy</li>
+<li><i>Transverse</i>
+<ul><li>The local movements are perpendicular to the propagation (AKA <i>shear</i> waves)</li></ul></li>
+<li><i>Longitudinal</i>
+<ul><li>The local movements are parallel to the propagation (AKA <i>compression</i> waves)</li></ul></li></ul></li></ul>
+<dl><dd><b>Question: Are sound waves in air <i>transverse</i> or <i>longitudinal</i>?</b></dd></dl>
+<ul><li>Reflections
+<ul><li>When a wave hits a boundary, it reflects.</li>
+<li>The reflection could either be the <i>same</i> as the incoming wave, or it could be <i>inverted</i>, depending on the change in <i>impedance</i> represented by the boundary.
+<ul><li><i>Impedance</i> is the resistance to change within the medium.</li></ul></li>
+<li>If the boundary is a change from <i>low</i> impedance to <i>high</i> impedance (like hitting a wall), the reflection is positive (not inverted).</li>
+<li>If the boundary is a change from <i>high</i> impedance to <i>low</i> impedance (like the open end of a pipe), the reflection is negative.</li></ul></li></ul>
+<ul><li>Standing Waves
+<ul><li>Objects, like rooms, trumpets, and springs, do not typically vibrate with simple <i>traveling</i> waves, as described above.
+<ul><li>Usually objects are finite</li></ul></li>
+<li><i>Standing Waves</i> occur in finite objects
+<ul><li>comprised of two waves- one traveling forward and one traveling backward.</li>
+<li>depending on the boundary conditions, this changes the overall behavior of the vibrating object.</li></ul></li>
+<li>Check out this <a class="external text" href="http://www.youtube.com/watch?v=wYoxOJDrZzw" rel="nofollow">cool video</a>.</li></ul></li></ul>
+<ul><li>Demo: waves on 50' springs
+<ul><li>Translation of energy w/o translation of matter - does the spring itself go somewhere?</li>
+<li>Constant velocity - does a pulse travel the same speed across the whole spring?</li>
+<li>Polarization - how do these look / do these move at the same speed across the spring?</li>
+<li>Boundary conditions - does a wave along a spring with a fixed end reflect the same way as one with a free end?</li></ul></li></ul>
+<h3><span id="Frequency.2C_Amplitude_and_Phase"></span><span class="mw-headline" id="Frequency,_Amplitude_and_Phase">Frequency, Amplitude and Phase</span></h3>
+<ul><li>A very simple type of wave motion is called <i>sinusoidal</i>.
+<ul><li>This motion comes from the geometry of a circle.</li></ul></li></ul>
+<ul><li>Every sinusoidal wave or <i>sine wave</i> can be characterized by three parameters:
+<ul><li>Frequency</li>
+<li>Phase</li>
+<li>Amplitude</li></ul></li></ul>
+<ul><li>iPython Notebook</li></ul>
+<ol><li>Explore the properties of sine waves by running and interacting with the <a class="external text" href="http://nbviewer.ipython.org/url/http:localhost:8080/images/9/9a/Waves.ipynb" rel="nofollow">iPython notebook</a></li></ol>
+<ul><li>PD</li></ul>
+<ol><li>Open pd and run your <a class="internal" href="images/e/e5/First.pd" title="First.pd">first patch</a></li>
+<li>Create a patch that multiplies two numbers and display the result in a Number Box</li>
+<li>Run this <a class="internal" href="images/7/79/Osc1.pd" title="Osc1.pd">patch</a> to build an oscillator</li>
+<li>Modify the patch so that you can choose between two frequencies of oscillation, say 400 Hz and 1000 Hz</li>
+<li>Modify the patch so that you can control the amplitude and frequency of the oscillation; compare your answer with <a class="internal" href="images/c/c3/Osc2.pd" title="Osc2.pd">patch</a></li></ol>
+<ul><li>LB</li></ul>
+<ol><li>Connect power + oscillator + speaker</li>
+<li>Vary the volume of the speaker module</li>
+<li>Change from square to saw-tooth wave shape</li>
+<li>How did you vary the amplitude? Can you vary the phase?</li>
+<li>Use your ears to tune your oscillator to 440Hz (A)</li>
+<li>Connect your circuit to the breadboard and use the oscilloscope to measure the frequency and amplitude of your signal</li>
+<li>Change from square to saw-tooth wave shape</li></ol>
 <h3><span class="mw-headline" id="Rhythm_versus_Pitch">Rhythm versus Pitch</span></h3>
-<ul>
-<li> LB
-</li>
-</ul>
-<ol>
-<li> Connect power + oscillator + speaker
-</li>
-<li> Vary the frequency of the oscillator from rhythm to pitch
-</li>
-</ol>
-<ul>
-<li> PD
-</li>
-</ul>
-<ol>
-<li>Explain this <a class="internal" href="images/Osc4.pd" title="Osc4.pd">patch</a>
-</li>
-</ol>
+<ul><li>LB</li></ul>
+<ol><li>Connect power + oscillator + speaker</li>
+<li>Vary the frequency of the oscillator from rhythm to pitch</li></ol>
+<ul><li>PD</li></ul>
+<ol><li>Explain this <a class="internal" href="images/8/85/Osc4.pd" title="Osc4.pd">patch</a></li></ol>
 <h3><span class="mw-headline" id="Summing_Waves">Summing Waves</span></h3>
-<ul>
-<li> PD
-</li>
-</ul>
-<ol>
-<li>Create a patch with that adds (mixes) the output of two oscillators; compare your answer with this <a class="internal" href="images/Osc3.pd" title="Osc3.pd">patch</a>
-</li>
-</ol>
-<ul>
-<li> LB
-</li>
-</ul>
-<ol>
-<li> Connect power + splitter + (oscillator | oscillator) + mixer + speaker
-</li>
-</ol>
-<ul>
-<li> Perform the following experiments first with PD then with LB:
-</li>
-</ul>
-<ol>
-<li> Vary the gains in the mixer to tune one oscillator to 440Hz (A) and the other one to 659.25Hz (E)
-</li>
-<li> Set the mixer to add the two oscillators
-</li>
-<li> Use the oscilloscope to investigate the shape of the resulting wave
-</li>
-<li> Repeat with one oscillator tuned to 440Hz (A) and the other one to 554.37Hz (C#)
-</li>
-<li> Repeat with both oscillators tuned to 440Hz (A)
-</li>
-</ol>
+<ul><li>PD</li></ul>
+<ol><li>Create a patch with that adds (mixes) the output of two oscillators; compare your answer with this <a class="internal" href="images/1/12/Osc3.pd" title="Osc3.pd">patch</a></li></ol>
+<ul><li>LB</li></ul>
+<ol><li>Connect power + splitter + (oscillator | oscillator) + mixer + speaker</li></ol>
+<ul><li>Perform the following experiments first with PD then with LB:</li></ul>
+<ol><li>Vary the gains in the mixer to tune one oscillator to 440Hz (A) and the other one to 659.25Hz (E)</li>
+<li>Set the mixer to add the two oscillators</li>
+<li>Use the oscilloscope to investigate the shape of the resulting wave</li>
+<li>Repeat with one oscillator tuned to 440Hz (A) and the other one to 554.37Hz (C#)</li>
+<li>Repeat with both oscillators tuned to 440Hz (A)</li></ol>
 <h2><span class="mw-headline" id="Harmonic_series">Harmonic series</span></h2>
-<ul>
-<li> PD
-</li>
-</ul>
-<ol>
-<li>Explain this <a class="internal" href="images/Harmonic1.pd" title="Harmonic1.pd">patch</a>
-</li>
-</ol>
-<ul>
-<li> LB
-</li>
-</ul>
-<ol>
-<li> Connect power + split + 2 oscillators + mixer + speaker
-</li>
-<li> Vary the frequency of the two oscillators until:
-<ul>
-<li> they are in tune
-</li>
-<li> you hear a beat
-</li>
-<li> they are one octave apart
-</li>
-<li> they are a third apart
-</li>
-</ul>
-</li>
-</ol>
+<ul><li>PD</li></ul>
+<ol><li>Explain this <a class="internal" href="images/5/55/Harmonic1.pd" title="Harmonic1.pd">patch</a></li></ol>
+<ul><li>LB</li></ul>
+<ol><li>Connect power + split + 2 oscillators + mixer + speaker</li>
+<li>Vary the frequency of the two oscillators until:
+<ul><li>they are in tune</li>
+<li>you hear a beat</li>
+<li>they are one octave apart</li>
+<li>they are a third apart</li></ul></li></ol>
 <h2><span class="mw-headline" id="Sound_dynamics">Sound dynamics</span></h2>
-<ol>
-<li> Envelope
-</li>
-<li> Basic instruments: strings, wind, percussion
-</li>
-<li> Acoustics
-</li>
-</ol>
+<ol><li>Envelope</li>
+<li>Basic instruments: strings, wind, percussion</li>
+<li>Acoustics</li></ol>
 <h2><span class="mw-headline" id="Resources">Resources</span></h2>
 <p><a class="external text" href="http://www.amazon.com/Almost-About-Waves-Dover-Physics/dp/0486453022" rel="nofollow">Almost All About Waves</a>, John R. Pierce, Dover Books on Physics, 2006.
 </p><p><a class="external text" href="http://clowder.net/hop/cos%28a+b%29.html" rel="nofollow">cos(a+b)</a>: Can you derive the FM (Ring Modulation) from this?
 </p>
 <!-- 
 NewPP limit report
-CPU time usage: 0.015 seconds
-Real time usage: 0.017 seconds
+Cached time: 20260721054451
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.017 seconds
+Real time usage: 0.022 seconds
 Preprocessor visited node count: 32/1000000
-Preprocessor generated node count: 68/1000000
-Post‐expand include size: 96/2097152 bytes
+Post‐expand include size: 88/2097152 bytes
 Template argument size: 0/2097152 bytes
 Highest expansion depth: 3/40
 Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
 -->
-<!-- Saved in parser cache with key wiki-cosmos9:pcache:idhash:3-0!*!*!!en!*!* and timestamp 20150718215925
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_cosmos9-cosmos9:pcache:idhash:3-0!canonical and timestamp 20260721054451 and revision id 1013. Serialized with JSON.
  -->
-
+</div></body></html>
       <hr/>
-      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20150718235111/http://guitar.ucsd.edu:80/cosmos9/index.php/Sound_and_Acoustics">Internet Archive</a>.</p>
+      <p class="meta">Recovered from the original course wiki (server backup, August 2024).</p>
     </main>
   </body>
 </html>

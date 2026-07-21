@@ -17,9 +17,9 @@
     <main class="content wiki">
       <p class="meta"><a href="index.html">‹ COSMOS Cluster 9</a> · <a href="/">Maurício de Oliveira</a></p>
       <h1>Digital Signals Part II</h1>
-      <p><br/>
+      <html><body><div class="mw-parser-output"><p><br/>
 </p>
-<div class="toc" id="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Sampling"><span class="tocnumber">1</span> <span class="toctext">Sampling</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Quantization"><span class="tocnumber">2</span> <span class="toctext">Quantization</span></a></li>
@@ -32,167 +32,77 @@
 <p>In the previous module we talked about physical properties of sound and how laws of acoustics are realized through vibrations of strings or air columns in different musical instruments, in human voice and more. The first step of getting a physical sound into the computer is translating air waves into electrical signals. In order to use a computer to synthesize or edit sound, we need to digitize sounds, or in other words to represent continuous waveforms as as series of numbers. This is called <i>sampling</i> and it has specific rule to it - for instance, how often or at what <i>rate</i> should we sample the signal? And <i>how many bits</i> are needed to represent effectively the sound?
 </p><p>The first step in creating a digital audio signal is to convert or capture the numerical representation from a continuous signal, such as an electric signal that comes from a microphone. We call this continuous signal <b>analog</b>, to distinguish it from numeric or <b>digital</b>. So the first step in digital audio system is a converter commonly called A/D or Analog to Digital converter (ADC). In Pd these are the adc~ and dac~ patches. The simplest way to think about it is so called <i>sample-and-hold</i> method. The sample-and-hold circuit captures, or samples, the instantaneous voltage of an analog audio signal and holds its value until the A/D converts it into a binary number. This process is repeated periodically at a specified <b>sampling rate</b>.
 </p>
-<ul>
-<li> AUDACITY
-</li>
-</ul>
-<ol>
-<li> Import an existing music file into Audacity (File -&gt; Import -&gt; Audio)
-</li>
-<li> Identify the sampling rate
-</li>
-<li> Use Tracks -&gt; Resample to 8000 Hz and play sound
-</li>
-<li> Do you hear any difference?
-</li>
-</ol>
-<ul>
-<li> PYTHON
-</li>
-</ul>
-<ol>
-<li> Use numpy to create tones at 440Hz and 446Hz
-</li>
-<li> Create wav files sampled at 8000Hz and 16000Hz
-</li>
-<li> Combine the tones by summing their samples and use scipy to save it to a mono wav file
-</li>
-<li> Combine the tones by placing one tone on the left and the other tone on the right channel of a stereo wav file
-</li>
-<li> Listen to the files in Audacity
-</li>
-</ol>
+<ul><li>AUDACITY</li></ul>
+<ol><li>Import an existing music file into Audacity (File -&gt; Import -&gt; Audio)</li>
+<li>Identify the sampling rate</li>
+<li>Use Tracks -&gt; Resample to 8000 Hz and play sound</li>
+<li>Do you hear any difference?</li></ol>
+<ul><li>PYTHON</li></ul>
+<ol><li>Use numpy to create tones at 440Hz and 446Hz</li>
+<li>Create wav files sampled at 8000Hz and 16000Hz</li>
+<li>Combine the tones by summing their samples and use scipy to save it to a mono wav file</li>
+<li>Combine the tones by placing one tone on the left and the other tone on the right channel of a stereo wav file</li>
+<li>Listen to the files in Audacity</li></ol>
 <h2><span class="mw-headline" id="Quantization">Quantization</span></h2>
 <p>When we digitize sounds we represent continuous waveforms as as series of numbers. How many bits are needed to effectively <i>represent</i> the sound?
 </p><p>Binary number are just like any number - a way to count. The only difference from our usual numeric system is that we are used to think in the base of ten, i.e we started counting with our fingers and when we run out of fingers on both hands we remember that we reached 10, or 20, or 30 and so on, and keep counting. Computer do the same but they have only two fingers labeled 0 and 1. So whenever they run out of these two fingers they move on to the next place in the count list. For example, with 10 fingers we express numbers from 0 to 9, the so called decimal representation, and with three decimal digits (digitus actually mean finger in Latin), we can count from 0 to 999. Similarly, with two bits we express four numbers 00, 01, 10, and 11, and with three bits we express eight numbers from 000 to 111.
-</p><p>Applying this to sound, if we use eight bits to represent the level of a sound waveform at each sample, we have a choice of <span class="tex" dir="ltr">$ 2^8 = 256 $</span> numbers to represent the continuous signal. With sixteen bits we can express <span class="tex" dir="ltr">$ 2^{16} = 65536 $</span> different levels. The number of bits per sample, also know as <b>bit depth</b>, has an immediate effect on the precision with which the waveform can be captured in a digital format, regardless of the rate of sampling of the waveform.
+</p><p>Applying this to sound, if we use eight bits to represent the level of a sound waveform at each sample, we have a choice of &lt;math&gt;2^8 = 256&lt;/math&gt; numbers to represent the continuous signal. With sixteen bits we can express &lt;math&gt;2^{16} = 65536&lt;/math&gt; different levels. The number of bits per sample, also know as <b>bit depth</b>, has an immediate effect on the precision with which the waveform can be captured in a digital format, regardless of the rate of sampling of the waveform.
 </p>
-<ul>
-<li> AUDACITY
-</li>
-</ul>
-<ol>
-<li> Export the music file you imported as 8-bit-unsigned. File -&gt; Export Audio and select 'other uncompressed files' in the format field and hit the options button. You will be guided to a menu. Choose 'WAV (microsoft)' as the file type, and then 8-bit-unsigned
-</li>
-<li> Import the file back into Audacity
-</li>
-<li> Do you hear any difference?
-</li>
-</ol>
-<ul>
-<li> PYTHON
-</li>
-</ul>
-<ol>
-<li> Use numpy to create a tone at 440Hz sampled at 8000Hz
-</li>
-<li> Quantize the signal using 2 bits then 16 bits
-</li>
-<li> Use matplotlib to visualize the waveforms 
-</li>
-</ol>
-<ul>
-<li> PYTHON
-</li>
-</ul>
-<ol>
-<li> Use scipy to import a music file into a numpy array
-</li>
-<li> Quantize the song using 4 bits and save the result as a wav file
-</li>
-<li> Use Audacity to listen to the result
-</li>
-<li> Can you hear the effect of quantization on the orchestration? Can you hear the effect of quantization on the human voice?
-</li>
-</ol>
+<ul><li>AUDACITY</li></ul>
+<ol><li>Export the music file you imported as 8-bit-unsigned. File -&gt; Export Audio and select 'other uncompressed files' in the format field and hit the options button. You will be guided to a menu. Choose 'WAV (microsoft)' as the file type, and then 8-bit-unsigned</li>
+<li>Import the file back into Audacity</li>
+<li>Do you hear any difference?</li></ol>
+<ul><li>PYTHON</li></ul>
+<ol><li>Use numpy to create a tone at 440Hz sampled at 8000Hz</li>
+<li>Quantize the signal using 2 bits then 16 bits</li>
+<li>Use matplotlib to visualize the waveforms</li></ol>
+<ul><li>PYTHON</li></ul>
+<ol><li>Use scipy to import a music file into a numpy array</li>
+<li>Quantize the song using 4 bits and save the result as a wav file</li>
+<li>Use Audacity to listen to the result</li>
+<li>Can you hear the effect of quantization on the orchestration? Can you hear the effect of quantization on the human voice?</li></ol>
 <h2><span class="mw-headline" id="Aliasing">Aliasing</span></h2>
 <p>A seen before, sampling a continuous (analog) signal into a sequence of digital numbers involves sampling periodically at the sampling rate. The more often the samples are taken, the more 
 accurately the signal can be represented. More specifically, the higher the frequency of the sound that can be captured. The law that governs the relation between the sampling rate and the frequency content of the signal that can be reliably captured in the digital (sampled) version of the signal is called <i>Sampling Theorem</i>, also commonly known as Nyquist law in honor of the engineer who discovered it. Even though the mathematical details of the sampling theory are beyond the scope of this lecture, the intuition behind it is rather simple. 
 </p><p>In order to reliably capture the oscillatory behavior of a sinusoidal waveform requires at least two samples for every period. Otherwise the resulting samples would not be oscillatory. The sampling frequency that produces exactly two samples of the input signal is the <b>critical sampling frequency</b> which in this simple case is equal to twice the sinusoidal frequency. We have seen before that it is possible to decompose a complex signal as the sums of its sinusoidal components using <i>Fourier analysis</i>. Any input signal in which all sinusoidal components have frequencies lower than half the sampling frequency will have its components sampled twice or more per period. A remarkable mathematical result is that such input signal can be reconstructed <i>exactly</i> from its samples! Half the sampling frequency is known as the <b>Nyquist frequency</b>. 
-</p><p>On the other hand, if an input signal contains a sinusoidal component with frequency higher than the sampling frequency then it cannot be <i>unambiguously</i> reconstructed from its samples. The reason for this is that the samples of a sinusoidal waveform with frequency higher than the sampling frequency can not be distinguished from the samples of another sinusoidal waveform with frequency below the Nyquist frequency. If one attempts to reconstruct this signal the high frequency component will appear to have the frequency of its <i>alias</i> below the Nyquist frequency. For this reason this phenomenon is known as <b>aliasing</b>. You will show in the activities that any frequency <span class="tex" dir="ltr">$ f $</span> below the Nyquist frequency has aliases at <span class="tex" dir="ltr">$ f + k f_s $</span> where <span class="tex" dir="ltr">$ k $</span> is any positive integer. For instance, if the sampling rate is <span class="tex" dir="ltr">$ f_s = 4 $</span>Hz then <span class="tex" dir="ltr">$ f = 1 $</span>Hz has as aliases the frequencies 5Hz, 9Hz, 13Hz, etc. Also, because <span class="tex" dir="ltr">$ \cos(2 \pi f t + \phi) = \cos(2 \pi (-f) t - \phi) $</span> the frequencies -1+4=3Hz, 7Hz, 11Hz, etc, are also aliases.
+</p><p>On the other hand, if an input signal contains a sinusoidal component with frequency higher than the sampling frequency then it cannot be <i>unambiguously</i> reconstructed from its samples. The reason for this is that the samples of a sinusoidal waveform with frequency higher than the sampling frequency can not be distinguished from the samples of another sinusoidal waveform with frequency below the Nyquist frequency. If one attempts to reconstruct this signal the high frequency component will appear to have the frequency of its <i>alias</i> below the Nyquist frequency. For this reason this phenomenon is known as <b>aliasing</b>. You will show in the activities that any frequency &lt;math&gt;f&lt;/math&gt; below the Nyquist frequency has aliases at &lt;math&gt;f + k f_s&lt;/math&gt; where &lt;math&gt;k&lt;/math&gt; is any positive integer. For instance, if the sampling rate is &lt;math&gt;f_s = 4&lt;/math&gt;Hz then &lt;math&gt;f = 1&lt;/math&gt;Hz has as aliases the frequencies 5Hz, 9Hz, 13Hz, etc. Also, because &lt;math&gt;\cos(2 \pi f t + \phi) = \cos(2 \pi (-f) t - \phi)&lt;/math&gt; the frequencies -1+4=3Hz, 7Hz, 11Hz, etc, are also aliases.
 </p><p>The practical implications of the rules of sampling are as follows:
 </p>
-<dl>
-<dd> <b>In order to avoid aliasing the input frequency has to be less then Nyquist frequency, or in other words, the sampling frequency should be twice higher then the highest frequency present in the input signal. If this rule is violated then aliasing occurs. This effectively causes reconstruction of a frequency that is lower then the input frequency at a frequency that is an <i>alias</i> of the input frequency below the Nyquist frequency.</b>
-</dd>
-</dl>
+<dl><dd><b>In order to avoid aliasing the input frequency has to be less then Nyquist frequency, or in other words, the sampling frequency should be twice higher then the highest frequency present in the input signal. If this rule is violated then aliasing occurs. This effectively causes reconstruction of a frequency that is lower then the input frequency at a frequency that is an <i>alias</i> of the input frequency below the Nyquist frequency.</b></dd></dl>
 <p>Aliasing occurs whenever sampling is involved, not only in audio signals. For instance, in movies, aliasing is responsible to the infamous <i>wagon wheel illusion</i> in which the wheel appears to rotate in the same direction as the direction of movement of the wagon or not rotate at all. Check out <a class="external text" href="https://youtu.be/SFbINinFsxk" rel="nofollow">this video</a>. In what frequency will it appear not to rotate?
 </p>
-<ul>
-<li> AUDACITY
-</li>
-</ul>
-<ol>
-<li> Open up Audacity and set the project sampling rate to <span class="tex" dir="ltr">$ f_s = 8000 $</span>Hz. The highest frequency that can be digitally represented is the Nyquist frequency <span class="tex" dir="ltr">$ f_N = 4000 $</span>Hz.
-</li>
-<li> Generate a chirp (Generate-&gt;Chirp...) that is a sine tone. Set the start frequency at 0Hz and the end frequency at 4000Hz.
-</li>
-<li> Now generate the same chirp, but using a sawtooth wave.
-</li>
-<li> Explain why the sinusoidal chirp sounds like a sine tone sweeping up from 0Hz to 4000Hz  but the sawtooth chirp does not sound as smooth <i>(Hint: remember that the sawtooth is rich in overtones and think about the Nyquist theorem)</i>
-</li>
-<li> Depending on your hardware, you may have also noticed some thing unusual when the frequency gets close to 4000Hz. Can you explain it?
-</li>
-</ol>
-<ul>
-<li> PYTHON
-</li>
-</ul>
-<ol>
-<li> Use numpy to create tones at 1Hz and 5Hz sampled at 1000Hz and 4Hz
-</li>
-<li> Compare the samples in the two cases
-</li>
-<li> Repeat for a sawtooth waveform at 2Hz
-</li>
-</ol>
-<ul>
-<li> AUDACITY
-</li>
-</ul>
-<ol>
-<li> Open up Audacity and set the project sampling rate to <span class="tex" dir="ltr">$ f_s = 8000 $</span>Hz.
-</li>
-<li> Generate a 1000Hz sawtooth tone (Generate-&gt;Tone...) of amplitude 1.
-</li>
-<li> Generate a 1000Hz sinusoidal tone of amplitude 0.64.
-</li>
-<li> Generate a 2000Hz sinusoidal tone of amplitude 0.32.
-</li>
-<li> Generate a 3000Hz sinusoidal tone of amplitude 0.21.
-</li>
-<li> Mute the 1000Hz sawtooth tone and play the other three sinusoidal tones together.
-</li>
-<li> Mute all sinusoidal tones and play the 1000Hz sawtooth tone.
-</li>
-<li> Explain what you heard in terms of aliasing of signals rich in overtones.
-</li>
-</ol>
+<ul><li>AUDACITY</li></ul>
+<ol><li>Open up Audacity and set the project sampling rate to &lt;math&gt;f_s = 8000&lt;/math&gt;Hz. The highest frequency that can be digitally represented is the Nyquist frequency &lt;math&gt;f_N = 4000&lt;/math&gt;Hz.</li>
+<li>Generate a chirp (Generate-&gt;Chirp...) that is a sine tone. Set the start frequency at 0Hz and the end frequency at 4000Hz.</li>
+<li>Now generate the same chirp, but using a sawtooth wave.</li>
+<li>Explain why the sinusoidal chirp sounds like a sine tone sweeping up from 0Hz to 4000Hz  but the sawtooth chirp does not sound as smooth <i>(Hint: remember that the sawtooth is rich in overtones and think about the Nyquist theorem)</i></li>
+<li>Depending on your hardware, you may have also noticed some thing unusual when the frequency gets close to 4000Hz. Can you explain it?</li></ol>
+<ul><li>PYTHON</li></ul>
+<ol><li>Use numpy to create tones at 1Hz and 5Hz sampled at 1000Hz and 4Hz</li>
+<li>Compare the samples in the two cases</li>
+<li>Repeat for a sawtooth waveform at 2Hz</li></ol>
+<ul><li>AUDACITY</li></ul>
+<ol><li>Open up Audacity and set the project sampling rate to &lt;math&gt;f_s = 8000&lt;/math&gt;Hz.</li>
+<li>Generate a 1000Hz sawtooth tone (Generate-&gt;Tone...) of amplitude 1.</li>
+<li>Generate a 1000Hz sinusoidal tone of amplitude 0.64.</li>
+<li>Generate a 2000Hz sinusoidal tone of amplitude 0.32.</li>
+<li>Generate a 3000Hz sinusoidal tone of amplitude 0.21.</li>
+<li>Mute the 1000Hz sawtooth tone and play the other three sinusoidal tones together.</li>
+<li>Mute all sinusoidal tones and play the 1000Hz sawtooth tone.</li>
+<li>Explain what you heard in terms of aliasing of signals rich in overtones.</li></ol>
 <h2><span class="mw-headline" id="Signal_Reconstruction">Signal Reconstruction</span></h2>
 <p>If aliasing does not occur then it is possible to <i>exactly</i> reconstruct a continuous signal from its samples. A somewhat complicated mathematical formula that implements a special low-pass filter is responsible for this feat. Every digital audio processor implements a version of this formula when the signals are converted into analog signals, for example, when used to excite a speaker. Because frequencies higher than the Nyquist frequency are aliasing during sampling, it is natural to expect that the reconstructed signal will have only components with frequency smaller than the Nyquist frequency.
 </p>
-<ul>
-<li> PYTHON
-</li>
-</ul>
-<ol>
-<li> Check out the <a class="external text" href="http://nbviewer.ipython.org/url/guitar.ucsd.edu/cosmos9/images/2/28/SignalReconstruction.ipynb" rel="nofollow">SignalReconstruction</a> notebook.
-</li>
-</ol>
+<ul><li>PYTHON</li></ul>
+<ol><li>Check out the <a class="external text" href="http://nbviewer.ipython.org/url/http:localhost:8080/images/2/28/SignalReconstruction.ipynb" rel="nofollow">SignalReconstruction</a> notebook.</li></ol>
 <h2><span class="mw-headline" id="Phase_and_delay">Phase and delay</span></h2>
 <p>Show how delay can cause phase cancellation of a specific frequency. 
 Demonstrate a simple Kareoke effect by inverting and summing left and right channels.
 Explain how using multiple delays we can create "inverted phase" at multiple frequencies. But this is not ideal. We also affect other nearby frequencies.
-</p><p>If we assume the speed of sound to 344m/s, A 55Hz sinusoid has a period of {6.25}meters. (Round to the nearest hundredth's place) Half of this wavelength is {3.13}m (again, round to nearest hundredth's place). Verify that two mics placed at this distance will result in phase cancellation by plugging this value into the provided Pd patch, <a class="internal" href="images/Phase-cancellation.pd" title="Phase-cancellation.pd"> phase_cancellation</a>. Remember that you can enter values into number boxes by clicking on them, typing the number, and pressing enter.
+</p><p>If we assume the speed of sound to 344m/s, A 55Hz sinusoid has a period of {6.25}meters. (Round to the nearest hundredth's place) Half of this wavelength is {3.13}m (again, round to nearest hundredth's place). Verify that two mics placed at this distance will result in phase cancellation by plugging this value into the provided Pd patch, <a class="internal" href="images/4/47/Phase-cancellation.pd" title="Phase-cancellation.pd"> phase_cancellation</a>. Remember that you can enter values into number boxes by clicking on them, typing the number, and pressing enter.
 </p>
-<ul>
-<li> <b>delay</b>
-</li>
-</ul>
-<ul>
-<li> Windowing: Size and shape
-</li>
-</ul>
+<ul><li><b>delay</b></li></ul>
+<ul><li>Windowing: Size and shape</li></ul>
 <p>Using audacity, generate a 440Hz sawtooth wave (Generate-&gt;Tone...). Once the spectrum pops up, set the Algorithm to 'Spectrum', the Function (this is the windowing function) to 'Rectangular' the Size (this is the length of the window) to '128' and the axis to 'Log frequency' (this let's us look at low frequency components more easily).
 </p><p>Now we expect that a the magnitude spectrum of a 440Hz sawtooth wave will have a strong peak at 440Hz, along with a series of peaks that taper at whole number multiples of 440Hz (the overtones of the tone). Is this what you see? Increase the size of the window until a distinct peak is visible at 440Hz. What is the window size here?
 </p><p>Switch the Function to 'Hanning' and repeat the process of raising the window size. What is the difference in the magnitude spectrum between the two windowing methods?
@@ -211,20 +121,29 @@ Explain how using multiple delays we can create "inverted phase" at multiple fre
 </p>
 <!-- 
 NewPP limit report
-CPU time usage: 0.020 seconds
-Real time usage: 0.021 seconds
-Preprocessor visited node count: 124/1000000
-Preprocessor generated node count: 280/1000000
-Post‐expand include size: 126/2097152 bytes
+Cached time: 20260721054449
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.014 seconds
+Real time usage: 0.017 seconds
+Preprocessor visited node count: 21/1000000
+Post‐expand include size: 118/2097152 bytes
 Template argument size: 0/2097152 bytes
 Highest expansion depth: 3/40
 Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
 -->
-<!-- Saved in parser cache with key wiki-cosmos9:pcache:idhash:157-0!6!*!!en!*!* and timestamp 20150718235007
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_cosmos9-cosmos9:pcache:idhash:157-0!canonical and timestamp 20260721054449 and revision id 1196. Serialized with JSON.
  -->
-
+</div></body></html>
       <hr/>
-      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20150718235011/http://guitar.ucsd.edu:80/cosmos9/index.php/Digital_Signals_Part_II">Internet Archive</a>.</p>
+      <p class="meta">Recovered from the original course wiki (server backup, August 2024).</p>
     </main>
   </body>
 </html>

@@ -17,26 +17,95 @@
     <main class="content wiki">
       <p class="meta"><a href="index.html">‹ COSMOS Cluster 9</a> · <a href="/">Maurício de Oliveira</a></p>
       <h1>2016 Projects</h1>
-      <h1><span class="mw-headline" id="Projects">Projects</span></h1>
+      <html><body><div class="mw-parser-output"><div aria-labelledby="mw-toc-heading" class="toc" id="toc" role="navigation"><input class="toctogglecheckbox" id="toctogglecheckbox" role="button" style="display:none" type="checkbox"/><div class="toctitle" dir="ltr" lang="en"><h2 id="mw-toc-heading">Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Projects"><span class="tocnumber">1</span> <span class="toctext">Projects</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Light_Jams"><span class="tocnumber">1.1</span> <span class="toctext">Light Jams</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#One_Man_Band"><span class="tocnumber">1.2</span> <span class="toctext">One Man Band</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#GoTune"><span class="tocnumber">1.3</span> <span class="toctext">GoTune</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#SynthePizer"><span class="tocnumber">1.4</span> <span class="toctext">SynthePizer</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Bing_Bong’s_Wagon"><span class="tocnumber">1.5</span> <span class="toctext">Bing Bong’s Wagon</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#DOG"><span class="tocnumber">1.6</span> <span class="toctext">DOG</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Cardio_Rhythmic"><span class="tocnumber">1.7</span> <span class="toctext">Cardio Rhythmic</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1><span class="mw-headline" id="Projects">Projects</span></h1>
 <p>These were the projects developed in the Summer of 2016:
 </p>
-<h2><span class="mw-headline" id="Check_out_our_projects_later.21">Check out our projects later!</span></h2>
+<h3><span class="mw-headline" id="Light_Jams">Light Jams</span></h3>
+<p>By Jeremy, Ramon, Daniel
+</p><p>Description: This Light Keytar is a MIDI controller that can be played without touch. With a digital audio workstation, itcan be used to play any software instrument. The Light Keytar has a layout similar to the keytar, but notes are played by obstructing light rather than pressing mechanical keys. The body is made from light but elegant, black laser-cut acrylic. To construct this instrument, 25 photoresistors were lined up on a strip of acrylic, creating two octaves of “keys.” The amount of voltage flowing through the photoresistors change based on the amount of light they are exposed to, so by reading the voltage, the relative amount of light can be determined. The Arduino does not have enough analog inputs to read from all 25 photoresistors, so multiplexers were used. Multiplexers serve as an avenue for multiple photoresistors to be read by only one analog input pin. The Arduino is programmed to send respective MIDI values whenever any sensor’s values change from a decrease in light. Hairless MIDI is used to route MIDI from the Arduino through a microUSB cable to loopMIDI in order for the keytar to be recognized as a MIDI device by the computer programs Pure Data. MIDI signals with note number and velocity are sent to a Pure Data synthesizer, which takes the MIDI values and converts them into audio. The timbre of the audio is modified by an ADSR envelope and a filter. With speakers, the Light Keytar can be played at performance volume with ease.
+</p>
+<ul><li><a class="external text" href="http://guitar.ucsd.edu/cosmos9/2016/projects/LightJams_Presentation.pdf" rel="nofollow">slides</a></li>
+<li><a class="external text" href="https://youtu.be/6tj4-gvJHv4" rel="nofollow">video 1</a></li>
+<li><a class="external text" href="https://youtu.be/zRZ_ZAtbbL4" rel="nofollow">video 2</a></li>
+<li><a class="external text" href="https://youtu.be/OGX_PCqIZok" rel="nofollow">video 3</a></li></ul>
+<h3><span class="mw-headline" id="One_Man_Band">One Man Band</span></h3>
+<p>By Dax, Nick, Sean
+</p><p>Description: The One Man Band was created to allow an artist to take their idea and develop it in real time without the need for more complicated programs or input from other people. The One Man Band takes input from a guitar, bass, or other electronic instrument input and allows the artist to manipulate reverb, distortion, and equalizer effects in real time. The program contains a metronome with multiple controls that are integrated with a looper. The looper takes anything being played on any interval in time with the metronome and records it onto a track. Up to 5 Tracks can be recorded and played over each other simultaneously while the artist plays over the recorded backing tracks. Each of the tracks will record effects separately allowing multiple sounds to be used. This program is contained on a Raspberry Pi and uses mouse input with a monitor to control these effects. All the hardware, including the Raspberry Pi, sound card, and a battery pack are contained in portable box. The design could be improved with the implementation of buttons and sliders on the surface of the box, making a monitor and mouse unneeded, therefore improving mobility and functionality of the box. This would need something like an Arduino to interface with the Raspberry Pi and more time for testing.
+</p>
+<ul><li><a class="external text" href="http://guitar.ucsd.edu/cosmos9/2016/projects/OneManBandPresentation.pdf" rel="nofollow">slides</a></li>
+<li><a class="external text" href="https://youtu.be/IRVOfx1Du7c" rel="nofollow">video 1</a></li>
+<li><a class="external text" href="https://youtu.be/gmFYHqQlYBM" rel="nofollow">video 2</a></li>
+<li><a class="external text" href="https://youtu.be/1I1yjnRPJS0" rel="nofollow">video 3</a></li></ul>
+<h3><span class="mw-headline" id="GoTune">GoTune</span></h3>
+<p>By Anysia, Chris, Samantha
+</p><p>Description: GoTune is an innovative application which combines the user’s love for exploration and adventure with the beauty of music. GoTune highlights the unique qualities of various landmarks all around the UCSD campus by utilizing catchy tunes. As one comes close enough to a certain location, a single part of the tune is unlocked and the user can then listen to it. When all locations are visited, each individual element of the tunes are brought together into a cohesive song that we recorded by coupling Ableton Live and Audacity. MobMuPlat and Pure Data were also used hand in hand in order to program the GPS tracking and the tune unlocks for the app.
+</p>
+<ul><li><a class="external text" href="http://guitar.ucsd.edu/cosmos9/2016/projects/GoTunesPresentation.pdf" rel="nofollow">slides</a></li>
+<li><a class="external text" href="https://youtu.be/gxub4OEtq9U" rel="nofollow">video</a></li></ul>
+<h3><span class="mw-headline" id="SynthePizer">SynthePizer</span></h3>
+<p>By Kaitlyn, Derek, Wyatt
+</p><p>Description: The purpose of our project was to create an instrument controlled by motion, using the Raspberry Pi and ultrasonic sensors. We utilized Pure Data and Python on the Raspberry Pi to receive the data from the sensors. We categorized that data into five-centimeter segments, each of which corresponded to a note, increasing by a half step each segment. The other sensor was used in similar five centimeter increments, though it was used to control a band-pass filter, giving the sound more unique qualities. We also added a button to the circuit which allowed us to switch to higher and lower octaves. These features allowed us to begin to shape unique and interesting sounds and start to form an instrument. Future functionality that we would like to implement includes high or low pass filters, envelope filters, frequency modulation, etc.
+</p>
+<ul><li><a class="external text" href="http://guitar.ucsd.edu/cosmos9/2016/projects/SynthePizerPresentation.pdf" rel="nofollow">slides</a></li>
+<li><a class="external text" href="https://youtu.be/xRF5Jh1pjCE" rel="nofollow">video</a></li></ul>
+<h3><span id="Bing_Bong.E2.80.99s_Wagon"></span><span class="mw-headline" id="Bing_Bong’s_Wagon">Bing Bong’s Wagon</span></h3>
+<p>By Jane, Athena, Shreya
+</p><p>Description: From Disney Pixar’s original movie Inside Out comes to life our original version of Bing Bong’s Wagon! Bing Bong’s wagon is a wagon that is fueled by singing. Our project is a vehicle that moves according to the pulse of a song in whichever direction the music is playing from. The user can play or sing any song they wish and the robot will dance toward the music. Bing Bong’s wagon is run on Raspberry Pi, using a visual programming language called Pure Data to measure the pulse in beats per minute while simultaneously turning the motors to the same pulse. Although we attempted to use Python to control the wheels of the car, controlling everything in the environment of Pure Data proved to be more effective. By using these softwares and hardware to execute the programs, we are able to combine music with technology and further advance the music world. 
+</p>
+<ul><li><a class="external text" href="http://guitar.ucsd.edu/cosmos9/2016/projects/BingBongsWagon_Presentation.pdf" rel="nofollow">slides</a></li>
+<li><a class="external text" href="https://youtu.be/g-oe3euaP4M" rel="nofollow">video</a></li></ul>
+<h3><span class="mw-headline" id="DOG">DOG</span></h3>
+<p>By Dororthy, Maria, Simran
+</p><p>Description: We named our project DOG because the robot is like a dog that moves around and “barks” by making noises when individuals interact with it by clapping, snapping, or talking. Essentially, a robot with a Beaglebone Black (a development computer with an audio system) and a bela board cape attached to it, moves and generates a particular set of frequencies (from a patch we created on Pure Data). It plays these frequencies when individuals interact with it by making noises. It is a fun toy that allows people to forget their tensions and temporarily relax. Using the beaglebone, bela, as well as a preamp, we combined hardware and software to receive audio input. The sound that the robot receives from the microphone is changed into dB through Pure Data, which is then read by the beaglebone from the GPIO(general purpose input output) output. The robot has been programmed to move using python and individuals can make the robot produce sounds by clapping, stomping, or talking loud enough. All of the sound receiving and generating is from Pure Data, a visual program specifically centered around sound. There were a few patches made for the different things we needed. There was a patch dedicated to receiving and changing the analog input and another to generate the chord. There was also a patch that played funky sounds when we made noises by speaking, clapping, or snapping. In the final project, we only incorporated the Pd patch that makes funky sounds.
+</p>
+<ul><li><a class="external text" href="http://guitar.ucsd.edu/cosmos9/2016/projects/DOGPresentation.pdf" rel="nofollow">slides</a></li>
+<li><a class="external text" href="https://www.youtube.com/watch?v=pXGCGrB2d_I" rel="nofollow">video</a></li></ul>
+<h3><span class="mw-headline" id="Cardio_Rhythmic">Cardio Rhythmic</span></h3>
+<p>By Claire, Aiden, Wesley
+</p><p>Description: Our project idea was to create a system that can integrate the human body and music. With this idea, we created CardioRhythmic, which senses the heart rate of its user and alters the tempo of music based on it in real time. Users are also given the option to switch between tonalities depending on whether they feel more relaxed or excited. To sense users’ heart rate, we created a heart monitor using a 3D printed finger clip, an LED, and a light-dependent resistor. To detect the heartbeats, we used an Arduino. We also used PureData to process the heartbeats and to create a patch that allows for the altering of music in both tempo and tonality, and a Raspberry Pi to output audio. CardioRhythmic is a useful tool as it allows individuals to focus, relax, or get motivated regardless of the song they are listening to as it can alter any song’s tempo to match an individual’s heart rate.
+</p>
+<ul><li><a class="external text" href="http://guitar.ucsd.edu/cosmos9/2016/projects/CardiorhythmicPresentation.pdf" rel="nofollow">slides</a></li>
+<li><a class="external text" href="https://youtu.be/3RnyEWjMcTM" rel="nofollow">video</a></li></ul>
 <!-- 
 NewPP limit report
-CPU time usage: 0.004 seconds
-Real time usage: 0.004 seconds
-Preprocessor visited node count: 6/1000000
-Preprocessor generated node count: 12/1000000
+Cached time: 20260721054446
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.020 seconds
+Real time usage: 0.023 seconds
+Preprocessor visited node count: 23/1000000
 Post‐expand include size: 0/2097152 bytes
 Template argument size: 0/2097152 bytes
 Highest expansion depth: 2/40
 Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
 -->
-<!-- Saved in parser cache with key wiki-cosmos9:pcache:idhash:185-0!*!*!!*!*!* and timestamp 20160714184003
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+<!-- Saved in parser cache with key wiki_cosmos9-cosmos9:pcache:idhash:185-0!canonical and timestamp 20260721054446 and revision id 1366. Serialized with JSON.
  -->
-
+</div></body></html>
       <hr/>
-      <p class="meta">Recovered from the original course wiki via the <a href="https://web.archive.org/web/20160715073921/http://guitar.ucsd.edu:80/cosmos9/index.php/2016_Projects">Internet Archive</a>.</p>
+      <p class="meta">Recovered from the original course wiki (server backup, August 2024).</p>
     </main>
   </body>
 </html>
