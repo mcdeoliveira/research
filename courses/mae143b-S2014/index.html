@@ -1,0 +1,346 @@
+<html>
+
+  <head>
+    <title>
+      MAE 143 B - Spring 2014
+    </title>
+  </head>
+
+  <style TYPE="text/css">
+    td#dia {
+      padding-right: 10px;
+      text-align: right;
+      font-weight: bold;
+     }
+    td#evento {
+      text-align: left;
+     }
+    h1 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    h2 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    h3 {
+      color: #0080f0;
+      font-family: sans-serif;
+    }
+    h4 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    p {margin-left: 1cm}
+    ul {
+      list-style: circle;
+    }
+  </style>
+
+  <body>
+
+    <div class="content">
+
+      <h1>MAE 143 B - Linear Control - Spring 2014</h1>
+
+      <h2>News</h2>
+      
+      <ul>
+	<li>
+	  Midterm date is confirmed: 1st of May.
+	</li>
+	<li>
+	  Office-hours room is EBU II 305.
+	</li>
+	<li>
+	  Homework due date changed to Thursday.
+	</li>
+	<li>
+	  <font color="red">Midterm review session: Wed 4/30/2014 from 5PM-7PM, CSB 002.</font> 
+	</li>
+      </ul>
+      
+      <h2>Instructor</h2>
+      
+      <ul>
+        <li>Mauricio de Oliveira, <em>first name at ucsd dot edu</em></li>
+	
+      </ul>
+
+      <h2>Class Times</h2>
+      
+      <h3>Lectures</h3>
+      <ul>
+	<li> 
+	  Tuesday, Thursday 09:30-10:50,
+	  <br/>
+	  Center Hall 109
+	</li>
+      </ul>
+
+      <h3>Discussion Session</h3>
+
+      <ul>
+	<li> 
+	  Wed 14:00-14:50,
+	  <br/>
+	  Center Hall 109 
+	  <br/>
+	</li>
+      </ul>
+
+      <h2>Teaching Assistants</h2>
+
+      <ul>
+	<li>Hamed Foroush, <em> hshisheh at ucsd dot edu</em></li>
+	<li>Alireza Kargar, <em> a last name at ucsd dot edu</em></li>
+	<li>Martin Sehr, <em> msehr at ucsd dot edu</em></li>
+      </ul>
+
+      <h2>Office Hours</h2>
+
+      <p>EBU II Room 305</p>
+      <ul>
+	<li>Mondays 2:30 - 3:30 pm (Ali)</li>
+	<li>Tuesdays 2:30 - 3:30 pm (Mauricio)</li>
+	<li>Wednesdays 10:30 - 11:30 am (Hamed)</li>
+	<li>Thursdays 1:30 - 2:30 pm (Martin)</li>
+      </ul>
+      
+      <p>You can make an appointment with me or the TAs by email.</p>
+
+      <h2>Text Books</h2>
+      <p>
+	<b>Fundamentals on Linear Control</b>
+      </p>
+      <p>
+	Reader available only at the bookstore<br/>
+	Part I is available now<br>
+	Part II will be available in a couple of weeks.
+      </p>
+      
+      <p>
+	Click <a href="errata.txt">here</a> for a list of corrections.
+      </p>
+      
+      <h2>Course Topics</h2>
+      
+      <ul>
+	<li>Analysis of feedback systems
+	  <ul>
+	    <li>Dynamic models</li>
+	    <li>Differential equation models and transfer functions</li>
+	    <li>Dynamic response</li>
+	    <li>Stability, tracking and regulation</li>
+	  </ul>
+	</li>
+	<li>Design of feedback systems
+	  <ul>
+	    <li>PID control</li>
+	    <li>Root-locus method</li>
+	    <li>Frequence response</li>
+	    <li>Bode and Nyquist diagrams</li>
+	    <li>Dynamic compensators: phase-lead and phase-lag</li>
+	  </ul>
+	</li>
+      </ul>
+      
+      <h2>Grades</h2>
+      
+      <p>
+	Check out your homework and midterm grades
+	on <a href="http://ted.ucsd.edu">TED</a>.
+	<br/>
+	Check them out regularly to make sure your homework isbeing
+	graded and transcribed correctly! 
+      </p>
+      
+      <h3>Grades Formula</h3>
+      <p>
+	GRADE = MAX(0.2 * HOMEWORK + 0.3 * MIDTERM + 0.5 * FINAL EXAM,
+	FINAL EXAM)
+      </p>
+      
+      <h2>Exams</h2>
+      
+      <ul>
+        <li> 
+	  Midterm: May, 1st, 
+	  <br/>
+	  Get <a href="midterm.pdf">your copy</a>
+	  <br/>
+	  Take home version due <font color="red">05/09/2014</font>
+	  <br/>
+	  Get the <a href="midtermsol.pdf">solution</a>
+	<li>
+	  Final exam: June, 10th
+	  <br/>
+	  Get <a href="final.pdf">your copy</a>
+	  <br/>
+	  Get <a href="finalsol.pdf">a solution</a>
+	  <br/>
+	  Check out the <a href="finalfreq.pdf">frequency</a>
+	   and <a href="finalpcnt.pdf">percentile</a> plots to see how
+	   you did.
+        </li>
+      </ul>
+
+      <p>
+	You might want to check out the website for 
+	<a href="../mae143b-S2012">MAE 143 B Spring 2012</a> to
+	have a better idea of the midterm and final exams.
+      </p>
+
+      <h2>Demos</h2>
+
+      <ul>
+	<li><a href="mfiles/martin.m">Martin's MATLAB intro</a></li>
+	<li>Simple Pendulum
+	  <ol>
+	    <li><a href="mfiles/SimplePendulum.slx">Simulink open-loop model</a></li>
+	    <li><a href="mfiles/SimplePendulumWithFeedback.slx">Simulink closed-loop model</a></li>
+	    <li><a href="mfiles/SimplePendulumSimulink.m">Simulation and linearization</a></li>
+	    <li><a href="mfiles/SimplePendulumControl.m">Control with root-locus</a></li>
+	  </ol>
+	</li>
+      </ul>
+
+      <!--
+      <p>
+	In order to run these you will need to install this 
+	<a href="http://www.wolfram.com/cdf-player/">free piece of software</a>.
+      </p>
+
+      <ul>
+	<li><a href="mfiles/CruiseControlStaticCar.html">Cruise Control (static car)</a></li>
+	<li><a href="mfiles/CruiseControlDynamicCar.html">Cruise Control (dynamic car)</a></li>
+	<li><a href="mfiles/FirstOrderSystemResponse.html">First-Order System Response</a></li>
+	<li><a href="mfiles/SecondOrderSystemResponseA.html">Second-Order System Response (part A)</a></li>
+	<li><a href="mfiles/SecondOrderSystemResponseB.html">Second-Order System Response (part B)</a></li>
+	<li><a href="mfiles/Sensitivity.html">Sensitivity</a></li>
+	<li>Simple Pendumlum 
+	  <a href="mfiles/pendulum1.m">file 1</a>, 
+	  <a href="mfiles/pendulum2.m">file 2</a>, 
+	  <a href="mfiles/pendulum3.m">file 3</a>, 
+	  <a href="mfiles/pendulum4.m">file 4</a>, 
+	  <a href="mfiles/pendulum5.m">file 5</a>
+	</li>
+      </ul>
+
+      -->
+      
+      <h2>Homework</h2>
+      
+      <p>
+	Hand in
+	every <strike>Tuesday</strike> <font color="red">Thursday</font>
+	class.
+	<br/>
+	20% deduction for lateness by one day without reason, else 100%.
+	<br/>
+	Solutions will be posted on this web site.
+	<br/>
+	<b>Please turn in a readable and organized homework. This is a
+	  big class! Here is a suggestion:</b>
+	<ul>
+	  <li>Write your name and student ID on top of each and every page;</li>
+   	  <li>Start answering a question always on the top of the page.</li>
+	</ul>
+      </p>
+      
+      <h3>Homework #1</h3>
+      <p>
+	P1.1, P1.3, P1.7, P1.8
+	<br/>
+	Get your <a href="hw1.pdf">homework</a>
+	<br/>
+	Get the <a href="hw1sol.pdf">solution</a>
+        <br/>
+	Due: <strike>04/08/2014</strike><font color="red">04/10/2014</font>
+      </p>
+      
+      <h3>Homework #2</h3>
+      <p>
+	P2.4, P2.11, P2.14, P2.15
+	<br/>
+	Get your <a href="hw2.pdf">homework</a>
+	<br/>
+	Get the <a href="hw2sol.pdf">solution</a>
+        <br/>
+	Due: 04/17/2014
+      </p>
+
+      <h3>Homework #3</h3>
+      <p>
+	P3.2 b),h), P3.9 f), P3.10 e), P3.13 i), P3.22, P3.23
+	<br/>
+	Get your <a href="hw3.pdf">homework</a>
+	<br/>
+	Get the <a href="hw3sol.pdf">solution</a>
+        <br/>
+	Due: 04/24/2014
+      </p>
+
+      <h3>Homework #4</h3>
+      <p>
+	P3.24, P3.16, P3.17 g), P3.25, P3.27
+	<br/>
+	Get the <a href="hw4sol.pdf">solution</a>
+	<br/>
+	Due: 05/01/2014
+      </p>
+
+      <h3>Homework #5</h3>
+      <p> Replaced by take home midterm. </p>
+
+      <h3>Homework #6</h3>
+      <p>
+	P4.2 c) and e), P4.7, P4.13, P4.14
+	<br/>
+	Get your <a href="hw4.pdf">homework</a>
+	<br/>
+	Get the <a href="hw6sol.pdf">solution</a>
+	<br/>
+	Due: 05/15/2014
+      </p>
+
+      <h3>Homework #7</h3>
+      <p>
+	P5.1 (a-c), P5.18, P5.19, P5.22 
+	<br/>
+	Get your <a href="hw5.pdf">homework</a>
+	<br/>
+	Get the <a href="hw7sol.pdf">solution</a>
+	<br/>
+	Due: 05/22/2014
+      </p>
+
+      <h3>Homework #8</h3>
+      <p>
+	P6.3, P6.4, P6.5, P6.14 (a,c,f), P6.15 (a,b,d), P6.19
+	<br/>
+	Get your <a href="hw6.pdf">homework</a>
+	<br/>
+	Get the <a href="hw8sol.pdf">solution</a>
+	<br/>
+	Due: <strike>05/29/2014</strike><font color="red">05/30/2014</font>
+      </p>
+
+      <h3>Homework #9</h3>
+      <p>
+	P7.1 (b,e,h), P7.2 (b,e,h), P7.3 (b,d,h), P7.11
+	<br/>
+	Get your <a href="hw7.pdf">homework</a>
+	<br/>
+	Get the <a href="hw9sol.pdf">solution</a>
+	<br/>
+	Due: <font color="red">06/06/2014</font>
+      </p>
+
+      <hr/>
+      
+    </div>
+
+  </body>
+
+</html>

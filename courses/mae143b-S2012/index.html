@@ -1,0 +1,342 @@
+<html>
+
+  <head>
+    <title>
+      MAE 143 B - Spring 2012
+    </title>
+  </head>
+
+  <style TYPE="text/css">
+    td#dia {
+      padding-right: 10px;
+      text-align: right;
+      font-weight: bold;
+     }
+    td#evento {
+      text-align: left;
+     }
+    h1 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    h2 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    h3 {
+      color: #0080f0;
+      font-family: sans-serif;
+    }
+    h4 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    p {margin-left: 1cm}
+    ul {
+      list-style: circle;
+    }
+  </style>
+
+  <body>
+
+    <div class="content">
+
+      <h1>MAE 143 B - Linear Control - Spring 2012</h1>
+
+      <h2>News</h2>
+      
+      <ul>
+	<li>
+	  <font color="red">05/03/2012: Midterm changed back to 05/08 during regular lecture hours</font> 
+	</li>
+	<li>
+	  04/19/2012: Midterm changed to 05/04 during discussion session
+	</li>
+	<li>
+	  <font color="red">04/19/2012: Homework is due every Thursday starting today</font>
+	</li>
+      </ul>
+      
+      <h2>Instructor</h2>
+      
+      <ul>
+        <li>Mauricio de Oliveira, <em>first name at ucsd dot edu</em></li>
+	
+      </ul>
+
+      <h2>Class Times</h2>
+      
+      <h3>Lectures</h3>
+      <ul>
+	<li> 
+	  Tuesday, Thursday 15:30-16:50,
+	  <br/>
+	  HSS 1330
+	</li>
+      </ul>
+
+      <h3>Discussion Session</h3>
+
+      <ul>
+	<li> 
+	  Friday 08:00-08:50,
+	  <br/>
+	  Center Hall 109 
+	  <br/>
+	</li>
+      </ul>
+
+      <h2>Teaching Assistants</h2>
+
+      <ul>
+	<li>Chien Wei Lee, <em>chl099 at ucsd dot edu</em></li> 
+	<li>Saam Ostovari, <em>sa ostova at ucsd dot edu</em></li>
+      </ul>
+
+      <h2>Office Hours</h2>
+
+      <p>EBU II Room 105</p>
+      <ul>
+	<li>Monday: 10:00-11:00 (Mauricio)</li>
+	<li>Tuesday: 11:00-12:00 (Saam)</li>
+	<li>Wednesday: 12:30-13:30 (Chien)</li>
+      </ul>
+      
+      <p>You can make an appointment with me or the TAs by email.</p>
+
+      <h2>Text Books</h2>
+      <p>
+	<em>Feedback Control of Dynamic Systems</em>, 
+	6th Edition, 
+	Gene F. Franklin, J. David Powell, and Abbas Emani-Naeini, 
+	Pearson, 2009. 
+	ISBN-10: 0-13-6019690-2.
+      </p>
+      <p>
+	<em>Feedback Systems: An introduction for Scientists and Engineers</em>, 
+	Version 2.10e, 
+	Kalr J. Astrom and Richard Murray, 
+	Princeton University Press, 2012.
+	ISBN: 9780691135762. You can download a
+	<a href="http://www.cds.caltech.edu/~murray/amwiki">copy and
+	much more here</a>.
+      </p>
+      <p>
+	Books are available on the Science and Engineering Library Reserves.
+      </p>
+
+      <h2>Other Resources</h2>
+
+      <p>
+	You may find the Prof. de
+	Callafon's <a href="http://mechatronics.ucsd.edu/mae143b_11/frames/lectures.html">notes
+	on MAE 143B</a> an interesting resource. They have references
+	to both our textbooks and can help you find what you need.
+      </p>
+      
+      <h2>Course Topics</h2>
+      
+      <ul>
+	<li>Analysis of feedback systems
+	  <ul>
+	    <li>Dynamic models</li>
+	    <li>Differential equation models and transfer functions</li>
+	    <li>Dynamic response</li>
+	    <li>Stability, tracking and regulation</li>
+	  </ul>
+	</li>
+	<li>Design of feedback systems
+	  <ul>
+	    <li>PID control</li>
+	    <li>Root-locus method</li>
+	    <li>Frequence response</li>
+	    <ul>
+	      <li>Bode and Nyquist diagrams</li>
+	      <li>Dynamic compensators: phase-lead and phase-lag</li>
+	    </ul>
+	  </ul>
+	</li>
+      </ul>
+      
+      <h2>Grades</h2>
+      
+      <p>
+	You should be able to check out your homework and midterm
+	grades on <a href="http://ted.ucsd.edu">TED</a>. 
+	<br/>
+	Please check them out regularly to make sure your homework is
+	being graded/transcribed correctly!
+      </p>
+      
+      <h3>Grades Formula</h3>
+      <p>
+	GRADE = MAX(0.2 * HOMEWORK + 0.3 * MIDTERM + 0.5 * FINAL EXAM,
+	FINAL EXAM)
+      </p>
+      
+      <h2>Exams</h2>
+      
+      <ul>
+        <li> 
+	  Midterm: <font color="red">May, 8th</font>, 
+	  <br>
+	  <font color="red">during lecture</font>
+	  <br/>
+	  Need a <a href="midterm.pdf">solution</a>?
+	  <!--br/>
+	  Check out the <a href="mdtrmfreq.pdf">frequency</a>
+	  and <a href="mdtrmpcnt.pdf">percentile</a> plots to see how
+	  you did.
+	  -->
+	<li>
+	  Final exam: Monday, June, 11th
+	  <br/>
+	  15:00 - 18:00, HSS 1330
+	  <br/>
+	  Need a <a href="final.pdf">solution</a>?
+        </li>
+      </ul>
+
+      <h2>Demonstrations</h2>
+
+      <p>
+	In order to run these you will need to install this 
+	<a href="http://www.wolfram.com/cdf-player/">free piece of software</a>.
+      </p>
+
+      <ul>
+	<li><a href="mfiles/CruiseControlStaticCar.html">Cruise Control (static car)</a></li>
+	<li><a href="mfiles/CruiseControlDynamicCar.html">Cruise Control (dynamic car)</a></li>
+	<li><a href="mfiles/FirstOrderSystemResponse.html">First-Order System Response</a></li>
+	<li><a href="mfiles/SecondOrderSystemResponseA.html">Second-Order System Response (part A)</a></li>
+	<li><a href="mfiles/SecondOrderSystemResponseB.html">Second-Order System Response (part B)</a></li>
+	<li><a href="mfiles/Sensitivity.html">Sensitivity</a></li>
+	<li>Simple Pendumlum 
+	  <a href="mfiles/pendulum1.m">file 1</a>, 
+	  <a href="mfiles/pendulum2.m">file 2</a>, 
+	  <a href="mfiles/pendulum3.m">file 3</a>, 
+	  <a href="mfiles/pendulum4.m">file 4</a>, 
+	  <a href="mfiles/pendulum5.m">file 5</a>
+	</li>
+      </ul>
+
+      <h2>Homework</h2>
+      
+      <p>
+	Hand in every <strike>Tuesday</strike><font color="red">Thursday</font> class.
+	<br/>
+	20% deduction for lateness by one day without reason, else 100%.
+	<br/>
+	Solutions will be posted on this web site.
+	<br/>
+	<b>Please turn in a readable and organized homework. This is a
+	  big class! Here is a suggestion:</b>
+	<ul>
+	  <li>Write your name and student ID on top of each and every page;</li>
+   	  <li>Start answering a question always on the top of the page.</li>
+	</ul>
+      </p>
+      
+      <h3>Homework #1</h3>
+      <p>
+	FPE-N: 3.2 (c), 3.3 (a, b),  3.7 (a, b, c), 3.19, 3.20 (a), 3.21 (a,
+        b)
+	<br/>
+	Compare problems 3.19 and 3.21 (b). In which way are they
+        different? In which way are they similar?
+        <br/>
+	Due: 04/10/2012
+        <br/>
+	Need a <a href="hw1sol.pdf">solution</a>?
+      </p>
+      
+      <h3>Homework #2</h3>
+      <p>
+	FPE-N: 3.24, 3.25, 3.28 (a-c), 3.30 (a-g)
+        <br/>
+	Due: 04/19/2012
+        <br/>
+	Need a <a href="hw2sol.pdf">solution</a>?
+      </p>
+      
+      <h3>Homework #3</h3>
+      <p>
+	FPE-N: 3.40, 4.14, 4.16
+        <br/>
+	Due: 04/26/2012
+        <br/>
+	Need a <a href="hw3sol.pdf">solution</a>?
+      </p>
+
+      <h3>Homework #4</h3>
+      <p>
+	FPE-N: 4.22, 4.26, 4.29, 4.30 
+        <br/>
+	Due: 05/03/2012
+        <br/>
+	Need a <a href="hw4sol.pdf">solution</a>?
+      </p>
+
+      <h3>Homework #5</h3>
+      <p>
+	FPE-N: 9.1, 9.2 
+        <br/>
+	Due: 05/10/2012
+        <br/>
+	Need a <a href="hw5sol.pdf">solution</a>?
+      </p>
+
+      <h3>Homework #6</h3>
+      <p>
+	PFE-N: 5.2, 5.35, 7.2 
+	<br/> 
+	On p. 7.2, use matlab to compute the transfer function from
+	the scaled input <em>v</em> = 1000 <em>u</em> to the
+	output <em>y</em> = <em>z</em><sub>2</sub> =
+	10<sup>6</sup> <em>y</em><sub>2</sub>.
+	<br/> 
+	IMPORTANT: Answer <a href="5_35.pdf">this question</a> instead
+	of the ones given in FPE-N 5.35.
+	<br/> 
+	Need a <a href="hw6sol.pdf">solution</a>?  
+	<br/> 
+	Due: 05/17/2012
+      </p>
+
+      <h3>Homework #7</h3>
+      <p>
+	PFE-N: 5.13, 5.14, 5.31
+	<br/>
+	Need a <a href="hw7sol.pdf">solution</a>?
+	<br/>
+	Due: 05/24/2012
+      </p>
+
+      <h3>Homework #8</h3>
+      <p>
+	FPE-N: 6.2, 6.4 (c), 6.5 (a,b,e), 6.9
+	<br/>
+	These problems can be done with what you learned in MAE 143
+	A. They will get you up to speed for our next studies.
+	<br/>
+	Need a <a href="hw8sol.pdf">solution</a>?
+	<br/>
+	Due: 05/31/2012
+      </p>
+
+      <h3>Homework #9</h3>
+      <p>
+	FPE-N: 6.16 (a,c), 6.17 (a, d), 6.21
+	<br/>
+	Need a <a href="hw9sol.pdf">solution</a>?
+	<br/>
+	Due: 06/07/2012
+      </p>
+
+      <hr/>
+
+    </div>
+
+  </body>
+
+</html>

@@ -1,0 +1,9 @@
+p.12: around eq (1.2), flip signed:
+
+     (1 + G K) e = \bar{y} - G w
+
+            1                 G
+     e = ------- \bar{y} - ------- w
+         1 + G K           1 + G K
+
+p.13: Block diagram (c) and (d) are repeated.

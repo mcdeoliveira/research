@@ -1,0 +1,353 @@
+<html>
+
+  <head>
+    <title>
+      MAE 143 B - Spring 2015
+    </title>
+  </head>
+
+  <style TYPE="text/css">
+    td#dia {
+      padding-right: 10px;
+      text-align: right;
+      font-weight: bold;
+     }
+    td#evento {
+      text-align: left;
+     }
+    h1 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    h2 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    h3 {
+      color: #0080f0;
+      font-family: sans-serif;
+    }
+    h4 {
+      color: #0000a0;
+      font-family: sans-serif;
+    }
+    p {margin-left: 1cm}
+    ul {
+      list-style: circle;
+    }
+  </style>
+
+  <body>
+
+    <div class="content">
+
+      <h1>MAE 143 B - Linear Control - Spring 2015</h1>
+
+      <h2>News</h2>
+      
+      <ul>
+	<li>
+	  New office-hours schedule
+	</li>
+      </ul>
+      
+      <h2>Instructor</h2>
+      
+      <ul>
+        <li>Mauricio de Oliveira, <em>first name at ucsd dot edu</em></li>
+	
+      </ul>
+
+      <h2>Class Times</h2>
+      
+      <h3>Lectures</h3>
+      <ul>
+	<li> 
+	  Tuesday, Thursday 12:30-13:50,
+	  <br/>
+	  Center Hall 101
+	</li>
+      </ul>
+
+      <h3>Discussion Session</h3>
+
+      <ul>
+	<li> 
+	  Wed 16:00-16:50,
+	  <br/>
+	  Center Hall 101 
+	  <br/>
+	</li>
+      </ul>
+
+      <h2>Teaching Assistants</h2>
+
+      <ul>
+	<li>Martin Sehr, <em> msehr at ucsd dot edu</em></li>
+	<li>Mihn Ha, <em> h5ha at ucsd dot edu</em></li>
+      </ul>
+
+      <h2>Office Hours</h2>
+
+      <p>EBU II Room 305</p>
+      <ul>
+	<li>Monday 14:00 - 15:00 pm (Mauricio)</li>
+	<li>Wednesday 10:00 - 11:00 am (Martin)</li>
+      </ul>
+
+      <p>EBU II Room 105</p>
+      <ul>
+	<li>Thursday 15:00 - 16:00 pm (Mihn)</li>
+      </ul>
+      
+      <p>You can make an appointment with me or the TAs by email.</p>
+
+      <h2>Text Books</h2>
+      <p>
+	<b>Fundamentals on Linear Control</b> by Mauricio C. de Oliveira
+      </p>
+      <p>
+	Reader available only at the bookstore.
+      </p>
+      
+      <p>
+      Click <a href="errata.txt">here</a> for a list of corrections.
+      </p>
+      
+      <h2>Course Topics</h2>
+      
+      <ul>
+	<li>Analysis of feedback systems
+	  <ul>
+	    <li>Dynamic models</li>
+	    <li>Differential equation models and transfer functions</li>
+	    <li>Dynamic response</li>
+	    <li>Stability, tracking and regulation</li>
+	  </ul>
+	</li>
+	<li>Design of feedback systems
+	  <ul>
+	    <li>PID control</li>
+	    <li>Root-locus method</li>
+	    <li>Frequence response</li>
+	    <li>Bode and Nyquist diagrams</li>
+	    <li>Dynamic compensators: phase-lead and phase-lag</li>
+	  </ul>
+	</li>
+      </ul>
+      
+      <h2>Grades</h2>
+      
+      <p>
+	Check out your homework and midterm grades
+	on <a href="http://ted.ucsd.edu">TED</a>.
+	<br/>
+	Check them out regularly to make sure that your homework is
+	being graded and transcribed correctly! 
+      </p>
+      
+      <h3>Formula</h3>
+      <p>
+	GRADE = MAX(0.2 * HOMEWORK + 0.3 * MIDTERM + 0.5 * FINAL EXAM,
+	FINAL EXAM)
+      </p>
+      
+      <h2>Exams</h2>
+
+      Exams are open notes: you are allowed to consult
+      any <i>written</i> material of your choice.  
+      <br/>
+      You can use a hand calculator without communication
+      capabilities. 
+      <br/>
+      You cannot use any device that is able to communicate.
+      
+      <ul>
+        <li> 
+	  Midterm: May, 5th, in class
+	  <br/>
+	  Get a <a href="midterm.pdf">copy</a>
+	  <br/>
+	  Get a <a href="midtermsol.pdf">solution</a>
+	</li>
+	<li>
+	  Final exam: June, 8th, 11:30 - 14:29
+	  <br/>
+	  Get a <a href="final.pdf">copy</a>
+	  <br/>
+	  Get a <a href="finalsol.pdf">solution</a>
+        </li>
+      </ul>
+
+      <p>
+	You might want to check out the website for MAE 143
+	B <a href="../mae143b-S2012">Spring 2012</a>
+	and <a href="../mae143b-S2014">Spring 2014</a> to have an idea
+	of what the midterm and final will look like.
+      </p>
+
+      <h2>Matlab files</h2>
+
+      <ul>
+	<!--li><a href="mfiles/martin.m">Martin's MATLAB intro</a></li-->
+	<li>Simple Pendulum
+	  <ol>
+	    <li><a href="mfiles/SimplePendulum.slx">Simulink open-loop model</a></li>
+	    <li><a href="mfiles/SimplePendulumSimulink.m">Simulation and linearization</a></li>
+	  </ol>
+	</li>
+	<!--li>Simple Pendulum
+	  <ol>
+	    <li><a href="mfiles/SimplePendulumWithFeedback.slx">Simulink closed-loop model</a></li>
+	    <li><a href="mfiles/SimplePendulumControl.m">Control with root-locus</a></li>
+	  </ol>
+	</li-->
+      </ul>
+
+      <!--
+
+      <p>
+	In order to run these you will need to install this 
+	<a href="http://www.wolfram.com/cdf-player/">free piece of software</a>.
+      </p>
+
+      <ul>
+	<li><a href="mfiles/CruiseControlStaticCar.html">Cruise Control (static car)</a></li>
+	<li><a href="mfiles/CruiseControlDynamicCar.html">Cruise Control (dynamic car)</a></li>
+	<li><a href="mfiles/FirstOrderSystemResponse.html">First-Order System Response</a></li>
+	<li><a href="mfiles/SecondOrderSystemResponseA.html">Second-Order System Response (part A)</a></li>
+	<li><a href="mfiles/SecondOrderSystemResponseB.html">Second-Order System Response (part B)</a></li>
+	<li><a href="mfiles/Sensitivity.html">Sensitivity</a></li>
+	<li>Simple Pendumlum 
+	  <a href="mfiles/pendulum1.m">file 1</a>, 
+	  <a href="mfiles/pendulum2.m">file 2</a>, 
+	  <a href="mfiles/pendulum3.m">file 3</a>, 
+	  <a href="mfiles/pendulum4.m">file 4</a>, 
+	  <a href="mfiles/pendulum5.m">file 5</a>
+	</li>
+      </ul>
+
+      -->
+      
+      <h2>Homework</h2>
+      
+      <p>
+	Turn in every Tuesday class.
+	<br/>
+	20% deduction for lateness by one day without reason, else 100%.
+	<br/>
+	Solutions will be posted on this web site.
+	<br/>
+	<b>Please turn in a readable and organized homework. This is a
+	  big class! Here is a suggestion:</b>
+	<ul>
+	  <li>Write your name and student ID on top of each and every page;</li>
+   	  <li>Start answering a question always on the top of the page.</li>
+	</ul>
+      </p>
+      
+      <h3>Homework #1</h3>
+      <p>
+	P1.1 a), b), e) and f) , P1.4, P1.7, P1.8, P2.1, P2.2
+        <br/>
+	Due: 04/07/2015
+	<br/>
+	Get the <a href="hw1sol.pdf">solution</a>
+      </p>
+
+      <h3>Homework #2</h3>
+      <p>
+	P2.3, P2.4, P2.7, P2.16, P2.17, P2.18
+        <br/>
+	Due: 04/14/2015
+	<br/>
+	Get the <a href="hw2sol.pdf">solution</a>
+      </p>
+
+      <h3>Homework #3</h3>
+      <p>
+	P3.1 f), j), P3.2 e), g), P3.12 d) e), P3.15 d) h), P3.27,
+        P3.28, P3.29
+	<br/> 
+	Due: 04/21/2015
+	<br/>
+	Get the <a href="hw3sol.pdf">solution</a>
+      </p>
+
+      <h3>Homework #4</h3>
+      <p>
+	P4.2 b), d), P4.4 a), b), d), P4.5 [for P4.4 a), b), d)],
+	 P4.7, P4.8 a), d), <br/> Additional problem: Design a PI
+	 controller for the DC motor in P2.16 that achieves asymptotic
+	 tracking of constant angular velocity references. Calculate
+	 the steady-state error obtained by your controller when the
+	 angular velocity reference
+	 is <span style="text-decoration:overline">&omega;</span>(t) =
+	 2500 + 100 cos(2 &pi; t) RPM. Use the numeric data from
+	 P2.16.  <br/> Due: 04/28/2015
+	<br/>
+	Get the <a href="hw4sol.pdf">solution</a>
+      </p>
+
+      <h3>Homework #5</h3>
+      <p>
+	P3.21, P3.23, P4.12, P4.13 <br/> Additional problem: Design a
+	 controller for the DC motor in P2.16 that achieves asymptotic
+	 tracking of constant position references. Calculate
+	 the steady-state error obtained by your controller when the
+	 angular position reference
+	 is <span style="text-decoration:overline">&theta;</span>(t) =
+	 2 &pi; rad. Use the numeric data from
+	 P2.16.
+	<br/> Due: 05/05/2015
+	<br/>
+	Get the <a href="hw5sol.pdf">solution</a>
+      </p>
+
+      <h3>Homework #6</h3>
+
+      <p>
+	P5.1 b), d), P5.14, P5.15, P5.16, P5.24, P5.25
+	<br/> 
+	Due: 05/12/2015
+	<br/>
+	Get the <a href="hw6sol.pdf">solution</a>
+      </p>
+
+      <h3>Homework #7</h3>
+      <p>
+	P6.7, P6.8, P6.9, P6.10, P6.16, P6.17
+	<br/> 
+	Due: 05/19/2015
+	<br/>
+	Get the <a href="hw7sol.pdf">solution</a>
+      </p>
+      
+      <h3>Homework #8</h3>
+      <p>
+	P6.14 b), d), e), P6.15 b), d), e), P6.21, P6.22
+	<br/>
+	Due: 05/28/2015
+	<br/>
+	Get the <a href="hw8sol.pdf">solution</a>
+      </p>
+      
+      <h3>Homework #9</h3>
+      <p>
+	P7.1 (a,c,g), P7.2 (a,c,g), P7.3 (a,e,j), P7.4 (a,e,j), 
+	P7.8, P7.9, P7.13
+	<br/>
+	For P7.13 assume a period of 11h and mass of 1600kg.
+	<br/>
+	Due: 06/04/2015
+	<br/>
+	Get the <a href="hw9sol.pdf">solution</a>
+      </p>
+
+      <hr/>
+      
+    </div>
+
+  </body>
+
+</html>
