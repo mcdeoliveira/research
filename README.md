@@ -26,7 +26,7 @@ minute.
 - `style.css` — single shared stylesheet for every page (landing + courses).
 - `courses/<course>/` — one folder per course; `courses/index.html` is the
   Teaching index.
-- Google Analytics (GA4 `G-NM6DQXZ3LE`) is included in the `<head>` of each page.
+- An analytics tag is included in the `<head>` of each page.
 
 ## Notes
 
