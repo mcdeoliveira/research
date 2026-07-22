@@ -111,6 +111,7 @@ section.has-dark-background h6 {
  * carrying the level they should look like.  These rules style them as the
  * corresponding heading.
  *********************************************/
+.reveal .h1,
 .reveal .h2,
 .reveal .h3,
 .reveal .h4 {
@@ -126,6 +127,7 @@ section.has-dark-background h6 {
   word-wrap: break-word;
 }
 
+.reveal .h1 { font-size: var(--r-heading1-size); }
 .reveal .h2 { font-size: var(--r-heading2-size); }
 .reveal .h3 { font-size: var(--r-heading3-size); }
 .reveal .h4 { font-size: var(--r-heading4-size); }
@@ -221,6 +223,19 @@ section.has-dark-background h6 {
  *********************************************/
 /* pandoc also sets overflow-x:auto on columns, which turns any slightly
    too-wide content into a scroll box; 2019 had no overflow rule at all. */
+/* pandoc 3 lays columns out with flex AND adds a gap:
+      div.columns{display: flex; gap: min(4vw, 1.5em);}
+   pandoc 2 used inline-block with no gap.  Both differences matter here,
+   because the declared widths in these decks are written to fill the row
+   exactly: 34 blocks sum to precisely 100%, and the gap pushes the last
+   column out of the row.  Removing it restores the original fit.
+
+   Wrapping then reproduces the other half of the inline-block behaviour: a
+   block whose widths exceed one row -- 30% + 70% + 100% in chapter 5.6,
+   where the last is a full-width row rather than a column -- flows onto the
+   next line instead of overflowing the slide. */
+.reveal div.columns               { flex-wrap: wrap; gap: 0; }
+
 .reveal div.column                { overflow-x: visible; }
 
 .reveal div.column                { flex: 1 1 0; }    /* no width given: share the row */
