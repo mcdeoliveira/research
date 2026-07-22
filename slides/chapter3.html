@@ -151,8 +151,7 @@ class="title-slide slide level1">
 <h1>3.3 Differential Equations and Transfer-Functions</h1>
 <p><span class="h2">Car model</span></p>
 <p><span class="math display">\[\begin{align*}
-  \dot{y}(t) + \frac{b}{m} \, y(t) - \frac{p}{m} u(t) &amp;= \frac{p}{m}
-u(t)
+  \dot{y}(t) + \frac{b}{m} \, y(t) - \frac{p}{m} u(t) &amp;= 0
 \end{align*}\]</span></p>
 <p><span class="h2">Laplace transform</span></p>
 <p><span class="math display">\[\begin{align*}
@@ -812,7 +811,7 @@ website</a></li>
         mobileViewDistance: 2,
 
         math: {
-          mathjax: '/usr/share/javascript/mathjax/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml-full.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -830,7 +829,7 @@ website</a></li>
 
         // reveal.js plugins
         plugins: [
-          RevealMath,
+          RevealMath.MathJax3,
           RevealNotes,
           RevealSearch,
           RevealZoom

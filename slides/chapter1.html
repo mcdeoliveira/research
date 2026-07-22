@@ -450,7 +450,7 @@ disturbances</p>
         mobileViewDistance: 2,
 
         math: {
-          mathjax: '/usr/share/javascript/mathjax/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml-full.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -468,7 +468,7 @@ disturbances</p>
 
         // reveal.js plugins
         plugins: [
-          RevealMath,
+          RevealMath.MathJax3,
           RevealNotes,
           RevealSearch,
           RevealZoom

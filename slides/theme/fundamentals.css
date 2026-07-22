@@ -276,3 +276,9 @@ section.has-dark-background h6 {
 @media print {
   .backgrounds { background-color: #fff; }
 }
+
+/* reveal.js 4's reset.css zeroes the browser's default figure margin
+   (1em 40px); reveal 3 left it alone.  Restoring it keeps the one captioned
+   figure in these decks -- the radio-flyer wagon in chapter 5 -- at the
+   width it had in the original slides, rather than 80px wider. */
+.reveal figure                     { margin: 1em 40px; }
