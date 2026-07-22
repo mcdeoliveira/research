@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Maurício C. de Oliveira">
+  <title>Fundamentals of Linear Control:   A Concise Approach</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="reveal.js/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="reveal.js/dist/theme/fundamentals.css"/>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Fundamentals of Linear Control: <br/> <small>A
+Concise Approach</small></h1>
+  <p class="author">Maurício C. de Oliveira</p>
+  <p class="date"><strong>Chapter 2: Dynamic Systems</strong> <br/><br/>
+<a
+href="https://linearcontrol.info/fundamentals">linearcontrol.info/fundamentals</a></p>
+</section>
+
+<section id="dynamic-models" class="title-slide slide level1">
+<h1>2.1 Dynamic Models</h1>
+<p><img data-src="5b9af7a9727537e8683a70070d0acdaf7a50c65a.jpg"
+class="tikz plain float-right top" style="width:45%" /></p>
+<p><span class="h2">Longitudinal car model</span></p>
+<p><span class="h3">Newton’s law</span></p>
+<p><span class="math display">\[\begin{align*}
+  m \, \dot{v}(t) + b \, v(t) = f(t)
+\end{align*}\]</span></p>
+<p><span class="h3">Force model</span></p>
+<p><span class="math display">\[\begin{align*}
+  f(t) &amp;= p \, u(t)
+\end{align*}\]</span></p>
+<p><span class="h3">Ordinary differential equation</span></p>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + \frac{b}{m} \, y(t) = \frac{p}{m} u(t)
+\end{align*}\]</span></p>
+<ul>
+<li>input: <span class="math inline">\(u\)</span> is pedal excursion in
+inches</li>
+<li>output: <span class="math inline">\(y\)</span> is car velocity in
+mph</li>
+</ul>
+</section>
+
+<section id="block-diagrams-for-differential-equations"
+class="title-slide slide level1">
+<h1>2.2 Block-Diagrams for Differential Equations</h1>
+<p><span class="h2">Basic element: integrator</span></p>
+<p><img data-src="1f986765a46167c229720713a31c2bf89322cc36.jpg"
+class="tikz plain" style="width:26%" /></p>
+<p><span class="h2">Longitudinal car model</span></p>
+<p><img data-src="3bee6fbb60ebe320ea868c40a8c9cbb8377a2aee.jpg"
+class="tikz plain" style="width:50%" /></p>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) &amp;= \frac{p}{m} u(t) - \frac{b}{m} \, y(t)
+\end{align*}\]</span></p>
+<p>Note the presence of feedback!</p>
+</section>
+
+<section>
+<section id="dynamic-response" class="title-slide slide level1">
+<h1>2.3 Dynamic Response</h1>
+<p><span class="h2">Longitudinal car model</span></p>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + \frac{b}{m} \, y(t) = \frac{p}{m} u(t)
+\end{align*}\]</span></p>
+<p><span class="h3">Constant pedal intput</span></p>
+<p><span class="math display">\[\begin{align*}
+  u(t) = \tilde{u}, \quad t \geq 0
+\end{align*}\]</span></p>
+<p><span class="h3">Particular solution</span></p>
+<p><span class="math display">\[\begin{align*}
+  y_P(t) &amp;= \tilde{y} = \left ( \frac{p}{m}\middle/\frac{b}{m}
+\right ) \tilde{u} = \frac{p}{b} \tilde{u}
+\end{align*}\]</span></p>
+</section>
+<section id="longitudinal-car-model-homogenous-equation"
+class="slide level2">
+<h2>Longitudinal car model: homogenous equation</h2>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + \frac{b}{m} \, y(t) = 0
+\end{align*}\]</span></p>
+<h3 id="homogenous-solution">Homogenous solution</h3>
+<p><span class="math display">\[\begin{align*}
+  y_H(t) &amp;= e^{\lambda t}
+\end{align*}\]</span></p>
+<h3 id="characteristic-equation">Characteristic equation</h3>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}_H(t) + \frac{b}{m} y_H(t) =
+  \left (\lambda + \frac{b}{m} \right ) \, e^{\lambda t} = 0
+  \quad \implies \quad \lambda + \frac{b}{m} = 0
+\end{align*}\]</span></p>
+</section>
+<section id="longitudinal-car-model-with-constant-pedal-input"
+class="slide level2">
+<h2>Longitudinal car model with constant pedal input</h2>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + \frac{b}{m} \, y(t) = \frac{p}{m} \tilde{u}
+\end{align*}\]</span></p>
+<h3 id="particular-homogenous-solution">Particular + homogenous
+solution</h3>
+<p><span class="math display">\[\begin{align*}
+  y(t) &amp;= y_P(t) + \beta \, y_H(t) = \tilde{y} + \beta \,
+  e^{\lambda t}
+\end{align*}\]</span></p>
+<h3 id="initial-conditions">Initial conditions</h3>
+<p><span class="math display">\[\begin{align*}
+  y(0) = \tilde{y} + \beta &amp;= y_0 &amp; &amp; \implies &amp; \beta
+&amp;= y_0 -
+  \tilde{y}
+\end{align*}\]</span></p>
+<h3 id="complete-solution">Complete solution</h3>
+<p><span class="math display">\[\begin{align*}
+  y(t) &amp;= \tilde{y} \left (1 - e^{\lambda t} \right ) + y_0 \,
+  e^{\lambda t}, &amp;
+  \lambda &amp;= -\frac{b}{m}, &amp;
+  \tilde{y} &amp;= \frac{p}{b} \tilde{u}
+\end{align*}\]</span></p>
+</section>
+<section id="examples" class="slide level2">
+<h2>Examples</h2>
+<p><span class="math display">\[\begin{align*}
+  y(t) &amp;= \tilde{y} \left (1 - e^{\lambda t} \right ) + y_0 \,
+  e^{\lambda t}, &amp;
+  \tilde{y} &amp;= 1
+\end{align*}\]</span></p>
+<p><img data-src="figs/FirstOrder1.jpg" class="plain"
+style="width:80.0%" /></p>
+</section>
+<section class="slide level2">
+
+<p><span class="h2">Time-constant</span></p>
+<h3 id="definition">Definition</h3>
+<p><span class="math display">\[\begin{align*}
+  \tau = \left \{ t : y(t) = \left (1 - e^{-1} \right ) \tilde{y}
+\approx 0.63 \, \tilde{y} \right \}
+\end{align*}\]</span></p>
+<h3 id="first-order-systems">First-order systems</h3>
+<p><span class="math display">\[\begin{align*}
+  \tau = -\frac{1}{\lambda}
+  \qquad
+  y(\tau) \approx 0.63 \, \tilde{y}, \quad
+  y(3 \tau) \approx 0.95 \, \tilde{y}
+\end{align*}\]</span></p>
+<p><span class="h2">Rise-time</span></p>
+<h3 id="definition-1">Definition</h3>
+<p><span class="math display">\[\begin{align*}
+  t_r &amp;= t_2 - t_1, &amp;
+  t_1 &amp;= \left \{ t : y(t) = 0.1 \, \tilde{y} \right \}, &amp;
+  t_2 &amp;= \left \{ t : y(t) = 0.9 \, \tilde{y} \right \}
+\end{align*}\]</span></p>
+<h3 id="first-order-systems-1">First-order systems</h3>
+<p><span class="math display">\[\begin{align*}
+  t_r &amp;= \ln\left( 1 \middle/ 9 \right ) \, \lambda^{-1} = \ln(9) \,
+\tau
+\approx
+  2.2 \, \tau
+\end{align*}\]</span></p>
+</section></section>
+<section>
+<section id="experimental-dynamic-response"
+class="title-slide slide level1">
+<h1>2.4 Experimental Dynamic Response</h1>
+<p><span class="h2">Experiment</span></p>
+<p>Zero initial velocity</p>
+<p>Constant pedal excursion: <span class="math inline">\(\tilde{u} =
+1\)</span> in</p>
+<p><img data-src="figs/CarDynamicModel1.jpg" class="plain"
+style="width:60.0%" /></p>
+</section>
+<section id="model-fitting" class="slide level2">
+<h2>Model fitting</h2>
+<p><img data-src="figs/CarDynamicModel1.jpg" class="plain"
+style="width:60.0%" /></p>
+<p>Squares: steady-state solution <span class="math inline">\(\implies
+\tilde{y} \approx 73.3 \text{ mph}\)</span></p>
+</section>
+<section id="model-fitting-1" class="slide level2">
+<h2>Model fitting</h2>
+<p><span class="math display">\[\begin{align*}
+  r(t) &amp;= 1 - \left. y(t) \middle/ \tilde{y} \right . = e^{\lambda
+t} &amp;
+  &amp; \implies &amp;
+  \ln r(t) &amp;= \lambda t
+\end{align*}\]</span></p>
+<p><img data-src="figs/CarDynamicModel2.jpg" class="plain"
+style="width:60.0%" /></p>
+<p>Circles: <span class="math inline">\(\lambda \approx -0.05 \text{
+s}^{-1}\)</span></p>
+</section>
+<section id="model-fitting-2" class="slide level2">
+<h2>Model fitting</h2>
+<p><span class="math display">\[\begin{align*}
+  \frac{b}{m} &amp;= -\lambda \approx 0.05 \text{ s}^{-1}, \\
+  \frac{p}{\,b\,} &amp;= \frac{\tilde{y}}{\tilde{u}} \approx 73.3 \text{
+mph/in}, \\
+  \frac{p}{m} &amp;= \frac{b}{m} \times
+  \frac{p}{b} = -\lambda \times \frac{\tilde{y}}{\tilde{u}} =
+  3.7\text{ mph/(in s)}
+\end{align*}\]</span></p>
+<h3 id="experimental-model">Experimental model</h3>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + 0.05 \, y(t) = 3.7 u(t)
+\end{align*}\]</span></p>
+<h3 id="be-careful">Be careful</h3>
+<p>Experiment was conducted for <span class="math inline">\(u(t) =
+\tilde{u}\)</span> constant but we <em>wish</em> model to hold for
+general <span class="math inline">\(u(t)\)</span>!</p>
+</section></section>
+<section>
+<section id="dynamic-feedback-control" class="title-slide slide level1">
+<h1>2.5 Dynamic Feedback Control</h1>
+<p><span class="h2">Car model</span></p>
+<p><span class="h3">Dynamic model</span></p>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + \frac{b}{m} \, y(t) = \frac{p}{m} u(t)
+\end{align*}\]</span></p>
+<p><span class="h3">Feedback controller</span></p>
+<p><span class="math display">\[\begin{align*}
+  u(t) &amp;= K \, e(t), &amp;
+  e(t) &amp;= \bar{y} - y(t)
+\end{align*}\]</span></p>
+<p><span class="h3">Closed-loop system</span></p>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + \left ( \frac{b}{m} + \frac{p}{m} K \right ) y(t) &amp;=
+  \frac{p}{m} K \bar{y}
+\end{align*}\]</span></p>
+</section>
+<section id="closed-loop-response" class="slide level2">
+<h2>Closed-loop response</h2>
+<h3 id="dynamic-model">Dynamic model</h3>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + \left ( \frac{b}{m} + \frac{p}{m} K \right ) y(t) &amp;=
+  \frac{p}{m} K \bar{y}, &amp;
+  y(0) &amp;= y_0, &amp;
+  \lambda &amp;= - \frac{b}{m} - \frac{p}{m} K
+\end{align*}\]</span></p>
+<h3 id="output">Output</h3>
+<p><span class="math display">\[\begin{align*}
+  y(t) &amp;= \tilde{y} \left (1 - e^{\lambda t} \right ) + y_0 \,
+  e^{\lambda t}, &amp;
+  \tilde{y} &amp;= \frac{\frac{p}{m} K}{\frac{b}{m} + \frac{p}{m}
+    K} \bar{y} = \frac{\frac{p}{b} K}{1 + \frac{p}{b} K} \bar{y}
+\end{align*}\]</span></p>
+<h3 id="time-constant">Time-constant</h3>
+<p><span class="math display">\[\begin{align*}
+  \lambda &amp;= - \frac{b}{m} - \frac{p}{m} K, &amp;
+  \tau &amp;= -\lambda^{-1} = \frac{m}{b + p K}
+\end{align*}\]</span></p>
+</section>
+<section id="output-1" class="slide level2">
+<h2>Output</h2>
+<p><img data-src="figs/CarDynamicPControl1.jpg" class="plain"
+style="width:80.0%" /></p>
+</section>
+<section id="control" class="slide level2">
+<h2>Control</h2>
+<p><img data-src="figs/CarDynamicPControl2.jpg" class="plain"
+style="width:60.0%" /></p>
+<h3 id="largest-control-at-t-0">Largest control at <span
+class="math inline">\(t = 0\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+  u(0) = K e(0) = K (\bar{y} - y(0)) = K \, \bar{y}
+\end{align*}\]</span></p>
+<h3 id="saturation">Saturation</h3>
+<p><span class="math inline">\(\bar{y} = 60 \text{ mph } \implies u(t)
+&gt; \bar{u} = 3 \text{ in for } K &gt; 0.05\)</span>!</p>
+</section>
+<section id="steady-state" class="slide level2">
+<h2>Steady-state</h2>
+<p><span class="math display">\[\begin{align*}
+  \lim_{t \rightarrow \infty} y(t) &amp;= \tilde{y} = H(0) \, \bar{y},
+&amp;
+  H(0) &amp;= \frac{\frac{p}{b} K}{1 + \frac{p}{b} K} \\
+  \lim_{t \rightarrow \infty} e(t) &amp;= \bar{y} - \tilde{y} = S(0) \,
+\bar{y}, &amp;
+  S(0) &amp;= \frac{1}{1 + \frac{p}{b} K}
+\end{align*}\]</span></p>
+<h3 id="effect-of-the-gain">Effect of the gain</h3>
+<p><img data-src="59f46764dc805993509aeee13419984fea1da85e.jpg"
+class="tikz plain block-center" style="width:60%" /></p>
+<p><span class="math inline">\(\bar{y} = 60 \text{ mph}\)</span></p>
+</section></section>
+<section id="nonlinear-models" class="title-slide slide level1">
+<h1>2.6 Nonlinear Models</h1>
+<p><span class="h2">Output is rate-limited</span></p>
+<p><img data-src="figs/CarDynamicPControl3.jpg" class="plain"
+style="width:50.0%" /></p>
+<p><span class="h2">Control saturates</span></p>
+<p><img data-src="figs/CarDynamicPControl4.jpg" class="plain"
+style="width:50.0%" /></p>
+</section>
+
+<section>
+<section id="disturbance-rejection" class="title-slide slide level1">
+<h1>2.7 Disturbance Rejection</h1>
+<p><img data-src="de72eb5dce3919701ba18e5fedc553c7fa209286.jpg"
+class="tikz plain" style="width:50%" /></p>
+<p><span class="h3">Car on inclined plane model</span></p>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + \frac{b}{m} \, y(t) = \frac{p}{m} u(t) - g \sin
+  (\theta(t))
+\end{align*}\]</span></p>
+</section>
+<section id="disturbance-model" class="slide level2">
+<h2>Disturbance Model</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="de72eb5dce3919701ba18e5fedc553c7fa209286.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div><div class="column align-bottom" style="width:50%;">
+<p><img data-src="0d5117ed5e6fb6de31dcecfa6f251ff2e363c7f7.jpg"
+class="tikz plain" style="width:60%" /></p>
+</div>
+</div>
+<h3 id="car-on-inclined-plane-with-disturbance">Car on inclined plane
+with disturbance</h3>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + \frac{b}{m} \, y(t) &amp;= \frac{p}{m} \left ( u(t) +
+w(t) \right ), &amp;
+  w(t) &amp;= - \frac{m g}{p} \sin(\theta(t))
+\end{align*}\]</span></p>
+</section>
+<section id="car-with-disturbance" class="slide level2">
+<h2>Car with disturbance</h2>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + \frac{b}{m} \, y(t) &amp;= \frac{p}{m} \left ( u(t) +
+w(t) \right )
+\end{align*}\]</span></p>
+<h3 id="constant-disturbance">Constant disturbance</h3>
+<p><span class="math display">\[\begin{align*}
+  w(t) &amp;= \bar{w}, \quad t \geq 0
+\end{align*}\]</span></p>
+<h3 id="feedback-controller">Feedback controller</h3>
+<p><span class="math display">\[\begin{align*}
+  u(t) &amp;= K \, e(t), &amp;
+  e(t) &amp;= \bar{y} - y(t)
+\end{align*}\]</span></p>
+</section>
+<section id="impact-of-disturbance-on-steady-state"
+class="slide level2">
+<h2>Impact of disturbance on steady-state</h2>
+<h3 id="model">Model</h3>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + \left ( \frac{b}{m} + \frac{p}{m} K \right ) y(t) &amp;=
+  \frac{p}{m} \left ( K \bar{y} + \bar{w} \right ), \quad y_0 = H(0)
+\bar{y}
+\end{align*}\]</span></p>
+<h3 id="output-2">Output</h3>
+<p><span class="math display">\[\begin{align*}
+  y(t) &amp;= H(0) \, \bar{y} + \left (1 - e^{\lambda t} \right ) D(0)
+\, \bar{w}, &amp;
+  H(0) &amp;= \frac{\frac{p}{b} K}{1 + \frac{p}{b} K}, &amp;
+  D(0) &amp;= \frac{p}{b} \, \frac{1}{1 + \frac{p}{b} K}
+\end{align*}\]</span></p>
+<h3 id="deviation-from-steady-state">Deviation from steady-state</h3>
+<p><span class="math display">\[\begin{align*}
+  \Delta y(t) = y(t) - H(0) \bar{y} &amp;= \left (1 - e^{\lambda t}
+\right ) D(0) \, \bar{w}
+\end{align*}\]</span></p>
+</section>
+<section id="output-3" class="slide level2">
+<h2>Output</h2>
+<p><img data-src="figs/CarDynamicPControl6.jpg" class="plain"
+style="width:80.0%" /></p>
+</section></section>
+<section>
+<section id="integral-action" class="title-slide slide level1">
+<h1>2.8 Integral Action</h1>
+<div class="columns">
+<div class="column" style="width:35%;">
+<p><span class="h2">Toilet tank model</span></p>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) &amp;= \frac{1}{A} u(t)
+\end{align*}\]</span></p>
+<p><span class="h2">Ballcock valve</span></p>
+<p><span class="math display">\[\begin{align*}
+  u(t) &amp;= K(\bar{y} - y)
+\end{align*}\]</span></p>
+<p><span class="h2">Closed-loop model</span></p>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + \frac{K}{A} y(t) &amp;= \frac{K}{A} \bar{y}(t)
+\end{align*}\]</span></p>
+</div><div class="column" style="width:25%;">
+<p><img data-src="144d504a8f6f30ad40e63914fac4df902623d281.jpg"
+class="tikz plain top" style="width:100%" /></p>
+</div><div class="column" style="width:40%;">
+<p><img data-src="0125366a1b0dae4834cc582db93f72747adcfaa8.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div>
+</div>
+</section>
+<section id="closed-loop-response-1" class="slide level2">
+<h2>Closed-loop response</h2>
+<h3 id="model-1">Model</h3>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + \frac{K}{A} y(t) &amp;= \frac{K}{A} \bar{y}(t), &amp;
+  y(0) &amp;= y_0, &amp;
+  \lambda &amp;= - \frac{K}{A}
+\end{align*}\]</span></p>
+<h3 id="output-4">Output</h3>
+<p><span class="math display">\[\begin{align*}
+  y(t) &amp;= \tilde{y} \left (1 - e^{\lambda t} \right ) + y_0 \,
+  e^{\lambda t}, &amp;
+  \tilde{y} &amp;= \bar{y}
+\end{align*}\]</span></p>
+<h3 id="steady-state-1">Steady-state</h3>
+<p><span class="math display">\[\begin{align*}
+  \lim_{t \rightarrow \infty} y(t) &amp;= \tilde{y} = H(0) \, \bar{y},
+&amp;
+  H(0) &amp;= 1 \\
+  \lim_{t \rightarrow \infty} e(t) &amp;= \bar{y} - \tilde{y} = S(0) \,
+\bar{y}, &amp;
+  S(0) &amp;= 0
+\end{align*}\]</span></p>
+<p>Integral action <span class="math inline">\(\implies\)</span> zero
+tracking error!</p>
+<p>Can we replicate that result in a more general setting? Answer is in
+Chapter 4</p>
+</section></section>
+<section id="learn-more" class="title-slide slide level1">
+<h1>Learn more</h1>
+<ul>
+<li><a
+href="https://linearcontrol.info/fundamentals/index.php/tag/chapter-2/">Book
+website</a></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js"></script>
+  <script src="reveal.js/plugin/search/search.js"></script>
+  <script src="reveal.js/plugin/zoom/zoom.js"></script>
+  <script src="reveal.js/plugin/math/math.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

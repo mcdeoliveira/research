@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Maurício C. de Oliveira">
+  <title>Fundamentals of Linear Control:   A Concise Approach</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="reveal.js/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="reveal.js/dist/theme/fundamentals.css"/>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Fundamentals of Linear Control: <br/> <small>A
+Concise Approach</small></h1>
+  <p class="author">Maurício C. de Oliveira</p>
+  <p class="date"><strong>Chapter 4: Feedback Analysis</strong>
+<br/><br/> <a
+href="https://linearcontrol.info/fundamentals">linearcontrol.info/fundamentals</a></p>
+</section>
+
+<section id="recall-from-chapter-3" class="title-slide slide level1">
+<h1>Recall from Chapter 3</h1>
+<p><span class="h2">Time-invariant linear system in the
+time-domain</span></p>
+<p><span class="h3">Impulse response</span></p>
+<p><span class="math display">\[\begin{align*}
+g(t), \quad t \geq 0
+\end{align*}\]</span></p>
+<p><span class="h3">Convolution</span></p>
+<p><span class="math display">\[\begin{align*}
+  y(t) &amp;= \int_{0^-}^{\infty} g(t - \tau) \, u(\tau) \,d\tau
+\end{align*}\]</span></p>
+<p><span class="h2">Time-invariant linear system in the
+frequency-domain</span></p>
+<p><span class="h3">Transfer-function</span></p>
+<p><span class="math display">\[\begin{align*}
+G(s) = \mathcal{L} \{ g(t) \}
+\end{align*}\]</span></p>
+<p><span class="h3">Product</span></p>
+<p><span class="math display">\[\begin{align*}
+  Y(s) &amp;= G(s) \, U(s), &amp;
+  Y(s) &amp;= \mathcal{L} \{ y(t) \}, &amp;
+  U(s) &amp;= \mathcal{L} \{ u(t) \}
+\end{align*}\]</span></p>
+</section>
+
+<section>
+<section id="tracking-sensitivity-and-integral-control"
+class="title-slide slide level1">
+<h1>4.1 Tracking, Sensitivity, and Integral Control</h1>
+<p><img data-src="6f1f7393077c14b369d0d9b8319169eedf809ab8.jpg"
+class="tikz plain" style="width:40%" /></p>
+<p><span class="h2">Loop relations</span></p>
+<p><span class="math display">\[\begin{align*}
+  Y(s) &amp;= G(s) \, U(s), &amp;
+  U(s) &amp;= K(s) \, E(s), &amp;
+  E(s) &amp;= \bar{Y}(s) - Y(s)
+\end{align*}\]</span></p>
+<p><span class="h2">Closed-loop sensitivity transfer-function</span></p>
+<p><span class="math display">\[\begin{align*}
+  E(s) &amp;= S(s) \, \bar{Y}(s), &amp; S(s) &amp;= \frac{1}{1 + G(s) \,
+K(s)}
+\end{align*}\]</span></p>
+<p><span class="h2">Short-hand notation</span></p>
+<p><span class="math display">\[\begin{align*}
+  e &amp;= S \, \bar{y}, &amp;
+  S &amp;= \frac{1}{1 + G \, K}, &amp;
+  \text{etc}
+\end{align*}\]</span></p>
+</section>
+<section id="example-car-model-with-proportional-feedback"
+class="slide level2">
+<h2>Example: car model with proportional feedback</h2>
+<h3 id="open-loop-transfer-function">Open-loop transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G(s) = \frac{\frac{p}{m}}{s + \frac{b}{m}}
+\end{align*}\]</span></p>
+<h3 id="closed-loop-sensitivity-transfer-functions">Closed-loop
+sensitivity transfer-functions</h3>
+<p><span class="math display">\[\begin{align*}
+  S(s) = \frac{1}{1 + K \frac{\frac{p}{m}}{s + \frac{b}{m}}} = \frac{s +
+\frac{b}{m}}{s + \frac{b}{m} + K \frac{p}{m}}
+\end{align*}\]</span></p>
+<h3 id="closed-loop-stability">Closed-loop stability</h3>
+<p><span class="math display">\[\begin{align*}
+  - \left ( \frac{b}{m} + \frac{p}{m} K \right ) &amp;&lt; 0 &amp;
+  &amp;\implies &amp;
+  K &gt; - \frac{b}{p}
+\end{align*}\]</span></p>
+</section>
+<section id="tracking-error" class="slide level2">
+<h2>Tracking error</h2>
+<h3 id="reference-input">Reference input</h3>
+<p><span class="math display">\[\begin{align*}
+  \bar{y}(t) &amp;= \bar{y} \cos( \omega t + \phi), \quad t \geq 0
+\end{align*}\]</span></p>
+<h3 id="steady-state-from-frequency-response">Steady-state from
+frequency response</h3>
+<p><span class="math display">\[\begin{align*}
+  e_{\mathrm{ss}}(t) &amp;= \bar{y} \, |S(j \omega)| \cos( \omega t +
+\phi + \angle
+  S(j \omega)) &amp;
+  &amp; \implies &amp;
+  | e_{\mathrm{ss}}(t) | &amp;\leq | S(j \omega) | \, |\bar{y}|
+\end{align*}\]</span></p>
+<h3 id="e.g.-car-model-with-a-step-reference">e.g. car model with a step
+reference</h3>
+<p><span class="math display">\[\begin{align*}
+  | e_{\mathrm{ss}}(t) | &amp;\leq | S(0) | \, |\bar{y}| = \frac{
+    \frac{b}{m}}{\frac{b}{m} + \frac{p}{m} K} |\bar{y}| = \frac{1}{1 +
+\frac{p}{b} K} |\bar{y}|
+\end{align*}\]</span></p>
+</section>
+<section id="asymptotic-tracking" class="slide level2">
+<h2>Asymptotic tracking</h2>
+<h3 id="definition">Definition</h3>
+<p>Error converges to zero for large time <span
+class="math display">\[\begin{align*}
+  \lim_{t \rightarrow \infty} e(t) &amp;= 0
+\end{align*}\]</span></p>
+<p>Stability of <span class="math inline">\(S\)</span> is not enough. It
+is necessary that <span class="math display">\[\begin{align*}
+  E = S \, \bar{Y}
+\end{align*}\]</span> Poles of <span
+class="math inline">\(\bar{Y}\)</span> must be cancelled by zeros of
+<span class="math inline">\(S\)</span>!</p>
+<h3 id="lemma-4.1">Lemma 4.1</h3>
+<p><strong><em>Let <span class="math inline">\(S = (1 + G \,
+K)^{-1}\)</span> be asymptotically stable and</em></strong> <span
+class="math display">\[\begin{align*}
+  \bar{y}(t) = \bar{y} \cos(\omega t + \phi)
+\end{align*}\]</span> <strong><em>If <span class="math inline">\(G \,
+K\)</span> has a pole at <span class="math inline">\(s = j
+\omega\)</span> then <span class="math inline">\(\lim_{t \rightarrow
+\infty} e(t) = 0\)</span></em></strong></p>
+<p><em>Proof:</em> <span class="math inline">\(S\)</span> has a zero at
+<span class="math inline">\(s = j \omega\)</span></p>
+</section>
+<section id="example-toilet-bowl-model" class="slide level2">
+<h2>Example: toilet bowl model</h2>
+<h3 id="open-loop-transfer-function-1">Open-loop transfer-function</h3>
+<p><span class="math display">\[\begin{align}
+  G(s) &amp;= \frac{1}{s A}
+\end{align}\]</span></p>
+<h3 id="closed-loop-sensitivity-transfer-function">Closed-loop
+sensitivity transfer-function</h3>
+<p><span class="math display">\[\begin{align}
+  S(s) &amp;= \frac{1}{1 + G(s) \, K} = \frac{1}{1 + \frac{K}{s A}}
+  = \frac{s}{s + \frac{K}{A}}
+\end{align}\]</span></p>
+<p>Asymptotically stable for <span class="math inline">\(K &gt;
+0\)</span></p>
+<p><span class="math inline">\(S\)</span> has a zero at zero: asymptotic
+tracking of step (constant) reference inputs</p>
+</section>
+<section id="example-car-model-with-integral-feedback"
+class="slide level2">
+<h2>Example: car model with integral feedback</h2>
+<h3 id="open-loop-transfer-function-2">Open-loop transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G(s) = \frac{\frac{p}{m}}{s + \frac{b}{m}}
+\end{align*}\]</span></p>
+<h3 id="integral-control">Integral control</h3>
+<p><span class="math display">\[\begin{align*}
+  K(s) = \frac{K}{s}
+\end{align*}\]</span></p>
+<h3 id="closed-loop-sensitivity-transfer-functions-1">Closed-loop
+sensitivity transfer-functions</h3>
+<p><span class="math display">\[\begin{align*}
+  S(s) = \frac{1}{1 + \frac{K}{s} \frac{\frac{p}{m}}{s + \frac{b}{m}}} =
+\frac{s\left (s + \frac{b}{m}\right )}{s^2 + \frac{b}{m} s + K
+\frac{p}{m}}
+\end{align*}\]</span></p>
+<p>Asymptotically stable for <span class="math inline">\(K &gt;
+0\)</span></p>
+<p><span class="math inline">\(S\)</span> has a zero at zero: asymptotic
+tracking of step (constant) reference inputs</p>
+</section>
+<section id="example-car-model-with-integral-feedback-1"
+class="slide level2">
+<h2>Example: car model with integral feedback</h2>
+<h3 id="controller">Controller</h3>
+<p><span class="math display">\[\begin{align*}
+    U(s) &amp;= \frac{K}{s} E(s) &amp;
+    &amp; \implies &amp;
+    u(t) &amp;= u(0) + K \int_0^t e(\tau) \, d\tau
+\end{align*}\]</span></p>
+<h3 id="system-controller-block-diagram">System + Controller
+block-diagram</h3>
+<p><img data-src="c1234e90f4246da82778cbf08aca72004b634515.jpg"
+class="tikz plain" style="width:60%" /></p>
+</section>
+<section id="example-car-model-with-integral-feedback-2"
+class="slide level2">
+<h2>Example: car model with integral feedback</h2>
+<p><img data-src="figs/CarDynamicIControl1.jpg" class="plain"
+style="width:60.0%" /></p>
+<p>Transient response has oscilations!</p>
+</section></section>
+<section>
+<section id="stability-and-transient-response"
+class="title-slide slide level1">
+<h1>4.2 Stability and Transient Response</h1>
+<p><span class="h2">Some facts</span></p>
+<ul>
+<li>The zeros of <span class="math inline">\(1 + G K\)</span> are the
+poles of <span class="math inline">\(S\)</span></li>
+<li>The poles of the product <span class="math inline">\(G \, K\)</span>
+are the zeros of <span class="math inline">\(S\)</span></li>
+<li>When <span class="math inline">\(G\)</span> and <span
+class="math inline">\(K\)</span> are rational the order of <span
+class="math inline">\(S\)</span> is the order of the product <span
+class="math inline">\(G \, K\)</span></li>
+</ul>
+<p><span class="h3">Example: rational transfer-function with no
+pole-zero cancellations</span></p>
+<p><span class="math display">\[\begin{align*}
+  G &amp;= \frac{N_G}{D_G}, &amp; K &amp;= \frac{N_K}{D_K}, &amp;
+  S &amp;= \frac{1}{1 + \frac{N_G}{D_G} \frac{N_K}{D_K}} = \frac{D_G
+D_K}{D_G D_K + N_G N_K}
+\end{align*}\]</span></p>
+<p><span class="h2">For tracking</span></p>
+<ul>
+<li>Add poles to <span class="math inline">\(K\)</span> so they become
+zeros of <span class="math inline">\(S\)</span></li>
+<li>More complex <span class="math inline">\(K\)</span> leads to more
+complex <span class="math inline">\(S\)</span></li>
+<li>Watch out for stability and oscillations, e.g. car model with
+integral feedback</li>
+</ul>
+</section>
+<section id="example-car-model-with-proportional-plus-integral-feedback"
+class="slide level2">
+<h2>Example: car model with proportional plus integral feedback</h2>
+<h3 id="proportional-plus-integral-control">Proportional plus integral
+control</h3>
+<p><span class="math display">\[\begin{align}
+  G(s) &amp;= \frac{\left . {p} \middle / {m} \right .}{s + \left . {b}
+\middle / {m} \right .}, &amp;
+  K(s) &amp;= K_p + s^{-1} K_i
+\end{align}\]</span></p>
+<h3 id="closed-loop-sensitivity-transfer-functions-2">Closed-loop
+sensitivity transfer-functions</h3>
+<p><span class="math display">\[\begin{align*}
+  S(s) &amp;= \frac{1}{1 + G(s) \, K(s)}
+  %% = \frac{1}{1 + \displaystyle\frac{\frac{p}{m} (K_p
+  %%     s + K_i)}{s \left (s + \frac{b}{m} \right )}}
+  = \frac{s \left (s + \frac{b}{m} \right )}{s^2 + \left (
+    \frac{b}{m} + \frac{p}{m} K_p \right ) s + \frac{p}{m} K_i}
+\end{align*}\]</span></p>
+<p>No complex-poles (oscillations) if <span
+class="math display">\[\begin{align*}
+  0 &lt; 4 \frac{p}{m} K_i &amp;\leq \left ( \frac{b}{m} + \frac{p}{m}
+K_p
+  \right )^2
+\end{align*}\]</span></p>
+</section>
+<section
+id="example-car-model-with-proportional-plus-integral-feedback-1"
+class="slide level2">
+<h2>Example: car model with proportional plus integral feedback</h2>
+<h3 id="controller-1">Controller</h3>
+<p><span class="math display">\[\begin{align*}
+    U(s) &amp;= \left ( K_p + \frac{K_i}{s} \right ) E(s) &amp;
+    &amp; \implies &amp;
+    u(t) &amp;= u(0) + K_p e(t) + K_i \int_0^t e(\tau) \, d\tau
+\end{align*}\]</span></p>
+<h3 id="system-controller-block-diagram-1">System + Controller
+block-diagram</h3>
+<p><img data-src="3db475476811cfd5a3bb8ed1c60f15e6d1e14d0d.jpg"
+class="tikz plain" style="width:60%" /></p>
+</section>
+<section
+id="example-car-model-with-proportional-plus-integral-feedback-2"
+class="slide level2">
+<h2>Example: car model with proportional plus integral feedback</h2>
+<h3 id="special-choice">Special choice</h3>
+<p><span class="math display">\[\begin{align*}
+  K_i &amp;= \frac{b}{m} K_p, &amp;
+  K(s) &amp;= K_p + \frac{K_i}{s} = K_p \frac{s + \frac{b}{m}}{s}
+\end{align*}\]</span> leads to a pole-zero cancellation <span
+class="math display">\[\begin{align*}
+  G(s) \, K(s) &amp;= \frac{\frac{p}{m}}{s +\frac{b}{m}} \times K_p
+\frac{s +
+    \frac{b}{m}}{s} =  \frac{\frac{p}{m} K_p}{s},
+\end{align*}\]</span></p>
+<h4 id="closed-loop-sensitivity-transfer-functions-3">Closed-loop
+sensitivity transfer-functions</h4>
+<p><span class="math display">\[\begin{align*}
+  \label{eq:scarpipzc}
+  S(s) &amp;= \frac{1}{1 + G(s) K(s)} = \frac{s}{s + \frac{p}{m} K_p}
+\end{align*}\]</span></p>
+<p>Zero at the origin: asymptotic tracking</p>
+<p>No complex poles: no oscillations</p>
+</section>
+<section
+id="example-car-model-with-proportional-plus-integral-feedback-3"
+class="slide level2">
+<h2>Example: car model with proportional plus integral feedback</h2>
+<p><img data-src="figs/CarDynamicPIControl1.jpg" class="plain"
+style="width:70.0%" /></p>
+<p>Asymptotic tracking, gone are the oscillations!</p>
+<p>Beware of control effort: saturation occurs if <span
+class="math display">\[\begin{align*}
+  K_p &gt; \frac{\overline{u}}{\bar{y}} = \frac{3}{60} = 0.05
+\end{align*}\]</span></p>
+</section></section>
+<section>
+<section id="integrator-wind-up" class="title-slide slide level1">
+<h1>4.3 Integrator Wind-up</h1>
+<p><span class="h2">Example: car model with proportional plus integral
+feedback</span></p>
+<p><span class="h3">Nonlinear input saturation</span></p>
+<p><img data-src="figs/CarDynamicPIControl5.jpg" class="plain"
+style="width:50.0%" /></p>
+<p><span class="h3">Output overshoots</span></p>
+<p><img data-src="figs/CarDynamicPIControl4.jpg" class="plain"
+style="width:50.0%" /></p>
+</section>
+<section
+id="example-car-model-with-proportional-plus-integral-feedback-4"
+class="slide level2">
+<h2>Example: car model with proportional plus integral feedback</h2>
+<h3 id="output-converges-slowly">Output converges slowly</h3>
+<p><img data-src="figs/CarDynamicPIControl4.jpg" class="plain"
+style="width:50.0%" /></p>
+<h3 id="integrator-wind-up-1">Integrator wind-up</h3>
+<p><img data-src="figs/CarDynamicPIControl6.jpg" class="plain"
+style="width:50.0%" /></p>
+</section></section>
+<section>
+<section id="feedback-with-disturbances"
+class="title-slide slide level1">
+<h1>4.4 Feedback with Disturbances</h1>
+<p><img data-src="fedc9c92ca32860801efab7328c0dbd83fc6b111.jpg"
+class="tikz plain" style="width:50%" /></p>
+<p><span class="h2">Loop relations</span></p>
+<p><span class="math display">\[\begin{align*}
+  y &amp;= G \, (u + w), &amp;
+  u &amp;= K \, \tilde{e}, &amp;
+  \tilde{e} &amp;= \bar{y} - (y + v)
+\end{align*}\]</span></p>
+<p><span class="h2">Closed-loop transfer-functions</span></p>
+<p><span class="math display">\[\begin{align*}
+  y &amp;= H \, \bar{y} - H \, v + D \, w, &amp;
+  u &amp;= Q \, \bar{y} - Q \, v - H \, w
+\end{align*}\]</span></p>
+<p><span class="h2">Tracking error</span></p>
+<p><span class="math display">\[\begin{align*}
+  e &amp;= \bar{y} - y = S \, \bar{y} + H \, v - D \, w
+\end{align*}\]</span></p>
+<p>Beware <span class="math inline">\(\tilde{e} \neq e\)</span>!</p>
+</section>
+<section class="slide level2">
+
+<p><span class="h1">4.4 Feedback with Disturbances</span></p>
+<p><img data-src="fedc9c92ca32860801efab7328c0dbd83fc6b111.jpg"
+class="tikz plain" style="width:50%" /></p>
+<p><span class="h2">Closed-loop transfer-functions</span></p>
+<p><span class="math display">\[\begin{align*}
+  y &amp;= H \, \bar{y} - H \, v + D \, w \\
+  u &amp;= Q \, \bar{y} - Q \, v - H \, w \\
+  e &amp;= S \, \bar{y} + H \, v - D \, w
+\end{align*}\]</span></p>
+<p><span class="h2">Gang of four</span></p>
+<p><span class="math display">\[\begin{align*}
+    S &amp;= \frac{1}{1 + G K}, &amp;
+    D &amp;= \frac{G}{1 + G K} &amp;
+    H &amp;= \frac{G K}{1 + G K}, &amp;
+    Q &amp;= \frac{K}{1 + G K}
+\end{align*}\]</span></p>
+</section>
+<section class="slide level2">
+
+<p><span class="h1">4.4 Feedback with Disturbances</span></p>
+<p><img data-src="fedc9c92ca32860801efab7328c0dbd83fc6b111.jpg"
+class="tikz plain" style="width:50%" /></p>
+<p><span class="h2">Gang of four</span></p>
+<p><span class="math display">\[\begin{align*}
+  S &amp;= \frac{1}{1 + G K}, &amp;
+  D &amp;= G S, &amp; H &amp;= G K S, &amp; Q &amp;= K S
+\end{align*}\]</span></p>
+<ul>
+<li><span class="math inline">\(S\)</span> has as zeros the poles of
+<span class="math inline">\(G K\)</span></li>
+<li>No pole-zero cancellations in <span class="math inline">\(G K \,
+\implies \, S\)</span>, <span class="math inline">\(D\)</span>, <span
+class="math inline">\(H\)</span>, <span class="math inline">\(Q\)</span>
+have the same poles!</li>
+<li>Stabilizing <span class="math inline">\(S\)</span> stabilizes all
+other transfer-functions</li>
+<li>If there are pole-zero cancellations in <span
+class="math inline">\(G K\)</span> be careful and see Section 4.7</li>
+</ul>
+</section></section>
+<section>
+<section id="input-disturbance-rejection"
+class="title-slide slide level1">
+<h1>4.5 Input-Disturbance Rejection</h1>
+<p><img data-src="e6e00de7cd0200edfbe13455240529ca876d3751.jpg"
+class="tikz plain" style="width:40%" /></p>
+<p><span class="h2">Closed-loop transfer-functions</span></p>
+<p><span class="math display">\[\begin{align*}
+  e &amp;= S \, \bar{y} - D \, w, &amp; D &amp;= G S = \frac{G}{1 + G K}
+\end{align*}\]</span></p>
+<p><span class="h2">Lemma 4.2</span></p>
+<p><strong><em>Let <span class="math inline">\(S = (1 + G \,
+K)^{-1}\)</span> and <span class="math inline">\(D = G S\)</span> be
+asymptotically stable and</em></strong> <span
+class="math display">\[\begin{align*}
+  \bar{y}(t) &amp;= \bar{y} \cos(\omega t + \phi), &amp;
+  w(t) &amp;= \bar{w} \cos(\omega t + \psi)
+\end{align*}\]</span> <strong><em>If <span
+class="math inline">\(K\)</span> has a pole at <span
+class="math inline">\(s = j \omega\)</span> then <span
+class="math inline">\(\lim_{t \rightarrow \infty} e(t) =
+0\)</span></em></strong></p>
+<p>Proof: <span class="math inline">\(S\)</span> and <span
+class="math inline">\(D\)</span> have zeros at <span
+class="math inline">\(s = j \omega\)</span></p>
+</section>
+<section class="slide level2">
+
+<p><span class="h2">Example: car model with proportional
+feedback</span></p>
+<p><span class="h3">Closed-loop transfer-functions</span></p>
+<p><span class="math display">\[\begin{align*}
+  S(s) &amp;= \frac{s + \frac{b}{m}}{s +
+    \frac{b}{m} + \frac{p}{m} K}, &amp;
+  D(s) &amp;= S(s) \, G(s) = \frac{\frac{p}{m}}{s + \frac{b}{m} +
+    \frac{p}{m} K}
+\end{align*}\]</span></p>
+<p>No asymptotic tracking, no asymptotic disturbance rejection</p>
+<p><span class="h2">Example: car model with integral feedback</span></p>
+<p><span class="h3">Closed-loop transfer-functions</span></p>
+<p><span class="math display">\[\begin{align}
+  S(s) &amp;= \frac{s \left ( s + \frac{b}{m} \right )}{s^2 +
+    \frac{b}{m} s + \frac{p}{m} K}, &amp;
+  D(s) &amp;= S(s) \, G(s) = \frac{\frac{p}{m} s}{s^2 + \frac{b}{m} s +
+    \frac{p}{m} K}
+\end{align}\]</span></p>
+<p>Asymptotic tracking and asymptotic disturbance rejection,
+oscillations</p>
+</section>
+<section class="slide level2">
+
+<p><span class="h2">Example: car model with integral feedback</span></p>
+<p><span class="h3">Closed-loop transfer-functions</span></p>
+<p><span class="math display">\[\begin{align}
+  S(s) &amp;= \frac{s \left ( s + \frac{b}{m} \right )}{s^2 +
+    \frac{b}{m} s + \frac{p}{m} K}, &amp;
+  D(s) &amp;= S(s) \, G(s) = \frac{\frac{p}{m} s}{s^2 + \frac{b}{m} s +
+    \frac{p}{m} K}
+\end{align}\]</span></p>
+<p>Asymptotic tracking and asymptotic disturbance rejection,
+oscillations</p>
+<p><span class="h2">Example: car model with proportional plus integral
+feedback</span></p>
+<p><span class="h3">Closed-loop transfer-functions</span></p>
+<p><span class="math display">\[\begin{align}
+  S(s) &amp;= \frac{s}{s + \frac{p}{m} K_p}, &amp;
+  D(s) &amp;= S(s) \, G(s) = \frac{\frac{p}{m} s}{\left ( s +
+\frac{b}{m}
+    \right ) \left ( s + \frac{p}{m} K_p \right ) }
+\end{align}\]</span></p>
+<p>Asymptotic tracking and asymptotic disturbance rejection, no
+oscillations</p>
+</section></section>
+<section>
+<section id="input-disturbance-rejection-1"
+class="title-slide slide level1">
+<h1>4.5 Input-Disturbance Rejection</h1>
+<p><span class="h2">Example: car model with various feedback
+controllers</span></p>
+<p><img data-src="figs/CarDynamicFreqResp1.jpg" class="plain"
+style="width:60.0%" /></p>
+<p>Integral controller is sensitive to disturbances at <span
+class="math inline">\(0.1\)</span> rad/s</p>
+<p>Watch out for rolling hills!</p>
+<p><img data-src="21236d7569c9bda6cd50951ed3ec1738175f1f66.jpg"
+class="tikz plain" style="width:60%" /></p>
+</section>
+<section id="example-toilet-bowl-model-1" class="slide level2">
+<h2>Example: toilet bowl model</h2>
+<h3 id="loop-relations">Loop relations</h3>
+<p><span class="math display">\[\begin{align*}
+  G(s) &amp;= \frac{1}{s A}, &amp;
+  K(s) &amp;= K
+\end{align*}\]</span></p>
+<h3 id="closed-loop-transfer-functions">Closed-loop
+transfer-functions</h3>
+<p><span class="math display">\[\begin{align*}
+  S(s) &amp;= \frac{s}{s + \frac{K}{A}}, &amp;
+  D(s) &amp;= \frac{\frac{1}{A}}{s + \frac{K}{A}}
+\end{align*}\]</span></p>
+<p>Asymptotic tracking but no asymptotic disturbance rejection!</p>
+<p>Pole must be at the controller for asymptotic disturbance
+rejection</p>
+<p><span class="math inline">\(D\)</span> does not have a zero at the
+origin</p>
+</section></section>
+<section id="measurement-noise" class="title-slide slide level1">
+<h1>4.6 Measurement noise</h1>
+<p><span class="h2">Closed-loop transfer-functions</span></p>
+<p><span class="math display">\[\begin{align*}
+  e &amp;= S \, \bar{y} + H \, v, &amp;
+  S &amp;= \frac{1}{1 + G K}, &amp;
+  H &amp;= G K S
+\end{align*}\]</span></p>
+<p><span class="h2">Fundamental limitation</span></p>
+<p><span class="math display">\[\begin{align*}
+  S + H = 1
+\end{align*}\]</span></p>
+<p><span class="h3">At every frequency</span></p>
+<p><span class="math display">\[\begin{align*}
+  S(j \omega) + H(j \omega) = 1
+\end{align*}\]</span></p>
+<ul>
+<li><p>Good tracking (<span class="math inline">\(S(j\omega) \approx
+0\)</span>) means bad measurement noise rejection (<span
+class="math inline">\(H(j\omega) \approx 1\)</span>)</p></li>
+<li><p>Good measurement noise rejection (<span
+class="math inline">\(H(j\omega) \approx 0\)</span>) means bad tracking
+(<span class="math inline">\(S(j\omega) \approx 1\)</span>)</p></li>
+<li><p>Tracking requires good sensors!</p></li>
+<li><p><span class="math inline">\(|S(j \omega)| + |H(j \omega)| \neq
+1\)</span>: both <span class="math inline">\(S\)</span> and <span
+class="math inline">\(H\)</span> can be large at the same time!</p></li>
+</ul>
+</section>
+
+<section>
+<section id="pole-zero-cancellations-and-stability"
+class="title-slide slide level1">
+<h1>4.7 Pole-zero Cancellations and Stability</h1>
+<p><img data-src="38594b8937e2add711e1962d1c4471556b37319e.jpg"
+class="tikz plain" style="width:40%" /></p>
+<p><span class="h2">Open-loop</span></p>
+<p><span class="math display">\[\begin{align*}
+  G &amp;= \frac{N_G}{D_G}, &amp;
+  K &amp;= G^{-1} = \frac{D_G}{N_G},
+\end{align*}\]</span></p>
+<ul>
+<li><span class="math inline">\(G\)</span> cannot be strictly proper or
+<span class="math inline">\(K\)</span> will not be proper</li>
+<li>Even if <span class="math inline">\(G\)</span> is proper but not
+strictly proper and <span class="math inline">\(K = G^{-1}\)</span>
+<span class="math display">\[\begin{align*}
+y &amp;= G \, K \, \bar{y} + G w = \bar{y} + G w, &amp;
+u &amp;= K \bar{y}
+\end{align*}\]</span></li>
+<li>Both <span class="math inline">\(G\)</span> and <span
+class="math inline">\(K\)</span> must be stable or <span
+class="math inline">\(y\)</span> or <span
+class="math inline">\(u\)</span> will be unbounded</li>
+<li>Stabilization of unstable systems cannot be done in open-loop</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p><span class="h1">4.7 Pole-zero Cancellations and Stability</span></p>
+<p><img data-src="fedc9c92ca32860801efab7328c0dbd83fc6b111.jpg"
+class="tikz plain" style="width:50%" /></p>
+<p><span class="h2">Closed-loop</span></p>
+<p><span class="h3">Internal stability if</span></p>
+<p><span class="math display">\[\begin{align*}
+  S, \qquad
+  S \, G, \qquad
+  S \, K, \qquad
+  S \, G \, K
+\end{align*}\]</span> are all asymptotically stable</p>
+</section>
+<section id="lemma-4.3" class="slide level2">
+<h2>Lemma 4.3:</h2>
+<p><strong><em>Internal stability if and only if <span
+class="math inline">\(S\)</span> is asymptotically stable and any
+pole-zero cancellation in <span class="math inline">\(G K\)</span> is of
+stable poles or zeros</em></strong></p>
+<p>Proof (sketch): If <span class="math display">\[\begin{align*}
+  G &amp;= \frac{(s - z)}{(s - p)} \tilde{G}, &amp;
+  K &amp;= \frac{(s - p)}{(s - z)} \tilde{K}, &amp;
+  G K &amp;= \tilde{G} \tilde{K}, &amp;
+  S &amp;= \tilde{S} = \frac{1}{1 + \tilde{G} \tilde{K}}
+\end{align*}\]</span> However <span
+class="math display">\[\begin{align*}
+  S G &amp;= \frac{(s - z)}{(s - p)} \tilde{S} \tilde{G}, &amp;
+  S K &amp;= \frac{(s - p)}{(s - z)} \tilde{K} \tilde{G}
+\end{align*}\]</span> so that <span class="math inline">\(z\)</span> and
+<span class="math inline">\(p\)</span> must both have negative real
+part</p>
+</section>
+<section
+id="example-car-model-with-proportional-plus-integral-feedback-5"
+class="slide level2">
+<h2>Example: car model with proportional plus integral feedback</h2>
+<h3 id="model-and-controller">Model and controller</h3>
+<p><span class="math display">\[\begin{align*}
+  G(s) &amp;= \frac{\left . {p} \middle / {m} \right .}{s + \left . {b}
+\middle / {m} \right. }, &amp;
+  K(s) &amp;= K_p \frac{s + z}{s}, &amp; z = \frac{K_i}{K_p} =
+\frac{b}{m}
+\end{align*}\]</span></p>
+<h3 id="closed-loop-transfer-functions-1">Closed-loop
+transfer-functions</h3>
+<p><span class="math display">\[\begin{align*}
+  S(s) &amp;= \frac{s}{s + \frac{p}{m} K_p}, &amp;
+  H(s) &amp;= \frac{\frac{p}{m} K_p}{s + \frac{p}{m} K_p}, &amp;
+  Q(s) &amp;= \frac{K_p \left ( s + \frac{b}{m} \right )}{s
+    + \frac{p}{m} K_p}, &amp;
+  D(s) &amp;= \frac{\frac{p}{m} s}{\left ( s + \frac{b}{m}
+    \right ) \left ( s + \frac{p}{m} K_p \right ) }
+\end{align*}\]</span></p>
+<p>Canceled pole is a zero of <span class="math inline">\(Q\)</span> and
+a pole of <span class="math inline">\(D\)</span></p>
+</section>
+<section
+id="example-car-model-with-proportional-plus-integral-feedback-6"
+class="slide level2">
+<h2>Example: car model with proportional plus integral feedback</h2>
+<p><img data-src="figs/CarDynamicPIControl3.jpg" class="plain"
+style="width:70.0%" /></p>
+<h3 id="imperfect-cancellation">Imperfect cancellation</h3>
+<p><span class="math display">\[\begin{align*}
+  K_i &amp;= \gamma \frac{b}{m} K_p
+\end{align*}\]</span></p>
+<p>More to come in Chapter 6</p>
+</section></section>
+<section id="learn-more" class="title-slide slide level1">
+<h1>Learn more</h1>
+<ul>
+<li><a
+href="https://linearcontrol.info/fundamentals/index.php/tag/chapter-4/">Book
+website</a></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js"></script>
+  <script src="reveal.js/plugin/search/search.js"></script>
+  <script src="reveal.js/plugin/zoom/zoom.js"></script>
+  <script src="reveal.js/plugin/math/math.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

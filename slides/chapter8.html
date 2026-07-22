@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Maurício C. de Oliveira">
+  <title>Fundamentals of Linear Control:   A Concise Approach</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="reveal.js/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="reveal.js/dist/theme/fundamentals.css"/>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Fundamentals of Linear Control: <br/> <small>A
+Concise Approach</small></h1>
+  <p class="author">Maurício C. de Oliveira</p>
+  <p class="date"><strong>Chapter 8: Performance and Robustness</strong>
+<br/><br/> <a
+href="https://linearcontrol.info/fundamentals">linearcontrol.info/fundamentals</a></p>
+</section>
+
+<section>
+<section id="closed-loop-stability-and-performance"
+class="title-slide slide level1">
+<h1>8.1 Closed-Loop Stability and Performance</h1>
+<p><img data-src="6f1f7393077c14b369d0d9b8319169eedf809ab8.jpg"
+class="tikz plain" style="width:45%" /></p>
+<p><span class="h2">Tracking performance</span></p>
+<p><span class="math display">\[\begin{align*}
+e &amp;= S \bar{y}, &amp;
+S &amp;= \frac{1}{1 + L}, &amp; L &amp;= G K
+\end{align*}\]</span></p>
+<ul>
+<li>Better performance needs <span class="math inline">\(|S(j
+\omega)|\)</span> small</li>
+<li>Because <span class="math inline">\(H(s) + S(s) = 1\)</span> <span
+class="math display">\[\begin{align*}
+S(j\omega) \approx 0 \text{ means } H(j \omega) \approx 1
+\end{align*}\]</span> Beware of measurement noise</li>
+<li>Cannot make <span class="math inline">\(S(j \omega)\)</span> small
+for all <span class="math inline">\(\omega\)</span></li>
+</ul>
+</section>
+<section id="tracking-performance" class="slide level2">
+<h2>Tracking performance</h2>
+<p><span class="math display">\[\begin{align*}
+e &amp;= S \bar{y}, &amp;
+S &amp;= \frac{1}{1 + L}, &amp; L &amp;= G K
+\end{align*}\]</span></p>
+<h3 id="high-gains-makes-s-small">High gains makes <span
+class="math inline">\(S\)</span> small</h3>
+<p><span class="math display">\[\begin{align*}
+  |L(j\omega)| &amp;&gt; M \gg 1 &amp;
+  &amp;\implies &amp;
+  |S(j \omega)| &amp;&lt; \frac{1}{M - 1}
+\end{align*}\]</span></p>
+<h3 id="small-gains-make-s-one">Small gains make <span
+class="math inline">\(S\)</span> one</h3>
+<p><span class="math display">\[\begin{align*}
+  |L(j\omega)| &amp;\approx 0 &amp;
+  &amp;\implies &amp;
+  |S(j \omega)| &amp;\approx 1
+\end{align*}\]</span> e.g. <span class="math inline">\(L\)</span> is
+strictly proper <span class="math display">\[\begin{align*}
+  \lim_{|s| \rightarrow \infty} |L(s)| &amp;= 0 &amp;
+  &amp;\implies &amp;
+  \lim_{|s| \rightarrow \infty} |S(s)| &amp;= 1
+\end{align*}\]</span></p>
+</section>
+<section id="tracking-performance-1" class="slide level2">
+<h2>Tracking performance</h2>
+<p><span class="math display">\[\begin{align*}
+e &amp;= S \bar{y}, &amp;
+S &amp;= \frac{1}{1 + L}, &amp; L &amp;= G K
+\end{align*}\]</span></p>
+<h3 id="what-if-lj-omega-approx-1">What if <span
+class="math inline">\(|L(j \omega)| \approx 1\)</span>?</h3>
+<p>Look at the phase: <span class="math display">\[\begin{align*}
+  |L(j\omega)| &amp;\approx 1, \quad \angle L(j\omega) \approx \pi &amp;
+  &amp;\implies &amp;
+  |S(j \omega)| &amp; \text{ is large}
+\end{align*}\]</span></p>
+<h3 id="s-large-makes-s_m-small"><span class="math inline">\(S\)</span>
+large makes <span class="math inline">\(S_M\)</span> small</h3>
+<p><span class="math inline">\(S_M = 1/\sup_\omega |S(j
+\omega)|\)</span></p>
+</section>
+<section id="example-control-of-the-simple-pendulum"
+class="slide level2">
+<h2>Example: control of the simple pendulum</h2>
+<p><img data-src="figs/PendulumHoo1.jpg" class="plain"
+style="width:60.0%" /> <img data-src="figs/PendulumHoo2.jpg"
+class="plain" style="width:60.0%" /></p>
+<p>What happens when <span class="math inline">\(|L(j \omega)| \approx
+1\)</span>?</p>
+</section>
+<section id="bode-sensitivity-integral" class="slide level2">
+<h2>Bode Sensitivity Integral</h2>
+<h3 id="theorem-8.1">Theorem 8.1:</h3>
+<p><strong><span class="math inline">\(L\)</span> has poles <span
+class="math inline">\(p_i\)</span>, <span
+class="math inline">\(\operatorname{Re}(p_i) &gt; 0\)</span>, <span
+class="math inline">\(i = 1, \ldots, k\)</span>. If</strong> <span
+class="math display">\[\begin{align}
+    \lim_{|s| \rightarrow \infty} s \, L(s) = \kappa, \qquad |\kappa|
+    &lt; \infty
+\end{align}\]</span> <strong>and <span class="math inline">\(S = (1 +
+L)^{-1}\)</span> is asymptotically stable then</strong> <span
+class="math display">\[\begin{align}
+    \int_{0}^\infty \ln |S(j\omega)| d \omega = \int_{0}^\infty \ln
+    \frac{1}{|1 + L(j\omega)|} d \omega  &amp;= \pi \sum_{i = 1}^k p_i -
+    \frac{\pi \kappa}{2}
+\end{align}\]</span></p>
+<h3 id="main-takeways">Main takeways:</h3>
+<ul>
+<li>Closed-loop sensitivity is on a balanced budget</li>
+<li>Unstable systems are hard</li>
+<li>Choose your battles wisely!</li>
+</ul>
+<p>See book for more:</p>
+<ul>
+<li>How limited bandwidth makes things harder</li>
+<li>How unstable zeros amplify the effect of unstable poles</li>
+</ul>
+</section></section>
+<section>
+<section id="robustness" class="title-slide slide level1">
+<h1>8.2 Robustness</h1>
+<p><span class="h2">Margins</span></p>
+<ul>
+<li>Gain margin: robustness to changes in gain</li>
+<li>Phase margin: robustness to changes in phase</li>
+</ul>
+<p><span class="h2">Robustness analysis</span></p>
+<p><img data-src="7e997316ab4cb60ef82ccd67b183e0462b6f90ba.jpg"
+class="tikz plain" style="width:40%" /></p>
+<p>Robustness = asymptotic stability for all <span
+class="math inline">\(\Delta \in \boldsymbol{\Delta}\)</span></p>
+</section>
+<section id="example-control-of-the-simple-pendulum-1"
+class="slide level2">
+<h2>Example: control of the simple pendulum</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="cacd610887821820cbeb167fe182bbbb9dd2264e.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div><div class="column" style="width:30%;">
+<p><img data-src="12ac2d947417ab4935d14717482977cdfad5ee49.jpg"
+class="tikz plain float-right" style="width:80%" /></p>
+</div>
+</div>
+<p>Nonlinearity as an “uncertainty” <span
+class="math display">\[\begin{align*}
+  \Delta(y) &amp;= \sin(y)
+\end{align*}\]</span></p>
+<p>Uncertainty model <span class="math display">\[\begin{align*}
+  \boldsymbol{\Delta} &amp;= \{ \Delta: \mathbb{R} \rightarrow
+\mathbb{R},
+   \quad | \Delta(y) | \leq |y| \}
+\end{align*}\]</span></p>
+</section></section>
+<section>
+<section id="small-gain" class="title-slide slide level1">
+<h1>8.3 Small Gain</h1>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><img data-src="7e997316ab4cb60ef82ccd67b183e0462b6f90ba.jpg"
+class="tikz plain" style="width:100%" /></p>
+<p><span class="math display">\[\begin{align*}
+  \boldsymbol{\Delta} &amp;= \{ \Delta: \mathbb{R} \rightarrow
+\mathbb{R},
+   \quad | \Delta(y) | \leq |y| \}
+\end{align*}\]</span></p>
+</div>
+</div>
+<p><span class="h3">Disturbance</span></p>
+<p><span class="math display">\[\begin{align*}
+  \|w\|_2 = \|\Delta(y)\|_2 &amp;\leq \|y\|_2 \quad \text{ for all }
+\Delta \in \boldsymbol{\Delta}
+\end{align*}\]</span></p>
+<p><span class="h3">System</span></p>
+<p><span class="math display">\[\begin{align*}
+  \|y\|_2 &amp;\leq \|G\|_\infty \left ( \|w\|_2 + \| v \|_2 \right ) +
+M \| x_0 \|_2, &amp;
+  \| G \|_\infty &amp;= \sup_{\omega \in \mathbb{R}} | G(j \omega) |
+\end{align*}\]</span></p>
+<p><span class="h3">How about the closed-loop?</span></p>
+</section>
+<section class="slide level2">
+
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><img data-src="7e997316ab4cb60ef82ccd67b183e0462b6f90ba.jpg"
+class="tikz plain" style="width:100%" /></p>
+<p><span class="math display">\[\begin{align*}
+  \boldsymbol{\Delta} &amp;= \{ \Delta: \mathbb{R} \rightarrow
+\mathbb{R},
+   \quad | \Delta(y) | \leq |y| \}
+\end{align*}\]</span></p>
+</div>
+</div>
+<p><span class="h2">Small gain theorem</span></p>
+<p>If <span class="math inline">\(G\)</span> is asymptotically stable
+and <span class="math inline">\(\|G\|_\infty &lt; 1\)</span> then <span
+class="math display">\[\begin{align}
+  \|y\|_2 &amp;\leq
+  \frac{\|G\|_\infty}{1 - \|G\|_\infty}
+  \| v \|_2 + \frac{M}{1 - \|G\|_\infty} \|x_0\|_2
+\end{align}\]</span></p>
+<p>See book for more:</p>
+<ul>
+<li>Dynamic uncertainty</li>
+<li>Delays</li>
+</ul>
+</section></section>
+<section>
+<section id="control-of-the-simple-pendulum---part-iii"
+class="title-slide slide level1">
+<h1>8.4 Control of the Simple Pendulum - Part III</h1>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="cacd610887821820cbeb167fe182bbbb9dd2264e.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div><div class="column" style="width:30%;">
+<p><img data-src="12ac2d947417ab4935d14717482977cdfad5ee49.jpg"
+class="tikz plain float-right" style="width:80%" /></p>
+</div>
+</div>
+<p><span class="h3">Model for robustness analysis</span></p>
+<p><span class="math display">\[\begin{align}
+  \label{eq:gpendulum}
+  G(s) = \frac{Y(s)}{W(s)} &amp;= \frac{- a_2 F(s)}{1 + b_2 K(s) F(s)},
+&amp;
+  F(s) &amp;= \frac{1}{s^2 + a_1 s}
+\end{align}\]</span></p>
+<p><span class="h3">Data</span></p>
+<p><span class="math display">\[\begin{align}
+  \label{eq:ppars}
+  a_1 &amp;= \frac{b}{J_r} = 0, &amp;
+  a_2 &amp;= \frac{m \, g \, r}{J_r} \approx 49\text{s}^{-2}, &amp;
+  b_2 &amp;= \frac{1}{J_r} \approx 66.7\text{kg}^{-1} \text{m}^{-2}
+\end{align}\]</span></p>
+</section>
+<section id="small-gain-analysis-bary-0" class="slide level2">
+<h2>Small gain analysis <span class="math inline">\((\bar{y} =
+0)\)</span></h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="figs/PendulumHoo3.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:40%;">
+<p><span class="math display">\[\begin{align*}
+  C_6(s) &amp;= 3.83 \frac{(s+0.96)(s+6.86)}{s \, (s+21)} \\
+  C_7(s) &amp;= 3 \frac{(s+1)(s+5)}{s \, (s+11)} \\
+  C_8(s) &amp;= 3.28 \frac{(s+1)(s+3)}{s \, (s+10.5)}
+\end{align*}\]</span></p>
+</div>
+</div>
+<ul>
+<li><span class="math inline">\(C_8\)</span>: higher gains at higher
+frequency to lower <span
+class="math inline">\(\|G_8\|_\infty\)</span></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="figs/PendulumHoo6.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:40%;">
+<p><span class="math display">\[\begin{align*}
+  \\[1ex]
+  \| G_6 \|_\infty &amp;\approx 0.82 \\[1ex]
+  \| G_7 \|_\infty &amp;\approx 1.17 \\[1ex]
+  \| G_8 \|_\infty &amp;\approx 0.76
+\end{align*}\]</span></p>
+</div>
+</div>
+</section>
+<section id="small-gain-analysis-bary-neq-0" class="slide level2">
+<h2>Small gain analysis <span class="math inline">\((\bar{y} \neq
+0)\)</span></h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="83d0fff7811eb48aa20f4a281f96be2a7cddc768.jpg"
+class="tikz plain float-right" style="width:100%" /></p>
+</div><div class="column" style="width:30%;">
+<p><img data-src="12ac2d947417ab4935d14717482977cdfad5ee49.jpg"
+class="tikz plain float-right" style="width:80%" /></p>
+</div>
+</div>
+<h3 id="nonlinearity">Nonlinearity</h3>
+<p><span class="math display">\[\begin{align*}
+  \tilde{\Delta}(\tilde{y}) &amp;= \cos(\bar{y}) \sin(\tilde{y}) +
+  \sin(\bar{y}) (\cos(\tilde{y}) - 1), &amp;
+  \tilde{v} &amp;= \sin(\bar{y})
+\end{align*}\]</span></p>
+<h3 id="uncertainty-model">Uncertainty model</h3>
+<p><span class="math display">\[\begin{align*}
+  \tilde{\boldsymbol{\Delta}} = \boldsymbol{\Delta} &amp;= \{ \Delta:
+\mathbb{R} \rightarrow \mathbb{R},
+   \quad | \Delta(y) | \leq |y| \}
+\end{align*}\]</span></p>
+<h4 id="stability-analysis-holds-also-for-tracking">Stability analysis
+holds also for tracking!</h4>
+<p>See book for details and more</p>
+</section></section>
+<section>
+<section id="circle-criterion" class="title-slide slide level1">
+<h1>8.5 Circle Criterion</h1>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="4de610092fc8bbe435f45c445772c4327f717991.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div>
+</div>
+<p><span class="h2">Sector nonlinearities</span></p>
+<p><span class="math display">\[\begin{align*}
+  \boldsymbol{\Delta}_{ab}(a,b) &amp;= \{ \Delta: \mathbb{R} \rightarrow
+  \mathbb{R}, \quad | \Delta(y) + a y | \leq b |y|, \quad b &gt; 0 \},
+&amp;
+  (a, b) &amp;= ( {\textstyle\frac{1}{2}}(\alpha + \beta),
+        {\textstyle\frac{1}{2}}(\beta - \alpha) ) \\[1ex]
+  \boldsymbol{\Delta}_{\alpha\beta}(\alpha,\beta) &amp;= \{ \Delta:
+  \mathbb{R} \rightarrow \mathbb{R}, \quad (\Delta(y) - \alpha
+  y)(\Delta(y) - \beta y) \leq 0, \quad \beta &gt; \alpha \}, &amp;
+  (\alpha, \beta) &amp;= (a - b, a + b)
+\end{align*}\]</span></p>
+</section>
+<section id="circle-criterion-1" class="slide level2">
+<h2>Circle Criterion</h2>
+<p><img data-src="144adbee55f2cb3d5d13603d3991897491432380.jpg"
+class="tikz plain float-right top" style="width:50%" /></p>
+<h3 id="theorem-8.2">Theorem 8.2</h3>
+<p><strong>Origin is globally asymptotically stable if
+either</strong></p>
+<ol type="a">
+<li><strong><span class="math inline">\(\beta &gt; 0 &gt;
+\alpha\)</span>, <span class="math inline">\(G\)</span> is
+asymptotically stable and the polar plot of <span
+class="math inline">\(G\)</span> is inside <span
+class="math inline">\(C(\alpha,\beta)\)</span>;</strong></li>
+<li><strong><span class="math inline">\(\beta &gt; \alpha &gt;
+0\)</span>, the Nyquist plot of <span class="math inline">\(G\)</span>
+encircles <span class="math inline">\(C(\alpha,\beta)\)</span> <span
+class="math inline">\(m\)</span> times but never enters <span
+class="math inline">\(C(\alpha,\beta)\)</span>.</strong></li>
+</ol>
+<ul>
+<li><span class="math inline">\(m\)</span> is the number of unstable
+poles of <span class="math inline">\(G\)</span></li>
+</ul>
+</section>
+<section id="example-control-of-the-simple-pendulum-2"
+class="slide level2">
+<h2>Example: control of the simple pendulum</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p><img data-src="cacd610887821820cbeb167fe182bbbb9dd2264e.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div><div class="column" style="width:45%;">
+<p><img data-src="4de610092fc8bbe435f45c445772c4327f717991.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div>
+</div>
+<h3 id="model-for-robustness-analysis">Model for robustness
+analysis</h3>
+<p><span class="math display">\[\begin{align}
+  G(s) = \frac{Y(s)}{W(s)} &amp;= \frac{- a_2 F(s)}{1 + b_2 K(s) F(s)},
+&amp;
+  F(s) &amp;= \frac{1}{s^2 + a_1 s}, &amp;
+  \alpha &amp;= -0.22, &amp;
+  \beta &amp;= 1
+\end{align}\]</span></p>
+<h3 id="data">Data</h3>
+<p><span class="math display">\[\begin{align}
+  a_1 &amp;= \frac{b}{J_r} = 0, &amp;
+  a_2 &amp;= \frac{m \, g \, r}{J_r} \approx 49\text{s}^{-2}, &amp;
+  b_2 &amp;= \frac{1}{J_r} \approx 66.7\text{kg}^{-1} \text{m}^{-2}
+\end{align}\]</span></p>
+</section>
+<section id="example-control-of-the-simple-pendulum-3"
+class="slide level2">
+<h2>Example: control of the simple pendulum</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="figs/PendulumHoo7.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:40%;">
+<p><span class="math display">\[\begin{align*}
+\\[1ex]
+  C_6(s) &amp;= 3.83 \frac{(s+0.96)(s+6.86)}{s \, (s+21)} \\
+  C_7(s) &amp;= 3 \frac{(s+1)(s+5)}{s \, (s+11)} \\
+  C_8(s) &amp;= 3.28 \frac{(s+1)(s+3)}{s \, (s+10.5)}
+\end{align*}\]</span></p>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="small-gain-1">Small gain</h3>
+<ul>
+<li><span class="math inline">\(C(-1, 1)\)</span></li>
+<li><span class="math inline">\(G_7\)</span> fails</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="circle-criterion-2">Circle criterion</h3>
+<ul>
+<li><span class="math inline">\(C(-0.22, 1)\)</span></li>
+<li>All controllers stabilizing</li>
+</ul>
+</div>
+</div>
+</section></section>
+<section>
+<section id="feedforward-control-and-filtering"
+class="title-slide slide level1">
+<h1>8.6 Feedforward Control and Filtering</h1>
+<p><img data-src="94e3a153ea9524898dae05bd727adbf9191a7f05.jpg"
+class="tikz plain" style="width:30%" /></p>
+<p>If the “disturbance” <span class="math inline">\(w\)</span> is known
+or can be measured <em>feedforward</em> can be combined with
+feedback</p>
+</section>
+<section id="feedforward-control" class="slide level2">
+<h2>Feedforward control</h2>
+<p><img data-src="bfc7d03f844ddab7c5c0a59fbee90af28ce36e0b.jpg"
+class="tikz plain" style="width:60%" /></p>
+<h3 id="tracking-error">Tracking error</h3>
+<p><span class="math display">\[\begin{align*}
+  e &amp;= S \, \bar{y} - (W - F \, G ) \, S \, w, &amp;
+  S &amp;= (1 + G \, K)^{-1}
+\end{align*}\]</span></p>
+</section>
+<section id="reference-feedforward-control" class="slide level2">
+<h2>Reference feedforward control</h2>
+<p><img data-src="c2ba7d83fc7b6e9ccf9eef246cc99fcf5c33fef2.jpg"
+class="tikz plain" style="width:60%" /></p>
+<h3 id="tracking-error-1">Tracking error</h3>
+<p><span class="math display">\[\begin{align*}
+  e &amp;= (W - F \, G ) \, S \, w, &amp;
+  S &amp;= (1 + G \, K)^{-1}
+\end{align*}\]</span></p>
+</section>
+<section id="feedforward-control-design" class="slide level2">
+<h2>Feedforward control design</h2>
+<p><strong>Beware:</strong> since <span class="math inline">\(F\)</span>
+is in open-loop it has to be asymptotically stable!</p>
+<h3 id="if-possible">If possible</h3>
+<p><span class="math display">\[\begin{align*}
+  F &amp;= G^{-1} W &amp;
+  &amp; \implies &amp;
+  W &amp;= F G
+\end{align*}\]</span></p>
+<h3 id="at-a-given-frequency">At a given frequency</h3>
+<p><span class="math display">\[\begin{align*}
+  F(j\omega) &amp;= \lim_{s \rightarrow j \omega} G(s)^{-1} W(s) &amp;
+\end{align*}\]</span></p>
+<h3 id="optimal-filter">Optimal filter</h3>
+<p><span class="math display">\[\begin{align}
+  \label{eq:filt}
+  \min_{F} \{ \| (W - F G) S \| : \quad F \text{ is asymptotically
+    stable and realizable } \}
+\end{align}\]</span></p>
+</section>
+<section id="optimal-filtering" class="slide level2">
+<h2>Optimal filtering</h2>
+<p><img data-src="63f537fca7b30ea9db7d3811accf8ea903a0aa2a.jpg"
+class="tikz plain" style="width:50%" /></p>
+<h3 id="optimization-problem">Optimization problem</h3>
+<p><span class="math display">\[\begin{align}
+  \label{eq:filt2}
+  \min_{F} \{ \| X - F \, Y \| : \quad F \text{ is
+    asymptotically stable and realizable } \}
+\end{align}\]</span></p>
+<p>See book for simple examples</p>
+</section>
+<section id="optimal-filtering-1" class="slide level2">
+<h2>Optimal filtering</h2>
+<p><img data-src="ebe4776723f9967583e4c86d22116e29db49008b.jpg"
+class="tikz plain" style="width:60%" /></p>
+<h3 id="solution-via-feedback">Solution via feedback</h3>
+<p><span class="math display">\[\begin{align}
+  W &amp;= X, &amp;
+  G &amp;= Y, &amp;
+  \tilde{e} &amp;= W S w, &amp;
+  S &amp;= \frac{1}{1 + G \, K}
+\end{align}\]</span> e.g. <span class="math inline">\(K\)</span> or
+<span class="math inline">\(G\)</span> have a pole at zero then <span
+class="math inline">\(\lim_{t \rightarrow \infty} \tilde{e}(t) =
+0\)</span></p>
+<p>This is similar to a <em>Kalman filter</em></p>
+</section>
+<section id="all-stabilizing-controllers" class="slide level2">
+<h2>All Stabilizing Controllers</h2>
+<p><img data-src="03fb7f407ddeebba38be51cda3d0cb6c5192ab6e.jpg"
+class="tikz plain" style="width:50%" /></p>
+<p>Assumption: <span class="math inline">\(G\)</span> is asymptotically
+stable</p>
+<p><span class="math display">\[\begin{align*}
+  K &amp;\text{ is stabilizing} &amp;
+  &amp; \implies &amp;
+  Q &amp;= \frac{K}{1 + K \, G}
+  \text{ is asymptotically stable} \\
+  Q &amp;\text{ is asymptotically stable} &amp;
+  &amp; \implies &amp;
+  K &amp;= \frac{Q}{1 - Q \, G}
+  \text{ is stabilizing}
+\end{align*}\]</span></p>
+<p>A non-trivial version exists in which <span
+class="math inline">\(G\)</span> does not need to be asymptotically
+stable</p>
+</section></section>
+<section id="learn-more" class="title-slide slide level1">
+<h1>Learn more</h1>
+<ul>
+<li><a
+href="https://linearcontrol.info/fundamentals/index.php/tag/chapter-8/">Book
+website</a></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js"></script>
+  <script src="reveal.js/plugin/search/search.js"></script>
+  <script src="reveal.js/plugin/zoom/zoom.js"></script>
+  <script src="reveal.js/plugin/math/math.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

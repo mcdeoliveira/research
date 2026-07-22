@@ -1,0 +1,278 @@
+/**
+ * "Fundamentals of Linear Control" slide theme.
+ *
+ * Ported from the original reveal.js 3.x theme, which was derived from the
+ * "simple" theme (Copyright (C) 2012 Owen Versteeg, MIT licensed).
+ *
+ * reveal.js 4.x drives its themes from custom properties declared on :root
+ * and paints the slide background on .reveal-viewport, so the appearance is
+ * set through the --r-* variables below rather than by overriding `body`
+ * and `.reveal` directly as the 3.x theme did.  Load this file *after* a
+ * base theme; the variables here win because they are declared later.
+ */
+
+@import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+
+/*********************************************
+ * THEME VARIABLES
+ *********************************************/
+:root {
+  --r-background-color: #fff;
+
+  --r-main-font: "Lato", sans-serif;
+  --r-main-font-size: 20px;
+  --r-main-color: #000;
+  --r-block-margin: 20px;
+
+  --r-heading-margin: 0 0 20px 0;
+  --r-heading-font: "News Cycle", Impact, sans-serif;
+  --r-heading-color: #00008B;
+  --r-heading-line-height: 1.2;
+  --r-heading-letter-spacing: normal;
+  --r-heading-text-transform: none;
+  --r-heading-text-shadow: none;
+  --r-heading-font-weight: normal;
+
+  --r-heading1-text-shadow: none;
+  --r-heading1-size: 2.5em;
+  --r-heading2-size: 2em;
+  --r-heading3-size: 1.75em;
+  --r-heading4-size: 1.5em;
+
+  --r-code-font: monospace;
+
+  --r-link-color: #00008B;
+  --r-link-color-hover: #0000f1;
+  --r-link-color-dark: #00003f;
+
+  --r-selection-background-color: rgba(0, 0, 0, 0.99);
+  --r-selection-color: #fff;
+}
+
+/* Belt and braces: reveal.js 4.x paints the background here, and some
+   browsers keep the body colour visible during the initial layout. */
+.reveal-viewport,
+body {
+  background: var(--r-background-color);
+  background-color: var(--r-background-color);
+}
+
+/*********************************************
+ * LAYOUT HELPERS USED BY THE SLIDE SOURCES
+ *********************************************/
+li {
+  margin-top: .5ex;
+  margin-bottom: .5ex;
+  margin-left: -2em;
+}
+
+.top { margin-top: -3em; }
+
+.align-top    { vertical-align: top; }
+.align-bottom { vertical-align: bottom; }
+
+.float-left  { float: left; }
+.float-right { float: right; }
+.float-none  { float: none; }
+
+.text-right   { text-align: right; }
+.text-left    { text-align: left; }
+.text-center  { text-align: center; }
+.text-justify { text-align: justify; }
+
+.block-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section.has-dark-background,
+section.has-dark-background h1,
+section.has-dark-background h2,
+section.has-dark-background h3,
+section.has-dark-background h4,
+section.has-dark-background h5,
+section.has-dark-background h6 {
+  color: #fff;
+}
+
+/*********************************************
+ * PSEUDO-HEADINGS
+ *
+ * A few slides lead with a floated figure and place their headings after
+ * it, so that the text flows to the left of the figure.  pandoc closes the
+ * section at the first heading following a level-1 heading, whatever its
+ * level, and emits everything after it outside any <section> -- which
+ * reveal.js cannot display.  Those labels are therefore written as spans,
+ *
+ *     [Longitudinal car model]{.h2}
+ *
+ * carrying the level they should look like.  These rules style them as the
+ * corresponding heading.
+ *********************************************/
+.reveal .h2,
+.reveal .h3,
+.reveal .h4 {
+  display: block;
+  font-family: var(--r-heading-font);
+  font-weight: var(--r-heading-font-weight);
+  color: var(--r-heading-color);
+  line-height: var(--r-heading-line-height);
+  letter-spacing: var(--r-heading-letter-spacing);
+  text-transform: var(--r-heading-text-transform);
+  text-shadow: var(--r-heading-text-shadow);
+  margin: 0;                      /* the wrapping <p> supplies the spacing */
+  word-wrap: break-word;
+}
+
+.reveal .h2 { font-size: var(--r-heading2-size); }
+.reveal .h3 { font-size: var(--r-heading3-size); }
+.reveal .h4 { font-size: var(--r-heading4-size); }
+
+/*********************************************
+ * TYPOGRAPHY
+ *********************************************/
+
+/* reveal.js centres slide content by default; the 2019 decks were
+   left-aligned, which is what the material was written for. */
+.reveal .slides section { text-align: left; }
+
+.reveal .slides section,
+.reveal .slides section > section {
+  line-height: 1.3;
+  font-weight: inherit;
+}
+
+.reveal h1, .reveal h2, .reveal h3,
+.reveal h4, .reveal h5, .reveal h6 {
+  word-wrap: break-word;
+}
+
+.reveal p {
+  margin: 20px 0;
+  line-height: 1.3;
+}
+
+.reveal ol,
+.reveal dl,
+.reveal ul {
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0 1em;
+}
+
+/* reveal.js 4 ships dist/reset.css, which zeroes list padding.  The
+   li { margin-left: -2em } above was written to cancel the browser's
+   default 40px ul padding, so that padding has to be put back. */
+.reveal ul, .reveal ol, .reveal dl { padding-left: 40px; }
+
+.reveal ul     { list-style-type: square; }
+.reveal ul ul  { list-style-type: disc; }
+.reveal ul ul ul { list-style-type: circle; }
+.reveal ol     { list-style-type: decimal; }
+
+.reveal ul ul, .reveal ul ol,
+.reveal ol ol, .reveal ol ul {
+  display: block;
+  margin-left: 40px;
+}
+
+.reveal small {
+  display: inline-block;
+  font-size: 0.6em;
+  line-height: 1.2em;
+  vertical-align: top;
+}
+
+.reveal small * { vertical-align: top; }
+
+/*********************************************
+ * TABLES
+ *********************************************/
+.reveal table {
+  margin: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.reveal table th { font-weight: bold; }
+
+.reveal table th,
+.reveal table td {
+  text-align: left;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  border-bottom: 1px solid;
+}
+
+.reveal table tbody tr:last-child th,
+.reveal table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/*********************************************
+ * COLUMNS
+ *
+ * pandoc 2.x styled a column as `display: inline-block; width: 50%`, so an
+ * inline width="40%" simply overrode the 50%.  pandoc 3.x makes .columns a
+ * flex container with `flex: auto` on each column, whose flex-grow:1 makes
+ * the column fill the row and silently discards the declared width -- which
+ * blows every width="100%" figure inside it up to the full slide.
+ *********************************************/
+/* pandoc also sets overflow-x:auto on columns, which turns any slightly
+   too-wide content into a scroll box; 2019 had no overflow rule at all. */
+.reveal div.column                { overflow-x: visible; }
+
+.reveal div.column                { flex: 1 1 0; }    /* no width given: share the row */
+.reveal div.column[style*="width"] { flex: 0 0 auto; } /* width given: honour it exactly */
+
+/*********************************************
+ * IMAGES
+ *********************************************/
+.reveal img,
+.reveal video,
+.reveal iframe {
+  max-width: 95%;
+  max-height: 95%;
+}
+
+.reveal section img {
+  margin: 15px 0px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.reveal section img.plain {
+  border: 0;
+  box-shadow: none;
+  background: none;
+}
+
+/* .block-center must beat the margin set on .reveal section img above,
+   which would otherwise cancel the auto margins that centre the figure. */
+.reveal section img.block-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reveal a:hover img {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: var(--r-link-color);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+}
+
+/*********************************************
+ * CONTROLS, PROGRESS, PRINTING
+ *********************************************/
+.reveal .controls { color: var(--r-link-color); }
+
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--r-link-color);
+}
+
+@media print {
+  .backgrounds { background-color: #fff; }
+}

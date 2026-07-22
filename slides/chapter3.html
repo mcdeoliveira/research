@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Maurício C. de Oliveira">
+  <title>Fundamentals of Linear Control:   A Concise Approach</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="reveal.js/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="reveal.js/dist/theme/fundamentals.css"/>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Fundamentals of Linear Control: <br/> <small>A
+Concise Approach</small></h1>
+  <p class="author">Maurício C. de Oliveira</p>
+  <p class="date"><strong>Chapter 3: Transfer-Function Models</strong>
+<br/><br/> <a
+href="https://linearcontrol.info/fundamentals">linearcontrol.info/fundamentals</a></p>
+</section>
+
+<section>
+<section id="the-laplace-transform" class="title-slide slide level1">
+<h1>3.1 The Laplace Transform</h1>
+<p><span class="h2">Definition</span></p>
+<p><span class="math display">\[\begin{align*}
+  \label{eq:laplace}
+  F(s) &amp;= \mathcal{L} \{ f(t) \} = \int_{0^-}^{\infty} f(t) \, e^{-s
+    t} \, dt
+\end{align*}\]</span></p>
+<p><span class="h3">Example</span></p>
+<p><span class="math display">\[\begin{align*}
+  f(t) &amp;= 1 &amp;
+  F(s) &amp;= \int_{0^-}^{\infty} e^{-s t} \, dt = \left . \frac{- e^{-s
+      t}}{s} \right |_{0^-}^\infty = 0 - \frac{-1}{s} = \frac{1}{s},
+  \qquad \operatorname{Re}(s) &gt; 0
+\end{align*}\]</span></p>
+<p><span class="h2">Region of convergence</span></p>
+<p><span class="math display">\[\begin{align*}
+\operatorname{Re}(s) &gt; \alpha_c = 0
+\end{align*}\]</span></p>
+<p><span class="h2">Inverse Laplace Transform</span></p>
+<p><span class="math display">\[\begin{align*}
+  \mathcal{L}^{-1} \{ F(s) \} &amp;=
+  \frac{1}{2 \pi j} \lim_{\omega \rightarrow \infty} \int_{\alpha - j
+    \omega}^{\alpha + j \omega} F(s) \, e^{s t} \, ds, &amp;
+  \alpha &gt; \alpha_c
+\end{align*}\]</span></p>
+<p>See book for a lot more!</p>
+</section>
+<section id="table-of-transform-pairs" class="slide level2">
+<h2>Table of Transform Pairs</h2>
+<p><img data-src="4e638eab6279278bceef68d1f2591d515254a668.jpg"
+class="tikz plain" style="width:60%" /></p>
+</section>
+<section id="table-of-properties" class="slide level2">
+<h2>Table of Properties</h2>
+<p><img data-src="7925d6979326235bb723fa85422bf32ab7be5ce9.jpg"
+class="tikz plain" style="width:60%" /></p>
+</section></section>
+<section>
+<section id="linearity-causality-and-time-invariance"
+class="title-slide slide level1">
+<h1>3.2 Linearity, Causality, and Time-Invariance</h1>
+<p><span class="h2">Dynamic model</span></p>
+<p><span class="math display">\[\begin{align*}
+  y(t) = G(u(t),t)
+\end{align*}\]</span></p>
+<p><span class="h2">Linearity</span></p>
+<p><span class="math display">\[\begin{align*}
+  y_1(t) &amp;= G(u_1(t),t), &amp;
+  y_2(t) &amp;= G(u_2(t),t), &amp;
+  y(t) &amp;= G(\alpha_1 \, u_1(t) + \alpha_2 \, u_2(t), t) = \alpha_1
+\, y_1(t) + \alpha_2 \, y_2(t)
+\end{align*}\]</span></p>
+<p><span class="h2">Time-invariance</span></p>
+<p><span class="math display">\[\begin{align*}
+  y(t) &amp;= G(u(t),t), &amp;
+  y(t, \tau) &amp;= G(u(t - \tau),t) = y(t - \tau)
+\end{align*}\]</span></p>
+</section>
+<section id="impulse-response" class="slide level2">
+<h2>Impulse response</h2>
+<h3 id="sifting-property-of-the-impulse">Sifting property of the
+impulse</h3>
+<p><span class="math display">\[\begin{align*}
+  u(t) &amp;= \int_{-\infty}^\infty \! u(\tau) \, \delta(t - \tau) \,
+d\tau =
+  \int_{0^-}^t \! u(\tau) \, \delta(t - \tau) \, d\tau, &amp;
+  u(t) &amp;= 0, \quad t &lt; 0
+\end{align*}\]</span></p>
+<h3 id="linearity">Linearity</h3>
+<p><span class="math display">\[\begin{align*}
+  y(t) &amp;= \int_{0^-}^\infty u(\tau) \, g(t, \tau) \, d\tau =
+\int_{0^-}^\infty g(t, \tau) \, u(\tau) \, d\tau, &amp;
+  g(t, \tau) &amp;= G(\delta(t - \tau), t)
+\end{align*}\]</span></p>
+<h3 id="causality">Causality</h3>
+<p><span class="math display">\[\begin{align*}
+  g(t, \tau) &amp;= 0, \quad t &lt; \tau &amp;
+  &amp; \implies &amp;
+  y(t) &amp;= \int_{0^-}^t g(t, \tau) \, u(\tau) \, d\tau
+\end{align*}\]</span></p>
+</section>
+<section id="impulse-response-1" class="slide level2">
+<h2>Impulse response</h2>
+<h3 id="causality-time-invariance">Causality + Time-invariance</h3>
+<p><span class="math display">\[\begin{align*}
+  g(t, \tau) &amp;= g(t - \tau) = 0, \quad t &lt; \tau &amp;
+  &amp; \implies &amp;
+  y(t) &amp;= \int_{0^-}^t g(t - \tau) \, u(\tau) \, d\tau
+\end{align*}\]</span></p>
+<h3 id="laplace-transform">Laplace transform</h3>
+<p><span class="math display">\[\begin{align*}
+  Y(s) &amp;= G(s) \, U(s), &amp;
+  U(s) &amp;= \mathcal{L} \{ u(t) \}, &amp;
+  G(s) &amp;= \mathcal{L} \{ g(t) \}, &amp;
+  Y(s) &amp;= \mathcal{L} \{ y(t) \}
+\end{align*}\]</span></p>
+<p><span class="math inline">\(G\)</span> is the
+<strong>transfer-function</strong></p>
+</section></section>
+<section id="differential-equations-and-transfer-functions"
+class="title-slide slide level1">
+<h1>3.3 Differential Equations and Transfer-Functions</h1>
+<p><span class="h2">Car model</span></p>
+<p><span class="math display">\[\begin{align*}
+  \dot{y}(t) + \frac{b}{m} \, y(t) - \frac{p}{m} u(t) &amp;= \frac{p}{m}
+u(t)
+\end{align*}\]</span></p>
+<p><span class="h2">Laplace transform</span></p>
+<p><span class="math display">\[\begin{align*}
+  \mathcal{L} \left \{ \dot{y}(t) + \frac{b}{m} \, y(t) -
+  \frac{p}{m} u(t) \right \} &amp;= s Y(s) - y(0^-) + \frac{b}{m} Y(s) -
+  \frac{p}{m} U(s) = 0
+\end{align*}\]</span></p>
+<p><span class="h2">Transfer-function</span></p>
+<p><span class="math display">\[\begin{align*}
+  Y(s) &amp;= G(s) \, U(s) + F(s) \, y(0^-), &amp;
+  G(s) &amp;= \frac{\frac{p}{m}}{s + \frac{b}{m}}, &amp;
+  F(s) &amp;= \frac{1}{s + \frac{b}{m}}
+\end{align*}\]</span></p>
+<p><span class="h2">Impulse response</span></p>
+<p><span class="math display">\[\begin{align*}
+  g(t) &amp;= \mathcal{L}^{-1} \left \{ \frac{\frac{p}{m}}{s +
+    \frac{b}{m}} \right \} = \frac{p}{m} e^{-(\frac{b}{m})t},
+  \quad t \geq 0
+\end{align*}\]</span></p>
+</section>
+
+<section>
+<section id="integration-and-residues" class="title-slide slide level1">
+<h1>3.4 Integration and Residues</h1>
+<p><span class="h2">Theorem 3.1. Cauchy’s residue theorem</span></p>
+<p><strong><em>If <span class="math inline">\(f\)</span> is analytic
+inside and on the the positively oriented simple closed countour <span
+class="math inline">\(C\)</span> except at singular points <span
+class="math inline">\(p_k\)</span>, <span class="math inline">\(k = 1,
+\ldots, n\)</span>, inside <span class="math inline">\(C\)</span>
+then</em></strong> <span class="math display">\[\begin{align*}
+    \int_{C} f(s) \, ds &amp;= 2 \pi j \sum_{k = 1}^{n}
+    \operatorname{Res}_{s = p_k} f(s)
+\end{align*}\]</span></p>
+<p><span class="h3">Notes</span></p>
+<ul>
+<li><span class="math inline">\(\operatorname{Res}_{s = p_k}
+f(s)\)</span> is the <strong>residue</strong> of <span
+class="math inline">\(f\)</span> at <span class="math inline">\(s =
+p_k\)</span></li>
+<li><span class="math inline">\(\operatorname{Res}_{s = p_k}
+f(s)\)</span> is simpler to calculate than the original integral</li>
+<li><span class="math inline">\(C\)</span> is positively oriented simple
+contour</li>
+<li>Multiply by ‘<span class="math inline">\(-1\)</span>’ if negatively
+oriented</li>
+<li>singularities are isolated, inside and not on the contour</li>
+<li>singularities outside <span class="math inline">\(C\)</span> do not
+matter</li>
+</ul>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<h3 id="contours">Contours</h3>
+<p><img data-src="figs/Nyquist10.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:20%;">
+<h3 id="function">Function</h3>
+<p><span class="math inline">\(\displaystyle f(s) = \frac{s - 1}{s (s +
+1)}\)</span></p>
+</div><div class="column" style="width:40%;">
+<h3 id="integrals">Integrals</h3>
+<p><span class="math display">\[\begin{align*}
+  \frac{1}{2 \pi j} \int_{C_1} f(s) \, ds &amp;= \operatorname{Res}_{s =
+0} f(s) + \operatorname{Res}_{s = -1} f(s) \\
+  \int_{C_2} f(s) \, ds &amp;= - \int_{C_1} f(s) \, ds \\
+  \int_{C_3} f(s) \, ds &amp;= 0
+\end{align*}\]</span></p>
+</div>
+</div>
+</section>
+<section id="application-inverse-laplace-transform"
+class="slide level2">
+<h2>Application: Inverse Laplace transform</h2>
+<p><img data-src="04fe262bf11493f905beee33f35ad6b3273b358b.jpg"
+class="tikz plain" style="width:60%" /></p>
+<p><span class="math display">\[\begin{align*}
+  t &amp;&gt; 0: &amp;
+  \lim_{\rho \rightarrow \infty} \int_{C^\rho_-} F(s) \, e^{s t} \,
+  ds &amp;= 0 &amp;
+  &amp; \implies &amp;
+  \mathcal{L}^{-1}\{F(s)\}
+  &amp;=
+  \frac{1}{2 \pi j}
+  \lim_{\rho \rightarrow \infty} \int_{\Gamma_-^\alpha} F(s) \, e^{s
+    t} \, ds
+  \\
+  &amp; &amp;
+  &amp; &amp;
+  &amp; &amp;
+  &amp;=
+  \sum_{k = 1}^{n} \operatorname{Res}_{s = p_k} \left (F(s) \, e^{s t}
+\right ) \\
+  t &amp;&lt; 0: &amp;
+  \lim_{\rho \rightarrow \infty} \int_{C^\rho_+} F(s) \, e^{s t} \,
+  ds &amp;= 0 &amp;
+  &amp; \implies &amp;
+  \mathcal{L}^{-1}\{F(s)\}
+  &amp;=
+  \frac{1}{2 \pi j}
+  \lim_{\rho \rightarrow \infty} \int_{\Gamma_+^\alpha} F(s) \, e^{s
+    t} \, ds
+  = 0
+\end{align*}\]</span></p>
+</section>
+<section id="residue" class="slide level2">
+<h2>Residue</h2>
+<p><span class="math display">\[\begin{align*}
+  \operatorname{Res}_{s = s_0} f(s) &amp;= \int_{C \in D} f(s) \, ds,
+&amp; D &amp;= \{ s : 0 &lt;
+  |s - s_0| &lt; R \}
+\end{align*}\]</span></p>
+<h3 id="laurent-series-expansion">Laurent series expansion</h3>
+<p><span class="math display">\[\begin{align*}
+  f(s) &amp;= \frac{ g(s)}{(s - s_0)^m}, \quad
+  g(s_0) \neq 0, \quad g \text{ is analytic at } s_0
+\end{align*}\]</span></p>
+<h3 id="calculus-of-residues">Calculus of residues</h3>
+<p><span class="math display">\[\begin{align*}
+  \operatorname{Res}_{s = s_0} f(s) &amp;=
+  \begin{cases}
+    g(s_0), &amp; m = 1 \\[1ex]
+    \displaystyle
+    \frac{g^{(m -1)}(s_0)}{(m-1)!} , &amp; m \geq 2
+  \end{cases}
+\end{align*}\]</span></p>
+</section></section>
+<section>
+<section id="rational-functions" class="title-slide slide level1">
+<h1>3.5 Rational Functions</h1>
+<p><span class="h2">Canonical form</span></p>
+<p><span class="math display">\[\begin{align*}
+  F(s) &amp;= \frac{N(s)}{D(s)}, &amp;
+  &amp; N, D \text{ are polynomials}
+\end{align*}\]</span></p>
+<p><span class="h3">Notes</span></p>
+<ul>
+<li>Zeros: <span class="math inline">\(N(s) = \beta \, (s - z_1) \cdots
+(s - z_m) = 0\)</span></li>
+<li>Poles: <span class="math inline">\(D(s) = (s - p_1) \cdots (s - p_n)
+= 0\)</span>, <span class="math inline">\(D\)</span> is monic</li>
+<li>Order: <span class="math inline">\(n\)</span></li>
+<li>Proper: <span class="math inline">\(m \leq n\)</span></li>
+<li>Strictly Proper: <span class="math inline">\(m &lt; n\)</span></li>
+</ul>
+<p><span class="h2">Inverse Laplace transform</span></p>
+<p><span class="math display">\[\begin{align*}
+  &amp; F \text{ is strictly proper} &amp;
+  &amp; \implies &amp;
+  \mathcal{L}^{-1}\{F(s)\}
+  &amp;=
+  \sum_{k = 1}^{n} \operatorname{Res}_{s = p_k} \left (F(s) \, e^{s t}
+\right ), \quad t \geq 0
+\end{align*}\]</span></p>
+</section>
+<section id="simple-poles" class="slide level2">
+<h2>Simple poles</h2>
+<p><span class="math display">\[\begin{align*}
+  F(s) \, e^{s t} &amp;= \frac{ G(s)}{(s - p_k)}, &amp;
+  G(s) &amp;= (s - p_k) \, F(s) \, e^{s t}, &amp;
+  G(p_k) &amp;\neq 0
+\end{align*}\]</span></p>
+<h3 id="residues">Residues</h3>
+<p><span class="math display">\[\begin{align}
+  \operatorname{Res}_{s=p_k} \left ( F(s) \, e^{s t} \right ) &amp;=
+G(p_k) = k_k \, e^{p_k t}, &amp;
+  k_k &amp;= \lim_{s \rightarrow p_k} (s - p_k) F(s)
+\end{align}\]</span></p>
+<h3 id="inverse-laplace-transform">Inverse Laplace transform</h3>
+<p><span class="math display">\[\begin{align*}
+  \mathcal{L}^{-1}\{F(s)\}
+  &amp;=
+  \sum_{k = 1}^{n} k_k e^{p_k t}, \quad t \geq 0
+\end{align*}\]</span></p>
+<h3 id="expansion-in-partial-fractions">Expansion in partial
+fractions</h3>
+<p><span class="math display">\[\begin{align*}
+  F(s)
+  &amp;=
+  \mathcal{L} \left \{
+  \sum_{k = 1}^{n} k_k e^{p_k t} \right \}
+  =
+  \sum_{k = 1}^{n} k_k \mathcal{L} \left \{ e^{p_k t} \right \}
+  =
+  \sum_{k = 1}^{n} \frac{k_k}{s - p_k}
+\end{align*}\]</span></p>
+</section>
+<section id="example-car-model-step-response" class="slide level2">
+<h2>Example: car model step response</h2>
+<h3 id="step-input">Step input</h3>
+<p><span class="math display">\[\begin{align*}
+  u(t) &amp;= \tilde{u} \, 1(t), &amp;
+  U(s) &amp;= \frac{\tilde{u}}{s}
+\end{align*}\]</span></p>
+<h3 id="laplace-transform-of-the-output">Laplace transform of the
+output</h3>
+<p><span class="math display">\[\begin{align*}
+  Y(s) &amp;= \frac{\tilde{u}}{s} \times \frac{\frac{p}{m}}{s +
+\frac{b}{m}} +
+  \frac{1}{s + \frac{b}{m}} \, y_0
+\end{align*}\]</span></p>
+<h3 id="inverse-laplace-transform-1">Inverse Laplace transform</h3>
+<p><span class="math display">\[\begin{align*}
+  k_1 &amp;= \lim_{s \rightarrow 0} s \, Y(s) = \frac{p}{b} \tilde{u},
+  &amp; k_2 &amp;= \!\!\!\lim_{s \rightarrow -\frac{b}{m}} \left ( s +
+\frac{b}{m}
+  \right ) Y(s) = y_0 - \frac{p}{b} \tilde{u}
+\end{align*}\]</span> <span class="math display">\[\begin{align*}
+  y(t) &amp;= \sum_{k = 1}^2 \operatorname{Res}_{s = p_k} \left (Y(s)
+e^{s t} \right )
+  = k_1 e^{p_1 t} + k_2 e^{p_2 t} = \frac{p}{b} \tilde{u} + \left ( y_0
+-
+  \frac{p}{b} \tilde{u} \right ) e^{-\frac{b}{m} t}, \quad t &gt; 0
+\end{align*}\]</span></p>
+</section>
+<section class="slide level2">
+
+<p><span class="h2">Proper functions</span></p>
+<p>Split <span class="math inline">\(F\)</span> as <span
+class="math inline">\(F_1 + F_2\)</span> where <span
+class="math inline">\(F_1\)</span> is a constant and <span
+class="math inline">\(F_2\)</span> is strictly proper, e.g. <span
+class="math display">\[\begin{align*}
+F(s) &amp;= \frac{s}{s + 1} = F_1(s) + F_2(s), &amp; F_1(s) &amp;= 1,
+&amp; F_2(s) &amp;= - \frac{1}{s + 1}
+\end{align*}\]</span></p>
+<p><span class="h2">Repeated pole</span></p>
+<p><span class="math display">\[\begin{align*}
+  F(s) \, e^{s t} &amp;= \frac{G(s)}{(s - s_k)^m}, &amp;
+  G(s) &amp;= (s - s_k)^m F(s) \, e^{s t}, &amp;
+  G(s_k) &amp;\neq 0, &amp;
+  m &amp;\geq 2
+\end{align*}\]</span></p>
+<h3 id="residue-1">Residue</h3>
+<p><span class="math display">\[\begin{align*}
+  \operatorname{Res}_{s = p_k} \left (F(s) e^{s t} \right ) =
+\frac{G^{(m-1)}(p_k)}{(m-1)!} = &amp; \left ( k_{k,1} t^{m-1} + k_{k,2}
+t^{m-2} + \cdots + k_{k,m} \right ) e^{p_k t} \\
+k_{k,j} &amp;= \frac{1}{(m-j)!(j-1)!} \lim_{s \rightarrow p_k}
+\frac{d^{j-1}}{d s^{j-1}} (s - p_k)^{m} F(s)
+\end{align*}\]</span></p>
+</section>
+<section id="example-closed-loop-car-model-ramp-response"
+class="slide level2">
+<h2>Example: closed-loop car model ramp response</h2>
+<h3 id="ramp-input">Ramp input</h3>
+<p><span class="math display">\[\begin{align*}
+  \bar{y}(t) &amp;= \mu \, t \, 1(t), &amp;
+  \bar{Y}(s) &amp;= \frac{\mu}{s^2}
+\end{align*}\]</span></p>
+<h3 id="laplace-transform-of-the-output-1">Laplace transform of the
+output</h3>
+<p><span class="math display">\[\begin{align*}
+  Y(s) &amp;= H(s) \bar{Y}(s) = \frac{b_1}{s + a_1} \times
+\frac{\mu}{s^2}, &amp;
+  a_1 &amp;= \frac{b}{m} + \frac{p}{m} K, &amp;
+  b_1 &amp;= \frac{p}{m} K
+\end{align*}\]</span></p>
+<h3 id="inverse-laplace-transform-2">Inverse Laplace transform</h3>
+<p><span class="math display">\[\begin{align*}
+  k_1 &amp;= \lim_{s \rightarrow -a_1} ( s + a_1 ) Y(s) =
+  \frac{\mu \, b_1}{a_1^2}, &amp;
+  k_{2,1} &amp;= \lim_{s \rightarrow 0} s^2 Y(s)
+  = \frac{\mu \, b_1}{a_1}, &amp;
+  k_{2,2} &amp;= \lim_{s \rightarrow 0} \frac{d}{d s} s^2 Y(s)
+  = - \frac{\mu \, b_1}{a_1^2}
+\end{align*}\]</span> <span class="math display">\[\begin{align*}
+  y(t) &amp;= \sum_{k = 1}^2 \operatorname{Res}_{s = p_k} \left (Y(s)
+e^{s t} \right )
+  = \frac{\mu \, b_1}{a_1^2}
+  \left [ e^{-a_1 t} + a_1 \, t - 1 \right ],
+  \quad t \geq 0
+\end{align*}\]</span></p>
+</section></section>
+<section>
+<section id="stability" class="title-slide slide level1">
+<h1>3.6 Stability</h1>
+<p><span class="h2">Bounded-Input-Bounded-Output (BIBO)
+stability</span></p>
+<p><span class="math display">\[\begin{align*}
+  | u(t) | &amp;\leq M_u &lt; \infty &amp;
+  &amp; \implies &amp;
+  | y(t) | &amp;\leq M_y &lt; \infty
+\end{align*}\]</span></p>
+<p><span class="h3">Necessary and sufficient condition</span></p>
+<p><span class="math display">\[\begin{align}
+  \|g\|_1 := \int_{0^-}^\infty |g(\tau)| \, d \tau &lt; M_g &lt; \infty
+\end{align}\]</span></p>
+<p><span class="h4">Proof of sufficiency</span></p>
+<p><span class="math display">\[\begin{align*}
+  |y(t)| &amp;= \int_{0^-}^t |g(\tau)| |u(t - \tau)| \, d \tau \leq
+  M_u \int_{0^-}^t |g(\tau)| \, d \tau \leq M_y, \quad M_y = M_u M_g
+&lt; \infty
+\end{align*}\]</span></p>
+</section>
+<section id="bounded-input-bounded-output-bibo-stability"
+class="slide level2">
+<h2>Bounded-Input-Bounded-Output (BIBO) stability</h2>
+<p><span class="math display">\[\begin{align*}
+  | u(t) | &amp;\leq M_u &lt; \infty &amp;
+  &amp; \implies &amp;
+  | y(t) | &amp;\leq M_y &lt; \infty
+\end{align*}\]</span></p>
+<h3 id="necessary-and-sufficient-condition">Necessary and sufficient
+condition</h3>
+<p><span class="math display">\[\begin{align}
+  \|g\|_1 := \int_{0^-}^\infty |g(\tau)| \, d \tau &lt; M_g &lt; \infty
+\end{align}\]</span></p>
+<h4 id="proof-of-necessity">Proof of necessity</h4>
+<p><span class="math display">\[\begin{align*}
+  u_T(t) &amp;=
+  \begin{cases}
+    \operatorname{sign}(g(T - t)), &amp; 0 \leq t \leq T \\
+    0, &amp; t &lt; 0 \text{ or } t &gt; T
+  \end{cases}
+\end{align*}\]</span> is such that <span class="math inline">\(|u_T(t)|
+\leq 1\)</span> and <span class="math display">\[\begin{align*}
+  y_T(T) &amp;= \int_{0^-}^T g(T - \tau) \, u_T(\tau) \, d \tau =
+\int_{0^-}^T
+  |g(\tau)| \, d \tau
+  \rightarrow \|g\|_1 \text{ for } T \text{ large }
+\end{align*}\]</span></p>
+</section>
+<section id="frequency-domain" class="slide level2">
+<h2>Frequency-domain</h2>
+<h3 id="asymptotic-stability">Asymptotic stability</h3>
+<p><span class="math inline">\(G(s)\)</span> has no poles on the
+imaginary axis or on the right-hand side of the complex plane</p>
+<h4 id="same-as-bibo-stability">Same as BIBO stability</h4>
+<p>One side is easy: because <span class="math inline">\(|e^{-s t}| \leq
+1\)</span> for all <span class="math inline">\(\operatorname{Re}(s) \geq
+0\)</span> <span class="math display">\[\begin{align*}
+  |G(s)| = | \mathcal{L} \{ g(t) \} | = \left | \int_{0^-}^\infty g(t)
+\,
+  e^{-s t} \, dt \right | \leq
+  \int_{0^-}^\infty |g(t)| |e^{-s t}| \,
+  dt \leq \int_{0^-}^\infty |g(t)| \, dt = \|g\|_1
+\end{align*}\]</span> hence <span class="math inline">\(G\)</span> has
+no poles such that <span class="math inline">\(\operatorname{Re}(s) \geq
+0\)</span> because <span class="math inline">\(G\)</span> is bounded in
+<span class="math inline">\(\operatorname{Re}(s) \geq 0\)</span></p>
+</section>
+<section id="frequency-domain-1" class="slide level2">
+<h2>Frequency-domain</h2>
+<h3 id="asymptotic-stability-1">Asymptotic stability</h3>
+<p><span class="math inline">\(G(s)\)</span> has no poles on the
+imaginary axis or on the right-hand side of the complex plane</p>
+<h4 id="same-as-bibo-stability-1">Same as BIBO stability</h4>
+<p>The other side is more complicated, unless <span
+class="math inline">\(G\)</span> is rational. In this case, if <span
+class="math inline">\(G\)</span> is strictly proper and with simple
+poles <span class="math display">\[\begin{align*}
+  |g(t)| &amp;\leq \sum_{k = 1}^{n} |k_k| |e^{p_k t}|
+  = \sum_{k = 1}^{n} |k_k| e^{\operatorname{Re}(p_k) t}, &amp;
+  t &amp;&gt; 0
+\end{align*}\]</span> and because <span
+class="math inline">\(\operatorname{Re}(p_k) &lt; 0\)</span> <span
+class="math display">\[\begin{align*}
+  \| g \|_1 \leq
+  \int_{0^-}^{\infty} |g(t)| \, dt
+  \leq
+  \sum_{k = 1}^{n} |k_k|
+  \int_{0^-}^{\infty} e^{\operatorname{Re}(p_k) t} \, dt
+  =
+  \sum_{k = 1}^{n} \frac{|k_k|}{-\operatorname{Re}(p_k)}
+  &lt; \infty
+\end{align*}\]</span> Conclusion is the same if <span
+class="math inline">\(G\)</span> is proper and/or has repeated poles</p>
+</section></section>
+<section id="transient-and-steady-state-response"
+class="title-slide slide level1">
+<h1>3.7 Transient and Steady-State Response</h1>
+<p><span class="h2">Frequency-domain splitting</span></p>
+<p><span class="math display">\[\begin{align*}
+  Y(s) &amp;= Y_{-}(s) + Y_{0}(s) + Y_{+}(s)
+\end{align*}\]</span></p>
+<ul>
+<li><span class="math inline">\(Y_-\)</span> has all poles on <span
+class="math inline">\(\operatorname{Re}(s) &lt; 0\)</span></li>
+<li><span class="math inline">\(Y_0\)</span> has all poles on <span
+class="math inline">\(\operatorname{Re}(s) = 0\)</span></li>
+<li><span class="math inline">\(Y_+\)</span> has all poles on <span
+class="math inline">\(\operatorname{Re}(s) &gt; 0\)</span></li>
+</ul>
+<p><span class="h2">Time-domain splitting</span></p>
+<p><span class="math display">\[\begin{align*}
+  y(s) &amp;= y_{-}(s) + y_{0}(s) + y_{+}(s)
+\end{align*}\]</span></p>
+<ul>
+<li><span class="math inline">\(y_{\mathrm{tr}}(t) = y_-(t) =
+\mathcal{L}^{-1} \{ Y_-(s) \}\)</span> is the transient response</li>
+<li><span class="math inline">\(y_{\mathrm{ss}}(t) = y_0(t) =
+\mathcal{L}^{-1} \{ Y_0(s) \}\)</span> is the steady-state response,
+bounded or with at most polynomial growth</li>
+<li><span class="math inline">\(y_+(t) = \mathcal{L}^{-1} \{ Y_+(s)
+\}\)</span> is unbounded with exponential growth</li>
+</ul>
+</section>
+
+<section>
+<section id="frequency-response" class="title-slide slide level1">
+<h1>3.8 Frequency Response</h1>
+<p><span class="h2">Time-invariant linear system</span></p>
+<p><span class="h3">Transfer-function</span></p>
+<p><span class="math display">\[\begin{align*}
+G(s)
+\end{align*}\]</span></p>
+<p><span class="h3">Input signal</span></p>
+<p><span class="math display">\[\begin{align}
+  u(t) &amp;= A \cos(\omega t + \phi)
+\end{align}\]</span></p>
+<p><span class="h3">Steady-state output response</span></p>
+<p><span class="math display">\[\begin{align}
+  y_{\mathrm{ss}}(t) &amp;= A |G(j \omega)| \cos(\omega t + \phi +
+\angle
+  G(j \omega))
+\end{align}\]</span></p>
+<p>Not usually true for time-varying linear systems!</p>
+<p>System behavior can be “plotted”: Bode plots</p>
+</section>
+<section id="bode-plots" class="slide level2">
+<h2>Bode plots</h2>
+<h3 id="examples-from-section-7.8">Examples (from Section 7.8)</h3>
+<p><span class="math display">\[\begin{align*}
+L_0 &amp;= \frac{67}{s (s^2 + 49)}, &amp;
+L_\pi &amp;= \frac{67}{s (s^2 - 49)}
+\end{align*}\]</span></p>
+<div class="columns">
+<div class="column">
+<h3 id="magnitude">Magnitude</h3>
+<p><span class="math inline">\(20 \log_{10} |G(j \omega)|\)</span>
+versus <span class="math inline">\(\log_{10} \omega\)</span></p>
+<p><img data-src="figs/PendulumFD1.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column">
+<h3 id="phase">Phase:</h3>
+<p><span class="math inline">\(\angle G(j \omega)\)</span> versus <span
+class="math inline">\(\log_{10} \omega\)</span></p>
+<p><img data-src="figs/PendulumFD2.jpg" class="plain"
+style="width:100.0%" /></p>
+</div>
+</div>
+<p>See Chapter 7 for much more!</p>
+</section></section>
+<section>
+<section id="norms-of-signals-and-systems"
+class="title-slide slide level1">
+<h1>3.9 Norms of Signals and Systems</h1>
+<p><span class="h2">Some norms of signals</span></p>
+<p><span class="math display">\[\begin{align*}
+  \| y \|_1 &amp;= \int_{0^-}^{\infty} | y(t) | \, dt, &amp;
+  \| y \|_2 &amp;= \left ( \int_{0^-}^{\infty} y(t)^2 \, dt \right
+)^{1/2}\!\!\!\!,
+&amp;
+  \| y \|_\infty &amp;= \sup_{t \geq 0} | y(t) |
+\end{align*}\]</span></p>
+<p><span class="h2">BIBO stability</span></p>
+<p><span class="math display">\[\begin{align*}
+  \| y \|_\infty \leq \|g \|_1 \, \| u \|_\infty.
+\end{align*}\]</span></p>
+<p><span class="h2">Signal norms are equivalent</span></p>
+<p><span class="math display">\[\begin{align*}
+  \| y \|_p &amp;\leq \|g \|_1 \, \| u \|_p, &amp; p = 1, 2, \ldots,
+\infty.
+\end{align*}\]</span></p>
+</section>
+<section id="some-norms-of-systems" class="slide level2">
+<h2>Some norms of systems</h2>
+<h3 id="plancherel-and-parsevals-theorem">Plancherel and Parseval’s
+theorem</h3>
+<p><span class="math display">\[\begin{align*}
+  \| y \|_2^2 &amp;= \int_{0^-}^{\infty} y(t)^2 \, dt =
+\int_{-\infty}^{\infty}
+  y^*(t) \, y(t) \, dt = \frac{1}{2 \pi} \int_{-\infty}^{\infty} Y(j
+\omega) Y(-j \omega) \, d\omega
+= \frac{1}{2 \pi} \int_{-\infty}^{\infty} |Y(j \omega)|^2 \, d\omega
+= \| Y \|^2_2
+\end{align*}\]</span></p>
+<h3 id="h_2-norm"><span class="math inline">\(H_2\)</span> norm</h3>
+<p><span class="math display">\[\begin{align*}
+  \| y \|_\infty &amp;\leq \| G \|_2 \| u \|_2, &amp;
+  \| g \|_2 &amp;= \| G \|_2
+\end{align*}\]</span></p>
+<p>Computation can be done using residues!</p>
+<h3 id="h_infty-norm"><span class="math inline">\(H_\infty\)</span>
+norm</h3>
+<p><span class="math display">\[\begin{align*}
+  \| y \|_2 &amp;\leq \| G \|_\infty \|u \|_2, &amp;
+  \| G \|_\infty &amp;= \sup_{\omega \in \mathbb{R}} | G(j \omega) |
+\end{align*}\]</span></p>
+<p>Value can be obtained from a Bode plot!</p>
+</section></section>
+<section id="learn-more" class="title-slide slide level1">
+<h1>Learn more</h1>
+<ul>
+<li><a
+href="https://linearcontrol.info/fundamentals/index.php/tag/chapter-3/">Book
+website</a></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js"></script>
+  <script src="reveal.js/plugin/search/search.js"></script>
+  <script src="reveal.js/plugin/zoom/zoom.js"></script>
+  <script src="reveal.js/plugin/math/math.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

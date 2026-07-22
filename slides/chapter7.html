@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Maurício C. de Oliveira">
+  <title>Fundamentals of Linear Control:   A Concise Approach</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="reveal.js/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="reveal.js/dist/theme/fundamentals.css"/>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Fundamentals of Linear Control: <br/> <small>A
+Concise Approach</small></h1>
+  <p class="author">Maurício C. de Oliveira</p>
+  <p class="date"><strong>Chapter 7: Frequency Domain</strong>
+<br/><br/> <a
+href="https://linearcontrol.info/fundamentals">linearcontrol.info/fundamentals</a></p>
+</section>
+
+<section>
+<section id="bode-plots" class="title-slide slide level1">
+<h1>7.1 Bode Plots</h1>
+<p><span class="h2">Goal</span></p>
+<p>Easily sketch the frequency response of rational transfer-function
+models</p>
+<p><span class="h2">Setup</span></p>
+<p>Given <span class="math display">\[\begin{align*}
+  G(s) = \frac{\beta \, (s - z_1)^{\ell_1}(s - z_2)^{\ell_2} \cdots (s -
+    z_r)^{\ell_r}}{s^{k_0} (s - p_1)^{k_1}(s - p_2)^{k_2}\cdots(s -
+    p_t)^{k_t}}
+\end{align*}\]</span> rewrite <span
+class="math display">\[\begin{align*}
+  G(s) = \frac{\tilde{\beta} \, (1 + \sigma_1 \, s)^{\ell_1}(1 +
+\sigma_2
+    s)^{\ell_2}\cdots(1 + \sigma_r s)^{\ell_r}}{s^{k_0} (1 + \tau_1 \,
+    s)^{k_1}(1 + \tau_2 \, s)^{k_2}\cdots(1 + \tau_t \, s)^{k_t}}
+\end{align*}\]</span> where <span class="math display">\[\begin{align*}
+  \sigma_j &amp;= -z_j^{-1}, &amp;
+  \tau_i &amp;= -p_i^{-1}, &amp;
+  \tilde{\beta} &amp;= (-1)^{m-n} \frac{\beta \, z_1^{\ell_1} \cdots
+    z_r^{\ell_r}}{p_1^{k_1} \cdots p_t^{k_t}}
+\end{align*}\]</span></p>
+</section>
+<section id="setup" class="slide level2">
+<h2>Setup</h2>
+<h3 id="normalized-transfer-function">Normalized transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G(s) = \frac{\tilde{\beta} \, (1 + \sigma_1 \, s)^{\ell_1}(1 +
+\sigma_2
+    s)^{\ell_2}\cdots(1 + \sigma_r s)^{\ell_r}}{s^{k_0} (1 + \tau_1 \,
+    s)^{k_1}(1 + \tau_2 \, s)^{k_2}\cdots(1 + \tau_t \, s)^{k_t}}
+\end{align*}\]</span></p>
+<h3 id="magnitude">Magnitude</h3>
+<p><span class="math display">\[\begin{align*}
+  20 \log_{10} | G(j \omega) | &amp;= 20 \log_{10} | \tilde{\beta} | -
+20 \,  k_0 \log_{10} | j \omega | ~+ \\
+  &amp; \qquad \qquad 20 \, \ell_1 \log_{10} | 1 + j \sigma_1 \omega | +
+  \cdots + 20 \, \ell_r \log_{10} | 1 + j \sigma_r \omega | ~- \\
+  &amp; \qquad \qquad \qquad \qquad 20 \, k_1 \log_{10} | 1 + j \tau_1
+\omega | -
+  \cdots -
+  20 \, k_t \log_{10} | 1 + j \tau_t \omega |
+\end{align*}\]</span></p>
+<h3 id="phase">Phase</h3>
+<p><span class="math display">\[\begin{align*}
+  \angle G(j \omega) &amp;= \angle \tilde{\beta} - k_0 \angle j \omega
+~+ \\
+  &amp;\qquad \qquad \ell_1 \angle (j \sigma_1 \omega + 1) +
+  \cdots +
+  \ell_r \angle (j \sigma_r \omega + 1) ~- \\
+  &amp;\qquad \qquad \qquad \qquad k_1 \angle (j \tau_1 \omega + 1) -
+  \cdots -
+  k_t \angle (j \tau_t \omega + 1)
+\end{align*}\]</span></p>
+</section>
+<section id="first-order-real-poles-and-zeros" class="slide level2">
+<h2>First-order real poles and zeros</h2>
+<h3 id="transfer-function">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G(s) &amp;= \frac{1}{(1 + s \, \tau)^k}
+\end{align*}\]</span></p>
+<h3 id="magnitude-1">Magnitude</h3>
+<p><span class="math display">\[\begin{align*}
+  20 \log_{10} | G(j \omega) | &amp;= - 20 \, k \log_{10} |1 + j \omega
+\, \tau| \approx
+  \begin{cases}
+    0, &amp; |\omega| &lt; |\tau|^{-1} \\
+    - 20 \, k \log_{10} |\tau| - 20 \, k
+  \log_{10} |\omega|, &amp; |\omega| \geq |\tau|^{-1}
+  \end{cases}
+\end{align*}\]</span></p>
+<h4 id="example-simple-pole-tau-pm-1-k-1">Example: simple pole (<span
+class="math inline">\(\tau = \pm 1\)</span>, <span
+class="math inline">\(k = 1\)</span>)</h4>
+<p><img data-src="6e1f5a638d2e631cce70dfc06562e9a9f24e1058.jpg"
+class="tikz plain" style="width:60%" /></p>
+</section>
+<section id="first-order-real-poles-and-zeros-1" class="slide level2">
+<h2>First-order real poles and zeros</h2>
+<h3 id="transfer-function-1">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G(s) &amp;= (1 + s \, \tau)^k
+\end{align*}\]</span></p>
+<h3 id="magnitude-2">Magnitude</h3>
+<p><span class="math display">\[\begin{align*}
+  20 \log_{10} | G(j \omega) | &amp;= 20 \, k \log_{10} |1 + j \omega \,
+\tau| \approx
+  \begin{cases}
+    0, &amp; |\omega| &lt; |\tau|^{-1} \\
+    20 \, k \log_{10} |\tau| + 20 \, k
+  \log_{10} |\omega|, &amp; |\omega| \geq |\tau|^{-1}
+  \end{cases}
+\end{align*}\]</span></p>
+<h4 id="example-simple-zero-tau-pm-1-k-1">Example: simple zero (<span
+class="math inline">\(\tau = \pm 1\)</span>, <span
+class="math inline">\(k = 1\)</span>)</h4>
+<p><img data-src="111b51672cdffdfbb532316a2f8bd48028c67e69.jpg"
+class="tikz plain" style="width:60%" /></p>
+</section>
+<section id="first-order-real-poles-and-zeros-2" class="slide level2">
+<h2>First-order real poles and zeros</h2>
+<h3 id="transfer-function-2">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G(s) &amp;= \frac{1}{(1 + s \, \tau)^k}
+\end{align*}\]</span></p>
+<h3 id="phase-1">Phase</h3>
+<p><span class="math display">\[\begin{align*}
+  \angle G(j \omega) &amp;=
+  - k \, \angle (1 + j \omega \, \tau)
+  \approx
+  \frac{\tau}{|\tau|}
+  \begin{cases}
+    0, &amp; |\omega| &lt; \frac{1}{10} |\tau|^{-1} \\
+    - \frac{k \pi}{4} \log_{10} 10 \, |\tau| \omega, &amp;
+    \frac{1}{10} |\tau|^{-1} \leq \omega &lt; 10 |\tau|^{-1} \\ -
+    \frac{k \pi}{2}, &amp; \omega \geq 10 |\tau|^{-1}
+  \end{cases}
+\end{align*}\]</span></p>
+<div class="columns">
+<div class="column">
+<h4 id="example-simple-pole-tau-1-k-1">Example: simple pole (<span
+class="math inline">\(\tau = 1\)</span>, <span class="math inline">\(k =
+1\)</span>)</h4>
+<p><img data-src="ee71ea2bddc931f83a90343176dd8d19760c5c54.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div><div class="column">
+<h4 id="example-simple-pole-tau--1-k-1">Example: simple pole (<span
+class="math inline">\(\tau = -1\)</span>, <span class="math inline">\(k
+= 1\)</span>)</h4>
+<p><img data-src="050d7c7bc180e7f6fbd0fe0c03a4534f94baa361.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div>
+</div>
+</section>
+<section id="first-order-real-poles-and-zeros-3" class="slide level2">
+<h2>First-order real poles and zeros</h2>
+<h3 id="transfer-function-3">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G(s) &amp;= (1 + s \, \tau)^k
+\end{align*}\]</span></p>
+<h3 id="phase-2">Phase</h3>
+<p><span class="math display">\[\begin{align*}
+  \angle G(j \omega) &amp;=
+  k \, \angle (1 + j \omega \, \tau)
+  \approx
+  \frac{\tau}{|\tau|}
+  \begin{cases}
+    0, &amp; |\omega| &lt; \frac{1}{10} |\tau|^{-1} \\
+    \frac{k \pi}{4} \log_{10} 10 \, |\tau| \omega, &amp;
+    \frac{1}{10} |\tau|^{-1} \leq \omega &lt; 10 |\tau|^{-1} \\
+    \frac{k \pi}{2}, &amp; \omega \geq 10 |\tau|^{-1}
+  \end{cases}
+\end{align*}\]</span></p>
+<div class="columns">
+<div class="column">
+<h4 id="example-simple-zero-tau-1-k-1">Example: simple zero (<span
+class="math inline">\(\tau = 1\)</span>, <span class="math inline">\(k =
+1\)</span>)</h4>
+<p><img data-src="050d7c7bc180e7f6fbd0fe0c03a4534f94baa361.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div><div class="column">
+<h4 id="example-simple-zero-tau--1-k-1">Example: simple zero (<span
+class="math inline">\(\tau = -1\)</span>, <span class="math inline">\(k
+= 1\)</span>)</h4>
+<p><img data-src="ee71ea2bddc931f83a90343176dd8d19760c5c54.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div>
+</div>
+</section>
+<section id="second-order-complex-poles-and-zeros" class="slide level2">
+<h2>Second-order complex poles and zeros</h2>
+<h3 id="transfer-function-4">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G(s) &amp;= \frac{1}{(1 + {2 \, \zeta s}/{\omega_n} +
+    {s^2}/{\omega_n^2})^k}, &amp;
+  \omega_n &amp;&gt; 0, &amp;
+  |\zeta| &lt; 1
+\end{align*}\]</span></p>
+<h3 id="magnitude-3">Magnitude</h3>
+<p><span class="math display">\[\begin{align*}
+  20 \log_{10} |G(j \omega)| &amp;= - 20 \, k \, \log_{10} |1 -
+{\omega^2}/{\omega_n^2} + j {2 \, \zeta \omega}/{\omega_n}|
+  \approx
+  \begin{cases}
+    0, &amp; |\omega| &lt; \omega_n \\ 40 \, k \log_{10} |\omega_n| - 40
+\,
+    k \log_{10} |\omega|, &amp; |\omega| \geq \omega_n
+  \end{cases}
+\end{align*}\]</span></p>
+<h4 id="example-complex-pair-of-poles-omega_n-1-k-1">Example: complex
+pair of poles <span class="math inline">\((\omega_n = 1, k =
+1)\)</span></h4>
+<p><img data-src="6903b7cade69b7a67b8fd0e9710b71c083835629.jpg"
+class="tikz plain" style="width:60%" /></p>
+</section>
+<section id="second-order-complex-poles-and-zeros-1"
+class="slide level2">
+<h2>Second-order complex poles and zeros</h2>
+<h3 id="transfer-function-5">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G(s) &amp;= \frac{1}{(1 + {2 \, \zeta s}/{\omega_n} +
+    {s^2}/{\omega_n^2})^k}, &amp;
+  \omega_n &amp;&gt; 0, &amp;
+  |\zeta| &lt; 1
+\end{align*}\]</span></p>
+<h3 id="phase-3">Phase</h3>
+<p><span class="math display">\[\begin{align*}
+  \angle G(j \omega) &amp;=
+  k \, \angle 1 - {\omega^2}/{\omega_n^2} + j {2 \, \zeta
+\omega}/{\omega_n}
+  \approx
+  \frac{\zeta}{|\zeta|}
+  \begin{cases}
+    0, &amp; |\omega| &lt; \frac{1}{10} \, \omega_n \\
+    - \frac{k \pi}{2} \log_{10} 10 \, {\omega}/{\omega_n} &amp;
+    \frac{1}{10} \, \omega_n \leq \omega &lt; 10 \, \omega_n \\
+    - k \pi, &amp; \omega \geq 10 \, \omega_n
+  \end{cases}
+\end{align*}\]</span></p>
+<h4 id="example-complex-pair-of-poles-omega_n-1-k-1-1">Example: complex
+pair of poles <span class="math inline">\((\omega_n = 1, k =
+1)\)</span></h4>
+<p><img data-src="fc91380f25e2b893f85623b8f4ebc8458f043401.jpg"
+class="tikz plain" style="width:60%" /></p>
+</section>
+<section id="poles-and-zeros-at-the-origin" class="slide level2">
+<h2>Poles and zeros at the origin</h2>
+<h3 id="transfer-function-6">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G(s) &amp;= \frac{1}{s^k}
+\end{align*}\]</span></p>
+<h3 id="magnitude-4">Magnitude</h3>
+<p><span class="math display">\[\begin{align*}
+  20 \log_{10} | G(j \omega) | &amp;= - 20 \, k \log_{10} |\omega|
+\end{align*}\]</span></p>
+<h3 id="phase-4">Phase</h3>
+<p><span class="math display">\[\begin{align*}
+  \angle G(j \omega) &amp;= - k \frac{\pi}{2}
+\end{align*}\]</span></p>
+<h4 id="example-simple-pole-k-1">Example: simple pole (<span
+class="math inline">\(k = 1\)</span>)</h4>
+<div class="columns">
+<div class="column">
+<p><img data-src="e6882f2a17eaf7b13039cd1e9c894dfe4f7a5d8b.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div><div class="column">
+<h4 id="section"></h4>
+<p><img data-src="9ebae8837b4d79060d22ad00f1622d68c6b743f7.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div>
+</div>
+</section>
+<section id="example-c_mathrmlead-from-section-6.5"
+class="slide level2">
+<h2>Example: <span class="math inline">\(C_\mathrm{lead}\)</span> from
+Section 6.5</h2>
+<h3 id="transfer-function-7">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+G(s) = C_\mathrm{lead}(s) &amp;= 3.83 \frac{s + 7.5}{s + 21}
+\end{align*}\]</span></p>
+<h4 id="normalized">Normalized</h4>
+<p><span class="math display">\[\begin{align*} G(s) &amp;= \tilde{\beta}
+\frac{1 + {s}/{7.5}}{1 +
+  {s}/{21}}, &amp; \tilde{\beta} &amp;= \frac{3.83 \times 7.5}{21}
+  \approx 1.37 \end{align*}\]</span></p>
+<h4 id="magnitude-slopes">Magnitude slopes</h4>
+<p><span class="math display">\[\begin{align*}
+0&amp;\text{dB/decade}, &amp; 0 \leq \omega &amp;\leq 7.5 \\
++20&amp;\text{dB/decade}, &amp; 7.5 \leq \omega &amp;\leq 21 \\
+0&amp;\text{dB/decade}, &amp; \omega &amp;\geq 21
+\end{align*}\]</span></p>
+<h4 id="magnitude-key-points">Magnitude key points</h4>
+<p><span class="math display">\[\begin{align}
+  \tag{A}
+  20 \log_{10} 1.37 &amp;\approx 2.7 \text{dB}, &amp;
+  \omega &amp;\leq 7.5 \\
+  \tag{B}
+  2.7 \text{dB} + 20 \log_{10} 21/7.5 &amp;\approx 11.6 \text{dB}, &amp;
+  \omega &amp;\geq 21
+\end{align}\]</span></p>
+</section>
+<section id="example-c_mathrmlead-from-section-6.5-1"
+class="slide level2">
+<h2>Example: <span class="math inline">\(C_\mathrm{lead}\)</span> from
+Section 6.5</h2>
+<h3 id="transfer-function-8">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+G(s) = C_\mathrm{lead}(s) &amp;= 3.83 \frac{s + 7.5}{s + 21}
+\end{align*}\]</span></p>
+<p><img data-src="figs/FrequencyDomain5a.jpg" class="plain"
+style="width:50.0%" /></p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<h4 id="magnitude-slopes-1">Magnitude slopes</h4>
+<p><span class="math display">\[\begin{align*}
+0&amp;\text{dB/decade}, &amp; 0 \leq \omega &amp;\leq 7.5 \\
++20&amp;\text{dB/decade}, &amp; 7.5 \leq \omega &amp;\leq 21 \\
+0&amp;\text{dB/decade}, &amp; \omega &amp;\geq 21
+\end{align*}\]</span></p>
+</div><div class="column" style="width:60%;">
+<h4 id="magnitude-key-points-1">Magnitude key points</h4>
+<p><span class="math display">\[\begin{align}
+  \tag{A}
+  20 \log_{10} 1.37 &amp;\approx 2.7 \text{dB}, &amp;
+  \omega &amp;\leq 7.5 \\
+  \tag{B}
+  2.7 \text{dB} + 20 \log_{10} 21/7.5 &amp;\approx 11.6 \text{dB}, &amp;
+  \omega &amp;\geq 21
+\end{align}\]</span></p>
+</div>
+</div>
+</section>
+<section id="example-c_mathrmlead-from-section-6.5-2"
+class="slide level2">
+<h2>Example: <span class="math inline">\(C_\mathrm{lead}\)</span> from
+Section 6.5</h2>
+<h3 id="transfer-function-9">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+G(s) = C_\mathrm{lead}(s) &amp;= 1.37 \frac{1 + {s}/{7.5}}{1 +
+  {s}/{21}}
+\end{align*}\]</span></p>
+<p><img data-src="figs/FrequencyDomain6a.jpg" class="plain"
+style="width:50.0%" /></p>
+<div class="columns">
+<div class="column">
+<h4 id="phase-slopes">Phase slopes</h4>
+<p><span class="math display">\[\begin{align*}
+0^\circ&amp;\text{/decade}, &amp; 0 \leq \omega &amp;\leq 0.75 \\
++45^\circ&amp;\text{/decade}, &amp; 0.75 \leq \omega &amp;\leq 2.1 \\
+0^\circ&amp;\text{/decade}, &amp; 2.1 \leq \omega &amp;\leq 75 \\
+-45^\circ&amp;\text{/decade}, &amp; 75 \leq \omega &amp;\leq 210 \\
+0^\circ&amp;\text{/decade}, &amp; \omega &amp;\geq 210
+\end{align*}\]</span></p>
+</div><div class="column">
+<h4 id="phase-key-points">Phase key points</h4>
+<p><span class="math display">\[\begin{align}
+  \tag{A}
+  &amp;\approx 0^\circ, &amp; \omega &amp;= 0.75 \\
+  \tag{B}
+  45^\circ \log_{10} 2.1/0.75 &amp;\approx 20^\circ, &amp; \omega
+&amp;=2.1, \\
+  \tag{C}
+  45^\circ \log_{10} 2.1/0.75 &amp;\approx 20^\circ, &amp; \omega
+&amp;=75, \\
+  \tag{C}
+  0^\circ \log_{10} 2.1/0.75 &amp;\approx 0^\circ, &amp; \omega
+&amp;=210.
+\end{align}\]</span></p>
+</div>
+</div>
+</section>
+<section id="see-book-for-a-more-challenging-example"
+class="slide level2">
+<h2>See book for a more challenging example</h2>
+<p><span class="math display">\[\begin{align*}
+  G(s) &amp;= \frac{28.1 s^2 + 22.4 s + 112.4}{s^6 + 5.7 s^5 + 12.81 s^4
++
+    47.6 s^3 + 7.5 s^2 + 11.25 s}
+\end{align*}\]</span></p>
+<p><img data-src="figs/FrequencyDomain5.jpg" class="plain"
+style="width:50.0%" /> <img data-src="figs/FrequencyDomain6.jpg"
+class="plain" style="width:50.0%" /></p>
+</section></section>
+<section>
+<section id="non-minimum-phase-systems"
+class="title-slide slide level1">
+<h1>7.2 Non-Minimum-Phase Systems</h1>
+<p><span class="h2">A simple example</span></p>
+<p>Frequency responses of <span class="math display">\[\begin{align*}
+  G_1 &amp;= 1, &amp;
+  G_2 &amp;= -1, &amp;
+  G_3 &amp;= \frac{s - 1}{s + 1}
+\end{align*}\]</span> have the exact same magnitude <span
+class="math display">\[\begin{align*}
+  |G_1(j \omega)| = |G_2(j \omega)| = |G_3(j \omega)| = 1
+\end{align*}\]</span> but different phases <span
+class="math display">\[\begin{align*}
+  \angle G_1(j \omega) &amp;= 0, &amp;
+  \angle G_2(j \omega) &amp;= \pi, &amp;
+  \angle G_3(j \omega) &amp;= \pi - 2 \tan^{-1} \omega
+\end{align*}\]</span> <span class="math inline">\(G_1\)</span> is
+<strong>minimum phase</strong></p>
+</section>
+<section id="a-more-complex-example" class="slide level2">
+<h2>A more complex example</h2>
+<p>Frequency response of <span class="math display">\[\begin{align}
+  G_1 &amp;= \frac{1 + s}{s^2 + s + 1}, &amp;
+  G_2 &amp;= \frac{1 - s}{s^2 + s + 1}, &amp;
+  G_3 &amp;= \frac{(1 - s)^2}{s^3 + 2 s^2 + 2 s + 1}
+\end{align}\]</span></p>
+<h3 id="bode-plots-1">Bode plots</h3>
+<p><img data-src="figs/FrequencyDomain1.jpg" class="plain"
+style="width:55.0%" /> <img data-src="figs/FrequencyDomain2.jpg"
+class="plain" style="width:55.0%" /></p>
+</section>
+<section id="a-more-complex-example-1" class="slide level2">
+<h2>A more complex example</h2>
+<p>Frequency response of <span class="math display">\[\begin{align}
+  G_1 &amp;= \frac{1 + s}{s^2 + s + 1}, &amp;
+  G_2 &amp;= \frac{1 - s}{s^2 + s + 1}, &amp;
+  G_3 &amp;= \frac{(1 - s)^2}{s^3 + 2 s^2 + 2 s + 1}
+\end{align}\]</span> have the exact same magnitude <span
+class="math inline">\(|G_1(j \omega)| = |G_2(j \omega)| = |G_3(j
+\omega)|\)</span></p>
+<p><span class="math inline">\(G_1\)</span> is <strong>minimum
+phase</strong></p>
+<h3 id="step-response">Step response</h3>
+<p><img data-src="figs/FrequencyDomain3.jpg" class="plain"
+style="width:50.0%" /></p>
+</section>
+<section id="other-examples" class="slide level2">
+<h2>Other examples</h2>
+<h3 id="systems-with-delays">Systems with delays</h3>
+<p>Padé approximation of order <span class="math inline">\(n\)</span>
+<span class="math display">\[\begin{align*}
+  e^{-s \tau} &amp;\approx \frac{1 - a_1 s + a_2 s^2 - \cdots \pm a_n
+    s^n}{1 + a_1 s + a_2 s^2 + \cdots + a_n s^n}
+\end{align*}\]</span></p>
+<h3 id="steering-vehicles">Steering vehicles</h3>
+<div class="columns">
+<div class="column">
+<p>Forward lane-change</p>
+<p><img data-src="57b7b3ba81411a2e5ed7d29c8006b41c20d652f5.jpg"
+class="tikz plain" style="width:60%" /></p>
+<p>Minimum-phase</p>
+</div><div class="column">
+<p>Backward lane-change</p>
+<p><img data-src="367941880209c405108797a1d18a8703846c169a.jpg"
+class="tikz plain" style="width:60%" /></p>
+<p>Non-minimum-phase</p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="polar-plots" class="title-slide slide level1">
+<h1>7.3 Polar Plots</h1>
+<p><span class="h2">Parametric curve</span></p>
+<p><span class="math display">\[\begin{align*}
+  s &amp;= G(j \omega), &amp; \omega \in \mathbb{R}
+\end{align*}\]</span></p>
+<p>Image of the imaginary axis under the mapping <span
+class="math inline">\(G\)</span></p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><span class="h3">Imaginary axis</span></p>
+<p><img data-src="1c980208625be713b872a956e4415105195630ca.jpg"
+class="tikz plain" style="width:50%" /></p>
+</div><div class="column" style="width:20%;">
+<p><span class="h3">Mapping</span></p>
+<p><span class="math display">\[\begin{align*}
+\\[5em]
+G(s) &amp;= \frac{1}{s + 1}
+\end{align*}\]</span></p>
+</div><div class="column" style="width:8%;">
+
+</div><div class="column" style="width:35%;">
+<p><span class="h3">Image</span></p>
+<p><img data-src="8d6504873f2c559076baf580b32316bcc93eaeb6.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div>
+</div>
+</section>
+<section id="from-bode-plots-to-polar-plots" class="slide level2">
+<h2>From Bode plots to polar plots</h2>
+<h3 id="example">Example</h3>
+<p><span class="math display">\[\begin{align*}
+G(s) = (s + 1)^{-1}
+\end{align*}\]</span></p>
+<h3 id="polar-plot">Polar plot</h3>
+<p><span class="math display">\[\begin{align*}
+  G(j \omega) &amp;= \frac{1}{j \omega + 1} = \frac{1}{2} + \frac{1}{2}
+  \frac{1 - j \omega }{1 + j \omega} = \frac{1}{2} + \frac{1}{2}
+  e^{j \theta}, &amp;
+  -\pi &amp;&lt; \theta = - 2 \tan^{-1} \omega &lt; \pi
+\end{align*}\]</span></p>
+<div class="columns">
+<div class="column">
+<h4 id="bode-plots-2">Bode plots</h4>
+<p><img data-src="figs/Nyquist1_2.jpg" class="plain"
+style="width:100.0%" /> <img data-src="figs/Nyquist1_3.jpg"
+class="plain" style="width:100.0%" /></p>
+</div><div class="column">
+<h4 id="polar-plot-1">Polar plot</h4>
+<p><img data-src="figs/Nyquist1.jpg" class="plain"
+style="width:80.0%" /></p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="the-argument-principle" class="title-slide slide level1">
+<h1>7.4 The Argument Principle</h1>
+<p><span class="h2">Total argument variaion</span></p>
+<p><span class="math inline">\(\Delta^0_C \arg G(s)\)</span>: total
+argument variation of the image of <span
+class="math inline">\(C\)</span> under <span
+class="math inline">\(G\)</span> about the origin</p>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><span class="h3">Contours</span></p>
+<p><img data-src="figs/Nyquist10.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:34%;">
+<p><span class="h3">Images</span></p>
+<p><img data-src="figs/Nyquist11.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:23%;">
+<p><span class="h3">Total argument</span></p>
+<p><span class="math display">\[\begin{align*}
+  \frac{1}{2 \pi} \Delta^0_{C_1} \arg G(s) &amp;= -1 \\
+  \frac{1}{2 \pi} \Delta^0_{C_2} \arg G(s) &amp;= 2 \\
+  \frac{1}{2 \pi} \Delta^0_{C_3} \arg G(s) &amp;= 0
+\end{align*}\]</span></p>
+</div>
+</div>
+</section>
+<section id="the-argument-principle-1" class="slide level2">
+<h2>The Argument Principle</h2>
+<h3 id="theorem-7.1">Theorem 7.1</h3>
+<p><span class="math display">\[\begin{align}
+    \frac{1}{2 \pi} \Delta^0_C \arg f(s) =
+    \frac{1}{2 \pi j} \int_{C} \frac{f&#39;(s)}{f(s)} \, ds =
+    Z_C - P_C
+\end{align}\]</span></p>
+<p><span class="math inline">\(Z_C\)</span> is the number of zeros
+inside <span class="math inline">\(C\)</span></p>
+<p><span class="math inline">\(P_C\)</span> is the number of poles
+inside <span class="math inline">\(C\)</span></p>
+<h3 id="assumptions">Assumptions</h3>
+<p><span class="math inline">\(C\)</span> is a positively oriented
+simple closed contour</p>
+<p><span class="math inline">\(f\)</span> has no zeros on <span
+class="math inline">\(C\)</span></p>
+<p><span class="math inline">\(f\)</span> is analytic inside and on
+<span class="math inline">\(C\)</span> except at a finite number of
+poles inside <span class="math inline">\(C\)</span></p>
+<h3 id="if-countour-is-negatively-oriented">If countour is negatively
+oriented</h3>
+<p><span class="math display">\[\begin{align}
+  \frac{1}{2 \pi} \Delta^0_C \arg f(s) = - \frac{1}{2 \pi} \Delta^0_{-C}
+  \arg f(s) = P_C - Z_C
+\end{align}\]</span></p>
+</section>
+<section class="slide level2">
+
+<div class="columns">
+<div class="column" style="width:27%;">
+<h3 id="contours">Contours</h3>
+<p><img data-src="figs/Nyquist10.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:28%;">
+<h3 id="images">Images</h3>
+<p><img data-src="figs/Nyquist11.jpg" class="plain"
+style="width:100.0%" /></p>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="poles-and-zeros">Poles and zeros</h3>
+<p><span class="math display">\[\begin{align*}
+  Z_{C_1} &amp;= 1, &amp; P_{C_1} &amp;= 2 \\
+  Z_{C_2} &amp;= 0, &amp; P_{C_2} &amp;= 2 \\
+  Z_{C_3} &amp;= 0, &amp; P_{C_3} &amp;= 0
+\end{align*}\]</span></p>
+</div><div class="column" style="width:50%;">
+<h3 id="total-argument">Total argument</h3>
+<p><span class="math display">\[\begin{align*}
+  ({1}/{2 \pi}) \Delta^0_{C_1} \arg G(s) &amp;= Z_{C_1} - P_{C_1} = -1
+\\
+  ({1}/{2 \pi}) \Delta^0_{C_2} \arg G(s) &amp;= P_{C_2} - Z_{C_2} = 2 \\
+  ({1}/{2 \pi}) \Delta^0_{C_3} \arg G(s) &amp;= Z_{C_3} - P_{C_3} = 0
+\end{align*}\]</span></p>
+</div>
+</div>
+<h3 id="application">Application</h3>
+<p>Testing for asymptotic stability</p>
+</section></section>
+<section>
+<section id="stability-in-the-frequency-domain"
+class="title-slide slide level1">
+<h1>7.5 Stability in the Frequency Domain</h1>
+<p><span class="h2">Basic idea</span></p>
+<p><span class="math display">\[\begin{align*}
+P_{\Gamma} &amp;= Z_{\Gamma} + \frac{1}{2 \pi} \Delta^0_{\Gamma} \arg
+G(s)
+\end{align*}\]</span></p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><span class="h3">Contour <span
+class="math inline">\(\Gamma\)</span></span></p>
+<p><img data-src="93d195a6ac5daca8b6716d386e3817954cc9d08c.jpg"
+class="tikz plain" style="width:45%" /></p>
+</div><div class="column" style="width:40%;">
+<p><span class="h3">Polar plot</span></p>
+<p><img data-src="b9910c293c954df949ccb6e9a3135b862f3a7696.jpg"
+class="tikz plain" style="width:65%" /></p>
+</div><div class="column" style="width:30%;">
+<p><span class="h3">Transfer-functions</span></p>
+<p><span class="math display">\[\begin{align*}
+  G_0(s) &amp;= \frac{1}{s + 1} \\
+  G_1(s) &amp;= \frac{s + 2}{s + 1} = 1 + G_0(s) \\
+  G_2(s) &amp;= \frac{2 - s}{s + 1} = 3 \, G_0(s) - 1 \\
+  G_3(s) &amp;= \frac{-s}{s + 1} = G_0(s) - 1 \\
+\end{align*}\]</span></p>
+</div>
+</div>
+<p><span class="math display">\[\begin{align*}
+   {Z_\Gamma}_i &amp;= 0, &amp;
+   (2 \pi)^{-1} \Delta^0_{\Gamma} \arg G_i(s) &amp;= 0, &amp;
+   {P_\Gamma}_i &amp;= 0 + 0 = 0, &amp;
+   i &amp;= \{ 0, 1, 3 \} \\
+   {Z_\Gamma}_2 &amp;= 1, &amp;
+   (2 \pi)^{-1} \Delta^0_{\Gamma} \arg G_2(s) &amp;= -1, &amp;
+   {P_\Gamma}_2 &amp;= 1 - 1 = 0
+\end{align*}\]</span></p>
+</section>
+<section id="features" class="slide level2">
+<h2>Features</h2>
+<p>Attention near the origin if <span class="math inline">\(G\)</span>
+is strictly proper</p>
+<p>Can be used even if <span class="math inline">\(G\)</span> is not
+rational, e.g. <span class="math inline">\(G(s) = {(s + 1)}/{(s + 1 +
+e^{-s})}\)</span></p>
+<p><img data-src="a4c9d7e7a769b1767a635d7f8b20b102e5ed45ab.jpg"
+class="tikz plain" style="width:60%" /></p>
+<h3 id="more-impressive-application">More impressive application</h3>
+<p>Closed-loop stability analysis: the Nyquist stability criterion</p>
+</section></section>
+<section>
+<section id="nyquist-stability-criterion"
+class="title-slide slide level1">
+<h1>7.6 Nyquist Stability Criterion</h1>
+<p><span class="h2">Basic idea</span></p>
+<p><img data-src="06358f648783da1b1a66de4ce4280760f310a427.jpg"
+class="tikz plain" style="width:20%" /></p>
+<p>Closed loop poles are the zeros of the characteristic equation <span
+class="math display">\[\begin{align*}
+    1 + \alpha L(s) &amp;= 0, &amp; \alpha &gt; 0
+\end{align*}\]</span> which are the same as the zeros of <span
+class="math display">\[\begin{align*}
+  L_\alpha(s) &amp;= \frac{1}{\alpha} + L(s), &amp; \alpha &gt; 0
+\end{align*}\]</span> Image of <span
+class="math inline">\(\Gamma\)</span> under <span
+class="math inline">\(L_\alpha(s)\)</span> is the same as image of <span
+class="math inline">\(\Gamma\)</span> under <span
+class="math inline">\(L(s)\)</span> shifted by <span
+class="math inline">\(\frac{1}{\alpha}\)</span></p>
+</section>
+<section id="example-1" class="slide level2">
+<h2>Example #1</h2>
+<h3 id="transfer-function-10">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  L(s) &amp;= \frac{s - 0.5}{s^4 + 2.5 s^3 + 3 s^2 + 2.5 s + 1}, &amp;
+  L_\alpha(s) &amp;= \frac{1}{\alpha} + L(s)
+\end{align*}\]</span></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="image-of-gamma-under-l">Image of <span
+class="math inline">\(\Gamma\)</span> under <span
+class="math inline">\(L\)</span></h4>
+<p><img data-src="figs/Nyquist2_2.jpg" class="plain"
+style="width:50.0%" /></p>
+</div><div class="column" style="width:50%;">
+<h4 id="image-of-gamma-under-l_alpha-alpha-2.5">Image of <span
+class="math inline">\(\Gamma\)</span> under <span
+class="math inline">\(L_\alpha\)</span>, <span
+class="math inline">\(\alpha = 2.5\)</span></h4>
+<p><img data-src="figs/Nyquist2_3.jpg" class="plain"
+style="width:50.0%" /></p>
+</div>
+</div>
+</section>
+<section id="basic-idea" class="slide level2">
+<h2>Basic idea</h2>
+<p>Image of <span class="math inline">\(\Gamma\)</span> under <span
+class="math inline">\(L_\alpha(s)\)</span> is the same as image of <span
+class="math inline">\(\Gamma\)</span> under <span
+class="math inline">\(L(s)\)</span> shifted by <span
+class="math inline">\(\frac{1}{\alpha}\)</span></p>
+<p>Total argument variation are the same if we shift the origin <span
+class="math display">\[\begin{align*}
+  \frac{1}{2 \pi} \Delta^0_{\Gamma} \arg L_\alpha(s) =
+  \frac{1}{2 \pi} \Delta^{-{1}/{\alpha}}_{\Gamma} \arg L(s) =
+  P_\Gamma - Z_\Gamma
+\end{align*}\]</span></p>
+<h3 id="theorem-7.2-nyquist">Theorem 7.2 (Nyquist)</h3>
+<p>Closed-loop asymptotic stability if and only if <span
+class="math display">\[\begin{align*}
+  Z_\Gamma = P_\Gamma - \frac{1}{2 \pi} \Delta^{-1/\alpha}_{\Gamma} \arg
+  L(s) = 0
+\end{align*}\]</span></p>
+<p><span class="math inline">\(P_\Gamma\)</span>: # of poles of <span
+class="math inline">\(L(s)\)</span> in <span
+class="math inline">\(\Gamma\)</span> (unstable open-loop poles)</p>
+<p><span class="math inline">\(Z_\Gamma\)</span>: # of poles of <span
+class="math inline">\(1 + \alpha L(s)\)</span> in <span
+class="math inline">\(\Gamma\)</span> (unstable closed-loop poles)</p>
+</section>
+<section id="example-1-1" class="slide level2">
+<h2>Example #1</h2>
+<h3 id="transfer-function-11">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  L(s) &amp;= \frac{s - 0.5}{s^4 + 2.5 s^3 + 3 s^2 + 2.5 s + 1}
+\end{align*}\]</span></p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<h4 id="image-of-gamma-under-l-1">Image of <span
+class="math inline">\(\Gamma\)</span> under <span
+class="math inline">\(L\)</span></h4>
+<p><img data-src="figs/Nyquist2_2.jpg" class="plain"
+style="width:90.0%" /></p>
+</div><div class="column" style="width:70%;">
+<h4 id="encirclements-of--1alpha--0.4">Encirclements of <span
+class="math inline">\(-1/\alpha = -0.4\)</span></h4>
+<p><span class="math display">\[\begin{align*}
+  \frac{1}{2 \pi} \Delta^{-0.4}_{\Gamma} \arg L_\alpha(s) = -1
+\end{align*}\]</span></p>
+<h4 id="closed-loop-asymptotic-stablity-no">Closed-loop asymptotic
+stablity? NO</h4>
+<p><span class="math display">\[\begin{align*}
+  Z_\Gamma = P_\Gamma - \frac{1}{2 \pi} \Delta^0_{\Gamma} \arg
+  L_\alpha(s) = 0 - (-1) = 1
+\end{align*}\]</span> closed-loop poles in <span
+class="math inline">\(\Gamma\)</span></p>
+<p>What if <span class="math inline">\(-\alpha^{-1} &lt; -0.5\)</span>
+?<br />
+Or if <span class="math inline">\(-0.1 &lt; -\alpha^{-1} &lt; 0\)</span>
+?</p>
+</div>
+</div>
+</section>
+<section id="example-1-2" class="slide level2">
+<h2>Example #1</h2>
+<h3 id="transfer-function-12">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  L(s) &amp;= \frac{s - 0.5}{s^4 + 2.5 s^3 + 3 s^2 + 2.5 s + 1}
+\end{align*}\]</span></p>
+<h4 id="root-locus">Root-locus</h4>
+<p><img data-src="figs/rlocus7.jpg" class="plain"
+style="width:30.0%" /></p>
+</section>
+<section id="example-2" class="slide level2">
+<h2>Example #2</h2>
+<h3 id="transfer-functions">Transfer-functions</h3>
+<p><span class="math display">\[\begin{align*}
+  L_0(s) &amp;= \frac{1}{s + 1}, &amp;
+  L_1(s) &amp;= \frac{s + 2}{s + 1}, &amp;
+  L_2(s) &amp;= \frac{2 - s}{s + 1}, &amp;
+  L_3(s) &amp;= \frac{-s}{s + 1}
+\end{align*}\]</span></p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<h4 id="nyquist-plot">Nyquist plot</h4>
+<p><img data-src="3e38703fe0de7adfdd14be53cca54b7afaaa64a0.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div><div class="column" style="width:60%;">
+<h4 id="closed-loop-stability">Closed-loop stability</h4>
+<p><span class="math inline">\(P_\Gamma = 0\)</span></p>
+<p><span class="math inline">\(L_0\)</span> and <span
+class="math inline">\(L_1\)</span> <span
+class="math display">\[\begin{align*}
+  \frac{1}{2 \pi} \Delta^{-1/\alpha}_{\Gamma} \arg L_\alpha(s) &amp;= 0
+&amp;
+  &amp; \implies &amp;
+  Z_\Gamma &amp;= 0
+\end{align*}\]</span> stable for all <span class="math inline">\(\alpha
+&gt; 0\)</span></p>
+</div>
+</div>
+</section>
+<section id="example-2-1" class="slide level2">
+<h2>Example #2</h2>
+<h3 id="transfer-functions-1">Transfer-functions</h3>
+<p><span class="math display">\[\begin{align*}
+  L_0(s) &amp;= \frac{1}{s + 1}, &amp;
+  L_1(s) &amp;= \frac{s + 2}{s + 1}, &amp;
+  L_2(s) &amp;= \frac{2 - s}{s + 1}, &amp;
+  L_3(s) &amp;= \frac{-s}{s + 1}
+\end{align*}\]</span></p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<h4 id="nyquist-plot-1">Nyquist plot</h4>
+<p><img data-src="3e38703fe0de7adfdd14be53cca54b7afaaa64a0.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div><div class="column" style="width:60%;">
+<h4 id="closed-loop-stability-1">Closed-loop stability</h4>
+<p><span class="math inline">\(P_\Gamma = 0\)</span></p>
+<p><span class="math inline">\(L_0\)</span> and <span
+class="math inline">\(L_1\)</span> stable for all <span
+class="math inline">\(\alpha &gt; 0\)</span></p>
+<p><span class="math inline">\(L_2\)</span> and <span
+class="math inline">\(L_3\)</span> <span
+class="math display">\[\begin{align*}
+  \frac{1}{2 \pi} \Delta^{-1/\alpha_1}_{\Gamma} \arg L_\alpha(s) &amp;=
+0 &amp;
+  &amp; \implies &amp;
+  Z_\Gamma &amp;= 0 \\
+  \frac{1}{2 \pi} \Delta^{-1/\alpha_2}_{\Gamma} \arg L_\alpha(s) &amp;=
+-1 &amp;
+  &amp; \implies &amp;
+  Z_\Gamma &amp;= 1
+\end{align*}\]</span> stable for all <span class="math inline">\(\alpha
+= \alpha_1\)</span>, unstable for all <span class="math inline">\(\alpha
+= \alpha_2\)</span></p>
+</div>
+</div>
+</section>
+<section id="nyquist-stability-criterion-1" class="slide level2">
+<h2>Nyquist Stability Criterion</h2>
+<h3 id="theorem-7.2-nyquist-1">Theorem 7.2 (Nyquist)</h3>
+<p>Closed-loop asymptotic stability if and only if <span
+class="math display">\[\begin{align*}
+  Z_\Gamma = P_\Gamma - \frac{1}{2 \pi} \Delta^{-1/\alpha}_{\Gamma} \arg
+  L(s) = 0
+\end{align*}\]</span></p>
+<p><span class="math inline">\(P_\Gamma\)</span>: # of poles of <span
+class="math inline">\(G\)</span> in <span
+class="math inline">\(\Gamma\)</span> (unstable open-loop poles)</p>
+<p><span class="math inline">\(Z_\Gamma\)</span>: # of poles of <span
+class="math inline">\(1 + \alpha L(s)\)</span> in <span
+class="math inline">\(\Gamma\)</span> (unstable closed-loop poles)</p>
+<p>Poles on the imaginary axis can be dealt with identations</p>
+</section>
+<section id="nyquist-stability-criterion-2" class="slide level2">
+<h2>Nyquist Stability Criterion</h2>
+<h3 id="indented-gamma-countour">Indented <span
+class="math inline">\(\Gamma\)</span> countour</h3>
+<p><span class="math display">\[\begin{align*}
+  L(s) &amp;= \frac{F(s)}{(s - j \omega_0)^n}, \qquad
+  F(j \omega_0) \neq 0
+\end{align*}\]</span></p>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><img data-src="95cca6fc9bcc54db844a42cad357084685fe37c5.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div><div class="column" style="width:80%;">
+<p> </p>
+<h3 id="magnitude-5">Magnitude</h3>
+<p><span class="math display">\[\begin{align*}
+  | L(j \omega_0 + \epsilon \, e^{j \theta}) | &amp;\approx
+  \epsilon^{-n} \, | F(j \omega_0) | \rightarrow \infty, &amp;
+  \epsilon &amp;\approx 0
+\end{align*}\]</span></p>
+<h3 id="phase-5">Phase</h3>
+<p><span class="math display">\[\begin{align*}
+  \angle L(j \omega_0 + \epsilon \, e^{j \theta}) | &amp;\approx \angle
+  F(j \omega_0) - n \, \theta, &amp;
+  -\frac{\pi}{2} &amp;\leq \theta \leq \frac{\pi}{2}, &amp;
+  \epsilon &amp;\approx 0
+\end{align*}\]</span></p>
+</div>
+</div>
+</section>
+<section id="example-3" class="slide level2">
+<h2>Example #3</h2>
+<h3 id="transfer-function-13">Transfer-function</h3>
+<p><span class="math display">\[\begin{align}
+  L(s) &amp;= \frac{1}{4} \frac{1}{s(s^2 + {s}/{2} + 1)}, &amp;
+  &amp; \text{stable for } \alpha = 1
+\end{align}\]</span></p>
+<div class="columns">
+<div class="column" style="width:70%;">
+<h4 id="bode-plots-3">Bode plots</h4>
+<p><img data-src="11f1e7e0c21921c9e71a9648bd2b8e7e54376472.jpg"
+class="tikz plain" style="width:90%" /></p>
+</div><div class="column" style="width:30%;">
+<h4 id="nyquist-plot-2">Nyquist plot</h4>
+<p><img data-src="figs/Nyquist4_2.jpg" class="plain"
+style="width:85.0%" /></p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="stability-margins" class="title-slide slide level1">
+<h1>7.7 Stability Margins</h1>
+<p><span class="h2">Gain margin</span></p>
+<p><span class="math display">\[\begin{align}
+  G_M &amp;= |L(j \omega_G)|^{-1}, &amp; \text{for } \omega_G
+&amp;\text{
+    s.t. } \angle L(j \omega_G) = \pi
+\end{align}\]</span></p>
+<div class="columns">
+<div class="column" style="width:65%;">
+<p><span class="h4">Bode plots</span></p>
+<p><img data-src="11f1e7e0c21921c9e71a9648bd2b8e7e54376472.jpg"
+class="tikz plain" style="width:95%" /></p>
+</div><div class="column" style="width:35%;">
+<p><span class="h4">Nyquist plot</span></p>
+<p><img data-src="7e90e40644805444dfcdf3d719f59632562f1f19.jpg"
+class="tikz plain" style="width:77%" /></p>
+</div>
+</div>
+</section>
+<section id="phase-margin" class="slide level2">
+<h2>Phase margin</h2>
+<p><span class="math display">\[\begin{align}
+  \phi_M &amp;=  \angle L(j \omega_\phi) - \pi, &amp;
+  \text{for } \omega_\phi &amp;\text{ s.t. } | L(j \omega_\phi) | = 1
+\end{align}\]</span></p>
+<div class="columns">
+<div class="column" style="width:65%;">
+<h4 id="bode-plots-4">Bode plots</h4>
+<p><img data-src="11f1e7e0c21921c9e71a9648bd2b8e7e54376472.jpg"
+class="tikz plain" style="width:95%" /></p>
+</div><div class="column" style="width:35%;">
+<h4 id="nyquist-plot-3">Nyquist plot</h4>
+<p><img data-src="7e90e40644805444dfcdf3d719f59632562f1f19.jpg"
+class="tikz plain" style="width:77%" /></p>
+</div>
+</div>
+</section>
+<section id="stability-margin" class="slide level2">
+<h2>Stability margin</h2>
+<p><span class="math display">\[\begin{align}
+  S_M &amp;= \inf_\omega |L(j \omega) - (-1)| =
+\frac{1}{\sup_{\omega}|S(j \omega)|} = \| S \|_\infty^{-1}
+\end{align}\]</span></p>
+<div class="columns">
+<div class="column" style="width:65%;">
+<h4 id="bode-plots-5">Bode plots</h4>
+<p><img data-src="11f1e7e0c21921c9e71a9648bd2b8e7e54376472.jpg"
+class="tikz plain" style="width:95%" /></p>
+</div><div class="column" style="width:35%;">
+<h4 id="nyquist-plot-4">Nyquist plot</h4>
+<p><img data-src="7e90e40644805444dfcdf3d719f59632562f1f19.jpg"
+class="tikz plain" style="width:77%" /></p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="control-of-the-simple-pendulum---part-ii"
+class="title-slide slide level1">
+<h1>7.8 Control of the Simple Pendulum - Part II</h1>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><img data-src="46cc89fe8a0aca99ce5c577f98ddd17b5aa86a6a.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div><div class="column" style="width:80%;">
+<p><span class="h2">Data</span></p>
+<p><span class="math display">\[\begin{align*}
+    m &amp;= 0.5 \text{kg}, &amp;
+    \ell &amp;= 0.3 \text{m}, &amp;
+    r &amp;= \ell/2 = 0.15 \text{m}, \\
+    b &amp;= 0 \text{kg/s}, &amp;
+    g &amp;= 9.8 \text{m/s}^2, &amp;
+    J &amp;= 3.75 \times 10^{-3} \text{kg m}^2, &amp; J_r &amp;= J + m
+r^2.
+\end{align*}\]</span></p>
+</div>
+</div>
+<p><span class="h2">Linearized models</span></p>
+<p><span class="math display">\[\begin{align*}
+  G_0(s) &amp;= \frac{1/J_r}{s^2 + (b/J_r) s + m g r/J_r} \approx
+\frac{66.7}{s^2 + 49}, &amp;
+  G_\pi(s) &amp;= \frac{1/J_r}{s^2 +(b/J_r) s - m g r/J_r} \approx
+\frac{66.7}{s^2 - 49}
+\end{align*}\]</span></p>
+<p><span class="h2">Goal</span></p>
+<p>Design a controller with integral action</p>
+</section>
+<section id="control-of-the-simple-pendulum---part-ii-1"
+class="slide level2">
+<h2>Control of the Simple Pendulum - Part II</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="figs/PendulumFD1.jpg" class="plain"
+style="width:100.0%" /></p>
+<p><img data-src="figs/PendulumFD2.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:40%;">
+<p><span class="h2">Nyquist analysis</span></p>
+<p><span class="math display">\[\begin{align*}
+  L_\pi &amp;= \frac{G_\pi}{s} \approx \frac{-1.36}{s \, (1 + {s}/{7})(1
+- {s}/{7})} \\
+  Z_\Gamma &amp;= P_\Gamma - \frac{1}{2 \pi} \Delta_\Gamma^{-1} \arg
+L_\pi(s) \\
+  &amp;= 1 - (-1) = 2
+\end{align*}\]</span></p>
+<p><img data-src="06643f3920c1a8acb9050739426dc3888c4eab2a.jpg"
+class="tikz plain block-center" style="width:50%" /></p>
+</div>
+</div>
+</section>
+<section id="control-of-the-simple-pendulum---part-ii-2"
+class="slide level2">
+<h2>Control of the Simple Pendulum - Part II</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="figs/PendulumFD1.jpg" class="plain"
+style="width:100.0%" /></p>
+<p><img data-src="figs/PendulumFD2.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:40%;">
+<p><span class="h2">Stability analysis</span></p>
+<p>Because <span class="math inline">\(P_\Gamma = 1\)</span>, <span
+class="math inline">\(L_\pi(j \omega)\)</span> needs</p>
+<ul>
+<li>one counter-clockwise encirclement</li>
+<li>to cross negative real axis</li>
+<li>magnitude greater than one</li>
+</ul>
+<p>Counter-clockwise encirclement requires more than <span
+class="math inline">\(90^\circ\)</span> phase to be added to <span
+class="math inline">\(L_\pi(j\omega)\)</span>. Controller must have</p>
+<ul>
+<li>at least two stable zeros</li>
+<li>at least one pole for realizability<br />
+(in addition to the integrator)</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="control-of-the-simple-pendulum---part-ii-3"
+class="slide level2">
+<h2>Control of the Simple Pendulum - Part II</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="figs/PendulumFD10.jpg" class="plain"
+style="width:100.0%" /></p>
+<p><img data-src="figs/PendulumFD11.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:40%;">
+<p><span class="h2">Controller candidate</span></p>
+<p><span class="math display">\[\begin{align*}
+  C(s) &amp;= K \frac{(s+z_1)(s+z_2)}{s \, (s+p_1)}
+\end{align*}\]</span></p>
+<p>with</p>
+<p><span class="math display">\[\begin{align}
+  p_1 &gt; z_2 \geq z_1
+\end{align}\]</span></p>
+<h3 id="from-c_6">From <span class="math inline">\(C_6\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+  p_1 &amp;= 21, &amp; K &amp;= 3.83 \\
+  z_2 &amp;= 6.86, &amp;
+  z_1 &amp;= 0.96
+\end{align*}\]</span></p>
+<h3 id="margins">Margins</h3>
+<p><span class="math display">\[\begin{align*}
+  G_M &amp;\approx 0.63 \approx -4 \text{dB}, &amp;
+  \phi_M &amp;\approx 23^\circ \\
+  S_M &amp;= 0.40
+\end{align*}\]</span></p>
+</div>
+</div>
+</section>
+<section id="control-of-the-simple-pendulum---part-ii-4"
+class="slide level2">
+<h2>Control of the Simple Pendulum - Part II</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="figs/PendulumFD3.jpg" class="plain block-center"
+style="width:80.0%" /></p>
+</div><div class="column" style="width:40%;">
+<p><span class="h2">Controller candidate</span></p>
+<p><span class="math display">\[\begin{align*}
+  C(s) &amp;= K \frac{(s+z_1)(s+z_2)}{s \, (s+p_1)}
+\end{align*}\]</span></p>
+<p>with</p>
+<p><span class="math display">\[\begin{align}
+  p_1 &gt; z_2 \geq z_1
+\end{align}\]</span></p>
+<h3 id="from-c_6-1">From <span class="math inline">\(C_6\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+  p_1 &amp;= 21, &amp; K &amp;= 3.83 \\
+  z_2 &amp;= 6.86, &amp;
+  z_1 &amp;= 0.96
+\end{align*}\]</span></p>
+<h3 id="margins-1">Margins</h3>
+<p><span class="math display">\[\begin{align*}
+  G_M &amp;\approx 0.63 \approx -4 \text{dB}, &amp;
+  \phi_M &amp;\approx 23^\circ \\
+  S_M &amp;= 0.40
+\end{align*}\]</span></p>
+</div>
+</div>
+</section>
+<section id="control-of-the-simple-pendulum---part-ii-5"
+class="slide level2">
+<h2>Control of the Simple Pendulum - Part II</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="figs/PendulumFD4.jpg" class="plain"
+style="width:100.0%" /></p>
+<p><img data-src="figs/PendulumFD5.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:40%;">
+<p><span class="h2">Controller candidate</span></p>
+<p><span class="math display">\[\begin{align*}
+  C(s) &amp;= K \frac{(s+z_1)(s+z_2)}{s \, (s+p_1)}
+\end{align*}\]</span></p>
+<p>with</p>
+<p><span class="math display">\[\begin{align}
+  p_1 &gt; z_2 \geq z_1
+\end{align}\]</span></p>
+<h3 id="from-c_7">From <span class="math inline">\(C_7\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+  p_1 &amp;= 11, &amp; K &amp;= 3 \\
+  z_2 &amp;= 5, &amp;
+  z_1 &amp;= 1
+\end{align*}\]</span></p>
+<h3 id="margins-2">Margins</h3>
+<p><span class="math display">\[\begin{align*}
+  G_M &amp;\approx 0.55 \approx -5.2 \text{dB}, &amp;
+  \phi_M &amp;\approx 15^\circ \\
+  S_M &amp;= 0.27
+\end{align*}\]</span></p>
+</div>
+</div>
+</section>
+<section id="control-of-the-simple-pendulum---part-ii-6"
+class="slide level2">
+<h2>Control of the Simple Pendulum - Part II</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="controller-c_6">Controller <span
+class="math inline">\(C_6\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+  C_6(s) &amp;= 3.83 \frac{(s+0.96)(s+6.86)}{s \, (s+21)}
+\end{align*}\]</span></p>
+</div><div class="column" style="width:40%;">
+<h3 id="controller-c_7">Controller <span
+class="math inline">\(C_7\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+  C_7(s) &amp;= 3 \frac{(s+1)(s+5)}{s \, (s+11)}
+\end{align*}\]</span></p>
+</div>
+</div>
+<p><img data-src="figs/PendulumFD12.jpg" class="plain block-center"
+style="width:70.0%" /></p>
+</section>
+<section id="control-of-the-simple-pendulum---part-ii-7"
+class="slide level2">
+<h2>Control of the Simple Pendulum - Part II</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="figs/PendulumFD1.jpg" class="plain"
+style="width:100.0%" /></p>
+<p><img data-src="figs/PendulumFD2.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:40%;">
+<p><span class="h2">Nyquist analysis</span></p>
+<p><span class="math display">\[\begin{align*}
+  L_0 &amp;= \frac{G_0}{s} \approx \frac{1.36}{s \, (1 + j{s}/{7})(1 -
+j{s}/{7})} \\
+  Z_\Gamma &amp;= P_\Gamma - \frac{1}{2 \pi} \Delta_\Gamma^{-1} \arg
+L_\pi(s) \\
+  &amp;= 0 - (-2) = 2
+\end{align*}\]</span></p>
+<p><img data-src="b8d31eaf964d16d60e926e62f2f67117e6c93829.jpg"
+class="tikz plain block-center" style="width:75%" /></p>
+</div>
+</div>
+</section>
+<section id="control-of-the-simple-pendulum---part-ii-8"
+class="slide level2">
+<h2>Control of the Simple Pendulum - Part II</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="figs/PendulumFD1.jpg" class="plain"
+style="width:100.0%" /></p>
+<p><img data-src="figs/PendulumFD2.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:40%;">
+<p><span class="h2">Stability analysis</span></p>
+<p>Because <span class="math inline">\(P_\Gamma = 0\)</span>, <span
+class="math inline">\(L_0(j \omega)\)</span> needs</p>
+<ul>
+<li>no encirclements</li>
+<li>to not cross negative real axis</li>
+</ul>
+<p>If more than <span class="math inline">\(90^\circ\)</span> phase is
+added to <span class="math inline">\(L_0(j\omega)\)</span> there will be
+no crossing of the negative real axis nor encirclements. Controller must
+have</p>
+<ul>
+<li>at least two stable zeros</li>
+<li>at least one pole for realizability<br />
+(in addition to the integrator)</li>
+</ul>
+<h3 id="same-specs-as-for-l_pi">Same specs as for <span
+class="math inline">\(L_\pi\)</span>!</h3>
+</div>
+</div>
+</section>
+<section id="control-of-the-simple-pendulum---part-ii-9"
+class="slide level2">
+<h2>Control of the Simple Pendulum - Part II</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="figs/PendulumFD6.jpg" class="plain"
+style="width:100.0%" /></p>
+<p><img data-src="figs/PendulumFD7.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:40%;">
+<h3 id="controller-c_7-1">Controller <span
+class="math inline">\(C_7\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+  C_7(s) &amp;= 3 \frac{(s+1)(s+5)}{s \, (s+11)}
+\end{align*}\]</span></p>
+<p><img data-src="figs/PendulumFD8.jpg" class="plain"
+style="width:90.0%" /></p>
+</div>
+</div>
+</section></section>
+<section id="learn-more" class="title-slide slide level1">
+<h1>Learn more</h1>
+<ul>
+<li><a
+href="https://linearcontrol.info/fundamentals/index.php/tag/chapter-7/">Book
+website</a></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js"></script>
+  <script src="reveal.js/plugin/search/search.js"></script>
+  <script src="reveal.js/plugin/zoom/zoom.js"></script>
+  <script src="reveal.js/plugin/math/math.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

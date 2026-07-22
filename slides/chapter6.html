@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Maurício C. de Oliveira">
+  <title>Fundamentals of Linear Control:   A Concise Approach</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="reveal.js/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="reveal.js/dist/theme/fundamentals.css"/>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Fundamentals of Linear Control: <br/> <small>A
+Concise Approach</small></h1>
+  <p class="author">Maurício C. de Oliveira</p>
+  <p class="date"><strong>Chapter 6: Controller Design</strong>
+<br/><br/> <a
+href="https://linearcontrol.info/fundamentals">linearcontrol.info/fundamentals</a></p>
+</section>
+
+<section>
+<section id="second-order-systems" class="title-slide slide level1">
+<h1>6.1 Second-Order Systems</h1>
+<p><span class="h2">Characteristic equation</span></p>
+<p><span class="math display">\[\begin{align}
+  s^2 + 2 \, \zeta \, \omega_n s + \omega_n^2 &amp;= 0, \qquad \omega_n
+&gt; 0,
+\end{align}\]</span></p>
+<ul>
+<li><span class="math inline">\(\zeta\)</span>: damping ratio</li>
+<li><span class="math inline">\(\omega_n\)</span>: natural
+frequency</li>
+</ul>
+<p><span class="h3">Roots</span></p>
+<p><span class="math display">\[\begin{align*}
+  s^2 + 2 \, \zeta \, \omega_n s &amp;+ \omega_n^2 = (s - s_1)(s - s_2),
+&amp;
+  s_1 &amp;= - \omega_n (\zeta + \sqrt{\zeta^2 - 1}), &amp;
+  s_2 &amp;= - \omega_n (\zeta - \sqrt{\zeta^2 - 1})
+\end{align*}\]</span></p>
+<p><span class="h4">Real roots</span></p>
+<p><span class="math inline">\(|\zeta| \geq 1\)</span></p>
+<p><span class="h4">Complex roots</span></p>
+<p><span class="math inline">\(|\zeta| &lt; 1\)</span></p>
+</section>
+<section id="second-order-systems-1" class="slide level2">
+<h2>Second-Order Systems</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<h3 id="real-roots-zeta-geq-1">real roots, <span
+class="math inline">\(|\zeta| \geq 1\)</span></h3>
+<p><img data-src="effada6af2413747ce81114a14560a784dcebc37.jpg"
+class="tikz plain" style="width:100%" /></p>
+</div><div class="column" style="width:50%;">
+<h3 id="complex-roots-zeta-1">complex roots, <span
+class="math inline">\(|\zeta| &lt; 1\)</span></h3>
+<p><img data-src="e45e79b0228cfa847ce55733893ee14386dd288a.jpg"
+class="tikz plain" style="width:50%" /></p>
+</div>
+</div>
+<h3 id="roots">Roots</h3>
+<p><span class="math display">\[\begin{align}
+  s &amp;= - \omega_n (\zeta \pm \sqrt{\zeta^2 - 1}), &amp;
+  \omega_d &amp;= \omega_n \sqrt{1 - \zeta^2}, &amp;
+  \phi_d &amp;= \sin^{-1} \frac{\zeta \omega_n}{\omega_n} =
+    \tan^{-1} \frac{\zeta \, \omega_n}{\omega_d} = \sin^{-1}\zeta
+\end{align}\]</span></p>
+<h4 id="asymptotic-stability">Asymptotic stability</h4>
+<p><span class="math inline">\(\zeta &gt; 0\)</span></p>
+</section>
+<section id="second-order-systems-2" class="slide level2">
+<h2>Second-Order Systems</h2>
+<p><img data-src="0c485b290e38c9728223aa53c9e678283acd9692.jpg"
+class="tikz plain" style="width:50%" /></p>
+<h3 id="step-response">Step response</h3>
+<p><span class="math display">\[\begin{align*}
+  G(s) &amp;= \frac{\omega_n^2}{s^2 + 2 \zeta \omega_n s + \omega_n^2},
+&amp;
+  y(t) = 1 - \frac{1}{\sqrt{1 - \zeta^2}} e^{- \zeta \omega_n t} \sin(
+  \omega_d t + \pi/2 - \phi_d), \quad t \geq 0
+\end{align*}\]</span></p>
+</section>
+<section id="second-order-systems-3" class="slide level2">
+<h2>Second-Order Systems</h2>
+<h3 id="step-response-1">Step response</h3>
+<p><img data-src="2f5f89e52c13354fd00ed46192e0a54957df4454.jpg"
+class="tikz plain" style="width:60%" /></p>
+<h3 id="time-constant-and-rise-time">Time-constant and Rise-time</h3>
+<p><span class="math display">\[\begin{align*}
+  \frac{t_r}{t_n} &amp;\approx 0.16 + 0.14 \, \zeta + 0.24 \, \zeta^3,
+&amp;
+  \frac{\tau}{t_n} &amp;\approx 0.19 + 0.1 \, \zeta + 0.054 \, \zeta^3,
+&amp;
+  t_n &amp;= \frac{2 \pi}{\omega_n}
+\end{align*}\]</span></p>
+</section>
+<section id="second-order-systems-4" class="slide level2">
+<h2>Second-Order Systems</h2>
+<h3 id="step-response-2">Step response</h3>
+<p><img data-src="2f5f89e52c13354fd00ed46192e0a54957df4454.jpg"
+class="tikz plain" style="width:60%" /></p>
+<h3 id="overshoot-and-settling-time">Overshoot and Settling-time</h3>
+<p><span class="math display">\[\begin{align*}
+  t_p &amp;= \frac{\pi}{\omega_d}, &amp;
+  y_p &amp;= 1 + e^{-\left.{\zeta
+\pi}\middle/{\sqrt{1-\zeta^2}}\right.}, &amp;
+  t_s &amp;= \frac{\log(50)}{\zeta \, \omega_n} \approx \frac{3.9}{\zeta
+    \, \omega_n}
+\end{align*}\]</span></p>
+</section>
+<section id="example-car-model-with-integral-feedback"
+class="slide level2">
+<h2>Example: car model with integral feedback</h2>
+<h3 id="open-loop">Open-loop</h3>
+<p><span class="math display">\[\begin{align}
+  G(s) &amp;= \frac{\frac{p}{m}}{s + \frac{b}{m}}, &amp;
+  K(s) &amp;= \frac{K_i}{s}
+\end{align}\]</span></p>
+<h3 id="closed-loop">Closed-loop</h3>
+<p><span class="math display">\[\begin{align}
+  H(s) &amp;= \frac{K(s) G(s)}{1 + K(s) G(s)} = \frac{\frac{p}{m}
+K_i}{s^2 +
+    \frac{b}{m} s + \frac{p}{m} K_i}
+\end{align}\]</span></p>
+<h4 id="second-order">Second-order</h4>
+<p><span class="math display">\[\begin{align}
+  \omega_n &amp;= \sqrt{\frac{p}{m} K_i}, &amp;
+  \zeta &amp;= \frac{b/m}{2 \sqrt{(p / m) \, K_i}} = \frac{b}{2 \sqrt{p
+\, m \, K_i}}
+\end{align}\]</span></p>
+</section>
+<section id="example-car-model-with-proportional-integral-feedback"
+class="slide level2">
+<h2>Example: car model with proportional-integral feedback</h2>
+<h3 id="open-loop-1">Open-loop</h3>
+<p><span class="math display">\[\begin{align}
+  G(s) &amp;= \frac{\frac{p}{m}}{s + \frac{b}{m}}, &amp;
+  K(s) &amp;= K_p + \frac{K_i}{s}
+\end{align}\]</span></p>
+<h3 id="closed-loop-1">Closed-loop</h3>
+<p><span class="math display">\[\begin{align}
+  H(s) &amp;= \frac{K(s) G(s)}{1 + K(s) G(s)} = \frac{\frac{p}{m} (K_p s
++ K_i)}{s^2 +
+    (\frac{b}{m} + \frac{p}{m} K_p ) s + \frac{p}{m} K_i}
+\end{align}\]</span></p>
+<h4 id="second-order-1">Second-order</h4>
+<p><span class="math display">\[\begin{align}
+  \omega_n &amp;= \sqrt{\frac{p}{m} K_i}, &amp;
+  \zeta &amp;= \frac{b/m + p/m K_p}{2 \sqrt{(p / m) \, K_i}} = \frac{b +
+p K_p}{2 \sqrt{p \, m \, K_i}}
+\end{align}\]</span></p>
+</section>
+<section id="example-simple-pendulum" class="slide level2">
+<h2>Example: simple pendulum</h2>
+<h3 id="open-loop-stable-equilibrium">Open-loop (stable
+equilibrium)</h3>
+<p><span class="math display">\[\begin{align*}
+  G_0(s) &amp;= \frac{1/J_r}{s^2 + (b/J_r) s + m \, g \, r / J_r}
+\end{align*}\]</span></p>
+<h4 id="second-order-2">Second-order</h4>
+<p><span class="math display">\[\begin{align*}
+  \omega_{n_\mathrm{ol}} &amp;= \sqrt{\frac{m g r}{J_r}}, &amp;
+\zeta_{\mathrm{ol}} &amp;= \frac{b}{2\sqrt{J_r m g r}}
+\end{align*}\]</span></p>
+<h3 id="open-loop-unstable-equilibrium">Open-loop (unstable
+equilibrium)</h3>
+<p><span class="math display">\[\begin{align*}
+  G_\pi(s) &amp;= \frac{1/J_r}{s^2 + (b/J_r) s - m \, g \, r / J_r}
+\end{align*}\]</span></p>
+</section>
+<section id="example-simple-pendulum-1" class="slide level2">
+<h2>Example: simple pendulum</h2>
+<h3 id="open-loop-2">Open-loop</h3>
+<p><span class="math display">\[\begin{align*}
+  G_\pi(s) &amp;= \frac{1}{J_r s^2 + b s - m \, g \, r}
+\end{align*}\]</span></p>
+<h3 id="proportional-feedback-unstable-equilibrium">Proportional
+feedback (unstable equilibrium)</h3>
+<p><span class="math display">\[\begin{align*}
+  H_\pi(s) = \frac{K G_\pi(s)}{1 + K G_\pi(s)} &amp;= \frac{K}{J_r s^2 +
+b s + K - m \, g \, r}, \\
+  \omega_{n_\pi} &amp;= \sqrt{\frac{K - m \, g \, r}{J_r}}, \qquad
+  \zeta_\pi = \frac{b}{2 \sqrt{J_r (K - m \, g \, r)}}
+\end{align*}\]</span></p>
+<h4 id="closed-loop-stability">Closed-loop stability</h4>
+<p><span class="math inline">\(K &gt; m g r\)</span>, for example <span
+class="math display">\[\begin{align*}
+  K &amp;= 3 m g r &amp;
+  &amp; \implies &amp;
+  \omega_{n_\pi} &amp;= \sqrt{2} \, \omega_{n_\mathrm{ol}}, &amp;
+  \zeta_\pi &amp;= \frac{1}{\sqrt{2}} \zeta_\mathrm{ol}
+\end{align*}\]</span></p>
+</section>
+<section id="example-simple-pendulum-2" class="slide level2">
+<h2>Example: simple pendulum</h2>
+<h3 id="open-loop-3">Open-loop</h3>
+<p><span class="math display">\[\begin{align*}
+  G_0(s) &amp;= \frac{1}{J_r s^2 + b s + m \, g \, r}, &amp;
+\omega_{n_\mathrm{ol}} &amp;= \sqrt{\frac{m g r}{J_r}}, &amp;
+\zeta_{\mathrm{ol}} &amp;= \frac{b}{2\sqrt{J_r m g r}}
+\end{align*}\]</span></p>
+<h3 id="proportional-feedback-stable-equilibrium">Proportional feedback
+(stable equilibrium)</h3>
+<p><span class="math display">\[\begin{align*}
+  H_0(s) = \frac{K G_0(s)}{1 + K G_0(s)} &amp;= \frac{K}{J_r s^2 + b s +
+K + m \, g \, r}, \\
+  \omega_{n_0} &amp;= \sqrt{\frac{K + m \, g \, r}{J_r}}, \qquad
+  \zeta_0 = \frac{b}{2 \sqrt{J_r (K + m \, g \, r)}}
+\end{align*}\]</span></p>
+<h4 id="closed-loop-stability-1">Closed-loop stability</h4>
+<p><span class="math inline">\(K &gt; -m g r\)</span>, for example <span
+class="math display">\[\begin{align*}
+  K &amp;= 3 m g r &amp;
+  &amp; \implies &amp;
+  \omega_{n_0} &amp;= 2 \, \omega_{n_\mathrm{ol}}, &amp;
+  \zeta_0 &amp;= \frac{1}{2} \zeta_\mathrm{ol}
+\end{align*}\]</span></p>
+</section></section>
+<section>
+<section id="derivative-action" class="title-slide slide level1">
+<h1>6.2 Derivative Action</h1>
+<p><span class="h2">Example: simple pendulum</span></p>
+<p><span class="math display">\[\begin{align}
+  u(t) &amp;= K_p \left ( \bar{\theta}(t) - \theta(t) \right ) - K_d \,
+  \dot{\theta}(t)
+\end{align}\]</span></p>
+<p><img data-src="1428f91d1370d7af3ae5d6d4be58edea7872863d.jpg"
+class="tikz plain" style="width:60%" /></p>
+</section>
+<section id="proportional-derivative-feedback" class="slide level2">
+<h2>Proportional-derivative feedback</h2>
+<p><span class="math display">\[\begin{align}
+  u(t) &amp;= K_p \left ( \bar{y}(t) - y(t) \right ) - K_d \, \dot{y}(t)
+\end{align}\]</span></p>
+<h3 id="frequency-domain">Frequency-domain</h3>
+<p><span class="math display">\[\begin{align}
+  U(s) &amp;= K_p E(s) - K_d \, s Y(s), &amp;
+  E(s) &amp;= \bar{Y}(s) - Y(s)
+\end{align}\]</span></p>
+<p><img data-src="6879cc70742bc5761df8ba8be11930df3543126e.jpg"
+class="tikz plain" style="width:45%" /></p>
+</section>
+<section id="proportional-derivative-feedback-1" class="slide level2">
+<h2>Proportional-derivative feedback</h2>
+<p><span class="math display">\[\begin{align}
+  u(t) &amp;= K_p \, e(t) + K_d \, \dot{e}(t), &amp;
+  e(t) &amp;= \bar{y}(t) - y(t)
+\end{align}\]</span></p>
+<h3 id="frequency-domain-1">Frequency-domain</h3>
+<p><span class="math display">\[\begin{align}
+  U(s) &amp;= ( K_p + s K_d) E(s), &amp;
+  E(s) &amp;= \bar{Y}(s) - Y(s)
+\end{align}\]</span></p>
+<p><img data-src="7a11aef0cecf640361d52fab50c1cf5903b47cda.jpg"
+class="tikz plain" style="width:45%" /></p>
+<ul>
+<li>Same if <span class="math inline">\(\bar{y}\)</span> is
+constant!</li>
+<li>If not, extra zero</li>
+</ul>
+</section>
+<section id="example-simple-pendulum-3" class="slide level2">
+<h2>Example: simple pendulum</h2>
+<h3 id="unstable-equilibrium">Unstable equilibrium</h3>
+<p><span class="math display">\[\begin{align*}
+  H_\pi(s) = \frac{(K_p + K_d s) G_\pi(s)}{1 + (K_p + s
+    K_d) G_\pi(s)} &amp;= \frac{K_p + K_d s}{J_r s^2 + (K_d + b)
+    s + (K_p - m \, g \, r)}, \\
+  \omega_{n_\pi} &amp;= \sqrt{\frac{K_p - m \, g \, r}{J_r}}, \qquad
+  \zeta_\pi = \frac{K_d + b}{2 \sqrt{J_r (K_p - m \, g \, r)}}
+\end{align*}\]</span></p>
+<ul>
+<li><p>Choose <span class="math inline">\(K_p\)</span> to set desired
+natural frequency, e.g. <span class="math display">\[\begin{align*}
+K &amp;= 3 m g r &amp;
+&amp; \implies &amp;
+\omega_{n_\pi} &amp;= \sqrt{2} \, \omega_{n_\mathrm{ol}}
+\end{align*}\]</span></p></li>
+<li><p>Choose <span class="math inline">\(K_d\)</span> to set desired
+damping ratio, e.g. <span class="math inline">\(\zeta_\pi =
+\frac{\sqrt{2}}{2} \approx 0.7\)</span> <span
+class="math display">\[\begin{align*}
+K_d &amp;= 2 \, \zeta_\pi \sqrt{J_r (K_p - m \, g \, r)} - b = 2
+\sqrt{J_r m \, g \, r} - b
+\end{align*}\]</span></p></li>
+<li><p>Similarly around stable equilibrium</p></li>
+</ul>
+</section></section>
+<section>
+<section id="proportional-integral-derivative-control"
+class="title-slide slide level1">
+<h1>6.3 Proportional-Integral-Derivative Control</h1>
+<p><span class="h2">Proportional-integral-derivative feedback</span></p>
+<p><span class="math display">\[\begin{align}
+  u(t) &amp;= K_p \, e(t) + K_d \, \dot{e}(t) + K_i \int_{0}^{t}
+  e(\tau)\, d \tau, &amp;
+  e(t) &amp;= \bar{y}(t) - y(t)
+\end{align}\]</span></p>
+<p><span class="h3">Frequency-domain</span></p>
+<p><span class="math display">\[\begin{align}
+  U(s) &amp;= \left ( K_p + K_d \, s + K_i s^{-1} \right ) E(s) =
+\frac{K_d \, s^2+ K_p \, s + K_i}{s} E(s), &amp;
+  E(s) &amp;= \bar{Y}(s) - Y(s)
+\end{align}\]</span></p>
+<p><img data-src="b0d56c044ccf066a53f4a60443707e7e6e83763d.jpg"
+class="tikz plain" style="width:50%" /></p>
+<ul>
+<li>integral action: asymptotic tracking of constant reference</li>
+<li>derivative action: better “damping”</li>
+<li>Extensive literature on properties of PID control</li>
+</ul>
+</section>
+<section id="proportional-integral-derivative-feedback"
+class="slide level2">
+<h2>Proportional-integral-derivative feedback</h2>
+<p><span class="math display">\[\begin{align}
+  u(t) &amp;= K_p \, e(t) + K_d \, \dot{e}(t) + K_i \int_{0}^{t}
+  e(\tau)\, d \tau, &amp;
+  e(t) &amp;= \bar{y}(t) - y(t)
+\end{align}\]</span></p>
+<h3 id="frequency-domain-2">Frequency-domain</h3>
+<p><span class="math display">\[\begin{align}
+  U(s) &amp;= \left ( K_p + K_d \, s + K_i s^{-1} \right ) E(s) =
+\frac{K_d \, s^2+ K_p \, s + K_i}{s} E(s), &amp;
+  E(s) &amp;= \bar{Y}(s) - Y(s)
+\end{align}\]</span></p>
+<p><img data-src="b0d56c044ccf066a53f4a60443707e7e6e83763d.jpg"
+class="tikz plain" style="width:50%" /></p>
+<ul>
+<li>Transfer-function is not proper: not realizable!</li>
+<li>If <span class="math inline">\(G\)</span> is second-order then
+closed-loop transfer-functions are third-order</li>
+<li>Calculation of the characteristic roots is <em>already</em> too
+complicated</li>
+</ul>
+</section></section>
+<section>
+<section id="root-locus" class="title-slide slide level1">
+<h1>6.4 Root-Locus</h1>
+<p><span class="h2">The basic idea</span></p>
+<ul>
+<li>Can we quickly <em>sketch</em> the location of the closed-loop poles
+without calculating them?</li>
+<li>Root <em>locus</em> <span class="math inline">\(=\)</span> location
+of the roots</li>
+<li>Set of simple rules for sketching the root-locus of the feedback
+system</li>
+</ul>
+<p><img data-src="06358f648783da1b1a66de4ce4280760f310a427.jpg"
+class="tikz plain" style="width:17%" /></p>
+<p><span class="math inline">\(\hspace{0.8ex}\)</span> as a function of
+<span class="math inline">\(\alpha &gt; 0\)</span></p>
+<ul>
+<li>Make your feedback system look like it and apply the rules</li>
+<li><span class="math inline">\(L\)</span> is the <em>loop
+transfer-function</em></li>
+</ul>
+</section>
+<section id="feedback-diagram-for-root-locus" class="slide level2">
+<h2>Feedback diagram for root-locus</h2>
+<p><img data-src="06358f648783da1b1a66de4ce4280760f310a427.jpg"
+class="tikz plain" style="width:17%" /></p>
+<h3 id="example">Example</h3>
+<p><img data-src="6f1f7393077c14b369d0d9b8319169eedf809ab8.jpg"
+class="tikz plain" style="width:45%" /></p>
+<h3 id="closed-loop-poles">Closed-loop poles</h3>
+<p><span class="math display">\[\begin{align*}
+  1 + \alpha L(s) &amp;= 0, &amp;
+  K(s) &amp;= \alpha C(s), &amp;
+  L(s) &amp;= C(s) G(s)
+\end{align*}\]</span></p>
+</section>
+<section id="root-locus-rules" class="slide level2">
+<h2>Root-locus rules</h2>
+<h3 id="key-observation">Key observation</h3>
+<p><span class="math display">\[\begin{align}
+  \label{eq:rlcrossing}
+  L(s) &amp;= - \frac{1}{\alpha} &lt; 0 &amp;
+  &amp; \implies &amp;
+  \angle L(s) &amp;= \pi
+\end{align}\]</span></p>
+<h3 id="rational-loop-transfer-function">Rational loop
+transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  L &amp;= \beta \frac{N_L}{D_L} = \frac{\beta \, (s - z_1)(s -
+z_2)\cdots(s - z_m)}{(s - p_1)(s - p_2)\cdots(s - p_n)}
+\end{align*}\]</span> then <span class="math display">\[\begin{align*}
+  \angle L = \angle \beta + \angle N_L - \angle D_L = \angle \beta +
+  \sum_{i = 1}^{m} \angle (s - z_i) - \sum_{k = 1}^{n} \angle (s -
+  p_k)
+\end{align*}\]</span></p>
+</section>
+<section id="root-locus-rules-1" class="slide level2">
+<h2>Root-locus rules</h2>
+<h3 id="phase-can-be-calculated-graphically">Phase can be calculated
+graphically</h3>
+<p><span class="math display">\[\begin{align*}
+  \angle L(s_0) &amp;= \angle \beta + \sum_{i = 1}^{m} \angle (s_0 -
+z_i) - \sum_{k = 1}^{n} \angle (s_0 - p_k) \\
+  &amp;= \angle \beta + \psi_1 - \theta_1 - \theta_2 - \theta_3
+\end{align*}\]</span></p>
+<p><img data-src="fd6173bc9ba3c800c0c9809df7586db5c9809f37.jpg"
+class="tikz plain" style="width:35%" /></p>
+</section>
+<section id="root-locus-rules-2" class="slide level2">
+<h2>Root-locus rules</h2>
+<h3 id="assumption">Assumption</h3>
+<p><span class="math inline">\(L\)</span> rational and strictly proper
+with real coefficients</p>
+<h3 id="rules">Rules</h3>
+<ul>
+<li>Root-locus is a set of <span class="math inline">\(n\)</span>
+continuous curves</li>
+<li>The curves:
+<ul>
+<li><p>begin at the poles of <span class="math inline">\(L\)</span>
+<span class="math display">\[\begin{align*}
+\lim_{\alpha \rightarrow 0} D_L(s) \left ( 1 + \alpha
+L(s) \right ) &amp;= \lim_{\alpha \rightarrow 0} D_L(s) +
+\alpha \beta N_L(s) = D_L(s)
+\end{align*}\]</span></p></li>
+<li><p>end at the zeros of <span class="math inline">\(L\)</span> <span
+class="math display">\[\begin{align*}
+\lim_{\alpha \rightarrow \infty} \alpha^{-1} D_L(s) \left ( 1 +
+\alpha L(s) \right ) &amp;= \lim_{\alpha \rightarrow
+   \infty} \alpha^{-1} D_L(s) + \beta N_L(s) = \beta N_L(s)
+\end{align*}\]</span></p></li>
+</ul></li>
+<li><span class="math inline">\(n - m \geq 1\)</span> curves go to
+infinity</li>
+</ul>
+</section>
+<section id="root-locus-rules-3" class="slide level2">
+<h2>Root-locus rules</h2>
+<h3 id="assumption-1">Assumption</h3>
+<p><span class="math inline">\(L\)</span> rational and strictly proper
+with real coefficients and <span class="math inline">\(\beta &gt;
+0\)</span></p>
+<h3 id="rule">Rule</h3>
+<ul>
+<li><span class="math inline">\(s \in \mathbb{R}\)</span> is in the
+root-locus iff <span class="math inline">\(L\)</span> has an odd number
+of poles and zeros with real part greater than or equal to <span
+class="math inline">\(s\)</span></li>
+</ul>
+<h3 id="example-complex-locus-not-shown">Example (complex locus not
+shown)</h3>
+<p><img data-src="aff47a9cfd50c8dbea979b0191daf0eb6e3b6be4.jpg"
+class="tikz plain" style="width:40%" /></p>
+<ul>
+<li>What would the <span class="math inline">\(\beta &lt; 0\)</span>
+version be?</li>
+</ul>
+</section>
+<section id="root-locus-rules-4" class="slide level2">
+<h2>Root-locus rules</h2>
+<h3 id="assumption-2">Assumption</h3>
+<p><span class="math inline">\(L\)</span> rational and strictly proper
+with real coefficients and <span class="math inline">\(\beta &gt;
+0\)</span></p>
+<h3 id="rule-1">Rule</h3>
+<ul>
+<li><span class="math inline">\(s \in \mathbb{R}\)</span> is in the
+root-locus iff <span class="math inline">\(L\)</span> has an odd number
+of poles and zeros with real part greater than or equal to <span
+class="math inline">\(s\)</span></li>
+</ul>
+<h3 id="example-car-model-under-proportional-feedback">Example: car
+model under proportional feedback</h3>
+<p><span class="math display">\[\begin{align*}
+    \alpha &amp;= K_p, &amp;
+    L(s) &amp;= \frac{\frac{p}{m}}{s + \frac{b}{m}} = \frac{3.7}{s +
+0.05}
+\end{align*}\]</span></p>
+<p><img data-src="figs/CarDynamicRootLocus1.jpg" class="plain"
+style="width:60.0%" /></p>
+</section>
+<section id="root-locus-rules-5" class="slide level2">
+<h2>Root-locus rules</h2>
+<h3 id="assumption-3">Assumption</h3>
+<p><span class="math inline">\(L\)</span> rational and strictly proper
+with real coefficients</p>
+<h3 id="rule-2">Rule</h3>
+<ul>
+<li>If <span class="math inline">\(n &gt; m + 1\)</span>, then <span
+class="math inline">\(n - m\)</span> roots converge to <span
+class="math inline">\(n - m\)</span> straight-line asymptotes
+intersecting at: <span class="math display">\[\begin{align*}
+c &amp;= \frac{\sum_{k=1}^{n} p_k - \sum_{i=1}^{m}  z_i}{n - m} \in
+\mathbb{R}
+\end{align*}\]</span></li>
+<li>If <span class="math inline">\(\beta &gt; 0\)</span>, the asymptotes
+intersect the real axis at angles <span
+class="math display">\[\begin{align*}
+\phi_k &amp;= \frac{\pi + k \, 2 \pi}{n - m}, \quad k = 0, \cdots, n-m-1
+\end{align*}\]</span></li>
+</ul>
+</section>
+<section id="root-locus-rules-6" class="slide level2">
+<h2>Root-locus rules</h2>
+<h3 id="example-car-model-under-integral-feedback">Example: car model
+under integral feedback</h3>
+<p><span class="math display">\[\begin{align*}
+  \alpha &amp;= K_i, &amp;
+  L(s) &amp;= G(s) \, C(s) = \frac{3.7}{s (s + 0.05)}
+\end{align*}\]</span></p>
+<h4 id="asymptotes">Asymptotes</h4>
+<p><span class="math display">\[\begin{align*}
+  c &amp;= \frac{-0.05 + 0}{2} = -0.025, &amp; \phi_1 &amp;=
+\frac{\pi}{2}, &amp; \phi_2 &amp;= \frac{3\pi}{2}
+\end{align*}\]</span></p>
+<p><img data-src="figs/CarDynamicRootLocus2.jpg" class="plain"
+style="width:60.0%" /></p>
+</section>
+<section id="root-locus-rules-7" class="slide level2">
+<h2>Root-locus rules</h2>
+<h3 id="example-model-with-three-poles-and-one-zero">Example: model with
+three poles and one zero</h3>
+<p><span class="math display">\[\begin{align*}
+  p_1 &amp;= a, &amp;
+  p_2 &amp;= - a + j b, &amp;
+  p_2 &amp;= - a - j b, &amp;
+  z_1 &amp;= - a
+\end{align*}\]</span></p>
+<h4 id="asymptotes-1">2 asymptotes</h4>
+<p><span class="math display">\[\begin{align*}
+  c &amp;= \frac{(-a - j b) + (-a + j b) + (a) - (-a)}{3 - 1} = 0, &amp;
+  \phi_1 &amp;= \frac{\pi}{2}, &amp; \phi_2 &amp;= \frac{3\pi}{2}
+\end{align*}\]</span></p>
+<h4 id="possible-root-loci">Possible root-loci</h4>
+<p><img data-src="f3d724490f7c717f8b2ca2ef2b23810ea381392d.jpg"
+class="tikz plain" style="width:60%" /></p>
+</section>
+<section id="root-locus-rules-8" class="slide level2">
+<h2>Root-locus rules</h2>
+<h3 id="example-car-model-under-proportional-integral-feedback">Example:
+car model under proportional-integral feedback</h3>
+<p><span class="math display">\[\begin{align*}
+  G &amp;= \frac{\frac{p}{m}}{s + \frac{b}{m}} = \frac{3.7}{s +
+    0.05}, &amp;
+  K(s) &amp;= K_p + \frac{K_i}{s} = K_p \frac{s + K_i/K_p}{s}
+\end{align*}\]</span></p>
+<h4 id="loop-transfer-function">Loop transfer-function</h4>
+<p><span class="math display">\[\begin{align*}
+  \alpha &amp;= K_p, &amp; L &amp;= G \, C = \frac{3.7 \left (s +
+{K_i}/{K_p} \right )}{s \, (s + 0.05)}
+\end{align*}\]</span></p>
+<h4 id="choice-of-controller-zero">Choice of controller zero</h4>
+<p><span class="math display">\[\begin{align*}
+\frac{K_i}{K_p}= \gamma \frac{b}{m} = \gamma \, 0.05
+\end{align*}\]</span></p>
+<ul>
+<li><span class="math inline">\(\gamma = 1\)</span> is a pole-zero
+cancellation</li>
+</ul>
+</section>
+<section id="root-locus-rules-9" class="slide level2">
+<h2>Root-locus rules</h2>
+<h3
+id="example-car-model-under-proportional-integral-feedback-1">Example:
+car model under proportional-integral feedback</h3>
+<p><img data-src="figs/CarDynamicRootLocus4.jpg" class="plain"
+style="width:50.0%" /></p>
+</section></section>
+<section>
+<section id="control-of-the-simple-pendulum---part-i"
+class="title-slide slide level1">
+<h1>6.5 Control of the Simple Pendulum - Part I</h1>
+<p><img data-src="46cc89fe8a0aca99ce5c577f98ddd17b5aa86a6a.jpg"
+class="tikz plain float-right" style="width:20%" /></p>
+<p><span class="h2">Proportional-derivative feedback</span></p>
+<p><span class="h3">Controller</span></p>
+<p><span class="math display">\[\begin{align*}
+  C_\mathrm{PD}(s) &amp;= K_d \left (s + z \right), &amp; z &amp;=
+\frac{K_p}{K_d}
+\end{align*}\]</span></p>
+<p><span class="h4">Data</span></p>
+<p><span class="math display">\[\begin{align}
+  m &amp;= 0.5 \text{kg}, &amp;
+  \ell &amp;= 0.3 \text{m}, &amp;
+  r &amp;= \ell/2 = 0.15 \text{m} \\
+  b &amp;= 0 \text{kg/s}, &amp;
+  g &amp;= 9.8 \text{m/s}^2, &amp;
+%  J &amp;= \frac{m \ell^2}{3} = 0.015 \text{kg m}^2.
+  J &amp;= \frac{m \ell^2}{12} = 3.75 \times 10^{-3} \text{kg m}^2,
+&amp;
+  J_r &amp;= J + m r^2 = 0.015
+\end{align}\]</span></p>
+<p><span class="h4">Gains</span></p>
+<p><span class="math display">\[\begin{align*}
+  K_d &amp;=3 \, m \, g \, r \approx 0.21, &amp;
+  K_p &amp;=2 \sqrt{J_r m \, g \, r} - b \approx 2.21, &amp;
+  z &amp;\approx 10.5, &amp;
+  C_\mathrm{PD}(s) &amp;\approx 0.21 (s + 10.5)
+\end{align*}\]</span></p>
+</section>
+<section id="proportional-derivative-feedback-2" class="slide level2">
+<h2>Proportional-derivative feedback</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="system-model">System model</h3>
+<p><span class="math display">\[\begin{align*}
+  G_\pi(s) &amp;= \frac{66.7}{(s + 7)(s - 7)}
+\end{align*}\]</span></p>
+<h3 id="controller">Controller</h3>
+<p><span class="math display">\[\begin{align*}
+  K(s) &amp;= C_\mathrm{PD}(s) = K_d (s + z), &amp; z &amp;=
+\frac{K_p}{K_d} &gt; 0
+\end{align*}\]</span></p>
+<h3 id="root-locus-1">Root-locus</h3>
+<p><span class="math display">\[\begin{align*}
+  \alpha &amp;= K_d, &amp;
+  L &amp;= \frac{1}{K_d} G_\pi \, C_\mathrm{PD} = \frac{66.7 (s + z)}{(s
++ 7)(s - 7)}
+\end{align*}\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><span class="math inline">\(\qquad z = 10.5\)</span> <img
+data-src="figs/Pendulum1.jpg" class="plain" style="width:100.0%" /></p>
+</div>
+</div>
+<ul>
+<li>Diamonds: <span class="math inline">\(K_d \approx 0.21 \quad
+\implies \quad  \omega_{n_\pi} = \sqrt{2} \, \omega_{n_\mathrm{ol}}
+\approx 9.90, \quad  \zeta_\pi = {1}/{\sqrt{2}} \approx
+0.71\)</span></li>
+<li>PD controller is not proper, hence not realizable: we need a
+pole</li>
+<li>How about a pole at the origin for some desirable integral
+action?</li>
+</ul>
+</section>
+<section id="proportional-integral-feedback" class="slide level2">
+<h2>Proportional-integral feedback</h2>
+<h3 id="controller-1">Controller</h3>
+<p><span class="math display">\[\begin{align*}
+  K &amp;= K_p \frac{(s + z)}{s}
+\end{align*}\]</span></p>
+<h3 id="root-locus-2">Root-locus</h3>
+<p><span class="math display">\[\begin{align*}
+  \alpha &amp;= K_p, &amp;
+  L &amp;= \frac{66.7 (s + z)}{s (s + 7)(s - 7)}
+\end{align*}\]</span></p>
+<p><img data-src="figs/Pendulum2.jpg" class="plain"
+style="width:50.0%" /></p>
+<ul>
+<li>No <span class="math inline">\(K_p &gt; 0\)</span> can make
+closed-loop stable!</li>
+</ul>
+</section>
+<section id="proportional-derivative-feedback-plus-pole"
+class="slide level2">
+<h2>Proportional-derivative feedback plus pole</h2>
+<h3 id="controller-2">Controller</h3>
+<p><span class="math display">\[\begin{align*}
+  K(s) = K \frac{s + z}{s + p}
+\end{align*}\]</span></p>
+<h3 id="root-locus-3">Root-locus</h3>
+<p><span class="math display">\[\begin{align*}
+  \alpha &amp;= K &amp; L &amp;= \frac{66.7 (s + z)}{(s + 7)(s - 7)(s +
+p)}
+\end{align*}\]</span></p>
+<h4 id="asymptotes-2">2 asymptotes</h4>
+<p><span class="math display">\[\begin{align*}
+  c &amp;= \frac{7 - 7 + (-p) - (-z)}{n - m} =
+  \frac{z - p}{2}, &amp; \phi_1 &amp;= \frac{\pi}{2}, &amp; \phi_2
+&amp;= \frac{3\pi}{2}
+\end{align*}\]</span></p>
+<h4 id="stability">Stability</h4>
+<p>Possible with large <span class="math inline">\(K\)</span> only if
+<span class="math display">\[\begin{align*}
+  c &amp;&lt; 0 &amp;
+  &amp; \implies &amp;
+  p &amp;&gt; z
+\end{align*}\]</span></p>
+</section>
+<section id="proportional-derivative-feedback-plus-pole-1"
+class="slide level2">
+<h2>Proportional-derivative feedback plus pole</h2>
+<h3 id="root-locus-4">Root-locus</h3>
+<p><span class="math display">\[\begin{align*}
+  \alpha &amp;= K &amp; L &amp;= \frac{66.7 (s + z)}{(s + 7)(s - 7)(s +
+p)}
+\end{align*}\]</span></p>
+<h3 id="choice-of-pole">Choice of pole</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="figs/Pendulum3.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><p><span class="math inline">\(p = 8 z \gg z \approx
+10.5\)</span></p></li>
+<li><p>Root-locus near origin is mostly unaffected</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="proportional-derivative-feedback-plus-pole-2"
+class="slide level2">
+<h2>Proportional-derivative feedback plus pole</h2>
+<h3 id="root-locus-5">Root-locus</h3>
+<p><span class="math display">\[\begin{align*}
+  \alpha &amp;= K &amp; L &amp;= \frac{66.7 (s + z)}{(s + 7)(s - 7)(s +
+p)}
+\end{align*}\]</span></p>
+<h3 id="choice-of-pole-1">Choice of pole</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="figs/Pendulum4.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><span class="math inline">\(p = 2 z &gt; z \approx
+10.5\)</span></li>
+<li>Asymptote interferes with root-locus near the origin</li>
+<li>Low damping</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="proportional-derivative-feedback-plus-pole-3"
+class="slide level2">
+<h2>Proportional-derivative feedback plus pole</h2>
+<h3 id="root-locus-6">Root-locus</h3>
+<p><span class="math display">\[\begin{align*}
+  \alpha &amp;= K &amp; L &amp;= \frac{66.7 (s + z)}{(s + 7)(s - 7)(s +
+p)}
+\end{align*}\]</span></p>
+<h3 id="choice-of-pole-and-adjustment-of-zero">Choice of pole and
+adjustment of zero</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="figs/Pendulum5.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><span class="math inline">\(p = 2 z &gt; \tilde{z} \approx
+7.5\)</span></li>
+<li>Adjusting zero improves damping</li>
+<li>Final controller <span class="math display">\[\begin{align*}
+  C_\mathrm{lead}(s) \approx 3.83 \frac{s + 7.5}{s + 21}
+\end{align*}\]</span></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="can-we-add-integral-action" class="slide level2">
+<h2>Can we add integral action?</h2>
+<p><img data-src="8a5b2f26dd6f0933a25c1a31b9711e7501c92121.jpg"
+class="tikz plain" style="width:50%" /></p>
+<ul>
+<li>Previous attempt failed to stabilize</li>
+<li>Additive approach means that stability is guaranteed for <span
+class="math inline">\(K_i\)</span> small</li>
+<li>Structure of controller <span class="math display">\[\begin{align}
+C(s) = \frac{K_i}{s} + C_\mathrm{lead}(s) &amp;=
+K \frac{s^2 + (z + {K_i}/{K}) s + p {K_i}/{K}}{s \, (s + p)}
+\end{align}\]</span></li>
+<li>What is <span class="math inline">\(L\)</span>?</li>
+</ul>
+</section>
+<section id="can-we-add-integral-action-1" class="slide level2">
+<h2>Can we add integral action?</h2>
+<h3 id="root-locus-analysis">Root-locus analysis</h3>
+<p><img data-src="ad0f6d508813bad272aee33e344ea4c20732068b.jpg"
+class="tikz plain" style="width:50%" /></p>
+<h3 id="loop-transfer-function-1">Loop transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  \alpha &amp;= K_i, &amp;
+  L = - \frac{E}{\tilde{W}} = - s^{-1} \frac{E}{W} = s^{-1} D =
+\frac{s^{-1} G_\pi}{1 + G_\pi \, C_\mathrm{lead}}
+\end{align*}\]</span></p>
+</section>
+<section id="can-we-add-integral-action-2" class="slide level2">
+<h2>Can we add integral action?</h2>
+<h3 id="root-locus-analysis-1">Root-locus analysis</h3>
+<p><span class="math display">\[\begin{align*}
+  \alpha &amp;= K_i, &amp;
+  L = - \frac{E}{\tilde{W}} = - s^{-1} \frac{E}{W} = s^{-1} D =
+\frac{s^{-1} G_\pi}{1 + G_\pi \, C_\mathrm{lead}}
+\end{align*}\]</span></p>
+<h3 id="choice-of-integral-gain">Choice of integral gain</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="figs/Pendulum7.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Diamonds: double real poles, <span class="math inline">\(\omega_n
+\approx 8.7\)</span></li>
+<li>Squares: <span class="math inline">\(\omega_n \approx 9.9\)</span>,
+underdamped poles</li>
+<li>Final controller: <span class="math display">\[\begin{align*}
+  C_\mathrm{6}(s) \approx   3.83 \frac{(s+6.86)(s+0.96)}{s \, (s+21)}
+\end{align*}\]</span></li>
+<li>See book for:
+<ul>
+<li>controller design around the stable equilibrium</li>
+<li>direct root-locus design with integrator</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section></section>
+<section id="learn-more" class="title-slide slide level1">
+<h1>Learn more</h1>
+<ul>
+<li><a
+href="https://linearcontrol.info/fundamentals/index.php/tag/chapter-6/">Book
+website</a></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js"></script>
+  <script src="reveal.js/plugin/search/search.js"></script>
+  <script src="reveal.js/plugin/zoom/zoom.js"></script>
+  <script src="reveal.js/plugin/math/math.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

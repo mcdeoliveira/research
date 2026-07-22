@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Maurício C. de Oliveira">
+  <title>Fundamentals of Linear Control:   A Concise Approach</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="reveal.js/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="reveal.js/dist/theme/fundamentals.css"/>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Fundamentals of Linear Control: <br/> <small>A
+Concise Approach</small></h1>
+  <p class="author">Maurício C. de Oliveira</p>
+  <p class="date"><strong>Chapter 5: State-Space Models and
+Linearization</strong> <br/><br/> <a
+href="https://linearcontrol.info/fundamentals">linearcontrol.info/fundamentals</a></p>
+</section>
+
+<section>
+<section id="realization-of-dynamic-systems"
+class="title-slide slide level1">
+<h1>5.1 Realization of Dynamic Systems</h1>
+<p><span class="h2">Integrators</span></p>
+<div class="columns">
+<div class="column">
+<p><span class="h3">Water tank</span></p>
+<p><span class="math display">\[\begin{align*}
+  y(t) &amp;= \frac{1}{A} \int_{0}^{t} u(\tau) \, d \tau
+\end{align*}\]</span></p>
+<p><strong><em><span class="math inline">\(y\)</span>: water level,
+<span class="math inline">\(u\)</span>: input flow<br />
+<span class="math inline">\(A\)</span>: cross-section
+area</em></strong></p>
+<p><span class="h3">Capacitor</span></p>
+<p><span class="math display">\[\begin{align*}
+  v(t) &amp;= \frac{1}{C} \int_{0}^{t} i(\tau) \, d\tau
+\end{align*}\]</span></p>
+<p><strong><em><span class="math inline">\(v\)</span>: voltage, <span
+class="math inline">\(i\)</span>: input current<br />
+<span class="math inline">\(C\)</span>: capacitance</em></strong></p>
+</div><div class="column">
+<p><span class="h3">Fly-wheel without friction</span></p>
+<p><span class="math display">\[\begin{align*}
+  \omega(t) &amp;= \frac{1}{J} \int_{0}^{t} f(\tau) \, d\tau
+\end{align*}\]</span></p>
+<p><strong><em><span class="math inline">\(\omega\)</span>: angular
+speed, <span class="math inline">\(i\)</span>: input torque<br />
+<span class="math inline">\(J\)</span>: moment of
+inertia</em></strong></p>
+<p><span class="h3">Trapezoidal integration rule</span></p>
+<p><span class="math display">\[\begin{align*}
+  y(k T) - y(k T - T) &amp;= \int_{k T - T}^{k T} u(t) \, dt \\
+  &amp;\approx
+  \frac{T}{2} \left ( u(k T) - u(k T - T) \right )
+\end{align*}\]</span></p>
+<p><strong><em><span class="math inline">\(y\)</span>: integrated
+output, <span class="math inline">\(u\)</span>: input<br />
+<span class="math inline">\(T\)</span>: sampling
+period</em></strong></p>
+</div>
+</div>
+</section>
+<section id="second-order-model" class="slide level2">
+<h2>Second-order model</h2>
+<p><span class="math display">\[\begin{align*}
+  \ddot{y} + a_1 \dot{y} + a_2 \, y &amp;= b_2 u
+\end{align*}\]</span></p>
+<h3 id="isolate-highest-derivative">Isolate highest derivative</h3>
+<p><span class="math display">\[\begin{align*}
+  \ddot{y} &amp;= b_2 u - a_1 \dot{y} - a_2 \, y
+\end{align*}\]</span></p>
+<h3 id="block-diagram">Block-diagram</h3>
+<p><img data-src="01dfecc3ebe7c2987b468413e09f2ac8ebab166d.jpg"
+class="tikz plain" style="width:45%" /></p>
+</section>
+<section id="general-second-order-model" class="slide level2">
+<h2>General second-order model</h2>
+<p><span class="math display">\[\begin{align*}
+  \ddot{y} + a_1 \dot{y} + a_2 \, y &amp;= b_0 \ddot{u} + b_1 \dot{u} +
+b_2 u
+\end{align*}\]</span></p>
+<h3 id="linearity">Linearity</h3>
+<p><span class="math display">\[\begin{align*}
+  \ddot{y} + a_1 \dot{y} + a_2 \, y &amp;= u_0 + u_1 + u_2, &amp;
+  u_0 &amp;= b_0 \ddot{u}, &amp;
+  u_1 &amp;= b_1 \dot{u}, &amp;
+  u_2 &amp;= b_2 u
+\end{align*}\]</span> can be broken down into <span
+class="math display">\[\begin{align*}
+  \ddot{z} + a_1 \dot{z} + a_2 \, z &amp;= u, &amp;
+  y &amp;= b_0 \ddot{z} + b_1 \dot{z} + b_2 z
+\end{align*}\]</span></p>
+<h3 id="block-diagram-1">Block-diagram</h3>
+<p><img data-src="783592980c777fddcc1aa94f9c138f894262f3da.jpg"
+class="tikz plain" style="width:60%" /></p>
+</section>
+<section id="general-second-order-model-1" class="slide level2">
+<h2>General second-order model</h2>
+<p><span class="math display">\[\begin{align*}
+  \ddot{y} + a_1 \dot{y} + a_2 \, y &amp;= b_0 \ddot{u} + b_1 \dot{u} +
+b_2 u
+\end{align*}\]</span></p>
+<h3 id="isolate-highest-derivative-1">Isolate highest derivative</h3>
+<p><span class="math display">\[\begin{align*}
+  \ddot{y} &amp;= b_0 \, \ddot{u} + \left ( b_1 \, \dot{u} - a_1 \,
+  \dot{y} \right ) + \left ( b_2 \, u - a_2 \, y \right )
+\end{align*}\]</span></p>
+<h3 id="integrate-twice">Integrate twice</h3>
+<p><span class="math display">\[\begin{align*}
+  y(t) &amp;= b_0 u(t) + \int_{0}^{t} \left [ b_1 \, u(\tau) - a_1
+    \, y(\tau) + \int_{0}^{\tau} \left ( b_2 \, u(\sigma) -
+    a_2 \, y(\sigma) \right ) \, d\sigma \right ] d\tau
+\end{align*}\]</span></p>
+<h3 id="block-diagram-2">Block-diagram</h3>
+<p><img data-src="f072505436a1b724178667b9225bb918f0381dc3.jpg"
+class="tikz plain" style="width:50%" /></p>
+</section>
+<section id="generalizes-to-higher-order-models" class="slide level2">
+<h2>Generalizes to higher-order models</h2>
+<p><span class="math display">\[\begin{align*}
+  %\label{eq:ode}
+  y^{(n)}(t) + a_1 y^{(n-1)}(t) + \cdots + a_n y(t) =
+  b_0 u^{(m)}(t) + b_1 y^{(m-1)}(t) + \cdots + b_m u(t)
+\end{align*}\]</span></p>
+<p>Must be proper: <span class="math inline">\(m \leq n\)</span></p>
+<h3 id="if-not-proper-needs-differentiator">If not proper, needs
+differentiator</h3>
+<p><span class="math display">\[\begin{align*}
+  y &amp;= \dot{u}
+\end{align*}\]</span></p>
+<p>Impossible to realize!</p>
+</section>
+<section class="slide level2">
+
+<p><span class="h2">Differentiator</span></p>
+<p><span class="math display">\[\begin{align*}
+  u(t) &amp;= \cos(\omega t) &amp;
+  &amp; \implies &amp;
+  y_{ss}(t) &amp;= -|\omega| \sin(\omega t)
+\end{align*}\]</span></p>
+<p>Unbounded amplification at high frequencies!</p>
+<p><span class="h2">Integrators</span></p>
+<p><span class="math display">\[\begin{align*}
+  u(t) &amp;= \cos(\omega t) &amp;
+  &amp; \implies &amp;
+  y_{ss}(t) &amp;= \frac{1}{|\omega|} \sin(\omega t)
+\end{align*}\]</span></p>
+<p>Unbounded storage at low frequencies: can be dealt with in
+closed-loop</p>
+<h3 id="see-book-for-more">See book for more</h3>
+</section></section>
+<section>
+<section id="state-space-models" class="title-slide slide level1">
+<h1>5.2 State-Space Models</h1>
+<p><span class="h2">Controllable Realization</span></p>
+<p><img data-src="783592980c777fddcc1aa94f9c138f894262f3da.jpg"
+class="tikz plain" style="width:50%" /></p>
+<div class="columns">
+<div class="column">
+<p><span class="h3">Integrator output = state</span></p>
+<p><span class="math display">\[\begin{align*}
+  x_1 &amp;= \dot{z}, &amp; x_2 &amp;= z
+\end{align*}\]</span></p>
+</div><div class="column">
+<p><span class="h3">Integrator input = equations</span></p>
+<p><span class="math display">\[\begin{align*}
+  \dot{x}_1 &amp;= u - a_1 x_1 - a_2 x_2, &amp;
+  \dot{x}_2 &amp;= x_1
+\end{align*}\]</span></p>
+</div>
+</div>
+<p><span class="h3">Output</span></p>
+<p><span class="math display">\[\begin{align*}
+  y &amp;= b_0 \dot{x}_1 + b_1 x_1 + b_2 x_2
+\end{align*}\]</span></p>
+</section>
+<section id="controllable-realization" class="slide level2">
+<h2>Controllable Realization</h2>
+<p><img data-src="783592980c777fddcc1aa94f9c138f894262f3da.jpg"
+class="tikz plain" style="width:50%" /></p>
+<div class="columns">
+<div class="column">
+<h3 id="integrator-output-state">Integrator output = state</h3>
+<p><span class="math display">\[\begin{align*}
+  x_1 &amp;= \dot{z}, &amp; x_2 &amp;= z
+\end{align*}\]</span></p>
+</div><div class="column">
+<h3 id="integrator-input-equations">Integrator input = equations</h3>
+<p><span class="math display">\[\begin{align*}
+  \dot{x}_1 &amp;= u - a_1 x_1 - a_2 x_2, &amp;
+  \dot{x}_2 &amp;= x_1
+\end{align*}\]</span></p>
+</div>
+</div>
+<h3 id="output">Output</h3>
+<p><span class="math display">\[\begin{align*}
+  y &amp;= (b_1 - a_1 b_0) x_1 + (b_2 - a_2 b_0) x_2 + b_0 u
+\end{align*}\]</span></p>
+</section>
+<section id="controllable-realization-1" class="slide level2">
+<h2>Controllable Realization</h2>
+<p><img data-src="783592980c777fddcc1aa94f9c138f894262f3da.jpg"
+class="tikz plain" style="width:50%" /></p>
+<div class="columns">
+<div class="column">
+<h3 id="all-equations">All equations</h3>
+<p><span class="math display">\[\begin{align*}
+  \dot{x}_1 &amp;= u - a_1 x_1 - a_2 x_2 \\
+  \dot{x}_2 &amp;= x_1 \\
+  y &amp;= (b_1 - a_1 b_0) x_1 + (b_2 - a_2 b_0) x_2 + b_0 u
+\end{align*}\]</span></p>
+</div><div class="column">
+<h3 id="state-space-form">State-space form</h3>
+<p><span class="math display">\[\begin{align*}
+    \begin{pmatrix}
+      \dot{x}_1 \\
+      \dot{x}_2
+    \end{pmatrix}
+    &amp;=
+    \begin{bmatrix}
+      - a_1 &amp; - a_2 \\
+      1 &amp; 0
+    \end{bmatrix}
+    \begin{pmatrix}
+      x_1 \\
+      x_2
+    \end{pmatrix}
+    +
+    \begin{bmatrix}
+      1 \\ 0
+    \end{bmatrix}
+    u \\
+    y &amp;=
+    \begin{bmatrix}
+      b_1 - a_1 b_0 &amp;
+      b_2 - a_2 b_0
+    \end{bmatrix}
+    \begin{pmatrix}
+      x_1 \\
+      x_2
+    \end{pmatrix}
+    +
+    \begin{bmatrix}
+      b_0
+    \end{bmatrix}
+    u
+  \end{align*}\]</span></p>
+</div>
+</div>
+</section>
+<section id="observable-realization" class="slide level2">
+<h2>Observable Realization</h2>
+<p><img data-src="f072505436a1b724178667b9225bb918f0381dc3.jpg"
+class="tikz plain" style="width:50%" /></p>
+<div class="columns">
+<div class="column">
+<h3 id="integrator-output-state-1">Integrator output = state</h3>
+<p><span class="math display">\[\begin{align*}
+  x_1, \qquad x_2
+\end{align*}\]</span></p>
+</div><div class="column">
+<h3 id="integrator-input-equations-1">Integrator input = equations</h3>
+<p><span class="math display">\[\begin{align*}
+  \dot{x}_1 &amp;= b_1 u - a_1 y + x_2 \\
+  \dot{x}_2 &amp;= b_2 u - a_2 y
+\end{align*}\]</span></p>
+</div>
+</div>
+<h3 id="output-1">Output</h3>
+<p><span class="math display">\[\begin{align*}
+  y &amp;= b_0 u + x_1
+\end{align*}\]</span></p>
+</section>
+<section id="observable-realization-1" class="slide level2">
+<h2>Observable Realization</h2>
+<p><img data-src="f072505436a1b724178667b9225bb918f0381dc3.jpg"
+class="tikz plain" style="width:50%" /></p>
+<div class="columns">
+<div class="column">
+<h3 id="integrator-output-state-2">Integrator output = state</h3>
+<p><span class="math display">\[\begin{align*}
+  x_1, \qquad x_2
+\end{align*}\]</span></p>
+</div><div class="column">
+<h3 id="integrator-input-equations-2">Integrator input = equations</h3>
+<p><span class="math display">\[\begin{align*}
+  \dot{x}_1 &amp;= - a_1 x_1 + x_2 + (b_1 - a_1 b_0) u \\
+  \dot{x}_2 &amp;= - a_2 x_1 + (b_2 - a_2 b_0) u
+\end{align*}\]</span></p>
+</div>
+</div>
+<h3 id="output-2">Output</h3>
+<p><span class="math display">\[\begin{align*}
+  y &amp;= b_0 u + x_1
+\end{align*}\]</span></p>
+</section>
+<section id="observable-realization-2" class="slide level2">
+<h2>Observable Realization</h2>
+<p><img data-src="f072505436a1b724178667b9225bb918f0381dc3.jpg"
+class="tikz plain" style="width:50%" /></p>
+<div class="columns">
+<div class="column">
+<p><span class="h2">All equations</span></p>
+<p><span class="math display">\[\begin{align*}
+  \dot{x}_1 &amp;= - a_1 x_1 + x_2 + (b_1 - a_1 b_0) u \\
+  \dot{x}_2 &amp;= - a_2 x_1 + (b_2 - a_2 b_0) u \\
+  y &amp;= b_0 u + x_1
+\end{align*}\]</span></p>
+</div><div class="column">
+<p><span class="h2">State-space form</span></p>
+<p><span class="math display">\[\begin{align*}
+    \begin{pmatrix}
+      \dot{x}_1 \\
+      \dot{x}_2
+    \end{pmatrix}
+    &amp;=
+    \begin{bmatrix}
+      - a_1 &amp; 1 \\
+      - a_2 &amp; 0
+    \end{bmatrix}
+    \begin{pmatrix}
+      x_1 \\
+      x_2
+    \end{pmatrix}
+    +
+    \begin{bmatrix}
+      b_1 - a_1 b_0 \\
+      b_2 - a_2 b_0
+    \end{bmatrix}
+    u \\
+    y &amp;=
+    \begin{bmatrix}
+      1 &amp; 0
+    \end{bmatrix}
+    \begin{pmatrix}
+      x_1 \\
+      x_2
+    \end{pmatrix}
+    +
+    \begin{bmatrix}
+      b_0
+    \end{bmatrix}
+    u
+  \end{align*}\]</span></p>
+</div>
+</div>
+</section>
+<section id="second-order-model-1" class="slide level2">
+<h2>Second-order model</h2>
+<p><span class="math display">\[\begin{align*}
+  \ddot{y} + a_1 \dot{y} + a_2 \, y &amp;= b_0 \ddot{u} + b_1 \dot{u} +
+b_2 u
+\end{align*}\]</span></p>
+<h3 id="state-space-form-i">State-space form I</h3>
+<p><span class="math display">\[\begin{align*}
+    \begin{pmatrix}
+      \dot{x}_1 \\
+      \dot{x}_2
+    \end{pmatrix}
+    &amp;=
+    \begin{bmatrix}
+      - a_1 &amp; - a_2 \\
+      1 &amp; 0
+    \end{bmatrix}
+    \begin{pmatrix}
+      x_1 \\
+      x_2
+    \end{pmatrix}
+    +
+    \begin{bmatrix}
+      1 \\ 0
+    \end{bmatrix}
+    u \\
+    y &amp;=
+    \begin{bmatrix}
+      b_1 - a_1 b_0 &amp;
+      b_2 - a_2 b_0
+    \end{bmatrix}
+    \begin{pmatrix}
+      x_1 \\
+      x_2
+    \end{pmatrix}
+    +
+    \begin{bmatrix}
+      b_0
+    \end{bmatrix}
+    u
+  \end{align*}\]</span></p>
+<h3 id="state-space-form-ii">State-space form II</h3>
+<p><span class="math display">\[\begin{align*}
+    \begin{pmatrix}
+      \dot{x}_1 \\
+      \dot{x}_2
+    \end{pmatrix}
+    &amp;=
+    \begin{bmatrix}
+      - a_1 &amp; 1 \\
+      - a_2 &amp; 0
+    \end{bmatrix}
+    \begin{pmatrix}
+      x_1 \\
+      x_2
+    \end{pmatrix}
+    +
+    \begin{bmatrix}
+      b_1 - a_1 b_0 \\
+      b_2 - a_2 b_0
+    \end{bmatrix}
+    u \\
+    y &amp;=
+    \begin{bmatrix}
+      1 &amp; 0
+    \end{bmatrix}
+    \begin{pmatrix}
+      x_1 \\
+      x_2
+    \end{pmatrix}
+    +
+    \begin{bmatrix}
+      b_0
+    \end{bmatrix}
+    u
+  \end{align*}\]</span></p>
+</section>
+<section id="state-space-model" class="slide level2">
+<h2>State-space model</h2>
+<p><span class="math display">\[\begin{align*}
+    \dot{x} &amp;= A x + B u \\
+    y &amp;= C x + D u
+\end{align*}\]</span></p>
+<h3 id="siso">SISO:</h3>
+<p><span class="math inline">\(x \in \mathbb{R}^n, u \in \mathbb{R}^1, y
+\in \mathbb{R}^1\)</span></p>
+<h3 id="mimo">MIMO:</h3>
+<p><span class="math inline">\(x \in \mathbb{R}^n, u \in \mathbb{R}^m, y
+\in \mathbb{R}^p\)</span></p>
+<h3 id="frequency-domain">Frequency-domain</h3>
+<p><span class="math display">\[\begin{align*}
+s X(s) - x(0^-) &amp;= A X(s) + B U(s) &amp;
+&amp; \implies &amp;
+X(s) &amp;= (s I - A)^{-1} B U(s) + (s I - A)^{-1} x(0^-)
+\end{align*}\]</span></p>
+<h4 id="output-3">Output</h4>
+<p><span class="math display">\[\begin{align*}
+Y(s) &amp;= G(s) U(s) + F(s) x(0^-)
+\end{align*}\]</span> <span class="math display">\[\begin{align*}
+G(s) &amp;= C (s I - A)^{-1} B + D, &amp;
+F(s) &amp;= C (s I - A)^{-1}
+\end{align*}\]</span></p>
+</section>
+<section id="state-space-model-1" class="slide level2">
+<h2>State-space model</h2>
+<p><span class="math display">\[\begin{align*}
+    \dot{x} &amp;= A x + B u \\
+    y &amp;= C x + D u
+\end{align*}\]</span></p>
+<h3 id="transfer-function">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+G(s) &amp;= C (s I - A)^{-1} B + D
+\end{align*}\]</span></p>
+<h4 id="proper">Proper</h4>
+<p><span class="math display">\[\begin{align*}
+  \lim_{|s| \rightarrow \infty} (s I - A)^{-1} &amp;= 0 &amp;
+  &amp;\implies &amp;
+  \lim_{|s| \rightarrow \infty} G(s) &amp;= D
+\end{align*}\]</span></p>
+<h4 id="characteristic-equation-roots-of">Characteristic equation: roots
+of</h4>
+<p><span class="math display">\[\begin{align*}
+|s I - A| = \det(s I - A) = 0,
+\end{align*}\]</span> <strong>that is eigenvalues of <span
+class="math inline">\(A\)</span>, are the poles of <span
+class="math inline">\(G(s)\)</span></strong></p>
+</section>
+<section id="state-space-model-2" class="slide level2">
+<h2>State-space model</h2>
+<p><span class="math display">\[\begin{align*}
+    \dot{x} &amp;= A x + B u \\
+    y &amp;= C x + D u
+\end{align*}\]</span></p>
+<h3 id="matrix-exponential">Matrix exponential</h3>
+<p><span class="math display">\[\begin{align*}
+  \mathcal{L}^{-1} \{ (s I - A)^{-1} \} = e^{A t}, \quad t \geq 0
+\end{align*}\]</span></p>
+<h3 id="impulse-response">Impulse response</h3>
+<p><span class="math display">\[\begin{align*}
+  g(t) = \mathcal{L}^{-1} \{ G(s) \} =
+  \mathcal{L}^{-1} \{ C (s I - A)^{-1} B + D \} = C e^{A t} B + D
+  \delta(t), \quad t \geq 0
+\end{align*}\]</span></p>
+</section>
+<section id="state-space-model-3" class="slide level2">
+<h2>State-space model</h2>
+<p><span class="math display">\[\begin{align*}
+    \dot{x} &amp;= A x + B u \\
+    y &amp;= C x + D u
+\end{align*}\]</span></p>
+<h3 id="matrix-exponential-1">Matrix exponential</h3>
+<p><span class="math display">\[\begin{align*}
+  \mathcal{L}^{-1} \{ (s I - A)^{-1} \} = e^{A t}, \quad t \geq 0
+\end{align*}\]</span></p>
+<h3 id="response-to-initial-condition">Response to initial
+condition</h3>
+<p><span class="math display">\[\begin{align*}
+  y(t) = \mathcal{L}^{-1} \{ F(s) x(0^-) \} =
+  \mathcal{L}^{-1} \{ C (s I - A)^{-1} x(0^-) \} = C e^{A t} x(0^-),
+\quad t \geq 0
+\end{align*}\]</span></p>
+<h3 id="asymptotic-stability">Asymptotic stability</h3>
+<p><span class="math display">\[\begin{align*}
+    \operatorname{Re}(\lambda_i(A)) &amp;&lt; 0 &amp;
+    &amp; \Leftrightarrow &amp;
+    \lim_{t \rightarrow \infty} e^{A t} &amp;= 0
+\end{align*}\]</span></p>
+<p>We say <span class="math inline">\(A\)</span> is
+<strong>Hurwitz</strong></p>
+</section>
+<section id="state-space-model-4" class="slide level2">
+<h2>State-space model</h2>
+<p><span class="math display">\[\begin{align*}
+    \dot{x} &amp;= A x + B u \\
+    y &amp;= C x + D u
+\end{align*}\]</span></p>
+<h3 id="matrix-exponential-2">Matrix exponential</h3>
+<p><span class="math display">\[\begin{align*}
+  \mathcal{L}^{-1} \{ (s I - A)^{-1} \} = e^{A t}, \quad t \geq 0
+\end{align*}\]</span></p>
+<h3 id="response-to-initial-condition-1">Response to initial
+condition</h3>
+<p><span class="math display">\[\begin{align*}
+  y(t) = \mathcal{L}^{-1} \{ F(s) x(0^-) \} =
+  \mathcal{L}^{-1} \{ C (s I - A)^{-1} x(0^-) \} = C e^{A t} x(0^-),
+\quad t \geq 0
+\end{align*}\]</span></p>
+<h3 id="asymptotic-stability-1">Asymptotic stability</h3>
+<p>If <span class="math inline">\(A\)</span> is Hurwitz then <span
+class="math display">\[\begin{align*}
+  \lim_{t \rightarrow \infty} x(t) = \lim_{t \rightarrow \infty} e^{A t}
+\, x(0^-) = 0
+  \quad \implies \quad
+  \lim_{t \rightarrow \infty} y(t) = \lim_{t \rightarrow \infty} C e^{A
+t} \, x(0^-) = 0
+\end{align*}\]</span></p>
+</section></section>
+<section>
+<section id="minimal-state-space-realizations"
+class="title-slide slide level1">
+<h1>5.3 Minimal State-Space Realizations</h1>
+<p><span class="h2">State-space model</span></p>
+<p><span class="math display">\[\begin{align}
+  A &amp;=
+  \begin{bmatrix}
+    0 &amp; 1 \\
+    0 &amp; 0
+  \end{bmatrix}, &amp;
+  B &amp;=
+  \begin{bmatrix}
+    1 \\
+    \beta
+  \end{bmatrix}, &amp;
+  C &amp;=
+  \begin{bmatrix}
+    \alpha &amp; 1
+  \end{bmatrix}, &amp;
+  D &amp;= \gamma
+\end{align}\]</span></p>
+<p>order: <span class="math inline">\(n = 2\)</span></p>
+<p><span class="h2">Transfer-function</span></p>
+<p><span class="math display">\[\begin{align*}
+  G(s) &amp;= C (s I - A)^{-1} B + D = \frac{\alpha + \beta}{s} +
+\frac{\alpha \beta}{s^2} + \gamma
+\end{align*}\]</span></p>
+<p><span class="math inline">\(\alpha \, \beta = 0, \, \alpha + \beta
+\neq 0 \implies\)</span> transfer-function has order <span
+class="math inline">\(1\)</span></p>
+<p><span class="math inline">\(\alpha = \beta = 0 \implies\)</span>
+transfer-function has order <span class="math inline">\(0\)</span></p>
+<p>State-space realization may not be <em>minimal</em></p>
+<p>Keywords: <em>controllability</em> and <em>observability</em></p>
+</section>
+<section id="state-space-model-5" class="slide level2">
+<h2>State-space model</h2>
+<p><span class="math display">\[\begin{align}
+  \label{eq:exss2}
+  A &amp;=
+  -\begin{bmatrix}
+    1 &amp; 0 \\ 0 &amp; 1
+  \end{bmatrix}, &amp;\!\!
+  B &amp;=
+  \begin{bmatrix}
+    2 &amp; 0 \\ 0 &amp; 2
+  \end{bmatrix}, &amp;\!\!
+  C &amp;=
+  - \begin{bmatrix}
+    0 &amp; {1}/{2} \\
+    1 &amp; {1}/{2}
+  \end{bmatrix}, &amp;\!\!
+  D &amp;=
+  \begin{bmatrix}
+    1 &amp; 1 \\
+    1 &amp; 1
+  \end{bmatrix}
+\end{align}\]</span></p>
+<p>order: <span class="math inline">\(n = 2\)</span> is minimal</p>
+<h3 id="transfer-function-1">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G(s) &amp;=
+  \begin{bmatrix}
+    1 &amp; \displaystyle \frac{s}{s + 1} \\[2ex]
+    \displaystyle \frac{s - 1}{s + 1} &amp; \displaystyle \frac{s}{s +
+1}
+  \end{bmatrix}
+\end{align*}\]</span></p>
+<p>“looks” like order <span class="math inline">\(1\)</span>; <span
+class="math inline">\(s = 0\)</span> is a zero but <span
+class="math inline">\(s = 1\)</span> is not!</p>
+<p>MIMO systems can be much more complicated!</p>
+</section></section>
+<section>
+<section id="nonlinear-systems-and-linearization"
+class="title-slide slide level1">
+<h1>5.4 Nonlinear Systems and Linearization</h1>
+<p><span class="h2">State-space nonlinear model</span></p>
+<p><span class="math display">\[\begin{align*}
+    \dot{x}(t) &amp;= f(x(t), u(t)) \\
+    y(t) &amp;= g(x(t), u(t))
+\end{align*}\]</span></p>
+<p><span class="h3">Taylor series</span></p>
+<p><span class="math display">\[\begin{align*}
+  f(x, u) &amp;\approx f(\bar{x}, \bar{u}) + A (x - \bar{x}) + B (u -
+\bar{u}) \\
+  g(x, u) &amp;\approx g(\bar{x}, \bar{u}) + C (x - \bar{x}) + D (u -
+\bar{u})
+\end{align*}\]</span> where <span class="math display">\[\begin{align*}
+  A &amp;= \left . \frac{\partial f}{\partial x} \right |_{{\scriptstyle
+      x = \bar{x} \\[-1ex] \scriptstyle u = \bar{u}}}, &amp;
+  B &amp;= \left . \frac{\partial f}{\partial u} \right |_{{\scriptstyle
+      x = \bar{x} \\[-1ex] \scriptstyle u = \bar{u}}}, &amp;
+  C &amp;= \left . \frac{\partial g}{\partial x} \right |_{{\scriptstyle
+      x = \bar{x} \\[-1ex] \scriptstyle u = \bar{u}}}, &amp;
+  D &amp;= \left . \frac{\partial g}{\partial u} \right |_{{\scriptstyle
+      x = \bar{x} \\[-1ex] \scriptstyle u = \bar{u}}}
+\end{align*}\]</span></p>
+</section>
+<section id="state-space-nonlinear-model" class="slide level2">
+<h2>State-space nonlinear model</h2>
+<p><span class="math display">\[\begin{align*}
+    \dot{x}(t) &amp;= f(x(t), u(t)) \\
+    y(t) &amp;= g(x(t), u(t))
+\end{align*}\]</span></p>
+<h3 id="equilibrium-point">Equilibrium point</h3>
+<p><span class="math display">\[\begin{align*}
+  (\bar{x}, \bar{u}) : \quad f(\bar{x}, \bar{u}) &amp;= 0
+\end{align*}\]</span></p>
+<h3 id="deviations">Deviations</h3>
+<p><span class="math display">\[\begin{align}
+  \tilde{x}(t) &amp;= x(t) - \bar{x}, &amp;
+  \tilde{u}(t) &amp;= u(t) - \bar{u}, &amp;
+  \tilde{y}(t) &amp;= y(t) - g(\bar{x},\bar{u})
+\end{align}\]</span></p>
+<h3 id="taylor-series">Taylor series</h3>
+<p><span class="math display">\[\begin{align*}
+  f(x, u) &amp;\approx f(\bar{x}, \bar{u}) + A (x - \bar{x}) + B (u -
+\bar{u}) = A \tilde{x} + B \tilde{u} \\
+  g(x, u) &amp;\approx g(\bar{x}, \bar{u}) + C (x - \bar{x}) + D (u -
+\bar{u}) = C \tilde{x} + D \tilde{u}
+\end{align*}\]</span></p>
+</section>
+<section id="state-space-nonlinear-model-1" class="slide level2">
+<h2>State-space nonlinear model</h2>
+<p><span class="math display">\[\begin{align*}
+    \dot{x}(t) &amp;= f(x(t), u(t)) \\
+    y(t) &amp;= g(x(t), u(t))
+\end{align*}\]</span></p>
+<h3 id="equilibrium-point-1">Equilibrium point</h3>
+<p><span class="math display">\[\begin{align*}
+  (\bar{x}, \bar{u}) : \quad f(\bar{x}, \bar{u}) &amp;= 0
+\end{align*}\]</span></p>
+<h3 id="deviations-1">Deviations</h3>
+<p><span class="math display">\[\begin{align}
+  \tilde{x}(t) &amp;= x(t) - \bar{x}, &amp;
+  \tilde{u}(t) &amp;= u(t) - \bar{u}, &amp;
+  \tilde{y}(t) &amp;= y(t) - g(\bar{x},\bar{u})
+\end{align}\]</span></p>
+<h3 id="state-space-linearized-model">State-space linearized model</h3>
+<p><span class="math display">\[\begin{align*}
+    \dot{\tilde{x}}(t) &amp;= A \, \tilde{x}(t) + B \, \tilde{u}(t) \\
+    \tilde{y}(t) &amp;= C \, \tilde{x}(t) + D \, \tilde{u}(t)
+  \end{align*}\]</span></p>
+</section>
+<section id="state-space-nonlinear-model-2" class="slide level2">
+<h2>State-space nonlinear model</h2>
+<p><span class="math display">\[\begin{align*}
+    \dot{x}(t) &amp;= f(x(t), u(t)) \\
+    y(t) &amp;= g(x(t), u(t))
+\end{align*}\]</span></p>
+<h3 id="state-space-linearized-model-1">State-space linearized
+model</h3>
+<p><span class="math display">\[\begin{align*}
+    \dot{\tilde{x}}(t) &amp;= A \, \tilde{x}(t) + B \, \tilde{u}(t) \\
+    \tilde{y}(t) &amp;= C \, \tilde{x}(t) + D \, \tilde{u}(t)
+\end{align*}\]</span></p>
+<h3 id="lemma-5.1-lyapunov">Lemma 5.1 (Lyapunov)</h3>
+<p><strong><em>If <span class="math inline">\(A\)</span> is Hurwitz then
+there exists <span class="math inline">\(\epsilon &gt; 0\)</span> such
+that for any <span class="math inline">\(x(0)\)</span> within <span
+class="math inline">\(\| x(0) - \bar{x} \| &lt; \epsilon\)</span> and
+<span class="math inline">\(u(t) = \bar{u}\)</span> then <span
+class="math inline">\(\lim_{t \rightarrow \infty} x(t) \rightarrow
+\bar{x}\)</span>, that is <span class="math inline">\(x(t)\)</span>
+converges to <span
+class="math inline">\(\bar{x}\)</span></em></strong></p>
+<p><strong><em>If <span class="math inline">\(A\)</span> has at least
+one eigenvalue with positive real part then there exists solutions that
+diverge from <span
+class="math inline">\(\bar{x}\)</span></em></strong></p>
+</section>
+<section id="lemma-5.1-lyapunov-1" class="slide level2">
+<h2>Lemma 5.1 (Lyapunov)</h2>
+<p><strong><em>If <span class="math inline">\(A\)</span> is Hurwitz then
+there exists <span class="math inline">\(\epsilon &gt; 0\)</span> such
+that for any <span class="math inline">\(x(0)\)</span> within <span
+class="math inline">\(\| x(0) - \bar{x} \| &lt; \epsilon\)</span> and
+<span class="math inline">\(u(t) = \bar{u}\)</span> then <span
+class="math inline">\(\lim_{t \rightarrow \infty} x(t) \rightarrow
+\bar{x}\)</span>, that is <span class="math inline">\(x(t)\)</span>
+converges to <span
+class="math inline">\(\bar{x}\)</span></em></strong></p>
+<p><strong><em>If <span class="math inline">\(A\)</span> has at least
+one eigenvalue with positive real part then there exists solutions that
+diverge from <span
+class="math inline">\(\bar{x}\)</span></em></strong></p>
+<h3 id="key-points">Key points:</h3>
+<ul>
+<li>Stabilitity of the linearized model implies stability of the
+nonlinear model “about” the equilibrium point</li>
+<li>No information about how large is the “region of attraction”</li>
+<li>Instability of the linearized model implies instability of the
+nonlinear model equilibrium point</li>
+<li>Inconclusive if eigenvalues are on the imaginary axis</li>
+<li>There is so much more to learn about nonlinear systems!</li>
+</ul>
+</section></section>
+<section>
+<section id="simple-pendulum" class="title-slide slide level1">
+<h1>5.5 Simple Pendulum</h1>
+<p><img data-src="46cc89fe8a0aca99ce5c577f98ddd17b5aa86a6a.jpg"
+class="tikz plain" style="width:15%" /></p>
+<p><span class="h2">Dynamic model</span></p>
+<p><span class="math display">\[\begin{align*}
+  J_r \, \ddot{\theta} + b \, \dot{\theta} + m \, g \, r \sin
+  \theta &amp;= u, &amp;
+  J_r &amp;= J + m r^2 &gt; 0
+\end{align*}\]</span></p>
+<p><span class="h2">Nonlinear state-space model</span></p>
+<p><span class="math display">\[\begin{align*}
+  x &amp;=
+  \begin{pmatrix}
+    x_1 \\ x_2
+  \end{pmatrix} =
+  \begin{pmatrix}
+    \dot{\theta} \\ \theta
+  \end{pmatrix}, &amp;
+  f(x, u) &amp;=
+  \begin{pmatrix}
+    b_2 u - a_1 x_1 - a_2 \sin x_2 \\
+    x_1
+  \end{pmatrix}, &amp;
+  g(x, u) &amp;= x_2
+\end{align*}\]</span></p>
+</section>
+<section id="equilibrium-points-baru-0" class="slide level2">
+<h2>Equilibrium points (<span class="math inline">\(\bar{u} =
+0\)</span>)</h2>
+<p><span class="math display">\[\begin{align*}
+  f(\bar{x}, \bar{u}) &amp;=
+  \begin{pmatrix}
+    - a_1 \bar{x}_1 - a_2 \sin \bar{x}_2 \\
+    \bar{x}_1
+  \end{pmatrix} =
+  \begin{pmatrix}
+    0 \\ 0
+  \end{pmatrix} &amp;
+  &amp; \implies &amp;
+  \bar{x}_1 &amp;= 0 \quad \text{and} \quad \bar{x}_2 = k \, \pi, \quad
+k
+  \in \mathbb{Z}
+\end{align*}\]</span></p>
+<h3 id="linearization">Linearization</h3>
+<p><span class="math display">\[\begin{align*}
+  \frac{\partial f}{\partial x}
+  &amp;=
+  \begin{bmatrix}
+    - a_1 &amp; - a_2 \cos x_2 \\
+    1 &amp; 0
+  \end{bmatrix}, &amp;
+  \frac{\partial f}{\partial u}
+  &amp;=
+  \begin{bmatrix}
+    b_2 \\ 0
+  \end{bmatrix}, &amp;
+  \frac{\partial g}{\partial x}
+  &amp;=
+  \begin{bmatrix}
+    0 &amp; 1
+  \end{bmatrix}, &amp;
+  \frac{\partial g}{\partial u}
+  &amp;=
+  \begin{bmatrix}
+    0
+  \end{bmatrix}
+\end{align*}\]</span></p>
+<h3 id="about">About</h3>
+<p><span class="math display">\[\begin{align*}
+  (\bar{x}, \bar{u}) &amp;= \left ( \begin{pmatrix} 0 \\ 0
+\end{pmatrix}, 0
+  \right ): &amp;
+  A_0
+  &amp;=
+  \begin{bmatrix}
+    - a_1 &amp; - a_2 \\
+    1 &amp; 0
+  \end{bmatrix}, &amp;
+  B_0
+  &amp;=
+  \begin{bmatrix}
+    b_2 \\ 0
+  \end{bmatrix}, &amp;
+  C_0
+  &amp;=
+  \begin{bmatrix}
+    0 &amp; 1
+  \end{bmatrix}, &amp;
+  D_0
+  &amp;=
+  \begin{bmatrix}
+    0
+  \end{bmatrix}
+\end{align*}\]</span></p>
+<h3 id="transfer-function-2">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G_0(s) &amp;= C_0 (s I - A_0)^{-1} B_0 + D_0
+  =
+  \frac{b_2}{s^2 + a_1 s + a_2}
+\end{align*}\]</span></p>
+</section>
+<section id="equilibrium-points-baru-0-1" class="slide level2">
+<h2>Equilibrium points (<span class="math inline">\(\bar{u} =
+0\)</span>)</h2>
+<p><span class="math display">\[\begin{align*}
+  f(\bar{x}, \bar{u}) &amp;=
+  \begin{pmatrix}
+    - a_1 \bar{x}_1 - a_2 \sin \bar{x}_2 \\
+    \bar{x}_1
+  \end{pmatrix} =
+  \begin{pmatrix}
+    0 \\ 0
+  \end{pmatrix} &amp;
+  &amp; \implies &amp;
+  \bar{x}_1 &amp;= 0 \quad \text{and} \quad \bar{x}_2 = k \, \pi, \quad
+k
+  \in \mathbb{Z}
+\end{align*}\]</span></p>
+<h3 id="linearization-1">Linearization</h3>
+<p><span class="math display">\[\begin{align*}
+  (\bar{x}, \bar{u}) &amp;= \left ( \begin{pmatrix} 0 \\ 0
+\end{pmatrix}, 0
+  \right ): &amp;
+  A_0
+  &amp;=
+  \begin{bmatrix}
+    - a_1 &amp; - a_2 \\
+    1 &amp; 0
+  \end{bmatrix}, &amp;
+  B_0
+  &amp;=
+  \begin{bmatrix}
+    b_2 \\ 0
+  \end{bmatrix}, &amp;
+  C_0
+  &amp;=
+  \begin{bmatrix}
+    0 &amp; 1
+  \end{bmatrix}, &amp;
+  D_0
+  &amp;=
+  \begin{bmatrix}
+    0
+  \end{bmatrix}
+\end{align*}\]</span></p>
+<h3 id="transfer-function-3">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G_0(s) &amp;= C_0 (s I - A_0)^{-1} B_0 + D_0
+  =
+  \frac{b_2}{s^2 + a_1 s + a_2}
+\end{align*}\]</span> If <span class="math inline">\(a_1 &gt; 0\)</span>
+and <span class="math inline">\(a_2 &gt; 0\)</span> then <span
+class="math inline">\(A_0\)</span> is Hurwitz, <span
+class="math inline">\(G_0\)</span> is asymptotically stable</p>
+</section>
+<section id="equilibrium-points-baru-0-2" class="slide level2">
+<h2>Equilibrium points (<span class="math inline">\(\bar{u} =
+0\)</span>)</h2>
+<p><span class="math display">\[\begin{align*}
+  f(\bar{x}, \bar{u}) &amp;=
+  \begin{pmatrix}
+    - a_1 \bar{x}_1 - a_2 \sin \bar{x}_2 \\
+    \bar{x}_1
+  \end{pmatrix} =
+  \begin{pmatrix}
+    0 \\ 0
+  \end{pmatrix} &amp;
+  &amp; \implies &amp;
+  \bar{x}_1 &amp;= 0 \quad \text{and} \quad \bar{x}_2 = k \, \pi, \quad
+k
+  \in \mathbb{Z}
+\end{align*}\]</span></p>
+<h3 id="linearization-2">Linearization</h3>
+<p><span class="math display">\[\begin{align*}
+  \frac{\partial f}{\partial x}
+  &amp;=
+  \begin{bmatrix}
+    - a_1 &amp; - a_2 \cos x_2 \\
+    1 &amp; 0
+  \end{bmatrix}, &amp;
+  \frac{\partial f}{\partial u}
+  &amp;=
+  \begin{bmatrix}
+    b_2 \\ 0
+  \end{bmatrix}, &amp;
+  \frac{\partial g}{\partial x}
+  &amp;=
+  \begin{bmatrix}
+    0 &amp; 1
+  \end{bmatrix}, &amp;
+  \frac{\partial g}{\partial u}
+  &amp;=
+  \begin{bmatrix}
+    0
+  \end{bmatrix}
+\end{align*}\]</span></p>
+<h3 id="about-1">About</h3>
+<p><span class="math display">\[\begin{align*}
+  (\bar{x}, \bar{u}) &amp;= \left ( \begin{pmatrix} 0
+    \\ \pi \end{pmatrix}, 0 \right ): &amp;
+  A_\pi
+  &amp;=
+  \begin{bmatrix}
+    - a_1 &amp; a_2 \\
+    1 &amp; 0
+  \end{bmatrix}, &amp;
+  B_\pi
+  &amp;=
+  \begin{bmatrix}
+    b_2 \\ 0
+  \end{bmatrix}, &amp;
+  C_\pi
+  &amp;=
+  \begin{bmatrix}
+    0 &amp; 1
+  \end{bmatrix}, &amp;
+  D_\pi
+  &amp;=
+  \begin{bmatrix}
+    0
+  \end{bmatrix}
+\end{align*}\]</span></p>
+<h3 id="transfer-function-4">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G_\pi(s) &amp;= C_\pi (s I - A_\pi)^{-1} B_\pi + D_\pi
+  =
+  \frac{b_2}{s^2 + a_1 s - a_2}
+\end{align*}\]</span></p>
+</section>
+<section id="equilibrium-points-baru-0-3" class="slide level2">
+<h2>Equilibrium points (<span class="math inline">\(\bar{u} =
+0\)</span>)</h2>
+<p><span class="math display">\[\begin{align*}
+  f(\bar{x}, \bar{u}) &amp;=
+  \begin{pmatrix}
+    - a_1 \bar{x}_1 - a_2 \sin \bar{x}_2 \\
+    \bar{x}_1
+  \end{pmatrix} =
+  \begin{pmatrix}
+    0 \\ 0
+  \end{pmatrix} &amp;
+  &amp; \implies &amp;
+  \bar{x}_1 &amp;= 0 \quad \text{and} \quad \bar{x}_2 = k \, \pi, \quad
+k
+  \in \mathbb{Z}
+\end{align*}\]</span></p>
+<h3 id="linearization-3">Linearization</h3>
+<p><span class="math display">\[\begin{align*}
+  (\bar{x}, \bar{u}) &amp;= \left ( \begin{pmatrix} 0
+    \\ \pi \end{pmatrix}, 0 \right ): &amp;
+  A_\pi
+  &amp;=
+  \begin{bmatrix}
+    - a_1 &amp; a_2 \\
+    1 &amp; 0
+  \end{bmatrix}, &amp;
+  B_\pi
+  &amp;=
+  \begin{bmatrix}
+    b_2 \\ 0
+  \end{bmatrix}, &amp;
+  C_\pi
+  &amp;=
+  \begin{bmatrix}
+    0 &amp; 1
+  \end{bmatrix}, &amp;
+  D_\pi
+  &amp;=
+  \begin{bmatrix}
+    0
+  \end{bmatrix}
+\end{align*}\]</span></p>
+<h3 id="transfer-function-5">Transfer-function</h3>
+<p><span class="math display">\[\begin{align*}
+  G_\pi(s) &amp;= C_\pi (s I - A_\pi)^{-1} B_\pi + D_\pi
+  =
+  \frac{b_2}{s^2 + a_1 s - a_2}
+\end{align*}\]</span> If <span class="math inline">\(a_1 &gt; 0\)</span>
+and <span class="math inline">\(a_2 &gt; 0\)</span> then <span
+class="math inline">\(A_\pi\)</span> is not Hurwitz, <span
+class="math inline">\(G_\pi\)</span> is unstable</p>
+</section></section>
+<section>
+<section id="pendulum-in-a-cart" class="title-slide slide level1">
+<h1>5.6 Pendulum in a Cart</h1>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><img data-src="figs/Segway_xt.jpg" class="plain"
+style="width:100.0%" /></p>
+</div><div class="column" style="width:70%;">
+<p><img data-src="55eb271e173142d4bf432782e1e98d87d262d943.jpg"
+class="tikz plain float-right" style="width:40%" /></p>
+</div><div class="column" style="width:100%;">
+<p><span class="h2">Dynamic model</span></p>
+<p><span class="math display">\[\begin{align*}
+    (J_p + m_p \, r^2) \ddot{\theta} + m_p \, r \, \ddot{x}_c \cos
+\theta
+    + b_p \, \dot{\theta} + m_p \, g \, r \sin \theta &amp;= 0 \\
+    m_p \, r \, \ddot{\theta} \cos \theta + (m_p + m_c) \, \ddot{x}_c +
+    b_c \, \dot{x}_c - m_p \, r \, \dot{\theta}^2 \sin \theta &amp;= u
+\end{align*}\]</span></p>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p><span class="h2">Second-order vector differential equation</span></p>
+<p><span class="math display">\[\begin{align*}
+  M(q) \, \ddot{q} + F(q, \dot{q}) &amp;= G u, &amp;
+  q &amp;=
+  \begin{pmatrix}
+    \theta \\
+    x_c
+  \end{pmatrix}
+\end{align*}\]</span> <span class="math display">\[\begin{align*}
+  M(q) &amp;=
+  \begin{bmatrix}
+    J_p + m_p \, r^2 &amp; m_p \, r \cos q_1 \\
+    m_p \, r \cos q_1 &amp; m_p + m_c
+  \end{bmatrix}, &amp;
+  F(q,\dot{q}) &amp;=
+  \begin{pmatrix}
+    b_p \dot{q}_1 + m_p \, g \, r \sin q_1 \\
+    b_c \dot{q}_2 - m_p \, r \, \dot{q}_1^2 \sin q_1
+  \end{pmatrix}, &amp;
+  G &amp;=
+  \begin{pmatrix}
+    0 \\ 1
+  \end{pmatrix}
+\end{align*}\]</span></p>
+<p><span class="h2">Nonlinear state-space model</span></p>
+<p><span class="math display">\[\begin{align*}
+  x &amp;=
+  \begin{pmatrix}
+    q \\
+    \dot{q}
+  \end{pmatrix}, &amp;
+  f(x,u) &amp;= f(q,\dot{q},u) = \begin{pmatrix} \dot{q} \\ M^{-1}(q)
+\left[ G
+    u - F(q, \dot{q}) \right]
+     \end{pmatrix}
+\end{align*}\]</span></p>
+<p><span class="h2">Simplified nonlinear state-space model</span></p>
+<p><span class="math display">\[\begin{align*}
+  x &amp;=
+  \begin{pmatrix}
+    \theta \\
+    \dot{\theta} \\
+    \dot{x}_c
+  \end{pmatrix}, &amp;
+  f(x,u) &amp;= %f(\theta,\dot{\theta},\dot{x}_c,u) =
+  \begin{pmatrix}
+    \dot{x_1} \\ M^{-1}(x_1) \left[ G u - F(x) \right]
+     \end{pmatrix}
+\end{align*}\]</span></p>
+</section>
+<section id="equilibrium-points-baru-0-4" class="slide level2">
+<h2>Equilibrium points (<span class="math inline">\(\bar{u} =
+0\)</span>)</h2>
+<p><span class="math display">\[\begin{align*}
+  \bar{x}_1 &amp;= \bar{q}_1 = k \pi, \quad k \in \mathbb{Z}, &amp;
+  \bar{x}_2 = \bar{x}_3 &amp;= \bar{\dot{q}}_1 = \bar{\dot{q}}_2 = 0
+\end{align*}\]</span></p>
+<h3 id="linearization-about-barx_1-0">Linearization about <span
+class="math inline">\(\bar{x}_1 = 0\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+  A_0 &amp;= \frac{1}{J}
+  \begin{bmatrix}
+    0 &amp; J &amp; 0 \\
+%    0 &amp; 0 &amp; 0 &amp; J \\
+    -g \, m_r \, r &amp; {-b_p \, m_r}/{m_p} &amp; b_c \, r \\
+    g \, m_p \, r^2 &amp; b_p \, r &amp; {-b_c J_r}/{m_p} \\
+  \end{bmatrix}\!\!, &amp;
+  B_0 &amp;=
+  \frac{1}{J}
+  \begin{bmatrix}
+    0  \\ %0 \\
+    -r \\ {J_r}/{m_p}
+  \end{bmatrix}
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+  J_r &amp;= J_p + m_p r^2 &gt; 0, &amp;
+  m_r &amp;= m_p + m_c &gt; 0, &amp;
+  J &amp;= J_r \frac{m_r}{m_p} - m_p r^2 &gt; 0
+\end{align*}\]</span></p>
+<h3 id="without-damping-b_c-b_p-0">Without damping (<span
+class="math inline">\(b_c = b_p = 0)\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+  \text{Eigenvalues of } A_0 &amp;: &amp;
+  &amp; 0, &amp;
+  &amp; j \sqrt{g (m_p + m_c) r}, &amp;
+  &amp; -j \sqrt{g (m_p + m_c) r}
+\end{align*}\]</span></p>
+<p>Oscillator</p>
+</section>
+<section id="equilibrium-points-baru-0-5" class="slide level2">
+<h2>Equilibrium points (<span class="math inline">\(\bar{u} =
+0\)</span>)</h2>
+<p><span class="math display">\[\begin{align*}
+  \bar{x}_1 &amp;= \bar{q}_1 = k \pi, \quad k \in \mathbb{Z}, &amp;
+  \bar{x}_2 = \bar{x}_3 &amp;= \bar{\dot{q}}_1 = \bar{\dot{q}}_2 = 0
+\end{align*}\]</span></p>
+<h3 id="linearization-about-barx_1-pi">Linearization about <span
+class="math inline">\(\bar{x}_1 = \pi\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+  A_\pi &amp;= \frac{1}{J}
+  \begin{bmatrix}
+    0 &amp; J &amp; 0 \\
+%    0 &amp; 0 &amp; 0 &amp; J \\
+    g \, m_r \, r &amp; {-b_p \, m_r}/{m_p} &amp; - b_c \, r \\
+    g \, m_p \, r^2 &amp; - b_p \, r &amp; {-b_c J_r}/{m_p} \\
+  \end{bmatrix}\!\!, &amp;
+  B_\pi &amp;=
+  \frac{1}{J}
+  \begin{bmatrix}
+    0  \\ r \\ {J_r}/{m_p}
+  \end{bmatrix}
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+  J_r &amp;= J_p + m_p r^2 &gt; 0, &amp;
+  m_r &amp;= m_p + m_c &gt; 0, &amp;
+  J &amp;= J_r \frac{m_r}{m_p} - m_p r^2 &gt; 0
+\end{align*}\]</span></p>
+<h3 id="without-damping-b_c-b_p-0-1">Without damping (<span
+class="math inline">\(b_c = b_p = 0)\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+  \text{Eigenvalues of } A_\pi &amp;: &amp;
+  &amp; 0, &amp;
+  &amp; \sqrt{g (m_t + m_c) r}, &amp;
+  &amp; -\sqrt{g (m_t + m_c) r}
+\end{align*}\]</span></p>
+<p>Unstable</p>
+</section></section>
+<section>
+<section id="car-steering" class="title-slide slide level1">
+<h1>5.7 Car Steering</h1>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="f133df4f4086bb9c68dffb0b2bb7c04dd6f51fb3.jpg"
+class="tikz plain" style="width:45%" /></p>
+</div><div class="column" style="width:40%;">
+<figure>
+<img data-src="figs/radio-flyer-wagon.png" class="plain"
+style="width:100.0%" alt="www.toyhalloffame.org" />
+<figcaption aria-hidden="true"><a
+href="https://www.toyhalloffame.org/toys/radio-flyer-wagon">www.toyhalloffame.org</a></figcaption>
+</figure>
+</div>
+</div>
+<p><span class="h2">Nonlinear state-space model (kinematic)</span></p>
+<p><span class="math display">\[\begin{align*}
+  x &amp;=
+  \begin{pmatrix}
+    z_x \\ z_y \\[.5ex] \theta
+  \end{pmatrix}, &amp;
+  u &amp;= \tan \psi, &amp;
+  f(x, u) &amp;=
+  \begin{pmatrix}
+    v \cos \theta \\
+    v \sin \theta \\
+    \displaystyle
+    u {v}/{\ell}
+  \end{pmatrix}
+\end{align*}\]</span></p>
+</section>
+<section id="nonlinear-state-space-model" class="slide level2">
+<h2>Nonlinear state-space model</h2>
+<h3 id="kinematics">Kinematics</h3>
+<p><span class="math display">\[\begin{align*}
+  x &amp;=
+  \begin{pmatrix}
+    z_x \\ z_y \\[.5ex] \theta
+  \end{pmatrix}, &amp;
+  u &amp;= \tan \psi, &amp;
+  f(x, u) &amp;=
+  \begin{pmatrix}
+    v \cos \theta \\
+    v \sin \theta \\
+    \displaystyle
+    u {v}/{\ell}
+  \end{pmatrix}
+\end{align*}\]</span></p>
+<h3 id="linearization-4">Linearization</h3>
+<p><span class="math display">\[\begin{align*}
+  \frac{\partial f}{\partial x}
+  &amp;=
+  \begin{bmatrix}
+    0 &amp; 0 &amp; - v \sin \theta \\
+    0 &amp; 0 &amp; v \cos \theta \\
+    0 &amp; 0 &amp; 0
+  \end{bmatrix}, &amp;
+  \frac{\partial f}{\partial u}
+  &amp;=
+  \begin{bmatrix}
+    0 \\ 0 \\ {v}/{\ell}
+  \end{bmatrix}
+\end{align*}\]</span></p>
+<h4 id="about-moving-trajectory-horizontal-line">About moving trajectory
+(horizontal line)</h4>
+<p><span class="math display">\[\begin{align*}
+  \bar{x}(t) &amp;=
+  \begin{pmatrix}
+    z_x(t) \\
+    z_y(t) \\[.5ex]
+    \theta(t)
+  \end{pmatrix} =
+  \begin{pmatrix}
+    v \, t \\
+    0 \\
+    0
+  \end{pmatrix}, &amp;
+  \bar{u}(t) &amp;= 0: &amp;
+  A(t) = A
+  &amp;=
+  \begin{bmatrix}
+    0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; v \\
+    0 &amp; 0 &amp; 0
+  \end{bmatrix}, &amp;
+  B(t) = B
+  &amp;=
+  \begin{bmatrix}
+    0 \\ 0 \\ {v}/{\ell}
+  \end{bmatrix}
+\end{align*}\]</span></p>
+</section></section>
+<section>
+<section id="linear-control-of-nonlinear-systems"
+class="title-slide slide level1">
+<h1>5.8 Linear Control of Nonlinear Systems</h1>
+<p><span class="h2">Design</span></p>
+<p><img data-src="94d858e86329699b883024f694650d17d6f0a29c.jpg"
+class="tikz plain" style="width:40%" /></p>
+<p>Linear controller <span class="math inline">\(K\)</span> is designed
+based on the linearized model <span
+class="math inline">\(\tilde{G}\)</span></p>
+<p><span class="math display">\[\begin{align*}
+  \tilde{u} &amp;= K (\bar{y} - \tilde{y}), &amp;
+  \tilde{u} &amp;= u - \bar{u}, &amp;
+  \tilde{y} &amp;= y - g(\bar{x},\bar{u})
+\end{align*}\]</span></p>
+<p><span class="h2">Implementation</span></p>
+<p>Needs shifting <span class="math display">\[\begin{align}
+  u &amp;= \bar{u} + K [\bar{y} + g(\bar{x},\bar{u}) - y]
+\end{align}\]</span></p>
+</section>
+<section class="slide level2">
+
+<p><span class="h1">5.8 Linear Control of Nonlinear Systems</span></p>
+<p><span class="h2">Design</span></p>
+<p><img data-src="94d858e86329699b883024f694650d17d6f0a29c.jpg"
+class="tikz plain" style="width:40%" /></p>
+<p><span class="h2">Implementation</span></p>
+<p><img data-src="a56433f2c5640c096545c41a5d3280817c5d37c6.jpg"
+class="tikz plain" style="width:40%" /></p>
+<p><span class="h3">Shifted set-point and control</span></p>
+<p><span class="math display">\[\begin{align}
+  u &amp;= \bar{u} + K e, &amp; e &amp;= \bar{y} + g(\bar{x},\bar{u}) -
+y
+\end{align}\]</span></p>
+</section>
+<section id="linear-control-of-nonlinear-systems-1"
+class="slide level2">
+<h2>Linear Control of Nonlinear Systems</h2>
+<p><img data-src="a56433f2c5640c096545c41a5d3280817c5d37c6.jpg"
+class="tikz plain" style="width:40%" /></p>
+<h3 id="washout-filter">Washout filter</h3>
+<p>Controller acts on transient but does not affect steady-state
+equilibrium (<span class="math inline">\(K(0) = 0\)</span>)</p>
+<h3 id="integral-control-shifts-the-equilibrium">Integral control shifts
+the equilibrium</h3>
+<p>Linearize about shifted equilibrium to check for stability</p>
+</section></section>
+<section id="learn-more" class="title-slide slide level1">
+<h1>Learn more</h1>
+<ul>
+<li><a
+href="https://linearcontrol.info/fundamentals/index.php/tag/chapter-5/">Book
+website</a></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js"></script>
+  <script src="reveal.js/plugin/search/search.js"></script>
+  <script src="reveal.js/plugin/zoom/zoom.js"></script>
+  <script src="reveal.js/plugin/math/math.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
